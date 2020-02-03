@@ -57,7 +57,7 @@ namespace PersonalBlog
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Dashboard}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "identity",
                     template: "{area=Identity}/{controller=Account}/{action=Login}/{id?}");

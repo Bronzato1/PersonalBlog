@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PersonalBlog
 {
-    public class HomeController : Controller
+    public class DashboardController : Controller
     {
         public IActionResult Index()
         {
