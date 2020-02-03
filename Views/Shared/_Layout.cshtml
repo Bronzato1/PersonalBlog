@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>@ViewData["Title"] | AdminLTE 3</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/lib/datatables-bs4/css/dataTables.bootstrap4.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/admin-lte/css/adminlte.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    @RenderSection("head", false)
+
+</head>
+
+  <body class="hold-transition sidebar-mini">
+
+    <div class="wrapper">
+
+      <partial name="_LayoutMainHeader" />
+
+      <partial name="_LayoutMainSidebar" />
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        @RenderBody()
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      <partial name="_LayoutControlSidebar" />
+
+      <partial name="_LayoutMainFooter" />
+      
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <environment names="Development,Staging,Production">
+      <!-- jQuery -->
+      <script src="~/lib/jquery/jquery.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+      <!-- DataTables -->
+      <script src="~/lib/datatables/jquery.dataTables.js"></script>
+      <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+      <!-- AdminLTE App -->
+      <script src="~/admin-lte/js/adminlte.js"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+  </body>
+</html>
