@@ -22,16 +22,19 @@ namespace PersonalBlog.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<CustomUser> _signInManager;
         private readonly UserManager<CustomUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<CustomUser> userManager,
+            RoleManager<IdentityRole> roleManager,
             SignInManager<CustomUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
@@ -98,6 +101,14 @@ namespace PersonalBlog.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    var visitorRoleExists = await _roleManager.RoleExistsAsync("Visitor");
+
+                    if (visitorRoleExists)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Visitor");
+                        _logger.LogInformation("User assigned Visitor role.");
+                    }
+                        
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

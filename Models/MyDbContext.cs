@@ -891,6 +891,3 @@ namespace PersonalBlog.Models
         public string LastName { get; set; }
     }
 }
-
-// Add custom user data to the Identity DB
-// https://docs.microsoft.com/en-us/aspnet/core/security/authentication/add-user-data?view=aspnetcore-3.1&tabs=netcore-cli#add-custom-user-data-to-the-identity-db

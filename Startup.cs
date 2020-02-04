@@ -34,6 +34,7 @@ namespace PersonalBlog
 
             services
                 .AddDefaultIdentity<CustomUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<MyDbContext>();
 
             services
@@ -41,7 +42,7 @@ namespace PersonalBlog
                 .AddRazorPagesOptions(options => { });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -62,6 +63,32 @@ namespace PersonalBlog
                     name: "identity",
                     template: "{area=Identity}/{controller=Account}/{action=Login}/{id?}");
             });
+
+            CreateRoles(services).Wait();
+        }
+
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<CustomUser>>();
+
+            var adminRoleExists = await RoleManager.RoleExistsAsync("Admin");
+
+            if (!adminRoleExists)
+                await RoleManager.CreateAsync(new IdentityRole("Admin"));
+
+            var visitorRoleExists = await RoleManager.RoleExistsAsync("Visitor");
+
+            if (!visitorRoleExists)
+                await RoleManager.CreateAsync(new IdentityRole("Visitor"));
+
+            CustomUser user = await UserManager.FindByEmailAsync("john.doe@yahoo.com");
+
+            if (user != null)
+            {
+                await UserManager.AddToRoleAsync(user, "Admin");
+            }
+
         }
     }
 }

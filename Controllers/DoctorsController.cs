@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PersonalBlog
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class DoctorsController : Controller
     {
         MyDbContext _dbContext;
