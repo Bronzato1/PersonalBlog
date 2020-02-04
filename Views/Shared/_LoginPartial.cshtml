@@ -5,45 +5,48 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-          <li class="nav-item dropdown user-menu">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <img src="~/img/user-photo-duo-tone.jpg" class="user-image img-circle elevation-2" alt="User Image">
-              <span class="d-none d-md-inline">@UserManager.GetUserName(User)</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <!-- User image -->
-              <li class="user-header bg-primary">
+    var user = await UserManager.GetUserAsync(User);
+    var fullName = user.FirstName + " " + user.LastName;
+
+    <li class="nav-item dropdown user-menu">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <img src="~/img/user-photo-duo-tone.jpg" class="user-image img-circle elevation-2" alt="User Image">
+            <span class="d-none d-md-inline">@fullName</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <!-- User image -->
+            <li class="user-header bg-primary">
                 <img src="~/img/user-photo-duo-tone.jpg" class="img-circle elevation-2" alt="User Image">
 
                 <p>
-                  @UserManager.GetUserName(User)
-                  <small>Full stack developer</small>
+                    @fullName
+                    <small>Full stack developer</small>
                 </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
+            </li>
+            <!-- Menu Body -->
+            <li class="user-body">
                 <div class="row">
-                  <div class="col-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
+                    <div class="col-4 text-center">
+                        <a href="#">Followers</a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a href="#">Sales</a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a href="#">Friends</a>
+                    </div>
                 </div>
                 <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <a href="#" class="btn btn-default btn-flat">Profile</a> 
-                <form  class="form-inline float-right" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Dashboard", new { area = "" })">
-                  <button  type="submit" class="btn btn-default btn-flat">Logout</button>
+            </li>
+            <!-- Menu Footer-->
+            <li class="user-footer">
+                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <form class="form-inline float-right" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Dashboard", new { area = "" })">
+                    <button type="submit" class="btn btn-default btn-flat">Logout</button>
                 </form>
-              </li>
-            </ul>
-          </li>
+            </li>
+        </ul>
+    </li>
 
 }
 else
@@ -57,26 +60,26 @@ else
 }
 
 @* <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    </li>
-    <li class="nav-item">
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
-</ul> *@
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        </li>
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+    </ul> *@
 
 

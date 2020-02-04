@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -880,9 +882,15 @@ namespace PersonalBlog.Models
         }
 
     }
+
     public class CustomUser : IdentityUser
     {
+        [PersonalData]
         public string FirstName { get; set; }
+        [PersonalData]
         public string LastName { get; set; }
     }
 }
+
+// Add custom user data to the Identity DB
+// https://docs.microsoft.com/en-us/aspnet/core/security/authentication/add-user-data?view=aspnetcore-3.1&tabs=netcore-cli#add-custom-user-data-to-the-identity-db
