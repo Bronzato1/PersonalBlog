@@ -1,4 +1,13 @@
 ﻿@using static PersonalBlog.Secret;
+@using Microsoft.AspNetCore.Identity
+@using PersonalBlog.Models;
+@inject SignInManager<CustomUser> SignInManager
+@inject UserManager<CustomUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+    bool userIsAdmin = (user != null) &&  await UserManager.IsInRoleAsync(user, "Admin");   
+}
 
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -60,16 +69,19 @@
                         </p>
                     </a>
                 </li>
+                @if (userIsAdmin)
+                {
                 <li class="nav-item">
-                    <a asp-controller="Account"
-                       asp-action="Login"
+                    <a asp-controller="Resume"
+                       asp-action="Index"
                        class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Login
+                            Resume
                         </p>
                     </a>
                 </li>
+                }
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

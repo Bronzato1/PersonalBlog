@@ -8,7 +8,7 @@ using PersonalBlog.ViewModels;
 
 namespace PersonalBlog
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class ResumeController : Controller
     {
         MyDbContext _dbContext;
