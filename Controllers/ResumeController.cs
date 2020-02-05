@@ -92,7 +92,12 @@ namespace PersonalBlog
     
         public ActionResult View(int id) 
         {
-            var resume = _dbContext.Resumes.Where(x => x.Id == id).First();
+            var resume = _dbContext.Resumes
+                            .Where(x => x.Id == id)
+                            .Include(x => x.Company)
+                            .Include(x => x.Languages)
+                            .First();
+                            
             return View(resume);
         }
     

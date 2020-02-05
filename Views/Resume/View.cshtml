@@ -1,0 +1,81 @@
+@model PersonalBlog.Models.Resume
+
+@section head {
+    <STYLE type="text/css">
+        /* Any css you want to add */
+    </STYLE>
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Resume view</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Resume" asp-action="Index">Resume</a></li>
+                    <li class="breadcrumb-item active">Resume view</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">General</h3>
+                </div>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label asp-for="Date">Date</label>
+                        <p asp-for="Date" class="form-control-static"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Title">Title</label>
+                        <p asp-for="Title" class="form-control-static"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <p asp-for="Description" class="form-control-static"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Sector">Sector</label>
+                        <p asp-for="Sector" class="form-control-static"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CompanyId">Company</label>
+                        <p asp-for="Company.Name" class="form-control-static"></p>
+                    </div>
+
+                    <div>
+                        <a class="btn btn-secondary" asp-controller="Resume" asp-action="Index">Back</a>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+@section scripts {
+    <script>
+        $(function () {
+            // https://github.com/RobinHerbots/Inputmask
+            $('[data-mask]').inputmask({ alias: "dd/mm/yyyy"});
+        })
+    </script>
+}
