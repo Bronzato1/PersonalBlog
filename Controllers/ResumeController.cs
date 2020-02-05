@@ -49,6 +49,61 @@ namespace PersonalBlog
             return RedirectToAction("Index", "Resume");
         }
 
+        [HttpPost]
+        public bool Delete(int id)
+        {
+            try 
+            {
+                var resume = _dbContext.Resumes.Where(x => x.Id == id).First();
+                _dbContext.Resumes.Remove(resume);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
+    
+        public ActionResult View(int id) 
+        {
+            var resume = _dbContext.Resumes.Where(x => x.Id == id).First();
+            return View(resume);
+        }
+    
+        public ActionResult Update(int id) {
+            var vm = new UpdateResumeViewModel();
+            var resume = _dbContext.Resumes.Where(x => x.Id == id).First();
+            
+            vm.Resume = resume;
 
+            vm.Companies = _dbContext.Companies
+                          .Select(a => new SelectListItem() {  
+                              Value = a.Id.ToString(),
+                              Text = a.Name
+                          }).ToList();
+
+            vm.Databases = _dbContext.Databases
+                          .Select(a => new SelectListItem() {  
+                              Value = a.Id.ToString(),
+                              Text = a.Name
+                          }).ToList();
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateResume(Resume resume) 
+        {
+            Resume r = _dbContext.Resumes.Where(x => x.Id == resume.Id).First();
+            r.Date = resume.Date;
+            r.Title = resume.Title;
+            r.Description = resume.Description;
+            r.Sector = resume.Sector;
+            r.CompanyId = resume.CompanyId;
+            r.DatabaseId = resume.DatabaseId;
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index", "Resume");
+        }
     }
 }
