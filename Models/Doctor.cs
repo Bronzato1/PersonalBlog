@@ -18,7 +18,7 @@ namespace PersonalBlog.Models
         public string Phone { get; set; }
         public int Gender { get; set; }
         public string Specialist { get; set; }
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime Created { get; set; }
 
         public virtual ICollection<Patient> Patients { get; set; }

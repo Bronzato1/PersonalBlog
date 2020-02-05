@@ -3,6 +3,19 @@
 @section head {
   <STYLE type="text/css">
     /* Any css you want to add */
+    .dataTables_length,
+    .dataTables_info {
+      margin-left: 15px;
+    }
+    .dataTables_filter,
+    .dataTables_paginate {
+      margin-right: 15px;
+    }
+    .pagination {
+      margin-top: 15px !important;
+      margin-bottom: 15px !important;
+      margin-right: 15px !important;
+    }
   </STYLE>
 }
 
@@ -13,10 +26,9 @@
             <h1>Resume</h1>
           </div>
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
-              <li class="breadcrumb-item active">Resume</li>
-            </ol>
+            <a class="btn btn-success btn-sm float-right" asp-controller="Resume" asp-action="Create">
+              <i class="fas fa-plus"></i> Create
+            </a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -28,61 +40,76 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header border-0">
-          <h3 class="card-title">Resume</h3>
-          <a class="btn btn-success btn-sm float-right" asp-controller="Resume" asp-action="Create">
-              <i class="fas fa-plus"></i> Create
-          </a>
         </div>
-        <div class="card-body">
+        <div class="card-body p-0">
           <table id="resumeTable" class="table table-bordered table-striped">
-              <thead>
-                  <tr>
-                      <th>
-                          Id
-                      </th>
-                      <th>
-                          Title
-                      </th>
-                      <th>
-                          Description
-                      </th>
-                      <th>
-                      </th>
-                  </tr>
-              </thead>
-              <tbody>
-                  @foreach (var item in Model)
-                {
-                  <tr>
-                      <td>
-                          @Html.DisplayFor(modelItem => item.Id)
-                      </td>
-                      <td>
-                          @Html.DisplayFor(modelItem => item.Title)
-                      </td>
-                      <td>
-                          @Html.DisplayFor(modelItem => item.Description)
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" asp-controller="Resume" asp-action="View" asp-route-id="@item.Id">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" asp-controller="Resume" asp-action="Update" asp-route-id="@item.Id">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#" onclick="Delete('@item.Id')">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                      </td>
-                  </tr>
-                }
-              </tbody>
+            <thead>
+              <tr>
+                <th style="width: 20px">
+                  Id
+                </th>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Title
+                </th>
+                <th>
+                  Description
+                </th>
+                <th>
+                  Sector
+                </th>
+                <th>
+                  Company
+                </th>
+                <th>
+                </th>
+                </tr>
+            </thead>
+            <tbody>
+              @foreach (var item in Model)
+              {
+                <tr>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                  </td>
+                  <td>
+                    @{var sector = EnumHelper<EnumSector>.GetDisplayValue(item.Sector);}
+                    @Html.DisplayFor(e => sector)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Company.Name)
+                  </td>
+                  <td class="project-actions text-right">
+                    <a class="btn btn-primary btn-sm" asp-controller="Resume" asp-action="View" asp-route-id="@item.Id">
+                      <i class="fas fa-folder">
+                      </i>
+                      View
+                    </a> &nbsp;
+                    <a class="btn btn-info btn-sm" asp-controller="Resume" asp-action="Update" asp-route-id="@item.Id">
+                      <i class="fas fa-pencil-alt">
+                      </i>
+                      Edit
+                    </a> &nbsp;
+                    <a class="btn btn-danger btn-sm" href="#" onclick="Delete('@item.Id')">
+                      <i class="fas fa-trash">
+                      </i>
+                      Delete
+                    </a>
+                  </td>
+                </tr>
+              }
+            </tbody>
           </table>
         </div>
         <!-- /.card-body -->

@@ -49,18 +49,21 @@
 
     <!-- REQUIRED SCRIPTS -->
     <environment names="Development,Staging,Production">
-      <!-- jQuery -->
-      <script src="~/lib/jquery/jquery.js"></script>
-      <!-- Bootstrap 4 -->
-      <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-      <!-- DataTables -->
-      <script src="~/lib/datatables/jquery.dataTables.js"></script>
-      <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-      <!-- AdminLTE App -->
-      <script src="~/admin-lte/js/adminlte.js"></script>
+        <!-- jQuery -->
+        <script src="~/lib/jquery/jquery.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <!-- DataTables -->
+        <script src="~/lib/datatables/jquery.dataTables.js"></script>
+        <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+        <!-- InputMask -->
+        <script src="~/lib/moment.js/moment.js"></script>
+        <script src="~/lib/jquery.inputmask/jquery.inputmask.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/admin-lte/js/adminlte.js"></script>
     </environment>
 
-    @RenderSection("Scripts", required: false)
+    @RenderSection("scripts", required: false)
 
   </body>
 </html>

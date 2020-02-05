@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using System.Globalization;
+using System.Threading;
 
 namespace PersonalBlog
 {
@@ -50,7 +52,6 @@ namespace PersonalBlog
             }
 
             app.UseStaticFiles();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -82,7 +83,7 @@ namespace PersonalBlog
             if (!visitorRoleExists)
                 await RoleManager.CreateAsync(new IdentityRole("Visitor"));
 
-            CustomUser user = await UserManager.FindByEmailAsync("john.doe@yahoo.com");
+            CustomUser user = await UserManager.FindByEmailAsync("john.doe@gmail.com");
 
             if (user != null)
             {

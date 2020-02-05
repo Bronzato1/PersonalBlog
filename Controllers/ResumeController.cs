@@ -1,8 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PersonalBlog.Models;
 using PersonalBlog.ViewModels;
 
@@ -12,15 +17,33 @@ namespace PersonalBlog
     public class ResumeController : Controller
     {
         MyDbContext _dbContext;
+        UserManager<CustomUser> _userManager;
 
-        public ResumeController(MyDbContext dbContext) 
+        public ResumeController(MyDbContext dbContext, UserManager<CustomUser> userManager) 
         {
             _dbContext = dbContext;
+            _userManager = userManager;
         }
 
         public ActionResult Index()
         {
-            return View(_dbContext.Resumes.ToList());
+            List<Resume> resumes = _dbContext.Resumes.Include(x => x.Company).ToList();
+            return View(resumes);
+        }
+
+        // For testing purpope only
+        public async Task<IActionResult> LoggedUser()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+            var userName = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
+
+            CustomUser applicationUser = await _userManager.GetUserAsync(User);
+            string userEmail = applicationUser?.Email; // will give the user's Email
+            string userFirstName = applicationUser?.FirstName; // will give the user's FirstName
+            string userLastName = applicationUser?.LastName; // will give the user's LastName
+
+            var infos = string.Format(" UserId: {0} \n UserName: {1} \n Mail: {2} \n FirstName: {3} \n LastName: {4}", userId, userName, userEmail, userFirstName, userLastName);
+            return Content(infos);
         }
 
         public ActionResult Create()
@@ -44,6 +67,8 @@ namespace PersonalBlog
 
         [HttpPost]
         public ActionResult CreateResume(CreateResumeViewModel createResumeVM) {
+            createResumeVM.Resume.CreatedTime = DateTime.Now;
+            createResumeVM.Resume.CreatedUser = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
             _dbContext.Resumes.Add(createResumeVM.Resume);
             _dbContext.SaveChanges();
             return RedirectToAction("Index", "Resume");

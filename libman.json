@@ -18,6 +18,14 @@
     {
       "library": "jquery@3.4.1",
       "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "jquery.inputmask@3.3.4",
+      "destination": "wwwroot/lib/jquery.inputmask/"
+    },
+    {
+      "library": "moment.js@2.24.0",
+      "destination": "wwwroot/lib/moment.js/"
     }
   ]
 }
