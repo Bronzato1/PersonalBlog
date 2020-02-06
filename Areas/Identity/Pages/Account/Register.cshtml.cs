@@ -101,9 +101,15 @@ namespace PersonalBlog.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    var adminRoleExists = await _roleManager.RoleExistsAsync("Admin");
                     var visitorRoleExists = await _roleManager.RoleExistsAsync("Visitor");
 
-                    if (visitorRoleExists)
+                    if (adminRoleExists && user.UserName == "john.doe@gmail.com")
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                        _logger.LogInformation("User assigned Admin role.");
+                    }
+                    else if (visitorRoleExists)
                     {
                         await _userManager.AddToRoleAsync(user, "Visitor");
                         _logger.LogInformation("User assigned Visitor role.");

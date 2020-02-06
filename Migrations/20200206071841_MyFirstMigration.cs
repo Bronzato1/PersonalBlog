@@ -251,7 +251,7 @@ namespace PersonalBlog.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Resumes",
+                name: "Missions",
                 schema: "dbo",
                 columns: table => new
                 {
@@ -270,16 +270,16 @@ namespace PersonalBlog.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Resumes", x => x.Id);
+                    table.PrimaryKey("PK_Missions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Resumes_Companies_CompanyId",
+                        name: "FK_Missions_Companies_CompanyId",
                         column: x => x.CompanyId,
                         principalSchema: "dbo",
                         principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Resumes_Databases_DatabaseId",
+                        name: "FK_Missions_Databases_DatabaseId",
                         column: x => x.DatabaseId,
                         principalSchema: "dbo",
                         principalTable: "Databases",
@@ -334,16 +334,16 @@ namespace PersonalBlog.Migrations
                     UpdatedUser = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     Color = table.Column<int>(nullable: false),
-                    ResumeId = table.Column<int>(nullable: true)
+                    MissionId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Languages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Languages_Resumes_ResumeId",
-                        column: x => x.ResumeId,
+                        name: "FK_Languages_Missions_MissionId",
+                        column: x => x.MissionId,
                         principalSchema: "dbo",
-                        principalTable: "Resumes",
+                        principalTable: "Missions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -383,69 +383,69 @@ namespace PersonalBlog.Migrations
                 columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
                 values: new object[,]
                 {
-                    { 22, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9630), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
-                    { 18, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9614), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
-                    { 19, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9618), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
-                    { 20, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9622), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
-                    { 21, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9626), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
-                    { 23, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9633), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
-                    { 30, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9661), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
-                    { 25, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9642), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
-                    { 26, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9645), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
-                    { 27, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9649), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
-                    { 28, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9653), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
-                    { 29, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9657), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
-                    { 17, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9611), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
-                    { 24, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9638), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
-                    { 16, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9607), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
-                    { 12, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9592), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
-                    { 14, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9599), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
-                    { 1, new DateTime(2020, 2, 3, 21, 29, 14, 442, DateTimeKind.Local).AddTicks(1392), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
-                    { 2, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9506), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
-                    { 3, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9552), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
-                    { 4, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9558), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
-                    { 15, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9603), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
-                    { 6, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9566), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
-                    { 5, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9562), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
-                    { 8, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9574), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
-                    { 9, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9579), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
-                    { 10, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9583), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
-                    { 11, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9588), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
-                    { 13, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9595), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
-                    { 7, new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9570), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" }
+                    { 22, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9810), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
+                    { 18, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9747), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
+                    { 19, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9751), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
+                    { 20, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9755), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
+                    { 21, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9805), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
+                    { 23, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9814), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
+                    { 30, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9843), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
+                    { 25, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9823), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
+                    { 26, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9827), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
+                    { 27, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9831), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
+                    { 28, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9835), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
+                    { 29, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9839), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
+                    { 17, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9742), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
+                    { 24, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9818), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
+                    { 16, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9738), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
+                    { 12, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9722), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
+                    { 14, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9730), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
+                    { 1, new DateTime(2020, 2, 6, 8, 18, 40, 571, DateTimeKind.Local).AddTicks(3253), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
+                    { 2, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9633), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
+                    { 3, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9680), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
+                    { 4, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9687), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
+                    { 15, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9734), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
+                    { 6, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9696), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
+                    { 5, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9692), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
+                    { 8, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9704), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
+                    { 9, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9708), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
+                    { 10, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9714), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
+                    { 11, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9718), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
+                    { 13, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9726), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
+                    { 7, new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9700), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
                 table: "Languages",
-                columns: new[] { "Id", "Color", "Name", "ResumeId", "UpdatedTime", "UpdatedUser" },
+                columns: new[] { "Id", "Color", "MissionId", "Name", "UpdatedTime", "UpdatedUser" },
                 values: new object[,]
                 {
-                    { 5, 17, "Aurelia", null, null, null },
-                    { 1, 17, "Java", null, null, null },
-                    { 2, 17, "Ruby", null, null, null },
-                    { 3, 17, "TypeScript", null, null, null },
-                    { 4, 17, "JavaScript", null, null, null },
-                    { 6, 17, "C#.Net", null, null, null }
+                    { 5, 17, null, "Aurelia", null, null },
+                    { 1, 17, null, "Java", null, null },
+                    { 2, 17, null, "Ruby", null, null },
+                    { 3, 17, null, "TypeScript", null, null },
+                    { 4, 17, null, "JavaScript", null, null },
+                    { 6, 17, null, "C#.Net", null, null }
                 });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
-                table: "Resumes",
+                table: "Missions",
                 columns: new[] { "Id", "CompanyId", "DatabaseId", "Date", "Description", "Sector", "Title", "UpdatedTime", "UpdatedUser" },
-                values: new object[] { 1, 1, 1, new DateTime(2020, 2, 3, 21, 29, 14, 446, DateTimeKind.Local).AddTicks(8279), "This is the first item", 0, "Item 1", null, null });
+                values: new object[] { 1, 1, 1, new DateTime(2020, 2, 6, 8, 18, 40, 575, DateTimeKind.Local).AddTicks(4795), "This is the first item", 0, "Item 1", null, null });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
-                table: "Resumes",
+                table: "Missions",
                 columns: new[] { "Id", "CompanyId", "DatabaseId", "Date", "Description", "Sector", "Title", "UpdatedTime", "UpdatedUser" },
-                values: new object[] { 2, 2, 2, new DateTime(2020, 2, 3, 21, 29, 14, 447, DateTimeKind.Local).AddTicks(1000), "This is the second item", 5, "Item 2", null, null });
+                values: new object[] { 2, 2, 2, new DateTime(2020, 2, 6, 8, 18, 40, 575, DateTimeKind.Local).AddTicks(6241), "This is the second item", 5, "Item 2", null, null });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
-                table: "Resumes",
+                table: "Missions",
                 columns: new[] { "Id", "CompanyId", "DatabaseId", "Date", "Description", "Sector", "Title", "UpdatedTime", "UpdatedUser" },
-                values: new object[] { 3, 3, 3, new DateTime(2020, 2, 3, 21, 29, 14, 447, DateTimeKind.Local).AddTicks(1134), "This is the third item", 1, "Item 3", null, null });
+                values: new object[] { 3, 3, 3, new DateTime(2020, 2, 6, 8, 18, 40, 575, DateTimeKind.Local).AddTicks(6297), "This is the third item", 1, "Item 3", null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -487,10 +487,22 @@ namespace PersonalBlog.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Languages_ResumeId",
+                name: "IX_Languages_MissionId",
                 schema: "dbo",
                 table: "Languages",
-                column: "ResumeId");
+                column: "MissionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Missions_CompanyId",
+                schema: "dbo",
+                table: "Missions",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Missions_DatabaseId",
+                schema: "dbo",
+                table: "Missions",
+                column: "DatabaseId");
 
             migrationBuilder.CreateIndex(
                 name: "doctor_id",
@@ -503,18 +515,6 @@ namespace PersonalBlog.Migrations
                 schema: "dbo",
                 table: "Patients",
                 column: "Nurse_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Resumes_CompanyId",
-                schema: "dbo",
-                table: "Resumes",
-                column: "CompanyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Resumes_DatabaseId",
-                schema: "dbo",
-                table: "Resumes",
-                column: "DatabaseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -553,7 +553,7 @@ namespace PersonalBlog.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Resumes",
+                name: "Missions",
                 schema: "dbo");
 
             migrationBuilder.DropTable(

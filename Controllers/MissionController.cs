@@ -14,12 +14,12 @@ using PersonalBlog.ViewModels;
 namespace PersonalBlog
 {
     [Authorize(Roles = "Admin")]
-    public class ResumeController : Controller
+    public class MissionController : Controller
     {
         MyDbContext _dbContext;
         UserManager<CustomUser> _userManager;
 
-        public ResumeController(MyDbContext dbContext, UserManager<CustomUser> userManager) 
+        public MissionController(MyDbContext dbContext, UserManager<CustomUser> userManager) 
         {
             _dbContext = dbContext;
             _userManager = userManager;
@@ -27,8 +27,8 @@ namespace PersonalBlog
 
         public ActionResult Index()
         {
-            List<Resume> resumes = _dbContext.Resumes.Include(x => x.Company).ToList();
-            return View(resumes);
+            List<Mission> mission = _dbContext.Missions.Include(x => x.Company).ToList();
+            return View(mission);
         }
 
         // For testing purpope only
@@ -48,7 +48,7 @@ namespace PersonalBlog
 
         public ActionResult Create()
         {
-            var vm = new CreateResumeViewModel();
+            var vm = new CreateMissionViewModel();
             
             vm.Companies = _dbContext.Companies
                           .Select(a => new SelectListItem() {  
@@ -66,12 +66,12 @@ namespace PersonalBlog
         }
 
         [HttpPost]
-        public ActionResult CreateResume(CreateResumeViewModel createResumeVM) {
-            createResumeVM.Resume.CreatedTime = DateTime.Now;
-            createResumeVM.Resume.CreatedUser = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
-            _dbContext.Resumes.Add(createResumeVM.Resume);
+        public ActionResult CreateMission(CreateMissionViewModel createMissionVM) {
+            createMissionVM.Mission.CreatedTime = DateTime.Now;
+            createMissionVM.Mission.CreatedUser = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
+            _dbContext.Missions.Add(createMissionVM.Mission);
             _dbContext.SaveChanges();
-            return RedirectToAction("Index", "Resume");
+            return RedirectToAction("Index", "Mission");
         }
 
         [HttpPost]
@@ -79,8 +79,8 @@ namespace PersonalBlog
         {
             try 
             {
-                var resume = _dbContext.Resumes.Where(x => x.Id == id).First();
-                _dbContext.Resumes.Remove(resume);
+                var mission = _dbContext.Missions.Where(x => x.Id == id).First();
+                _dbContext.Missions.Remove(mission);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -92,20 +92,20 @@ namespace PersonalBlog
     
         public ActionResult View(int id) 
         {
-            var resume = _dbContext.Resumes
+            var mission = _dbContext.Missions
                             .Where(x => x.Id == id)
                             .Include(x => x.Company)
                             .Include(x => x.Languages)
                             .First();
                             
-            return View(resume);
+            return View(mission);
         }
     
         public ActionResult Update(int id) {
-            var vm = new UpdateResumeViewModel();
-            var resume = _dbContext.Resumes.Where(x => x.Id == id).First();
+            var vm = new UpdateMissionViewModel();
+            var mission = _dbContext.Missions.Where(x => x.Id == id).First();
             
-            vm.Resume = resume;
+            vm.Mission = mission;
 
             vm.Companies = _dbContext.Companies
                           .Select(a => new SelectListItem() {  
@@ -123,17 +123,17 @@ namespace PersonalBlog
         }
 
         [HttpPost]
-        public ActionResult UpdateResume(Resume resume) 
+        public ActionResult UpdateMission(Mission mission) 
         {
-            Resume r = _dbContext.Resumes.Where(x => x.Id == resume.Id).First();
-            r.Date = resume.Date;
-            r.Title = resume.Title;
-            r.Description = resume.Description;
-            r.Sector = resume.Sector;
-            r.CompanyId = resume.CompanyId;
-            r.DatabaseId = resume.DatabaseId;
+            Mission r = _dbContext.Missions.Where(x => x.Id == mission.Id).First();
+            r.Date = mission.Date;
+            r.Title = mission.Title;
+            r.Description = mission.Description;
+            r.Sector = mission.Sector;
+            r.CompanyId = mission.CompanyId;
+            r.DatabaseId = mission.DatabaseId;
             _dbContext.SaveChanges();
-            return RedirectToAction("Index", "Resume");
+            return RedirectToAction("Index", "Mission");
         }
     }
 }

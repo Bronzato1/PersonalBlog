@@ -10,7 +10,7 @@ using PersonalBlog.Models;
 namespace PersonalBlog.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20200203202914_MyFirstMigration")]
+    [Migration("20200206071841_MyFirstMigration")]
     partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -498,7 +498,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 442, DateTimeKind.Local).AddTicks(1392),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 571, DateTimeKind.Local).AddTicks(3253),
                             Email = "william@gmail.com",
                             Gender = 0,
                             Name = "William",
@@ -509,7 +509,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9506),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9633),
                             Email = "shakespeare@gmail.com",
                             Gender = 0,
                             Name = "Shakespeare",
@@ -520,7 +520,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9552),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9680),
                             Email = "vanespen@gmail.com",
                             Gender = 0,
                             Name = "Vanespen",
@@ -531,7 +531,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 4,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9558),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9687),
                             Email = "dehondt@gmail.com",
                             Gender = 0,
                             Name = "Dehondt",
@@ -542,7 +542,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 5,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9562),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9692),
                             Email = "henri@gmail.com",
                             Gender = 0,
                             Name = "Henri",
@@ -553,7 +553,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 6,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9566),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9696),
                             Email = "craemer@gmail.com",
                             Gender = 0,
                             Name = "Craemer",
@@ -564,7 +564,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 7,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9570),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9700),
                             Email = "paul@gmail.com",
                             Gender = 0,
                             Name = "Paul",
@@ -575,7 +575,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 8,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9574),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9704),
                             Email = "dupuit@gmail.com",
                             Gender = 0,
                             Name = "Dupuit",
@@ -586,7 +586,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 9,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9579),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9708),
                             Email = "gérard@gmail.com",
                             Gender = 0,
                             Name = "Gérard",
@@ -597,7 +597,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 10,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9583),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9714),
                             Email = "vaneste@gmail.com",
                             Gender = 0,
                             Name = "Vaneste",
@@ -608,7 +608,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 11,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9588),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9718),
                             Email = "william@gmail.com",
                             Gender = 0,
                             Name = "William",
@@ -619,7 +619,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 12,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9592),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9722),
                             Email = "shakespeare@gmail.com",
                             Gender = 0,
                             Name = "Shakespeare",
@@ -630,7 +630,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 13,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9595),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9726),
                             Email = "vanespen@gmail.com",
                             Gender = 0,
                             Name = "Vanespen",
@@ -641,7 +641,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 14,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9599),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9730),
                             Email = "dehondt@gmail.com",
                             Gender = 0,
                             Name = "Dehondt",
@@ -652,7 +652,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 15,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9603),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9734),
                             Email = "henri@gmail.com",
                             Gender = 0,
                             Name = "Henri",
@@ -663,7 +663,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 16,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9607),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9738),
                             Email = "craemer@gmail.com",
                             Gender = 0,
                             Name = "Craemer",
@@ -674,7 +674,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 17,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9611),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9742),
                             Email = "paul@gmail.com",
                             Gender = 0,
                             Name = "Paul",
@@ -685,7 +685,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 18,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9614),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9747),
                             Email = "dupuit@gmail.com",
                             Gender = 0,
                             Name = "Dupuit",
@@ -696,7 +696,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 19,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9618),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9751),
                             Email = "gérard@gmail.com",
                             Gender = 0,
                             Name = "Gérard",
@@ -707,7 +707,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 20,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9622),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9755),
                             Email = "vaneste@gmail.com",
                             Gender = 0,
                             Name = "Vaneste",
@@ -718,7 +718,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 21,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9626),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9805),
                             Email = "william@gmail.com",
                             Gender = 0,
                             Name = "William",
@@ -729,7 +729,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 22,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9630),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9810),
                             Email = "shakespeare@gmail.com",
                             Gender = 0,
                             Name = "Shakespeare",
@@ -740,7 +740,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 23,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9633),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9814),
                             Email = "vanespen@gmail.com",
                             Gender = 0,
                             Name = "Vanespen",
@@ -751,7 +751,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 24,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9638),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9818),
                             Email = "dehondt@gmail.com",
                             Gender = 0,
                             Name = "Dehondt",
@@ -762,7 +762,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 25,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9642),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9823),
                             Email = "henri@gmail.com",
                             Gender = 0,
                             Name = "Henri",
@@ -773,7 +773,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 26,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9645),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9827),
                             Email = "craemer@gmail.com",
                             Gender = 0,
                             Name = "Craemer",
@@ -784,7 +784,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 27,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9649),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9831),
                             Email = "paul@gmail.com",
                             Gender = 0,
                             Name = "Paul",
@@ -795,7 +795,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 28,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9653),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9835),
                             Email = "dupuit@gmail.com",
                             Gender = 0,
                             Name = "Dupuit",
@@ -806,7 +806,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 29,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9657),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9839),
                             Email = "gérard@gmail.com",
                             Gender = 0,
                             Name = "Gérard",
@@ -817,7 +817,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 30,
-                            Created = new DateTime(2020, 2, 3, 21, 29, 14, 444, DateTimeKind.Local).AddTicks(9661),
+                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9843),
                             Email = "vaneste@gmail.com",
                             Gender = 0,
                             Name = "Vaneste",
@@ -851,13 +851,13 @@ namespace PersonalBlog.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasDefaultValue("admin");
 
+                    b.Property<int?>("MissionId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ResumeId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedTime")
                         .HasColumnType("datetime2");
@@ -867,7 +867,7 @@ namespace PersonalBlog.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ResumeId");
+                    b.HasIndex("MissionId");
 
                     b.ToTable("Languages","dbo");
 
@@ -913,6 +913,101 @@ namespace PersonalBlog.Migrations
                             Color = 17,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "C#.Net"
+                        });
+                });
+
+            modelBuilder.Entity("PersonalBlog.Models.Mission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("CreatedTime")
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("CreatedUser")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("CreatedUser")
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("admin");
+
+                    b.Property<int>("DatabaseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnName("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnName("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sector")
+                        .HasColumnName("Sector")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnName("Title")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("DatabaseId");
+
+                    b.ToTable("Missions","dbo");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CompanyId = 1,
+                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DatabaseId = 1,
+                            Date = new DateTime(2020, 2, 6, 8, 18, 40, 575, DateTimeKind.Local).AddTicks(4795),
+                            Description = "This is the first item",
+                            Sector = 0,
+                            Title = "Item 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CompanyId = 2,
+                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DatabaseId = 2,
+                            Date = new DateTime(2020, 2, 6, 8, 18, 40, 575, DateTimeKind.Local).AddTicks(6241),
+                            Description = "This is the second item",
+                            Sector = 5,
+                            Title = "Item 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CompanyId = 3,
+                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DatabaseId = 3,
+                            Date = new DateTime(2020, 2, 6, 8, 18, 40, 575, DateTimeKind.Local).AddTicks(6297),
+                            Description = "This is the third item",
+                            Sector = 1,
+                            Title = "Item 3"
                         });
                 });
 
@@ -1021,101 +1116,6 @@ namespace PersonalBlog.Migrations
                     b.ToTable("Patients","dbo");
                 });
 
-            modelBuilder.Entity("PersonalBlog.Models.Resume", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("CreatedTime")
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<string>("CreatedUser")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("CreatedUser")
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("admin");
-
-                    b.Property<int>("DatabaseId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnName("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnName("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Sector")
-                        .HasColumnName("Sector")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnName("Title")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<DateTime?>("UpdatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("DatabaseId");
-
-                    b.ToTable("Resumes","dbo");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CompanyId = 1,
-                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DatabaseId = 1,
-                            Date = new DateTime(2020, 2, 3, 21, 29, 14, 446, DateTimeKind.Local).AddTicks(8279),
-                            Description = "This is the first item",
-                            Sector = 0,
-                            Title = "Item 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CompanyId = 2,
-                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DatabaseId = 2,
-                            Date = new DateTime(2020, 2, 3, 21, 29, 14, 447, DateTimeKind.Local).AddTicks(1000),
-                            Description = "This is the second item",
-                            Sector = 5,
-                            Title = "Item 2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CompanyId = 3,
-                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DatabaseId = 3,
-                            Date = new DateTime(2020, 2, 3, 21, 29, 14, 447, DateTimeKind.Local).AddTicks(1134),
-                            Description = "This is the third item",
-                            Sector = 1,
-                            Title = "Item 3"
-                        });
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -1169,9 +1169,24 @@ namespace PersonalBlog.Migrations
 
             modelBuilder.Entity("PersonalBlog.Models.Language", b =>
                 {
-                    b.HasOne("PersonalBlog.Models.Resume", null)
+                    b.HasOne("PersonalBlog.Models.Mission", null)
                         .WithMany("Languages")
-                        .HasForeignKey("ResumeId");
+                        .HasForeignKey("MissionId");
+                });
+
+            modelBuilder.Entity("PersonalBlog.Models.Mission", b =>
+                {
+                    b.HasOne("PersonalBlog.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PersonalBlog.Database", "Database")
+                        .WithMany()
+                        .HasForeignKey("DatabaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PersonalBlog.Models.Patient", b =>
@@ -1186,21 +1201,6 @@ namespace PersonalBlog.Migrations
                         .WithMany("Patients")
                         .HasForeignKey("NurseId")
                         .HasConstraintName("patients_ibfk_2")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PersonalBlog.Models.Resume", b =>
-                {
-                    b.HasOne("PersonalBlog.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PersonalBlog.Database", "Database")
-                        .WithMany()
-                        .HasForeignKey("DatabaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

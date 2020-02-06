@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PersonalBlog.Models
 {
-    public partial class Resume : Auditable
+    public partial class Mission : Auditable
     {
         public int Id { get; set; }
         [DataType(DataType.Date)]

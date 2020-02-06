@@ -83,13 +83,6 @@ namespace PersonalBlog
             if (!visitorRoleExists)
                 await RoleManager.CreateAsync(new IdentityRole("Visitor"));
 
-            CustomUser user = await UserManager.FindByEmailAsync("john.doe@gmail.com");
-
-            if (user != null)
-            {
-                await UserManager.AddToRoleAsync(user, "Admin");
-            }
-
         }
     }
 }

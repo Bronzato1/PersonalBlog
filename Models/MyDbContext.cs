@@ -24,7 +24,7 @@ namespace PersonalBlog.Models
         public virtual DbSet<Patient> Patients { get; set; }
 
         public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<Resume> Resumes { get; set; }
+        public virtual DbSet<Mission> Missions { get; set; }
         public virtual DbSet<Database> Databases { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
 
@@ -241,10 +241,10 @@ namespace PersonalBlog.Models
                     .HasConstraintName("patients_ibfk_2");
             });
 
-            modelBuilder.Entity<Resume>(entity =>
+            modelBuilder.Entity<Mission>(entity =>
             {
                 entity
-                     .ToTable("Resumes", "dbo")
+                     .ToTable("Missions", "dbo")
                      .HasKey(x => x.Id);
 
                 entity
@@ -847,8 +847,8 @@ namespace PersonalBlog.Models
                 }
             );
 
-            modelBuilder.Entity<Resume>().HasData(
-                new Resume
+            modelBuilder.Entity<Mission>().HasData(
+                new Mission
                 {
                     Id = 1,
                     Date = DateTime.Now,
@@ -858,7 +858,7 @@ namespace PersonalBlog.Models
                     CompanyId = 1,
                     DatabaseId = 1
                 },
-                new Resume
+                new Mission
                 {
                     Id = 2,
                     Date = DateTime.Now,
@@ -868,7 +868,7 @@ namespace PersonalBlog.Models
                     CompanyId = 2,
                     DatabaseId = 2
                 },
-                new Resume
+                new Mission
                 {
                     Id = 3,
                     Date = DateTime.Now,

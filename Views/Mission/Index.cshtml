@@ -1,4 +1,4 @@
-@model IEnumerable<PersonalBlog.Models.Resume>
+@model IEnumerable<PersonalBlog.Models.Mission>
 
 @section head {
   <STYLE type="text/css">
@@ -23,10 +23,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Resume</h1>
+            <h1>Mission</h1>
           </div>
           <div class="col-sm-6">
-            <a class="btn btn-success btn-sm float-right" asp-controller="Resume" asp-action="Create">
+            <a class="btn btn-success btn-sm float-right" asp-controller="Mission" asp-action="Create">
               <i class="fas fa-plus"></i> Create
             </a>
           </div>
@@ -42,7 +42,7 @@
         <div class="card-header border-0">
         </div>
         <div class="card-body p-0">
-          <table id="resumeTable" class="table table-bordered table-striped">
+          <table id="missionTable" class="table table-bordered table-striped">
             <thead>
               <tr>
                 <th style="width: 20px">
@@ -91,12 +91,12 @@
                     @Html.DisplayFor(modelItem => item.Company.Name)
                   </td>
                   <td class="project-actions text-right">
-                    <a class="btn btn-primary btn-sm" asp-controller="Resume" asp-action="View" asp-route-id="@item.Id">
+                    <a class="btn btn-primary btn-sm" asp-controller="Mission" asp-action="View" asp-route-id="@item.Id">
                       <i class="fas fa-folder">
                       </i>
                       View
                     </a> &nbsp;
-                    <a class="btn btn-info btn-sm" asp-controller="Resume" asp-action="Update" asp-route-id="@item.Id">
+                    <a class="btn btn-info btn-sm" asp-controller="Mission" asp-action="Update" asp-route-id="@item.Id">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
@@ -126,7 +126,7 @@
   <script>
     
     $(function () {
-      $('#resumeTable').DataTable({
+      $('#missionTable').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -144,7 +144,7 @@
             $.ajax(
             {
                 type: "POST",
-                url: '@Url.Action("Delete", "Resume")',
+                url: '@Url.Action("Delete", "Mission")',
                 data: {
                     id: id
                 },
@@ -153,7 +153,7 @@
                 },
                 success: function (result) {
                     if (result == true) {
-                        var baseUrl="/Resume";
+                        var baseUrl="/Mission";
                         window.location.reload();
                     }
                     else {
