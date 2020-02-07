@@ -1,0 +1,8 @@
+@model DateTime?
+@if (Model.HasValue)
+{
+    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+    System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+
+    @Model.Value.ToString("MMM yyyy")
+}

@@ -1,17 +1,28 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using JsonNet.PrivateSettersContractResolvers;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace PersonalBlog.Models
 {
     public partial class MyDbContext : IdentityDbContext<CustomUser>
     {
-        public MyDbContext()
+        IApplicationBuilder _applicationBuilder;
+
+        public MyDbContext(IApplicationBuilder applicationBuilder)
         {
+            _applicationBuilder = applicationBuilder;
         }
 
         public MyDbContext(DbContextOptions<MyDbContext> options)
@@ -27,12 +38,28 @@ namespace PersonalBlog.Models
         public virtual DbSet<Mission> Missions { get; set; }
         public virtual DbSet<Database> Databases { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
+        public virtual DbSet<MissionLanguage> MissionLanguages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { }
+        {
+            optionsBuilder.EnableSensitiveDataLogging(true);
+
+            // if (!optionsBuilder.IsConfigured)
+            // {
+            //     IConfigurationRoot configuration = new ConfigurationBuilder()
+            //         .SetBasePath(Directory.GetCurrentDirectory())
+            //         .AddJsonFile("appsettings.json")
+            //         .Build();
+            //     var connectionString = configuration.GetConnectionString("ConnectionForSqlServerLocaldb");
+            //     optionsBuilder.UseSqlServer(connectionString);
+            // }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // if (System.Diagnostics.Debugger.IsAttached == false)
+            //     System.Diagnostics.Debugger.Launch();
+
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
             modelBuilder.Entity<Admin>(entity =>
@@ -288,11 +315,24 @@ namespace PersonalBlog.Models
                     .WithMany();
 
                 entity
-                    .HasMany(e => e.Languages);
-
-                entity
                     .HasOne(e => e.Database)
                     .WithMany();
+            });
+
+            modelBuilder.Entity<MissionLanguage>(entity =>
+            {
+                modelBuilder.Entity<MissionLanguage>()
+                        .HasKey(bc => new { bc.MissionId, bc.LanguageId });
+
+                modelBuilder.Entity<MissionLanguage>()
+                    .HasOne(bc => bc.Mission)
+                    .WithMany(b => b.MissionLanguages)
+                    .HasForeignKey(bc => bc.MissionId);
+                    
+                modelBuilder.Entity<MissionLanguage>()
+                    .HasOne(bc => bc.Language)
+                    .WithMany(c => c.MissionLanguages)
+                    .HasForeignKey(bc => bc.LanguageId);
             });
 
             modelBuilder.Entity<Company>(entity =>
@@ -395,7 +435,15 @@ namespace PersonalBlog.Models
         }
     }
 
-    public static class ModelBuilderExtensions
+    public class CustomUser : IdentityUser
+    {
+        [PersonalData]
+        public string FirstName { get; set; }
+        [PersonalData]
+        public string LastName { get; set; }
+    }
+
+    public static class DbInitializer
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
@@ -736,43 +784,54 @@ namespace PersonalBlog.Models
                 new Company
                 {
                     Id = 1,
-                    Name = "Coca-Cola"
+                    Name = "Transnubel"
                 },
                 new Company
                 {
                     Id = 2,
-                    Name = "Apple"
+                    Name = "Glaxo Smith Kline (GSK)"
                 },
                 new Company
                 {
                     Id = 3,
-                    Name = "Amazon"
+                    Name = "Fortis Insurance Belgium"
                 },
                 new Company
                 {
                     Id = 4,
-                    Name = "Microsoft"
+                    Name = "T-Plan"
                 },
                 new Company
                 {
                     Id = 5,
-                    Name = "Walt-Disney"
+                    Name = "Tott Systems"
                 },
                 new Company
                 {
                     Id = 6,
-                    Name = "Starbucks"
+                    Name = "Sopres"
                 },
                 new Company
                 {
                     Id = 7,
-                    Name = "Walmart"
+                    Name = "Kraft Jacobs Suchard (KJS)  "
                 },
                 new Company
                 {
                     Id = 8,
-                    Name = "Johnson & Johnson"
+                    Name = "JPass International"
+                },
+                new Company
+                {
+                    Id = 9,
+                    Name = "Coca-Cola"
+                },
+                new Company
+                {
+                    Id = 10,
+                    Name = "Cotrase"
                 }
+
             );
 
             modelBuilder.Entity<Database>().HasData(
@@ -791,7 +850,7 @@ namespace PersonalBlog.Models
                 new Database
                 {
                     Id = 3,
-                    Name = "MySql",
+                    Name = "Mainframe (DB2)",
                     Color = EnumColor.CadetBlue
                 },
                 new Database
@@ -812,25 +871,25 @@ namespace PersonalBlog.Models
                 new Language
                 {
                     Id = 1,
-                    Name = "Java",
+                    Name = "Visual-Basic (VB6)",
                     Color = EnumColor.Orange
                 },
                 new Language
                 {
                     Id = 2,
-                    Name = "Ruby",
+                    Name = "Visual-Basic for Applications (VBA)",
                     Color = EnumColor.Orange
                 },
                 new Language
                 {
                     Id = 3,
-                    Name = "TypeScript",
+                    Name = "C-Sharp (C#)",
                     Color = EnumColor.Orange
                 },
                 new Language
                 {
                     Id = 4,
-                    Name = "JavaScript",
+                    Name = "Crystal Reports",
                     Color = EnumColor.Orange
                 },
                 new Language
@@ -842,52 +901,36 @@ namespace PersonalBlog.Models
                 new Language
                 {
                     Id = 6,
-                    Name = "C#.Net",
+                    Name = "VBScript",
                     Color = EnumColor.Orange
-                }
-            );
-
-            modelBuilder.Entity<Mission>().HasData(
-                new Mission
-                {
-                    Id = 1,
-                    Date = DateTime.Now,
-                    Title = "Item 1",
-                    Description = "This is the first item",
-                    Sector = EnumSector.Banking,
-                    CompanyId = 1,
-                    DatabaseId = 1
                 },
-                new Mission
+                new Language
                 {
-                    Id = 2,
-                    Date = DateTime.Now,
-                    Title = "Item 2",
-                    Description = "This is the second item",
-                    Sector = EnumSector.Consultancy,
-                    CompanyId = 2,
-                    DatabaseId = 2
-                },
-                new Mission
-                {
-                    Id = 3,
-                    Date = DateTime.Now,
-                    Title = "Item 3",
-                    Description = "This is the third item",
-                    Sector = EnumSector.Industry,
-                    CompanyId = 3,
-                    DatabaseId = 3
+                    Id = 7,
+                    Name = "C++",
+                    Color = EnumColor.Gray
                 }
             );
         }
 
-    }
+        public static void Initialize(MyDbContext context)
+        {
+            context.Database.EnsureCreated();
 
-    public class CustomUser : IdentityUser
-    {
-        [PersonalData]
-        public string FirstName { get; set; }
-        [PersonalData]
-        public string LastName { get; set; }
+            if (context.Missions.Any())
+                return;
+
+            var jsonData = System.IO.File.ReadAllText(@"Secret-seed-data.json");
+
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ContractResolver = new PrivateSetterContractResolver()
+            };
+
+            List<Mission> missions = JsonConvert.DeserializeObject<List<Mission>>(jsonData, settings);
+
+            context.AddRange(missions);
+            context.SaveChanges();
+        }
     }
 }

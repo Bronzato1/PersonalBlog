@@ -213,7 +213,7 @@ namespace PersonalBlog.Migrations
                             Id = 3,
                             Color = 3,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MySql"
+                            Name = "Mainframe (DB2)"
                         },
                         new
                         {
@@ -318,49 +318,49 @@ namespace PersonalBlog.Migrations
                         {
                             Id = 1,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Coca-Cola"
+                            Name = "Transnubel"
                         },
                         new
                         {
                             Id = 2,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Apple"
+                            Name = "Glaxo Smith Kline (GSK)"
                         },
                         new
                         {
                             Id = 3,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Amazon"
+                            Name = "Fortis Insurance Belgium"
                         },
                         new
                         {
                             Id = 4,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Microsoft"
+                            Name = "T-Plan"
                         },
                         new
                         {
                             Id = 5,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Walt-Disney"
+                            Name = "Tott Systems"
                         },
                         new
                         {
                             Id = 6,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Starbucks"
+                            Name = "Sopres"
                         },
                         new
                         {
                             Id = 7,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Walmart"
+                            Name = "Kraft Jacobs Suchard (KJS)  "
                         },
                         new
                         {
                             Id = 8,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Johnson & Johnson"
+                            Name = "JPass International"
                         });
                 });
 
@@ -496,7 +496,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 571, DateTimeKind.Local).AddTicks(3253),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 54, DateTimeKind.Local).AddTicks(4871),
                             Email = "william@gmail.com",
                             Gender = 0,
                             Name = "William",
@@ -507,7 +507,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9633),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(4985),
                             Email = "shakespeare@gmail.com",
                             Gender = 0,
                             Name = "Shakespeare",
@@ -518,7 +518,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9680),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5035),
                             Email = "vanespen@gmail.com",
                             Gender = 0,
                             Name = "Vanespen",
@@ -529,7 +529,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 4,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9687),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5041),
                             Email = "dehondt@gmail.com",
                             Gender = 0,
                             Name = "Dehondt",
@@ -540,7 +540,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 5,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9692),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5046),
                             Email = "henri@gmail.com",
                             Gender = 0,
                             Name = "Henri",
@@ -551,7 +551,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 6,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9696),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5050),
                             Email = "craemer@gmail.com",
                             Gender = 0,
                             Name = "Craemer",
@@ -562,7 +562,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 7,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9700),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5054),
                             Email = "paul@gmail.com",
                             Gender = 0,
                             Name = "Paul",
@@ -573,7 +573,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 8,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9704),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5058),
                             Email = "dupuit@gmail.com",
                             Gender = 0,
                             Name = "Dupuit",
@@ -584,7 +584,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 9,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9708),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5062),
                             Email = "gérard@gmail.com",
                             Gender = 0,
                             Name = "Gérard",
@@ -595,7 +595,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 10,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9714),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5066),
                             Email = "vaneste@gmail.com",
                             Gender = 0,
                             Name = "Vaneste",
@@ -606,7 +606,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 11,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9718),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5071),
                             Email = "william@gmail.com",
                             Gender = 0,
                             Name = "William",
@@ -617,7 +617,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 12,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9722),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5075),
                             Email = "shakespeare@gmail.com",
                             Gender = 0,
                             Name = "Shakespeare",
@@ -628,7 +628,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 13,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9726),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5079),
                             Email = "vanespen@gmail.com",
                             Gender = 0,
                             Name = "Vanespen",
@@ -639,7 +639,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 14,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9730),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5083),
                             Email = "dehondt@gmail.com",
                             Gender = 0,
                             Name = "Dehondt",
@@ -650,7 +650,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 15,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9734),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5087),
                             Email = "henri@gmail.com",
                             Gender = 0,
                             Name = "Henri",
@@ -661,7 +661,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 16,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9738),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5091),
                             Email = "craemer@gmail.com",
                             Gender = 0,
                             Name = "Craemer",
@@ -672,7 +672,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 17,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9742),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5096),
                             Email = "paul@gmail.com",
                             Gender = 0,
                             Name = "Paul",
@@ -683,7 +683,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 18,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9747),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5100),
                             Email = "dupuit@gmail.com",
                             Gender = 0,
                             Name = "Dupuit",
@@ -694,7 +694,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 19,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9751),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5104),
                             Email = "gérard@gmail.com",
                             Gender = 0,
                             Name = "Gérard",
@@ -705,7 +705,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 20,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9755),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5108),
                             Email = "vaneste@gmail.com",
                             Gender = 0,
                             Name = "Vaneste",
@@ -716,7 +716,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 21,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9805),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5112),
                             Email = "william@gmail.com",
                             Gender = 0,
                             Name = "William",
@@ -727,7 +727,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 22,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9810),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5116),
                             Email = "shakespeare@gmail.com",
                             Gender = 0,
                             Name = "Shakespeare",
@@ -738,7 +738,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 23,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9814),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5120),
                             Email = "vanespen@gmail.com",
                             Gender = 0,
                             Name = "Vanespen",
@@ -749,7 +749,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 24,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9818),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5124),
                             Email = "dehondt@gmail.com",
                             Gender = 0,
                             Name = "Dehondt",
@@ -760,7 +760,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 25,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9823),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5198),
                             Email = "henri@gmail.com",
                             Gender = 0,
                             Name = "Henri",
@@ -771,7 +771,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 26,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9827),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5202),
                             Email = "craemer@gmail.com",
                             Gender = 0,
                             Name = "Craemer",
@@ -782,7 +782,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 27,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9831),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5206),
                             Email = "paul@gmail.com",
                             Gender = 0,
                             Name = "Paul",
@@ -793,7 +793,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 28,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9835),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5210),
                             Email = "dupuit@gmail.com",
                             Gender = 0,
                             Name = "Dupuit",
@@ -804,7 +804,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 29,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9839),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5214),
                             Email = "gérard@gmail.com",
                             Gender = 0,
                             Name = "Gérard",
@@ -815,7 +815,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 30,
-                            Created = new DateTime(2020, 2, 6, 8, 18, 40, 573, DateTimeKind.Local).AddTicks(9843),
+                            Created = new DateTime(2020, 2, 7, 11, 46, 16, 57, DateTimeKind.Local).AddTicks(5218),
                             Email = "vaneste@gmail.com",
                             Gender = 0,
                             Name = "Vaneste",
@@ -875,28 +875,28 @@ namespace PersonalBlog.Migrations
                             Id = 1,
                             Color = 17,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Java"
+                            Name = "Visual-Basic (VB6)"
                         },
                         new
                         {
                             Id = 2,
                             Color = 17,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Ruby"
+                            Name = "Visual-Basic for Applications (VBA)"
                         },
                         new
                         {
                             Id = 3,
                             Color = 17,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "TypeScript"
+                            Name = "C-Sharp (C#)"
                         },
                         new
                         {
                             Id = 4,
                             Color = 17,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "JavaScript"
+                            Name = "Crystal Reports"
                         },
                         new
                         {
@@ -910,7 +910,14 @@ namespace PersonalBlog.Migrations
                             Id = 6,
                             Color = 17,
                             CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C#.Net"
+                            Name = "VBScript"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Color = 6,
+                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "C++"
                         });
                 });
 
@@ -937,7 +944,7 @@ namespace PersonalBlog.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasDefaultValue("admin");
 
-                    b.Property<int>("DatabaseId")
+                    b.Property<int?>("DatabaseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -972,41 +979,6 @@ namespace PersonalBlog.Migrations
                     b.HasIndex("DatabaseId");
 
                     b.ToTable("Missions","dbo");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CompanyId = 1,
-                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DatabaseId = 1,
-                            Date = new DateTime(2020, 2, 6, 8, 18, 40, 575, DateTimeKind.Local).AddTicks(4795),
-                            Description = "This is the first item",
-                            Sector = 0,
-                            Title = "Item 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CompanyId = 2,
-                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DatabaseId = 2,
-                            Date = new DateTime(2020, 2, 6, 8, 18, 40, 575, DateTimeKind.Local).AddTicks(6241),
-                            Description = "This is the second item",
-                            Sector = 5,
-                            Title = "Item 2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CompanyId = 3,
-                            CreatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DatabaseId = 3,
-                            Date = new DateTime(2020, 2, 6, 8, 18, 40, 575, DateTimeKind.Local).AddTicks(6297),
-                            Description = "This is the third item",
-                            Sector = 1,
-                            Title = "Item 3"
-                        });
                 });
 
             modelBuilder.Entity("PersonalBlog.Models.Nurse", b =>
@@ -1182,9 +1154,7 @@ namespace PersonalBlog.Migrations
 
                     b.HasOne("PersonalBlog.Database", "Database")
                         .WithMany()
-                        .HasForeignKey("DatabaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DatabaseId");
                 });
 
             modelBuilder.Entity("PersonalBlog.Models.Patient", b =>

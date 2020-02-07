@@ -47,7 +47,8 @@
 
                         <div class="form-group">
                             <label asp-for="Mission.Description">Description</label>
-                            <input type="text" name="Mission.Description" class="form-control" asp-for="@Model.Mission.Description">
+                            <textarea name="Mission.Description" class="form-control" asp-for="@Model.Mission.Description" rows="4">
+                            </textarea>
                         </div>
 
                         <div class="form-group">
@@ -71,7 +72,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Mission.DatabaseId">Sector</label>
+                            <label asp-for="Mission.DatabaseId">Database</label>
                             <select name="Mission.DatabaseId" class="form-control custom-select" asp-for="Mission.DatabaseId" asp-items="@Model.Databases">
                                 <option>Please select one</option>
                             </select>

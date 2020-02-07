@@ -16,6 +16,10 @@
       margin-bottom: 15px !important;
       margin-right: 15px !important;
     }
+    td.no-wrap {
+      white-space: nowrap;
+      text-overflow:ellipsis;
+    }
   </STYLE>
 }
 
@@ -45,9 +49,6 @@
           <table id="missionTable" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th style="width: 20px">
-                  Id
-                </th>
                 <th>
                   Date
                 </th>
@@ -58,10 +59,7 @@
                   Description
                 </th>
                 <th>
-                  Sector
-                </th>
-                <th>
-                  Company
+                  Sector/Company
                 </th>
                 <th>
                 </th>
@@ -72,10 +70,7 @@
               {
                 <tr>
                   <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                  </td>
-                  <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @Html.DisplayFor(modelItem => item.Date, "MonthYear")
                   </td>
                   <td>
                     @Html.DisplayFor(modelItem => item.Title)
@@ -85,26 +80,21 @@
                   </td>
                   <td>
                     @{var sector = EnumHelper<EnumSector>.GetDisplayValue(item.Sector);}
-                    @Html.DisplayFor(e => sector)
-                  </td>
-                  <td>
+                    @Html.DisplayFor(e => sector) <br/>
                     @Html.DisplayFor(modelItem => item.Company.Name)
                   </td>
-                  <td class="project-actions text-right">
+                  <td class="project-actions text-right no-wrap">
                     <a class="btn btn-primary btn-sm" asp-controller="Mission" asp-action="View" asp-route-id="@item.Id">
-                      <i class="fas fa-folder">
+                      <i class="fas fa-eye">
                       </i>
-                      View
                     </a> &nbsp;
                     <a class="btn btn-info btn-sm" asp-controller="Mission" asp-action="Update" asp-route-id="@item.Id">
                       <i class="fas fa-pencil-alt">
                       </i>
-                      Edit
                     </a> &nbsp;
                     <a class="btn btn-danger btn-sm" href="#" onclick="Delete('@item.Id')">
                       <i class="fas fa-trash">
                       </i>
-                      Delete
                     </a>
                   </td>
                 </tr>

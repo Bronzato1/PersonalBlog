@@ -14,10 +14,10 @@ namespace PersonalBlog.Models
         public EnumSector Sector { get; set; }
 
         public int CompanyId { get; set; }
-        public int DatabaseId { get; set; }
+        public int? DatabaseId { get; set; }
         
         public virtual Company Company { get; set; }
         public virtual Database Database { get; set; }
-        public virtual List<Language> Languages { get; set; }
+        public virtual List<MissionLanguage> MissionLanguages { get; set; }
     }
 }

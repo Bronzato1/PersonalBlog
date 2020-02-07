@@ -95,7 +95,8 @@ namespace PersonalBlog
             var mission = _dbContext.Missions
                             .Where(x => x.Id == id)
                             .Include(x => x.Company)
-                            .Include(x => x.Languages)
+                            .Include(x => x.Database)
+                            .Include("MissionLanguages.Language")
                             .First();
                             
             return View(mission);
