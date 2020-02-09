@@ -22,8 +22,9 @@
         .table-striped > tbody > tr:nth-child(4n) > th {
             background-color: rgba(0, 0, 0, 0.05);
         }
-        .table-underlined > tbody > tr > td:hover {
+        .table-underlined > tbody > tr > td > span:hover {
             text-decoration: underline;
+            cursor: pointer;
         }
     </STYLE>
 }
@@ -124,11 +125,11 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr data-toggle="collapse" href="#elm-@item.Id">
-                                            <td>@item.Date.Year</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Sector)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Company.Name)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.MissionLanguages.First().Language.Name)</td>
+                                            <td><span>@item.Date.Year</span></td>
+                                            <td><span>@Html.DisplayFor(modelItem => item.Sector)</span></td>
+                                            <td><span>@Html.DisplayFor(modelItem => item.Company.Name)</span></td>
+                                            <td><span>@Html.DisplayFor(modelItem => item.Title)</span></td>
+                                            <td><span>@Html.DisplayFor(modelItem => item.MissionLanguages.First().Language.Name)</span></td>
                                         </tr>
                                         <tr class="collapse" id="elm-@item.Id">
                                             <td></td>
