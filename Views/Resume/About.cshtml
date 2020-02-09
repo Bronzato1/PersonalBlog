@@ -65,9 +65,20 @@
                                     <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                                         <i class="fas fa-download"></i> Generate PDF
                                     </button>
-                                    <button type="button" class="btn btn-default float-right" style="margin-right: 15px;">
+                                    @* <button type="button" class="btn btn-default float-right" style="margin-right: 15px;">
+                                        <i class="fas fa-print"></i> Print
+                                    </button> *@
+                                    <button class="btn btn-default dropdown-toggle float-right" type="button" id="dropdownMenuButtonPrint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 15px;">
                                         <i class="fas fa-print"></i> Print
                                     </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonPrint">
+                                        <li><a class="dropdown-item" href="#">Condensed version (2 pages)</a></li>
+                                        <li><a class="dropdown-item" href="#">Detailed version (4 pages)</a></li>   
+                                    </ul>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Condensed version (2 pages)</a></li>
+                                        <li><a class="dropdown-item" href="#">Detailed version (4 pages)</a></li>   
+                                    </ul>
                                 </small>
                             </h4>
                         </div>
@@ -210,10 +221,10 @@
 <!-- /.content -->
 
 
-@section scripts {
-    <script>
+@section scripts {         
+  <script>
         $(function () {
-
+  
         });
     </script>
 }
