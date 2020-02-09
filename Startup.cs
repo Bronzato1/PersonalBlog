@@ -42,6 +42,9 @@ namespace PersonalBlog
             services
                 .AddMvc(option => option.EnableEndpointRouting = false)
                 .AddRazorPagesOptions(options => { });
+
+            services.AddScoped<IDataRepository, DataRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)

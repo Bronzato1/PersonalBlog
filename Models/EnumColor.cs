@@ -3,7 +3,6 @@ namespace PersonalBlog
     public enum EnumColor
     {
         Aquamarine,
-        Azure,
         BurlyWood,
         CadetBlue,
         Gainsboro,

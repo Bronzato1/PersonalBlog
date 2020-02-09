@@ -1,4 +1,4 @@
-namespace PersonalBlog
+namespace PersonalBlog.Models
 {
     public partial class Database : Auditable
     {

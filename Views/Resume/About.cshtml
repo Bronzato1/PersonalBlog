@@ -1,0 +1,219 @@
+﻿@model IEnumerable<PersonalBlog.Models.Mission>
+@using static PersonalBlog.Secret
+
+@section head {
+    <STYLE type="text/css">
+
+        tr.collapse.in 
+        {
+            display:table-row;
+        }
+
+        /* https://stackoverflow.com/questions/25504077/bootstrap-table-striped-how-can-i-change-the-stripe-step/25506669 */
+
+        .table > tbody > tr > td {
+            cursor: default;
+        }
+        .table-striped > tbody > tr:nth-child(4n-3) > td,
+        .table-striped > tbody > tr:nth-child(4n-3) > th {
+            background-color: #ffffff;
+        }
+        .table-striped > tbody > tr:nth-child(4n) > td,
+        .table-striped > tbody > tr:nth-child(4n) > th {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .table-underlined > tbody > tr > td:hover {
+            text-decoration: underline;
+        }
+    </STYLE>
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>About</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">About</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="callout callout-info no-print">
+                    <h5><i class="fas fa-info"></i> Note:</h5>
+                    This page has been enhanced for printing. Click the print button to get a hard copy or download the PDF version.
+                </div>
+
+                <!-- Main content -->
+                <div class="invoice p-3 mb-3">
+                    <!-- title row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>
+                                <i class="fas fa-user-circle"></i> @Secret.FullName
+                                <small class="float-right no-print">
+                                    <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                                        <i class="fas fa-download"></i> Generate PDF
+                                    </button>
+                                    <button type="button" class="btn btn-default float-right" style="margin-right: 15px;">
+                                        <i class="fas fa-print"></i> Print
+                                    </button>
+                                </small>
+                            </h4>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- info row -->
+                    <div class="row invoice-info">
+                        <div class="col-sm-12 invoice-col pt-3">
+                            Skills
+                            <hr />
+                        </div>
+                        <div class="col-sm-3 invoice-col">
+                            <strong>Javascript</strong><br>
+                            TypeScript, Ajax, Json, REST, APIs, 
+                            Aurelia, Knockout, Durandal
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 invoice-col">
+                            <strong>Html/Css</strong><br>
+                            Html5, Css3, Responsive design, 
+                            Graceful degradation
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 invoice-col">
+                            <strong>Design</strong><br>
+                            Sketch, Photoshop, Prototyping,
+                            Usability
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 invoice-col">
+                            <strong>.Net</strong><br>
+                            Vb.Net, C-Sharp (C#), VB6, Entity Framework,
+                            Internet Information Server (IIS)
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- Table row -->
+                    <div class="row">
+                        <div class="col-12 table-responsive pt-5">
+                            Missions
+                            <hr/>
+                            <table class="table table-striped table-borderless table-underlined">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Sector</th>
+                                        <th>Company</th>
+                                        <th>Title</th>
+                                        <th>Technologies</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr data-toggle="collapse" href="#elm-@item.Id">
+                                            <td>@item.Date.Year</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Sector)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Company.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.MissionLanguages.First().Language.Name)</td>
+                                        </tr>
+                                        <tr class="collapse" id="elm-@item.Id">
+                                            <td></td>
+                                            <td colspan="4">
+                                                @item.Description
+                                                <br/>
+                                                @{
+                                                    if (item.Database != null)
+                                                    {
+                                                        <span class="badge" style="color: white; background-color: @item.Database.Color; border-color: @item.Database.Color;">@item.Database.Name</span>
+                                                    }
+
+                                                    foreach (var elm in item.MissionLanguages)
+                                                    {
+                                                        <span class="badge" style="color: white; background-color: @elm.Language.Color; border-color: @elm.Language.Color;">@elm.Language.Name</span>
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row pt-3">
+                        <div class="col-12">
+                            Education 
+                            <br/>
+                            <br/>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tr>
+                                        <td>2019</td>
+                                        <td>Pluralsight Online Course<br /><b>Aurelia Fundamentals</b></td>
+                                        <td>2020</td>
+                                        <td>Udemy Online Course, <br /><b>Learn Authentication With ASP.NET Identity Security</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2006</td>
+                                        <td>FIB Course, Brussels<br /><b>Asp.Net MVC Framework</b></td>
+                                        <td>2005</td>
+                                        <td>U2U Training Services, Brussels<br /><b>Developing Microsoft .Net Applications</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2001</td>
+                                        <td>BMA Training Center, Brussels<br /><b>Web development with Interdev 6.0</b></td>
+                                        <td>1998</td>
+                                        <td>Centre de formation Ability, Brussels<br /><b>Security Advisor ADR</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1997</td>
+                                        <td>Sybase Learning Center, Brussels<br /><b>Relational Database Design and SQL</b></td>
+                                        <td>1996</td>
+                                        <td>IPL (Institut Paul Lambin), Brussels<br /><b>Computer Science Degree, Networks and telecom</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- this row will not appear when printing -->
+                    <div class="row no-print">
+                        <div class="col-12">
+                            <p class="float-right">
+                                Last update: 12/02/2020
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.invoice -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+
+@section scripts {
+    <script>
+        $(function () {
+
+        });
+    </script>
+}

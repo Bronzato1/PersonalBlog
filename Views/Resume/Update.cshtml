@@ -68,15 +68,21 @@
 
                         <div class="form-group">
                             <label asp-for="Mission.CompanyId">Company</label>
-                            <select name="Mission.CompanyId" class="form-control custom-select" asp-for="Mission.CompanyId" asp-items="@Model.Companies">
+                            <select name="Mission.CompanyId" class="form-control custom-select" asp-for="Mission.CompanyId" asp-items="@Model.SelCompanies">
                                 <option>Please select one</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label asp-for="Mission.DatabaseId">Database</label>
-                            <select name="Mission.DatabaseId" class="form-control custom-select" asp-for="Mission.DatabaseId" asp-items="@Model.Databases">
+                            <select name="Mission.DatabaseId" class="form-control custom-select" asp-for="Mission.DatabaseId" asp-items="@Model.SelDatabases">
                                 <option>Please select one</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Mission.MissionLanguages">Languages</label>
+                            <select multiple="multiple" name="SelectedLanguageIds" class="form-control custom-select select2" asp-for="@Model.SelectedLanguageIds" asp-items="@Model.SelLanguages">
                             </select>
                         </div>
 
@@ -97,8 +103,21 @@
 @section scripts {
     <script>
         $(function () {
+
             // https://github.com/RobinHerbots/Inputmask
-            $('[data-mask]').inputmask({ alias: "dd/mm/yyyy"});
+            $('[data-mask]').inputmask({ alias: "dd/mm/yyyy" });
+
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                templateSelection: function (data, container) {
+                    var aryColors = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.ColorLanguages) as String);
+                    var selColor = aryColors.find(x => x.Id == data.id).Color;
+                    $(container).css("background-color", selColor);
+                    $(container).css("border-color", selColor);
+                    return data.text;
+                }
+            });
+
         })
     </script>
 }

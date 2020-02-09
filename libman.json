@@ -26,6 +26,10 @@
     {
       "library": "moment.js@2.24.0",
       "destination": "wwwroot/lib/moment.js/"
+    },
+    {
+      "library": "select2@4.0.12",
+      "destination": "wwwroot/lib/select2/"
     }
   ]
 }

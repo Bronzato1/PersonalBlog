@@ -42,17 +42,7 @@ namespace PersonalBlog.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.EnableSensitiveDataLogging(true);
-
-            // if (!optionsBuilder.IsConfigured)
-            // {
-            //     IConfigurationRoot configuration = new ConfigurationBuilder()
-            //         .SetBasePath(Directory.GetCurrentDirectory())
-            //         .AddJsonFile("appsettings.json")
-            //         .Build();
-            //     var connectionString = configuration.GetConnectionString("ConnectionForSqlServerLocaldb");
-            //     optionsBuilder.UseSqlServer(connectionString);
-            // }
+            //optionsBuilder.EnableSensitiveDataLogging(true);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -845,7 +835,7 @@ namespace PersonalBlog.Models
                 {
                     Id = 2,
                     Name = "Ms Access",
-                    Color = EnumColor.Azure
+                    Color = EnumColor.SandyBrown
                 },
                 new Database
                 {
@@ -878,37 +868,37 @@ namespace PersonalBlog.Models
                 {
                     Id = 2,
                     Name = "Visual-Basic for Applications (VBA)",
-                    Color = EnumColor.Orange
+                    Color = EnumColor.Pink
                 },
                 new Language
                 {
                     Id = 3,
                     Name = "C-Sharp (C#)",
-                    Color = EnumColor.Orange
+                    Color = EnumColor.CadetBlue
                 },
                 new Language
                 {
                     Id = 4,
                     Name = "Crystal Reports",
-                    Color = EnumColor.Orange
+                    Color = EnumColor.Khaki
                 },
                 new Language
                 {
                     Id = 5,
                     Name = "Aurelia",
-                    Color = EnumColor.Orange
+                    Color = EnumColor.MediumOrchid
                 },
                 new Language
                 {
                     Id = 6,
                     Name = "VBScript",
-                    Color = EnumColor.Orange
+                    Color = EnumColor.PaleTurquoise
                 },
                 new Language
                 {
                     Id = 7,
                     Name = "C++",
-                    Color = EnumColor.Gray
+                    Color = EnumColor.SeaGreen
                 }
             );
         }

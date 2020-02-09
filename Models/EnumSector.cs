@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PersonalBlog
+namespace PersonalBlog.Models
 {
     public enum EnumSector
     {

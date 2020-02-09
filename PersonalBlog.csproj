@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\" />
+    <Folder Include="wwwroot\lib\select2-bootstrap4-theme\" />
   </ItemGroup>
 
 </Project>
