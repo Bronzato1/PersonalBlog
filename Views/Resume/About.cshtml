@@ -63,25 +63,35 @@
                             <h4>
                                 <i class="fas fa-user-circle"></i> @Secret.FullName
 
+                                <div class="dropdown float-right no-print">
 
-                                
-                                <small class="float-right no-print">
+                                    <div class="float-right p-2">
 
-                                    <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-download"></i> Generate PDF
-                                    </button>
+                                        <button data-display="static" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonPdf" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-download"></i> PDF
+                                        </button>
 
-                                    <div class="dropdown float-right">
-                                        <button data-display="static" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButtonPrint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 15px;">
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonPdf">
+                                            <li><a class="dropdown-item" href="#" onclick="return exportpdf(condensed)">Condensed version (2 pages)</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="return exportpdf(detailed)">Detailed version (4 pages)</a></li>   
+                                        </ul>
+
+                                    </div>
+
+                                    <div class="float-right p-2">
+
+                                        <button data-display="static" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButtonPrint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-print"></i> Print
                                         </button>
+
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonPrint">
-                                            <li><a class="dropdown-item" href="#">Condensed version (2 pages)</a></li>
-                                            <li><a class="dropdown-item" href="#">Detailed version (4 pages)</a></li>   
+                                            <li><a class="dropdown-item" href="#" onclick="return printing(0)">Condensed version (2 pages)</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="return printing(1)">Detailed version (4 pages)</a></li>   
                                         </ul>
+                                        
                                     </div>
-                                    
-                                </small>
+
+                                </div>
                             </h4>
                         </div>
                         <!-- /.col -->
@@ -225,8 +235,47 @@
 
 @section scripts {         
   <script>
+
+        const condensed = 0;
+        const detailed = 1;
+
         $(function () {
-            
+
+            window.exportpdf = function(param)
+            {
+                if (param == condensed)
+                {
+                    $('.collapse').removeClass('show');
+                    alert('Export PDF condensed');
+                } 
+                else
+                {
+                    $('.collapse').addClass('show');
+
+                    window.setTimeout(function() 
+                    { 
+                        alert('Export PDF detailed');
+                        $('.collapse').removeClass('show');
+                    }, 500);
+                }
+                return false;
+            }
+
+            window.printing = function(param)
+            {
+                if (param == condensed)
+                {
+                    $('.collapse').removeClass('show');
+                    window.print();
+                } 
+                else 
+                {
+                    $('.collapse').addClass('show');
+                    window.print();
+                    $('.collapse').removeClass('show');
+                }
+                return false;
+            }
         });
     </script>
 }
