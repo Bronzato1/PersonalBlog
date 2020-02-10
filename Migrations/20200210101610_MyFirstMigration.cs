@@ -376,7 +376,7 @@ namespace PersonalBlog.Migrations
                 columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
                 values: new object[,]
                 {
-                    { 1, "Transnubel", null, null },
+                    { 1, "Trans***", null, null },
                     { 2, "Glaxo Smith Kline (GSK)", null, null },
                     { 3, "Fortis Insurance Belgium", null, null },
                     { 4, "T-Plan", null, null },
@@ -385,7 +385,10 @@ namespace PersonalBlog.Migrations
                     { 7, "Kraft Jacobs Suchard (KJS)  ", null, null },
                     { 8, "JPass International", null, null },
                     { 9, "Coca-Cola", null, null },
-                    { 10, "Cotrase", null, null }
+                    { 10, "Cotrase", null, null },
+                    { 11, "Comité Olympique Belge (COIB)", null, null },
+                    { 12, "Baxter", null, null },
+                    { 13, "Akzonobel", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -394,9 +397,9 @@ namespace PersonalBlog.Migrations
                 columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
                 values: new object[,]
                 {
-                    { 4, 4, "Omnis", null, null },
-                    { 3, 2, "Mainframe (DB2)", null, null },
                     { 5, 10, "Oracle", null, null },
+                    { 3, 2, "Mainframe (DB2)", null, null },
+                    { 4, 4, "Omnis", null, null },
                     { 1, 0, "Sql Server", null, null },
                     { 2, 24, "Ms Access", null, null }
                 });
@@ -407,36 +410,36 @@ namespace PersonalBlog.Migrations
                 columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
                 values: new object[,]
                 {
-                    { 18, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9653), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
-                    { 19, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9657), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
-                    { 20, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9661), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
-                    { 21, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9665), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
-                    { 22, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9669), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
-                    { 23, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9673), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
-                    { 24, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9677), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
-                    { 26, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9686), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
-                    { 27, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9690), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
-                    { 28, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9695), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
-                    { 29, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9699), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
-                    { 30, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9703), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
-                    { 17, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9649), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
-                    { 25, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9682), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
-                    { 16, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9645), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
-                    { 11, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9625), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
-                    { 14, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9637), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
-                    { 1, new DateTime(2020, 2, 8, 10, 46, 0, 509, DateTimeKind.Local).AddTicks(2142), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
-                    { 2, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9540), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
-                    { 3, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9590), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
-                    { 15, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9641), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
-                    { 5, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9601), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
-                    { 6, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9605), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
-                    { 4, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9596), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
-                    { 8, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9613), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
-                    { 9, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9617), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
-                    { 10, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9621), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
-                    { 12, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9629), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
-                    { 13, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9633), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
-                    { 7, new DateTime(2020, 2, 8, 10, 46, 0, 511, DateTimeKind.Local).AddTicks(9609), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" }
+                    { 17, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8880), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
+                    { 18, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8885), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
+                    { 19, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8890), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
+                    { 20, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8895), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
+                    { 21, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8902), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
+                    { 22, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8906), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
+                    { 23, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8910), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
+                    { 24, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8915), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
+                    { 26, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8924), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
+                    { 27, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8928), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
+                    { 28, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8933), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
+                    { 29, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8937), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
+                    { 30, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8942), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
+                    { 25, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8919), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
+                    { 16, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8876), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
+                    { 11, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8852), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
+                    { 14, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8866), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
+                    { 1, new DateTime(2020, 2, 10, 11, 16, 9, 901, DateTimeKind.Local).AddTicks(105), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
+                    { 2, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8757), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
+                    { 15, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8871), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
+                    { 4, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8817), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
+                    { 5, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8821), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
+                    { 6, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8827), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
+                    { 3, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8809), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
+                    { 8, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8837), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
+                    { 9, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8842), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
+                    { 10, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8848), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
+                    { 12, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8857), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
+                    { 13, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8861), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
+                    { 7, new DateTime(2020, 2, 10, 11, 16, 9, 904, DateTimeKind.Local).AddTicks(8832), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" }
                 });
 
             migrationBuilder.InsertData(
@@ -445,13 +448,16 @@ namespace PersonalBlog.Migrations
                 columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
                 values: new object[,]
                 {
-                    { 6, 19, "VBScript", null, null },
+                    { 9, 20, "Microsoft Excel", null, null },
                     { 1, 16, "Visual-Basic (VB6)", null, null },
-                    { 2, 21, "Visual-Basic for Applications (VBA)", null, null },
+                    { 2, 21, "Visual-Basic for Appl. (VBA)", null, null },
                     { 3, 2, "C-Sharp (C#)", null, null },
                     { 4, 6, "Crystal Reports", null, null },
                     { 5, 11, "Aurelia", null, null },
-                    { 7, 25, "C++", null, null }
+                    { 6, 19, "VBScript", null, null },
+                    { 7, 25, "C++", null, null },
+                    { 8, 17, "VB.Net", null, null },
+                    { 10, 23, "Powerbuilder", null, null }
                 });
 
             migrationBuilder.CreateIndex(

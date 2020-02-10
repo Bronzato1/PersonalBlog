@@ -774,7 +774,7 @@ namespace PersonalBlog.Models
                 new Company
                 {
                     Id = 1,
-                    Name = "Transnubel"
+                    Name = "Trans***"
                 },
                 new Company
                 {
@@ -820,6 +820,21 @@ namespace PersonalBlog.Models
                 {
                     Id = 10,
                     Name = "Cotrase"
+                },
+                new Company
+                {
+                    Id = 11,
+                    Name = "Comité Olympique Belge (COIB)"
+                },
+                new Company
+                {
+                    Id = 12,
+                    Name = "Baxter"
+                },
+                new Company
+                {
+                    Id = 13,
+                    Name = "Akzonobel"
                 }
 
             );
@@ -867,7 +882,7 @@ namespace PersonalBlog.Models
                 new Language
                 {
                     Id = 2,
-                    Name = "Visual-Basic for Applications (VBA)",
+                    Name = "Visual-Basic for Appl. (VBA)",
                     Color = EnumColor.Pink
                 },
                 new Language
@@ -899,6 +914,24 @@ namespace PersonalBlog.Models
                     Id = 7,
                     Name = "C++",
                     Color = EnumColor.SeaGreen
+                },
+                new Language
+                {
+                    Id = 8,
+                    Name = "VB.Net",
+                    Color = EnumColor.OrangeRed
+                },
+                new Language
+                {
+                    Id = 9,
+                    Name = "Microsoft Excel",
+                    Color = EnumColor.Peru
+                },
+                new Language
+                {
+                    Id = 10,
+                    Name = "Powerbuilder",
+                    Color = EnumColor.RoyalBlue
                 }
             );
         }
