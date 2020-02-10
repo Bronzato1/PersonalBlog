@@ -12,7 +12,7 @@ namespace PersonalBlog.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public EnumSector Sector { get; set; }
-
+        public int Staff { get; set; }
         public int CompanyId { get; set; }
         public int? DatabaseId { get; set; }
         

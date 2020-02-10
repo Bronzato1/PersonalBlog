@@ -76,12 +76,13 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="w-auto pl-2">
                 <div class="callout callout-info no-print">
-                    <h5><i class="fas fa-info"></i> Note:</h5>
+                    <h5><i class="fas fa-info"></i><strong>nfo</strong></h5>
                     This page has been enhanced for printing. Click the print button to get a hard copy or download the PDF version.
                 </div>
-
+            </div>
+            <div class="col-12">
                 <!-- Main content -->
                 <div class="invoice p-3 mb-3">
                     <!-- title row -->
@@ -164,6 +165,7 @@
                                 <thead>
                                     <tr>
                                         <th>Year</th>
+                                        <th>Staff</th>
                                         <th>Sector</th>
                                         <th>Company</th>
                                         <th>Title</th>
@@ -174,7 +176,15 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr data-toggle="collapse" href="#elm-@item.Id">
+
                                             <td><span>@item.Date.Year</span></td>
+                                            
+                                            <td>
+                                            @{
+                                                for (int i=0; i < @item.Staff;i++) { <i class="fa fa-male"></i> }
+                                            }
+                                            </td>
+
                                             <td><span>@Html.DisplayFor(modelItem => item.Sector)</span></td>
                                             <td><span>@Html.DisplayFor(modelItem => item.Company.Name)</span></td>
                                             <td><span>@Html.DisplayFor(modelItem => item.Title)</span></td>
@@ -266,6 +276,8 @@
         const detailed = 1;
 
         $(function () {
+
+            $('[data-toggle="tooltip"]').tooltip();
 
             window.exportpdf = function(param)
             {
