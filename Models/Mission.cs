@@ -13,6 +13,7 @@ namespace PersonalBlog.Models
         public string Description { get; set; }
         public EnumSector Sector { get; set; }
         public int Staff { get; set; }
+        public int Duration { get; set; }
         public int CompanyId { get; set; }
         public int? DatabaseId { get; set; }
         
