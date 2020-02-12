@@ -141,7 +141,7 @@
                             <!-- /.col -->
                         </div>
                         <div class="col-2 text-right p-0">
-                            <img src="~/img/user-photo-duo-tone.jpg" class="img-thumbnail">
+                            <img src="~/img/user-photo-duo-tone.jpg" class="">
                         </div>
                         <!-- /.col -->
                     </div>
@@ -186,11 +186,11 @@
                                 <thead>
                                     <tr>
                                         <th>Year</th>
-                                        <th>Staff</th>
+                                        <th class="no-print">Staff</th>
                                         <th>Sector</th>
                                         <th>Company</th>
                                         <th>Title</th>
-                                        <th>Duration</th>
+                                        <th class="no-print">Duration</th>
                                         <th>Technologies</th>
                                     </tr>
                                 </thead>
@@ -201,7 +201,7 @@
 
                                             <td><span>@item.Date.Year</span></td>
                                             
-                                            <td>
+                                            <td class="no-print">
                                             @{
                                                 for (int i=0; i < @item.Staff;i++) { <i class="fa fa-male"></i> }
                                             }
@@ -210,7 +210,7 @@
                                             <td><span>@Html.DisplayFor(modelItem => item.Sector)</span></td>
                                             <td><span>@Html.DisplayFor(modelItem => item.Company.Name)</span></td>
                                             <td><span>@Html.DisplayFor(modelItem => item.Title)</span></td>
-                                            <td class="align-middle">
+                                            <td class="align-middle no-print">
                                                 <div class="progress progress-xs">
                                                     <div class="progress-bar bg-dark progress-bar-striped" role="progressbar" aria-valuenow="@(@item.Duration/5)" aria-valuemin="0" aria-valuemax="100" style="width: @(@item.Duration/5)%">
                                                     <span class="sr-only">@item.Duration man days</span>
@@ -219,7 +219,7 @@
                                             </td>
                                             <td><span>@Html.DisplayFor(modelItem => item.MissionLanguages.First().Language.Name)</span></td>
                                         </tr>
-                                        <tr class="collapse" id="elm-@item.Id">
+                                        <tr class="collapse no-print" id="elm-@item.Id">
                                             <td></td>
                                             <td colspan="6" class="pb-4">
                                                 @Html.Raw(item.Description)
