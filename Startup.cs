@@ -30,6 +30,9 @@ namespace PersonalBlog
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+
             services.AddDbContext<MyDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("ConnectionForSqlServerLocaldb")));
@@ -39,11 +42,12 @@ namespace PersonalBlog
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<MyDbContext>();
 
-            services
-                .AddMvc(option => option.EnableEndpointRouting = false)
-                .AddRazorPagesOptions(options => { });
+            // services
+            //     .AddMvc(option => option.EnableEndpointRouting = false)
+            //     .AddRazorPagesOptions(options => { });
 
-            services.AddScoped<IDataRepository, DataRepository>();
+            services.AddScoped<IResumeRepository, ResumeRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
@@ -56,16 +60,25 @@ namespace PersonalBlog
 
             app.UseStaticFiles();
             app.UseAuthentication();
+
+            app.UseRouting();
+
             app.UseAuthorization();
 
-            app.UseMvc(routes =>
+            // app.UseMvc(routes =>
+            // {
+            //     routes.MapRoute(
+            //         name: "default",
+            //         template: "{controller=Dashboard}/{action=Index}/{id?}");
+            //     routes.MapRoute(
+            //         name: "identity",
+            //         template: "{area=Identity}/{controller=Account}/{action=Login}/{id?}");
+            // });
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Dashboard}/{action=Index}/{id?}");
-                routes.MapRoute(
-                    name: "identity",
-                    template: "{area=Identity}/{controller=Account}/{action=Login}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Blog}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
             CreateRoles(services).Wait();

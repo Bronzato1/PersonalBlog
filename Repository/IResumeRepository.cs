@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using PersonalBlog.Models;
 
-public interface IDataRepository 
+public interface IResumeRepository 
 {
     // CRUD operations
 
     public List<Mission> GetAllMissions();
+
     public List<Company> GetAllCompanies();
+
     public List<Database> GetAllDatabases();
+
     public List<Language> GetAllLanguages();
 
     public Mission GetMissionById(int id);
@@ -19,5 +22,4 @@ public interface IDataRepository
     public void UpdateMissionLanguages(int missionId, int[] languageIds);
 
     public void DeleteMission(Mission mission);
-
 }

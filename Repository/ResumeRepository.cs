@@ -3,11 +3,11 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PersonalBlog.Models;
 
-public class DataRepository : IDataRepository
+public class ResumeRepository : IResumeRepository
 {
     private readonly MyDbContext _dbContext;
 
-    public DataRepository(MyDbContext dbContext)
+    public ResumeRepository(MyDbContext dbContext)
     {
         _dbContext = dbContext;
     }

@@ -1,0 +1,14 @@
+@model IEnumerable<PersonalBlog.Models.Post>
+@inject IOptionsSnapshot<BlogSettings> settings
+
+@{
+    int currentPage = int.Parse(ViewContext.RouteData.Values["page"] as string ?? "0");
+    int pageCount = int.Parse(ViewData["TotalPostCount"].ToString()) / 2; 
+
+    Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+}
+
+@foreach (var post in Model)
+{
+    <partial name="Post" model="post" />
+}

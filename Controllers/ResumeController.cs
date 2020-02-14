@@ -16,25 +16,25 @@ namespace PersonalBlog
     [Authorize(Roles = "Admin")]
     public class ResumeController : Controller
     {
-        private readonly IDataRepository _dataRepository;
+        private readonly IResumeRepository _resumeRepository;
         private readonly UserManager<CustomUser> _userManager;
 
-        public ResumeController(IDataRepository dataRepository, UserManager<CustomUser> userManager)
+        public ResumeController(IResumeRepository resumeRepository, UserManager<CustomUser> userManager)
         {
-            _dataRepository = dataRepository;
+            _resumeRepository = resumeRepository;
             _userManager = userManager;
         }
 
         public ActionResult Index()
         {
-            List<Mission> missions = _dataRepository.GetAllMissions();
+            List<Mission> missions = _resumeRepository.GetAllMissions();
             return View(missions);
         }
 
         [AllowAnonymous]
         public ActionResult About()
         {
-            List<Mission> missions = _dataRepository.GetAllMissions();
+            List<Mission> missions = _resumeRepository.GetAllMissions();
             return View(missions);
         }
 
@@ -57,14 +57,14 @@ namespace PersonalBlog
         {
             var vm = new CreateMissionViewModel();
 
-            vm.Companies = _dataRepository.GetAllCompanies()
+            vm.Companies = _resumeRepository.GetAllCompanies()
                           .Select(a => new SelectListItem()
                           {
                               Value = a.Id.ToString(),
                               Text = a.Name
                           }).ToList();
 
-            vm.Databases = _dataRepository.GetAllDatabases()
+            vm.Databases = _resumeRepository.GetAllDatabases()
                           .Select(a => new SelectListItem()
                           {
                               Value = a.Id.ToString(),
@@ -79,7 +79,7 @@ namespace PersonalBlog
         {
             createMissionVM.Mission.CreatedTime = DateTime.Now;
             createMissionVM.Mission.CreatedUser = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
-            _dataRepository.AddMission(createMissionVM.Mission);
+            _resumeRepository.AddMission(createMissionVM.Mission);
             return RedirectToAction("Index", "Mission");
         }
 
@@ -88,8 +88,8 @@ namespace PersonalBlog
         {
             try
             {
-                var mission = _dataRepository.GetMissionById(id);
-                _dataRepository.DeleteMission(mission);
+                var mission = _resumeRepository.GetMissionById(id);
+                _resumeRepository.DeleteMission(mission);
                 return true;
             }
             catch (System.Exception)
@@ -100,41 +100,41 @@ namespace PersonalBlog
 
         public ActionResult View(int id)
         {
-            var mission = _dataRepository.GetMissionById(id);
+            var mission = _resumeRepository.GetMissionById(id);
             return View(mission);
         }
 
         public ActionResult Update(int id)
         {
             var viewModel = new UpdateMissionViewModel();
-            var mission = _dataRepository.GetMissionById(id);
-            var companies = _dataRepository.GetAllCompanies();
-            var databases = _dataRepository.GetAllDatabases();
-            var languages = _dataRepository.GetAllLanguages();
+            var mission = _resumeRepository.GetMissionById(id);
+            var companies = _resumeRepository.GetAllCompanies();
+            var databases = _resumeRepository.GetAllDatabases();
+            var languages = _resumeRepository.GetAllLanguages();
 
             viewModel.Mission = mission;
 
-            viewModel.SelCompanies = _dataRepository.GetAllCompanies()
+            viewModel.SelCompanies = _resumeRepository.GetAllCompanies()
                           .Select(a => new SelectListItem()
                           {
                               Value = a.Id.ToString(),
                               Text = a.Name
                           }).ToList();
 
-            viewModel.SelDatabases = _dataRepository.GetAllDatabases()
+            viewModel.SelDatabases = _resumeRepository.GetAllDatabases()
                           .Select(a => new SelectListItem()
                           {
                               Value = a.Id.ToString(),
                               Text = a.Name
                           }).ToList();
 
-            viewModel.SelLanguages = _dataRepository.GetAllLanguages()
+            viewModel.SelLanguages = _resumeRepository.GetAllLanguages()
                           .Select(a => new SelectListItem() {
                               Value = a.Id.ToString(),
                               Text = a.Name
                           }).ToList();
 
-            var colors = _dataRepository.GetAllLanguages().Select(x => new Colors { Id = x.Id, Color = x.Color.ToString() }).ToList();
+            var colors = _resumeRepository.GetAllLanguages().Select(x => new Colors { Id = x.Id, Color = x.Color.ToString() }).ToList();
             var languageIds = mission.MissionLanguages.Select(x => x.LanguageId).ToArray();
 
             viewModel.ColorLanguages = colors; 
@@ -146,15 +146,15 @@ namespace PersonalBlog
         [HttpPost]
         public ActionResult UpdateMission(UpdateMissionViewModel updateMissionViewModel)
         {
-            Mission m = _dataRepository.GetMissionById(updateMissionViewModel.Mission.Id);
+            Mission m = _resumeRepository.GetMissionById(updateMissionViewModel.Mission.Id);
             m.Date = updateMissionViewModel.Mission.Date;
             m.Title = updateMissionViewModel.Mission.Title;
             m.Description = updateMissionViewModel.Mission.Description;
             m.Sector = updateMissionViewModel.Mission.Sector;
             m.CompanyId = updateMissionViewModel.Mission.CompanyId;
             m.DatabaseId = updateMissionViewModel.Mission.DatabaseId;
-            _dataRepository.UpdateMission(m);
-            _dataRepository.UpdateMissionLanguages(updateMissionViewModel.Mission.Id, updateMissionViewModel.SelectedLanguageIds);
+            _resumeRepository.UpdateMission(m);
+            _resumeRepository.UpdateMissionLanguages(updateMissionViewModel.Mission.Id, updateMissionViewModel.SelectedLanguageIds);
             return RedirectToAction("Index", "Mission");
         }
     }

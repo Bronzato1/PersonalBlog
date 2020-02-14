@@ -39,6 +39,9 @@ namespace PersonalBlog.Models
         public virtual DbSet<Database> Databases { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<MissionLanguage> MissionLanguages { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
