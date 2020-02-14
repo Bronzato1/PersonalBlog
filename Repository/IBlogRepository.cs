@@ -8,6 +8,8 @@ namespace PersonalBlog
     {
         Task<IEnumerable<Post>> GetPosts();
 
+        Task<IEnumerable<Post>> GetPostsByCategory(string category);
+
         Task<Post> GetPostBySlug(string slug);
     }
 }

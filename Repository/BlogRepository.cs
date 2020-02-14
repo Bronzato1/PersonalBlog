@@ -39,6 +39,18 @@ namespace PersonalBlog
             return Task.FromResult(posts);
         }
 
+        public virtual Task<IEnumerable<Post>> GetPostsByCategory(string category)
+        {
+            bool isAdmin = IsAdmin();
+
+            var posts = (from p in _dbContext.Posts.Include(x => x.Categories)
+                         where p.PubDate <= DateTime.UtcNow && (p.IsPublished || isAdmin)
+                         where p.Categories.Any(x => x.Name == category)
+                         select p).AsEnumerable();
+
+            return Task.FromResult(posts);
+        }
+
         protected bool IsAdmin()
         {
             return _contextAccessor.HttpContext?.User?.Identity.IsAuthenticated == true;
