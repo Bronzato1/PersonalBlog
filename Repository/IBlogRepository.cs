@@ -10,6 +10,17 @@ namespace PersonalBlog
 
         Task<IEnumerable<Post>> GetPostsByCategory(string category);
 
+        Task<Post> GetPostById(int id);
+
+        Task<IEnumerable<Category>> GetCategories();
+
         Task<Post> GetPostBySlug(string slug);
+
+        Task SavePost(Post post);
+
+        Task DeletePost(Post post);
+
+        Task<string> SaveFile(byte[] bytes, string fileName, string suffix = null);
+
     }
 }

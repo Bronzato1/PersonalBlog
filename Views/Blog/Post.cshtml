@@ -7,26 +7,35 @@
     bool showFullPost = ViewContext.RouteData.Values.ContainsKey("slug");
     string host = Context.Request.Scheme + "://" + Context.Request.Host;
     bool isCodePreview = Model.Content.Contains("</code>");
-
-    if (showFullPost)
-        Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+    System.Globalization.CultureInfo cultureUS = new System.Globalization.CultureInfo("en-US");
+    if (showFullPost) Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
 
 <div class="card card-widget">
     <div class="card-header">
         <div class="user-block">
-        <img class="img-circle" src="~/img/user-photo-grayscale.jpg" alt="User Image">
-        <span class="username"><a href="@Model.GetLink()">@Model.Title</a></span>
-        <span class="description">Posted by Thierry on monday 20</span>
+            <img class="img-circle" src="~/img/user-photo-grayscale.jpg" alt="User Image">
+            <span class="username">
+                <a href="@Model.GetLink()">@Model.Title</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <text>&nbsp;&nbsp;&nbsp;</text>
+                    <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" title="Edit the post"><i class="fa fa-pencil-alt"></i> Edit</a>
+                }</span>
+            <span class="description">
+                Posted by Thierry on
+                <time datetime="@Model.PubDate.ToString("s")" itemprop="datePublished">@Model.PubDate.ToString("d MMMM yyyy", cultureUS)</time>
+            </span>
+            
         </div>
         <!-- /.user-block -->
         <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
-            <i class="far fa-circle"></i></button>
-        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-        </button>
-        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-        </button>
+            <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
+                <i class="far fa-circle"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+            </button>
         </div>
         <!-- /.card-tools -->
     </div>

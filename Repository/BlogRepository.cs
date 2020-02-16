@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.Xml.XPath;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +55,35 @@ namespace PersonalBlog
             return Task.FromResult(posts);
         }
 
+        public virtual Task<Post> GetPostById(int id)
+        {
+            var post = _dbContext.Posts
+                    .Include(x => x.Categories)
+                    .FirstOrDefault(p => p.Id.Equals(id));
+
+            bool isAdmin = IsAdmin();
+
+            if (post != null && post.PubDate <= DateTime.UtcNow && (post.IsPublished || isAdmin))
+            {
+                return Task.FromResult(post);
+            }
+
+            return Task.FromResult<Post>(null);
+        }
+
+        public virtual Task<IEnumerable<Category>> GetCategories()
+        {
+            bool isAdmin = IsAdmin();
+
+            var categories = _dbContext.Posts
+                .Where(p => p.IsPublished || isAdmin)
+                .SelectMany(post => post.Categories).Distinct().AsEnumerable();
+                // .Select(cat => cat.Name.ToLowerInvariant())
+                // .Distinct().AsEnumerable();
+
+            return Task.FromResult(categories);
+        }
+
         protected bool IsAdmin()
         {
             return _contextAccessor.HttpContext?.User?.Identity.IsAuthenticated == true;
@@ -71,5 +104,75 @@ namespace PersonalBlog
 
             return Task.FromResult<Post>(null);
         }
+
+        public async Task SavePost(Post post)
+        {
+            post.LastModified = DateTime.UtcNow;
+
+            if (!_dbContext.Posts.Contains(post))
+                _dbContext.Posts.Add(post);
+            else
+                _dbContext.Posts.Attach(post);
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public Task DeletePost(Post post)
+        {
+            if (_dbContext.Posts.Contains(post))
+            {
+                _dbContext.Posts.Remove(post);
+            }
+            _dbContext.SaveChanges();
+
+            return Task.CompletedTask;
+        }
+
+        public async Task<string> SaveFile(byte[] bytes, string fileName, string suffix = null)
+        {
+            suffix = CleanFromInvalidChars(suffix ?? DateTime.UtcNow.Ticks.ToString());
+
+            string ext = Path.GetExtension(fileName);
+            string name = CleanFromInvalidChars(Path.GetFileNameWithoutExtension(fileName));
+
+            string fileNameWithSuffix = $"{name}_{suffix}{ext}";
+
+            string absolute = Path.Combine(_folder, FILES, fileNameWithSuffix);
+            string dir = Path.GetDirectoryName(absolute);
+
+            Directory.CreateDirectory(dir);
+            using (var writer = new FileStream(absolute, FileMode.CreateNew))
+            {
+                await writer.WriteAsync(bytes, 0, bytes.Length).ConfigureAwait(false);
+            }
+
+            return $"/{POSTS}/{FILES}/{fileNameWithSuffix}";
+        }
+
+        private string GetFilePath(Post post)
+        {
+            return Path.Combine(_folder, post.Id + ".xml");
+        }
+
+        private static string CleanFromInvalidChars(string input)
+        {
+            // ToDo: what we are doing here if we switch the blog from windows
+            // to unix system or vice versa? we should remove all invalid chars for both systems
+
+            var regexSearch = Regex.Escape(new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()));
+            var r = new Regex($"[{regexSearch}]");
+            return r.Replace(input, "");
+        }
+
+        private static string FormatDateTime(DateTime dateTime)
+        {
+            const string UTC = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'";
+
+            return dateTime.Kind == DateTimeKind.Utc
+                ? dateTime.ToString(UTC)
+                : dateTime.ToUniversalTime().ToString(UTC);
+        }
+
+
     }
 }

@@ -1,0 +1,101 @@
+@model PersonalBlog.ViewModels.UpdatePostViewModel
+
+@{
+    bool isNew = string.IsNullOrEmpty(Model.Post.Title);
+    ViewData["Title"] = Model.Post.Title ?? "New post";
+    var host = Context.Request.Host.ToString();
+    Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+}
+
+@section head{
+    <link rel="stylesheet" href="~/css/admin.css" />
+}
+
+<div class="card card-widget">
+    <div class="card-header">
+        <div class="user-block">
+            <img class="img-circle" src="~/img/user-photo-grayscale.jpg" alt="User Image">
+            <span class="username">
+                @ViewData["Title"]
+            </span>
+            <span class="description">
+                Posted by Thierry on monday 20
+            </span>
+            
+        </div>
+        <!-- /.user-block -->
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
+                <i class="far fa-circle"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+            </button>
+        </div>
+        <!-- /.card-tools -->
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <form method="post" id="Post_Edit" class="container" asp-controller="Blog" asp-action="UpdatePost">
+            <div asp-validation-summary="All"></div>
+            <input type="hidden" asp-for="@Model.Post.Id" />
+
+            <div class="form-group">
+                <label asp-for="@Model.Post.Title" class="label">Title</label>
+                <input asp-for="@Model.Post.Title" required placeholder="Title of blog post" aria-describedby="desc_title" />
+            </div>
+        
+            <div class="form-group">
+                <label asp-for="@Model.Post.Slug" class="label">Slug</label>
+                <input asp-for="@Model.Post.Slug" placeholder="The URL name" aria-describedby="desc_slug" />
+            </div>
+
+            <div class="form-group">
+                <label for="SelectedCategories" class="label">Tags</label>
+                <select multiple="multiple" class="form-control custom-select select2" asp-for="@Model.SelectedCategories" asp-items="@Model.SelCategories">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Post.Excerpt" class="label">Excerpt</label>
+                <textarea asp-for="@Model.Post.Excerpt" rows="3" placeholder="Short description of blog post" aria-describedby="desc_excerpt">@Model.Post.Excerpt</textarea>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Post.Excerpt" class="label">Content</label>
+                <textarea asp-for="@Model.Post.Content" rows="20" aria-label="Content">@Model.Post.Content</textarea>
+            </div>
+
+            <input type="submit" value="Save" title="Save the post" />
+
+            &nbsp;&nbsp;
+            <input asp-for="@Model.Post.IsPublished" />
+            <label asp-for="@Model.Post.IsPublished">Is published</label>
+
+            @if (!isNew)
+            {
+                <button type="submit" class="delete" asp-action="DeletePost" asp-route-id="@Model.Post.Id">
+                    <i class="fas fa-minus-circle"></i>
+                    <strong> Delete</strong>
+                </button>
+            }
+        </form>
+    </div>
+
+</div>
+<!-- /.card -->
+
+@section Scripts {
+    <script src="//@host/lib/tinymce/tinymce.min.js"></script>  @* with enabled CDN tinymce is not able to find some files *@
+    <script src="~/js/admin.js" async></script>
+    <script>
+        $(function () {
+
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                tags: true
+            });
+
+        })
+    </script>
+}

@@ -2,6 +2,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section head {
+    @RenderSection("head", required: false)
+}
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -28,7 +32,9 @@
             </div>
             <!-- /.col -->
             <div class="col-md-6">
+
                 @RenderBody()
+
             </div>
             <!-- /.col -->
             <div class="col-md-3">
@@ -42,3 +48,7 @@
     <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+
+@section scripts {
+    @RenderSection("scripts", required: false)
+}
