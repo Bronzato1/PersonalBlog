@@ -17,7 +17,7 @@ namespace PersonalBlog
 {
     public class BlogRepository : IBlogRepository
     {
-        private const string POSTS = "Posts";
+        private const string POSTS = "posts";
         private const string FILES = "files";
 
         private readonly IHttpContextAccessor _contextAccessor;
@@ -172,7 +172,5 @@ namespace PersonalBlog
                 ? dateTime.ToString(UTC)
                 : dateTime.ToUniversalTime().ToString(UTC);
         }
-
-
     }
 }

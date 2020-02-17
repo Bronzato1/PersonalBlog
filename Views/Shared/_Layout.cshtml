@@ -24,14 +24,19 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+
+    <STYLE type="text/css">
+
+    </STYLE>
+
     @RenderSection("head", required: false)
 
-    @functions{ 
-      public string SidebarCollapse() 
-      {
-          var value = (bool?)ViewData["sidebar-collapse"];
-          return value.HasValue && value.Value ? "sidebar-collapse" : "";
-      }
+    @functions{
+        public string SidebarCollapse()
+        {
+            var value = (bool?)ViewData["sidebar-collapse"];
+            return value.HasValue && value.Value ? "sidebar-collapse" : "";
+        }
     }
 
 </head>
@@ -53,8 +58,6 @@
       <!-- /.content-wrapper -->
 
       <partial name="_LayoutControlSidebar" />
-
-      <partial name="_LayoutMainFooter" />
       
     </div>
     <!-- ./wrapper -->
@@ -64,7 +67,7 @@
         <!-- jQuery -->
         <script src="~/lib/jquery/jquery.js"></script>
         <!-- Select2 -->
-        <script src="~/lib/select2/js/select2.js"></script> 
+        <script src="~/lib/select2/js/select2.js"></script>
         <!-- Bootstrap 4 -->
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
         <!-- DataTables -->
@@ -75,6 +78,7 @@
         <script src="~/lib/jquery.inputmask/jquery.inputmask.bundle.min.js"></script>
         <!-- AdminLTE App -->
         <script src="~/admin-lte/js/adminlte.js"></script>
+
     </environment>
 
     @RenderSection("scripts", required: false)

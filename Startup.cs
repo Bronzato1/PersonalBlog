@@ -77,7 +77,7 @@ namespace PersonalBlog
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller=Blog}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Dashboard}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
 

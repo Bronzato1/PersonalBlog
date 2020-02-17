@@ -20,65 +20,106 @@
                 <img src="~/img/user-photo.jpg" class="img-circle elevation-2" alt="User Image" style="width: 3em;">
             </div>
             <div class="info">
-                <a href="#" class="d-block">@Secret.FullName</a>
+                <a asp-controller="Resume" asp-action="About" class="d-block">@Secret.FullName</a>
                 <small><a href="#"><i class="fa fa-circle text-danger"></i> Offline</a></small>
             </div>
         </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
 
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Starter Pages
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a asp-controller="Doctors" asp-action="Index" class="nav-link" is-active-route>
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Doctors</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Resume" asp-action="About" class="nav-link" is-active-route>
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>About</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 @if (userIsAdmin)
                 {
-                    <li class="nav-item">
-                        <a asp-controller="Resume"
-                           asp-action="Index"
-                           class="nav-link" is-active-route>
-                            <i class="nav-icon fas fa-th"></i>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Manage Resume
-                                <span class="right badge badge-danger">Admin</span>
+                                Administration
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Blog"
-                           asp-action="Index"
-                           class="nav-link" is-active-route>
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Manage Blog
-                                <span class="right badge badge-danger">Admin</span>
-                            </p>
-                        </a>
-                    </li>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-controller="Doctors" asp-action="Index" class="nav-link" is-active-route>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>
+                                        Doctors
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Resume" asp-action="Index" class="nav-link" is-active-route>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>
+                                        Manage Resume
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Blog" asp-action="SavePostsOnDisk" class="nav-link" is-active-route>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>
+                                        Save blog posts on disk
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>  
                 }
 
+                <li class="nav-item">
+                    <a asp-controller="Dashboard" asp-action="Index" class="nav-link" is-active-route>
+                        <i class="fas fa-tachometer-alt nav-icon"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a asp-controller="Blog" asp-action="Index" class="nav-link" is-active-route>
+                        <i class="fas fa-blog nav-icon text-primary"></i>
+                        <p class="text-primary">
+                            Blog
+                            <span class="badge badge-primary right">36</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Courses" asp-action="Index" class="nav-link" is-active-route>
+                        <i class="fas fa-graduation-cap nav-icon text-info"></i>
+                        <p class="text-info">
+                            Courses
+                            <span class="badge badge-info right">6</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Books" asp-action="Index" class="nav-link" is-active-route>
+                        <i class="fas fa-book nav-icon text-warning"></i>
+                        <p class="text-warning">
+                            Books
+                            <span class="badge badge-warning right">4</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Radios" asp-action="Index" class="nav-link" is-active-route>
+                        <i class="fas fa-music nav-icon text-danger"></i>
+                        <p class="text-danger">
+                            Radios
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Games" asp-action="Index" class="nav-link" is-active-route>
+                        <i class="fas fa-puzzle-piece text-success nav-icon"></i>
+                        <p class="text-success">
+                            Games
+                            <span class="badge badge-success right">1</span>
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

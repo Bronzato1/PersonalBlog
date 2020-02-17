@@ -1,12 +1,65 @@
-.categories {
-    margin-bottom: 15px;
+.user-block .categories {
+    float: left;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 5px;
 }
-.categories ul {
+.user-block .categories ul {
     list-style: none;
     display: inline;
     padding: 0;
 }
 
-.categories ul li {
+.user-block .categories ul li {
     display: inline-block;
 }
+
+.user-block .categories ul li span {
+    background-color: #adb5bd;
+    color: white;
+}
+
+.user-block .description {
+    margin-top: 3px !important;
+}
+
+.main-header {
+    background-color: #f4f6f9 !important;
+    border-bottom: none !important;
+}
+
+.search-form input[type=search] {
+    background-color: white;
+    border-bottom: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    border-top: 1px solid gainsboro;
+}
+
+.search-form .btn {
+    background-color: white;
+    border-top: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
+}
+
+a[href^="/Blog"].active {
+    border-color: #007bff !important;
+}
+
+a[href^="/Courses"].active {
+    border-color: #17a2b8 !important;
+}
+
+a[href^="/Books"].active {
+    border-color: #ffc107 !important;
+} 
+
+a[href^="/Radios"].active {
+    border-color: #dc3545 !important;
+} 
+
+a[href^="/Games"].active {
+    border-color: #28a745 !important;
+} 
+
+

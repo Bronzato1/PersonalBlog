@@ -321,7 +321,7 @@ namespace PersonalBlog.Models
                     .HasOne(bc => bc.Mission)
                     .WithMany(b => b.MissionLanguages)
                     .HasForeignKey(bc => bc.MissionId);
-                    
+
                 modelBuilder.Entity<MissionLanguage>()
                     .HasOne(bc => bc.Language)
                     .WithMany(c => c.MissionLanguages)
@@ -943,20 +943,37 @@ namespace PersonalBlog.Models
         {
             context.Database.EnsureCreated();
 
-            if (context.Missions.Any())
-                return;
-
-            var jsonData = System.IO.File.ReadAllText(@"Secret-seed-data.json");
-
-            JsonSerializerSettings settings = new JsonSerializerSettings
+            if (!context.Missions.Any())
             {
-                ContractResolver = new PrivateSetterContractResolver()
-            };
+                var jsonData = System.IO.File.ReadAllText(@"Secret-seed-resume.json");
 
-            List<Mission> missions = JsonConvert.DeserializeObject<List<Mission>>(jsonData, settings);
+                JsonSerializerSettings settings = new JsonSerializerSettings
+                {
+                    ContractResolver = new PrivateSetterContractResolver()
+                };
 
-            context.AddRange(missions);
-            context.SaveChanges();
+                List<Mission> missions = JsonConvert.DeserializeObject<List<Mission>>(jsonData, settings);
+
+                context.AddRange(missions);
+            }
+
+            if (!context.Posts.Any())
+            {
+                var jsonData = System.IO.File.ReadAllText(@"Secret-seed-blog.json");
+
+                JsonSerializerSettings settings = new JsonSerializerSettings
+                {
+                    ContractResolver = new PrivateSetterContractResolver()
+                };
+
+                List<Post> posts = JsonConvert.DeserializeObject<List<Post>>(jsonData, settings);
+
+                context.AddRange(posts);
+            }
+
+
+            if (context.ChangeTracker.HasChanges())
+                context.SaveChanges();
         }
     }
 }

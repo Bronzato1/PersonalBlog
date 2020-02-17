@@ -10,6 +10,8 @@ using Microsoft.Extensions.Options;
 using PersonalBlog.Models;
 using PersonalBlog.ViewModels;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using JsonNet.PrivateSettersContractResolvers;
 
 namespace PersonalBlog
 {
@@ -24,7 +26,7 @@ namespace PersonalBlog
             _settings = settings;
         }
 
-        [Route("/{page:int?}")]
+        [Route("/blog/{page:int?}")]
         public async Task<IActionResult> Index([FromRoute]int page = 0)
         {
             // get published posts
@@ -226,10 +228,23 @@ namespace PersonalBlog
             return NotFound();
         }
 
+        public async Task<ContentResult> SavePostsOnDisk()
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ContractResolver = new PrivateSetterContractResolver()
+            };
+
+            var posts = await _blogRepository.GetPosts();
+            var json = JsonConvert.SerializeObject(posts, settings);
+
+            return Content(json);
+        }
     }
 
-    public static class zzz
+    public static class ExtensionMethod
     {
+        // https://stackoverflow.com/questions/2537823/distinct-by-property-of-class-with-linq
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
             HashSet<TKey> knownKeys = new HashSet<TKey>();

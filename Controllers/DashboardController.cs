@@ -8,6 +8,7 @@ namespace PersonalBlog
     {
         public IActionResult Index()
         {
+            ViewData["sidebar-collapse"] = true;
             return View();
         }
     }

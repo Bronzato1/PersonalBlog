@@ -34,6 +34,10 @@
     {
       "library": "tinymce@4.8.0",
       "destination": "wwwroot/lib/tinymce/"
+    },
+    {
+      "library": "prism@1.19.0",
+      "destination": "wwwroot/lib/prism/"
     }
   ]
 }

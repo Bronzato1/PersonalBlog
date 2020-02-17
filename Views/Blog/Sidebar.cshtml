@@ -1,58 +1,67 @@
-<!-- Profile Image -->
-<div class="card card-primary card-outline">
-    <div class="card-body box-profile">
-        <div class="text-center">
-            <img class="profile-user-img img-fluid img-circle"
-                src="~/img/user-photo-grayscale.jpg"
-                alt="User profile picture">
+<div class="card card-widget widget-user">
+    <!-- Add the bg color to the header using any of the bg-* classes -->
+    <div class="widget-user-header bg-primary">
+        <h1><i class="fas fa-blog nav-icon"></i></h1>
+        <h1 class="widget-user-username"><strong>Blog</strong></h1>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-sm-4 border-right">
+                <div class="description-block">
+                    <h5 class="description-header">46</h5>
+                    <span class="description-text">SHARES</span>
+                </div>
+                <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 border-right">
+                <div class="description-block">
+                    <h5 class="description-header">125</h5>
+                    <span class="description-text">LIKES</span>
+                </div>
+                <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4">
+                <div class="description-block">
+                    <h5 class="description-header">35</h5>
+                    <span class="description-text">COMMENTS</span>
+                </div>
+                <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
         </div>
+        <!-- /.row -->
+    </div>
+</div>
 
-        <h3 class="profile-username text-center">Thierry Langie</h3>
-
-        <p class="text-muted text-center">Fullstack .Net developer</p>
-
-        <ul class="list-group list-group-unbordered mb-3">
-            <li class="list-group-item">
-            <b>Followers</b> <a class="float-right">1,322</a>
+<div class="card card-widget widget-user-2">
+    <!-- Add the bg color to the header using any of the bg-* classes -->
+    <div class="widget-user-header card-outline card-primary">
+        <h4 class=""><i class="far fa-bookmark"></i> Categories</h4>
+    </div>
+    <div class="p-0">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+                ASP.NET core <span class="float-right">31</span>
+            </a>
             </li>
-            <li class="list-group-item">
-            <b>Following</b> <a class="float-right">543</a>
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+                EntityFramework <span class="float-right">5</span>
+            </a>
             </li>
-            <li class="list-group-item">
-            <b>Friends</b> <a class="float-right">13,287</a>
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+                Aurelia <span class="float-right">12</span>
+            </a>
+            </li>
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+                Typescript <span class="float-right">842</span>
+            </a>
             </li>
         </ul>
-
-        <strong><i class="fas fa-book mr-1"></i> Education</strong>
-
-        <p class="text-muted">
-            B.S. in Computer Science from the University of Tennessee at Knoxville
-        </p>
-
-        <hr>
-
-        <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-        <p class="text-muted">Malibu, California</p>
-
-        <hr>
-
-        <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-        <p class="text-muted">
-            <span class="tag tag-danger">UI Design</span>
-            <span class="tag tag-success">Coding</span>
-            <span class="tag tag-info">Javascript</span>
-            <span class="tag tag-warning">PHP</span>
-            <span class="tag tag-primary">Node.js</span>
-        </p>
-
-        <hr>
-
-        <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
     </div>
-    <!-- /.card-body -->
 </div>
-<!-- /.card -->
