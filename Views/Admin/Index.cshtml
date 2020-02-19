@@ -1,0 +1,141 @@
+
+@{
+    ViewData["Title"] = "Administration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="text-dark font-weight-bold"><i class="fas fa-tools nav-icon"></i> Administration</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Administration</a></li>
+              <li class="breadcrumb-item active">Version 1.0</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card card-widget widget-user-2">
+      <div class="widget-user-header bg-dark pl-2 pt-1 p-0">
+        <h4 class="text-light font-weight-bold">Actions</h4>
+      </div>
+      <div class="card-footer p-0">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <span class="nav-link text-dark">
+              Get blog posts as json 
+              <a class="btn btn-dark btn-xs float-right" data-ajax="true" data-ajax-method="get" data-ajax-update="#result" data-ajax-complete="completed" asp-controller="Admin" asp-action="GetPostsAsJson">GO</a>
+            </span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link text-dark">
+              Save blog posts to disk as json<button class="btn btn-dark btn-xs float-right">GO</button>
+            </span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link text-dark">
+              Download blog posts <button class="btn btn-dark btn-xs float-right">GO</button>
+            </span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link text-dark">
+              Upload blog posts <button class="btn btn-dark btn-xs float-right">GO</button>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- /.widget-user -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-3">
+
+  </div>
+  <!-- /.col -->
+  <div class="col-md-3">
+
+  </div>
+  <!-- /.col -->
+</div>
+
+
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card card-dark card-outline">
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold pb-3">Result</h5>
+                <p class="card-text" id="result">
+                  
+                </p>
+                <a href="#" class="btn btn-dark btn-sm float-right ml-2" id="clear">Clear</a>
+                <a href="#" class="btn btn-dark btn-sm float-right" id="copy">Copy</a>
+              </div>
+            </div><!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+
+
+
+<form method="post" enctype="multipart/form-data" asp-controller="FileUpload" asp-action="Index">
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Upload one or more files using this form:</p>
+            <input type="file" name="file" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Upload" />
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    <script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        
+        completed = function (xhr) {
+        };
+
+        $('#clear').on('click', function() {
+          $('#result').empty();
+        });
+
+        $('#copy').on('click', function() {
+          var elm = $('#result');
+          copyToClipboard(elm);
+          $('#copy').text('Copied');
+          window.setTimeout(function() { 
+            $('#copy').text('Copy'); 
+          }, 3000);
+        });
+
+        function copyToClipboard(element) {
+          var $temp = $("<input>");
+          $("body").append($temp);
+          $temp.val($(element).text()).select();
+          document.execCommand("copy");
+          $temp.remove();
+        }
+
+    </script>
+}

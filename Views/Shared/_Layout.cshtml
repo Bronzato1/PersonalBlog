@@ -24,24 +24,11 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-
-    <STYLE type="text/css">
-
-    </STYLE>
-
     @RenderSection("head", required: false)
-
-    @functions{
-        public string SidebarCollapse()
-        {
-            var value = (bool?)ViewData["sidebar-collapse"];
-            return value.HasValue && value.Value ? "sidebar-collapse" : "";
-        }
-    }
 
 </head>
 
-  <body class="hold-transition layout-fixed sidebar-mini @SidebarCollapse()">
+  <body class="hold-transition layout-fixed sidebar-mini ">
 
     <div class="wrapper">
 
@@ -78,6 +65,26 @@
         <script src="~/lib/jquery.inputmask/jquery.inputmask.bundle.min.js"></script>
         <!-- AdminLTE App -->
         <script src="~/admin-lte/js/adminlte.js"></script>
+
+        <script type="text/javascript">
+        
+          (function () {
+            if (Boolean(sessionStorage.getItem('sidebar-toggle-collapsed'))) {
+              var body = document.getElementsByTagName('body')[0];
+              body.className = body.className + ' sidebar-collapse';
+            }
+          })();
+
+          $('[data-widget="pushmenu"]').on('collapsed.lte.pushmenu shown.lte.pushmenu', function () {
+            event.preventDefault();
+            if (Boolean(sessionStorage.getItem('sidebar-toggle-collapsed'))) {
+              sessionStorage.setItem('sidebar-toggle-collapsed', '');
+            } else {
+              sessionStorage.setItem('sidebar-toggle-collapsed', '1');
+            }
+          });
+
+        </script>
 
     </environment>
 

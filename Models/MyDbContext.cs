@@ -67,7 +67,8 @@ namespace PersonalBlog.Models
                        entity
                             .Property(e => e.Created)
                             .HasColumnName("Created")
-                            .HasDefaultValueSql("getdate()");
+                            .HasDefaultValueSql("date('now')");
+                            //.HasDefaultValueSql("getdate()");
 
                        entity.Property(e => e.Email)
                            .IsRequired()
@@ -106,7 +107,8 @@ namespace PersonalBlog.Models
                 entity
                     .Property(e => e.Created)
                     .HasColumnName("Created")
-                    .HasDefaultValueSql("getdate()");
+                    .HasDefaultValueSql("date('now')");
+                    //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.Email)
@@ -160,7 +162,8 @@ namespace PersonalBlog.Models
                 entity
                     .Property(e => e.Created)
                     .HasColumnName("Created")
-                    .HasDefaultValueSql("getdate()");
+                    .HasDefaultValueSql("date('now')");
+                    //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.Email)
@@ -211,7 +214,8 @@ namespace PersonalBlog.Models
                 entity
                     .Property(e => e.Created)
                     .HasColumnName("Created")
-                    .HasDefaultValueSql("getdate()");
+                    .HasDefaultValueSql("date('now')");
+                    //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.DoctorId)
@@ -296,7 +300,8 @@ namespace PersonalBlog.Models
                 entity
                     .Property(e => e.CreatedTime)
                     .HasColumnName("CreatedTime")
-                    .HasDefaultValueSql("getdate()");
+                    .HasDefaultValueSql("date('now')");
+                    //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.CreatedUser)
@@ -347,7 +352,8 @@ namespace PersonalBlog.Models
                 entity
                     .Property(e => e.CreatedTime)
                     .HasColumnName("CreatedTime")
-                    .HasDefaultValueSql("getdate()");
+                    .HasDefaultValueSql("date('now')");
+                    //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.CreatedUser)
@@ -380,7 +386,8 @@ namespace PersonalBlog.Models
                 entity
                     .Property(e => e.CreatedTime)
                     .HasColumnName("CreatedTime")
-                    .HasDefaultValueSql("getdate()");
+                    .HasDefaultValueSql("date('now')");
+                    //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.CreatedUser)
@@ -413,7 +420,8 @@ namespace PersonalBlog.Models
                 entity
                     .Property(e => e.CreatedTime)
                     .HasColumnName("CreatedTime")
-                    .HasDefaultValueSql("getdate()");
+                    .HasDefaultValueSql("date('now')");
+                    //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.CreatedUser)

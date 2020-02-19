@@ -27,46 +27,6 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
-
-                @if (userIsAdmin)
-                {
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Administration
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a asp-controller="Doctors" asp-action="Index" class="nav-link" is-active-route>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>
-                                        Doctors
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Resume" asp-action="Index" class="nav-link" is-active-route>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>
-                                        Manage Resume
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Blog" asp-action="SavePostsOnDisk" class="nav-link" is-active-route>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>
-                                        Save blog posts on disk
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>  
-                }
-
                 <li class="nav-item">
                     <a asp-controller="Dashboard" asp-action="Index" class="nav-link" is-active-route>
                         <i class="fas fa-tachometer-alt nav-icon"></i>
@@ -128,17 +88,21 @@
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a asp-controller="Games" asp-action="Index" class="nav-link" is-active-route>
-                        <i class="fas fa-envelope text-muted nav-icon"></i>
-                        <p class="text-muted">
-                            Contact me
-                        </p>
-                    </a>
-                </li>
+                
+                @if (userIsAdmin)
+                {
+                    <li class="nav-item">
+                        <a asp-controller="Admin" asp-action="Index" class="nav-link" is-active-route>
+                            <i class="nav-icon fas fa-tools text-light"></i>
+                            <p class="text-light">
+                                Administration
+                            </p>
+                        </a>
+                    </li>  
+                }
+
             </ul>
         </nav>
         
-      @* <a href="#" class="btn btn-link nav-item"><i class="fas fa-question-circle"></i></a> *@
     </div>
 </aside>

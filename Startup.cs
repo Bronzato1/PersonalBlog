@@ -33,9 +33,14 @@ namespace PersonalBlog
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddDbContext<MyDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("ConnectionForSqlServerLocaldb")));
+            string appRoot = Environment.CurrentDirectory;
+            string database = System.IO.Path.Combine(appRoot + @"\", @"App_Data\blogging.db");
+            
+            services.AddDbContext<MyDbContext> (options => 
+                options.UseSqlite("Data Source=" + database)
+                //options.UseSqlServer(Configuration.GetConnectionString("ConnectionForSqlServerLocaldb"))
+                //options.UseSqlServer(Configuration.GetConnectionString("ConnectionForSqlServerExpress"))
+            );
 
             services
                 .AddDefaultIdentity<CustomUser>(options => options.SignIn.RequireConfirmedAccount = true)

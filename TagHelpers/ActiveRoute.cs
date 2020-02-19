@@ -84,6 +84,11 @@ namespace PersonalBlog.TagHelpers
 
             if (Controller != null && Action != null)
             {
+                
+                if (Action.ToLower() == "index" && Controller.ToLower() == "dashboard" && "/" == _contextAccessor.HttpContext.Request.Path.Value.ToLower())
+                {
+                    return true;
+                }
                 if (Action.ToLower() == "index" && "/" + Controller.ToLower() == _contextAccessor.HttpContext.Request.Path.Value.ToLower())
                 {
                     return true;

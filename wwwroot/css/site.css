@@ -42,6 +42,14 @@
     border-bottom: 1px solid gainsboro;
 }
 
+.sidebar {
+    height: calc(100% - 2.8rem) !important;
+}
+
+a[href="/"].active {
+    border-color: #ffffff !important;
+}
+
 a[href^="/Blog"].active {
     border-color: #007bff !important;
 }
@@ -60,6 +68,10 @@ a[href^="/Radios"].active {
 
 a[href^="/Games"].active {
     border-color: #28a745 !important;
+} 
+
+a[href^="/Admin"].active {
+    border-color: #ffffff !important;
 } 
 
 
