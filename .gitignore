@@ -2,3 +2,5 @@ bin
 obj
 publish
 Secret*.*
+wwwroot/posts/*
+App_Data/*

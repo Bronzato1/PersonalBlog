@@ -40,11 +40,11 @@
         <div class="card-tools">
             @if(showFullPost)
             {
-                <a href="#" class="btn btn-tool" onclick="fullScreenMode()" title="Full screen mode">
-                    <i class="fas fa-expand-arrows-alt"></i>
-                </a>
                 <a asp-controller="Blog" asp-action="Index" class="btn btn-tool" title="Back to list">
                     <i class="fas fa-arrow-left"></i>
+                </a>
+                <a href="#" class="btn btn-tool" onclick="fullScreenMode()" title="Full screen mode">
+                    <i class="fas fa-expand-arrows-alt"></i>
                 </a>
             } 
             else 

@@ -4,15 +4,24 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using System.IO.Compression;
+using System;
 
 namespace PersonalBlog
 {
     public class AdminController : Controller
     {
-        private readonly IBlogRepository _blogRepository;
+        private const string POSTS = "posts";
+        private const string FILES = "files";
+        private const string ZIP = "zip";
 
-        public AdminController(IBlogRepository blogRepository)
+        private readonly IBlogRepository _blogRepository;
+        private readonly string _folder;
+
+        public AdminController(IWebHostEnvironment env, IBlogRepository blogRepository)
         {
+            _folder = Path.Combine(env.WebRootPath, POSTS);
             _blogRepository = blogRepository;
         }
 
@@ -75,6 +84,20 @@ namespace PersonalBlog
         {
             await _blogRepository.SaveJsonPostsInDatabase();
             return Content("Save Json Posts In Database : succeed");
+        }
+
+        public FileResult DownloadAllImagesInZip()
+        {
+            string filesDirectory = Path.Combine(_folder, FILES);
+            string zipFile = "blog_posts_" +  DateTime.Now.ToString("yyyy_MM_dd_hhmmss") + ".zip";
+            string zipPath = Path.Combine(_folder, ZIP, zipFile);
+            string zipDirectory = Path.GetDirectoryName(zipPath);
+
+            Directory.CreateDirectory(zipDirectory);
+            ZipFile.CreateFromDirectory(filesDirectory, zipPath);
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(zipPath);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, zipFile);
         }
     }
 }
