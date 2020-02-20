@@ -79,4 +79,18 @@ a[href^="/Admin"].active {
     border-color: #ffffff !important;
 } 
 
+.mce-tinymce.mce-fullscreen{
+    z-index: 9999;
+}
 
+.full-screen-mode {   
+    position: fixed !important; 
+    top: 0; 
+    left: 0; 
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 5%;
+}

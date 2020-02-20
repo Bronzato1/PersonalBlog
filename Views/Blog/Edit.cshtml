@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/css/admin.css" />
 }
 
-<div class="card card-widget">
+<div class="card card-widget card-blog-post">
     <div class="card-header">
         <div class="user-block">
             <img class="img-circle elevation-2" src="~/img/user-photo-grayscale.jpg" alt="User Image">
@@ -25,12 +25,12 @@
         </div>
         <!-- /.user-block -->
         <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
-                <i class="far fa-circle"></i></button>
-            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-            </button>
+            <a href="#" class="btn btn-tool" onclick="fullScreenMode()" title="Full screen mode">
+                <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+            <a asp-controller="Blog" asp-action="Index" class="btn btn-tool" title="Back to list">
+                <i class="fas fa-arrow-left"></i>
+            </a>
         </div>
         <!-- /.card-tools -->
     </div>
@@ -95,6 +95,21 @@
             $('.select2').select2({
                 tags: true
             });
+
+            fullScreenMode = function()
+            {
+                var isFullScreen = $('.card-blog-post').first().hasClass('full-screen-mode');
+
+                if (isFullScreen)
+                {
+                    $('.card-blog-post').first().removeClass('full-screen-mode');
+                }
+                else
+                {
+                    $('.card-blog-post').first().addClass('full-screen-mode');
+                }
+                
+            }
 
         })
     </script>

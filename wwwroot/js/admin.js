@@ -68,7 +68,7 @@
                 autoresize_min_height: 200,
                 plugins: 'autosave preview searchreplace visualchars image link media fullscreen code codesample table hr pagebreak autoresize nonbreaking anchor insertdatetime advlist lists textcolor wordcount imagetools colorpicker',
                 menubar: "edit view format insert table",
-                toolbar1: 'formatselect | bold italic blockquote forecolor backcolor | imageupload link | alignleft aligncenter alignright  | numlist bullist outdent indent | fullscreen',
+                toolbar1: 'formatselect | bold italic blockquote forecolor backcolor | imageupload link | alignleft aligncenter alignright  | numlist bullist outdent indent | fullscreen linenumbers',
                 selection_toolbar: 'bold italic | quicklink h2 h3 blockquote',
                 autoresize_bottom_margin: 0,
                 paste_data_images: true,
@@ -88,6 +88,19 @@
                             fileInput.accept = "image/*";
                             fileInput.addEventListener("change", handleFileSelect, false);
                             fileInput.click();
+                        }
+                    });
+                    editor.addButton('linenumbers', {
+                        icon: 'numlist',
+                        tooltip: 'Add line numbers for code blocks',
+                        onclick: function() {                
+                            var currentNode = tinyMCE.activeEditor.selection.getNode();
+                            if(currentNode.tagName !== 'PRE')
+                            {
+                                alert('PRE tag required');
+                                return;
+                            }
+                            tinyMCE.activeEditor.dom.addClass(currentNode, 'line-numbers');
                         }
                     });
                 }

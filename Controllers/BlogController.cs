@@ -221,7 +221,7 @@ namespace PersonalBlog
             if (existing != null)
             {
                 await _blogRepository.DeletePost(existing);
-                return Redirect("/");
+                return Redirect("/blog");
             }
 
             return NotFound();

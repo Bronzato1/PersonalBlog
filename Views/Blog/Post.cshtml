@@ -11,97 +11,116 @@
     if (showFullPost) Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
 
-    <div class="card card-widget">
-        <div class="card-header">
-            <div class="user-block">
-                <img class="img-circle elevation-2" src="~/img/user-photo-grayscale.jpg" alt="User Image">
-                <span class="username">
-                    <a href="@Model.GetLink()">@Model.Title</a>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <text>&nbsp;&nbsp;&nbsp;</text>
-                        <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" title="Edit the post"><i class="fa fa-pencil-alt"></i> Edit</a>
-                    }
-                </span>
-                <span class="categories">
-                    <ul>
-                    @foreach (Category cat in Model.Categories)
-                    {
-                        <li><a asp-controller="Blog" asp-action="Category" asp-route-category="@cat.Name.ToLowerInvariant()" asp-route-page=""><span class="badge">@cat.Name</span></a></li>
-                    }
-                    </ul>
-                </span>
-                <span class="description">
-                    Posted on
-                    <time datetime="@Model.PubDate.ToString("s")" itemprop="datePublished">@Model.PubDate.ToString("d MMMM yyyy", cultureUS)</time>
-                </span>
-            </div>
-            <!-- /.user-block -->
-            <div class="card-tools">
-                @if(showFullPost)
+<div class="card card-widget card-blog-post">
+    <div class="card-header">
+        <div class="user-block">
+            <img class="img-circle elevation-2" src="~/img/user-photo-grayscale.jpg" alt="User Image">
+            <span class="username">
+                <a href="@Model.GetLink()">@Model.Title</a>
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a asp-controller="Blog" asp-action="Index" class="btn btn-tool" title="Back to list">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                } 
-                else 
-                {
-                    <a asp-controller="Blog" asp-action="Post" asp-route-slug="@Model.Slug" class="btn btn-tool" title="Read this post">
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <text>&nbsp;&nbsp;&nbsp;</text>
+                    <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" title="Edit the post"><i class="fa fa-pencil-alt"></i> Edit</a>
                 }
-                
+            </span>
+            <span class="categories">
+                <ul>
+                @foreach (Category cat in Model.Categories)
+                {
+                    <li><a asp-controller="Blog" asp-action="Category" asp-route-category="@cat.Name.ToLowerInvariant()" asp-route-page=""><span class="badge">@cat.Name</span></a></li>
+                }
+                </ul>
+            </span>
+            <span class="description">
+                Posted on
+                <time datetime="@Model.PubDate.ToString("s")" itemprop="datePublished">@Model.PubDate.ToString("d MMMM yyyy", cultureUS)</time>
+            </span>
+        </div>
+        <!-- /.user-block -->
+        <div class="card-tools">
+            @if(showFullPost)
+            {
+                <a href="#" class="btn btn-tool" onclick="fullScreenMode()" title="Full screen mode">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </a>
+                <a asp-controller="Blog" asp-action="Index" class="btn btn-tool" title="Back to list">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            } 
+            else 
+            {
+                <a asp-controller="Blog" asp-action="Post" asp-route-slug="@Model.Slug" class="btn btn-tool" title="Read this post">
+                    <i class="fas fa-arrow-right"></i>
+                </a>
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
                 </button>
-            </div>
-            <!-- /.card-tools -->
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            @if (showFullPost || settings.Value.ListView == PostListView.FullPosts)
-            {
-                <p>@Html.Raw(Model.RenderContent())</p>
             }
-            else if (settings.Value.ListView == PostListView.TitlesAndExcerpts)
-            {
-                <p>@Html.Raw(Model.Excerpt)</p>
-            }
-
-            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Share</button>
-            <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
-            <span class="float-right text-muted">127 likes - 3 comments</span>
+            
+            
         </div>
-
-        @if (showFullPost)
+        <!-- /.card-tools -->
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        @if (showFullPost || settings.Value.ListView == PostListView.FullPosts)
         {
-            <partial name="_Comments" />
+            <p>@Html.Raw(Model.RenderContent())</p>
+        }
+        else if (settings.Value.ListView == PostListView.TitlesAndExcerpts)
+        {
+            <p>@Html.Raw(Model.Excerpt)</p>
+        }
 
-            @section head {
-                @if (isCodePreview)
-                {
-                    <link rel="stylesheet" href="~/lib/prism/themes/prism.css" />
-                    <link rel="stylesheet" href="~/lib/prism/plugins/line-highlight/prism-line-highlight.css" />
-                    <link rel="stylesheet" href="~/lib/prism/plugins/line-numbers/prism-line-numbers.css" />
-                    <link rel="stylesheet" href="~/lib/prism/components/prism-clike.js" />
-                    <link rel="stylesheet" href="~/lib/prism/components/prism-csharp.js" />
-                }
-            }
+        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Share</button>
+        <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
+        <span class="float-right text-muted">127 likes - 3 comments</span>
+    </div>
 
-            @section scripts {
-                @if (isCodePreview)
-                {
-                    <script src="~/lib/prism/prism.js"></script>
-                    <script src="~/lib/prism/plugins/line-highlight/prism-line-highlight.js"></script>
-                    <script src="~/lib/prism/plugins/toolbar/prism-toolbar.js"></script>
-                    <script src="~/lib/prism/plugins/line-numbers/prism-line-numbers.js"></script>
-                    <script src="~/lib/prism/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
-                }
+    @if (showFullPost)
+    {
+        <partial name="_Comments" />
+
+        @section head {
+            @if (isCodePreview)
+            {
+                <link rel="stylesheet" href="~/lib/prism/themes/prism.css" />
+                <link rel="stylesheet" href="~/lib/prism/plugins/line-highlight/prism-line-highlight.css" />
+                <link rel="stylesheet" href="~/lib/prism/plugins/line-numbers/prism-line-numbers.css" />
             }
         }
 
-    </div>
+        @section scripts {
+            @if (isCodePreview)
+            {
+                <script src="~/lib/prism/prism.js"></script>
+                <script src="~/lib/prism/plugins/line-highlight/prism-line-highlight.js"></script>
+                <script src="~/lib/prism/plugins/line-numbers/prism-line-numbers.js"></script>
+                <script src="~/lib/prism/components/prism-clike.js"></script>
+                <script src="~/lib/prism/components/prism-csharp.js"></script>
+            }
+
+                <script>
+                    fullScreenMode = function()
+                    {
+                        var isFullScreen = $('.card-blog-post').first().hasClass('full-screen-mode');
+
+                        if (isFullScreen)
+                        {
+                            $('.card-blog-post').first().removeClass('full-screen-mode');
+                        }
+                        else
+                        {
+                            $('.card-blog-post').first().addClass('full-screen-mode');
+                        }
+                        
+                    }
+                </script>
+        }
+    }
+
+</div>
 <!-- /.card -->
