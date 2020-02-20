@@ -22,5 +22,6 @@ namespace PersonalBlog
 
         Task<string> SaveFile(byte[] bytes, string fileName, string suffix = null);
 
+        Task SaveJsonPostsInDatabase();
     }
 }

@@ -7,9 +7,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using JsonNet.PrivateSettersContractResolvers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using PersonalBlog;
 using PersonalBlog.Models;
 
@@ -78,8 +80,8 @@ namespace PersonalBlog
             var categories = _dbContext.Posts
                 .Where(p => p.IsPublished || isAdmin)
                 .SelectMany(post => post.Categories).Distinct().AsEnumerable();
-                // .Select(cat => cat.Name.ToLowerInvariant())
-                // .Distinct().AsEnumerable();
+            // .Select(cat => cat.Name.ToLowerInvariant())
+            // .Distinct().AsEnumerable();
 
             return Task.FromResult(categories);
         }
@@ -171,6 +173,23 @@ namespace PersonalBlog
             return dateTime.Kind == DateTimeKind.Utc
                 ? dateTime.ToString(UTC)
                 : dateTime.ToUniversalTime().ToString(UTC);
+        }
+
+        public async Task SaveJsonPostsInDatabase()
+        {
+            var jsonData = System.IO.File.ReadAllText(@"Secret-seed-blog.json");
+
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ContractResolver = new PrivateSetterContractResolver()
+            };
+
+            List<Post> posts = JsonConvert.DeserializeObject<List<Post>>(jsonData, settings);
+
+            _dbContext.AddRange(posts);
+
+            if (_dbContext.ChangeTracker.HasChanges())
+                await _dbContext.SaveChangesAsync();
         }
     }
 }

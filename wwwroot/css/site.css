@@ -28,18 +28,23 @@
     border-bottom: none !important;
 }
 
-.search-form input[type=search] {
+nav.navbar-light .search-form input[type=search] {
     background-color: white;
     border-bottom: 1px solid gainsboro;
     border-left: 1px solid gainsboro;
     border-top: 1px solid gainsboro;
 }
 
-.search-form .btn {
-    background-color: white;
+nav.navbar-light .search-form .input-group-append{
+    border-bottom: 1px solid gainsboro;
     border-top: 1px solid gainsboro;
     border-right: 1px solid gainsboro;
-    border-bottom: 1px solid gainsboro;
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+}
+
+nav.navbar-light .search-form .btn-navbar {
+    background-color: #ffffff;
 }
 
 .sidebar {

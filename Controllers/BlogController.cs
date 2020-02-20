@@ -12,8 +12,6 @@ using PersonalBlog.ViewModels;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using JsonNet.PrivateSettersContractResolvers;
-using Microsoft.AspNetCore.Http;
-using System.IO;
 
 namespace PersonalBlog
 {
@@ -229,47 +227,6 @@ namespace PersonalBlog
             return NotFound();
         }
 
-        public async Task<ContentResult> SavePostsAsJsonToDisk()
-        {
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                ContractResolver = new PrivateSetterContractResolver()
-            };
-
-            var posts = await _blogRepository.GetPosts();
-            var json = JsonConvert.SerializeObject(posts, settings);
-
-            System.IO.File.WriteAllText(@"Secret-seed-blog.json", json);
-            return Content("OK");
-        }
-
-        public FileResult DownloadBlogPosts()
-        {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"Secret-seed-blog.json");
-            string fileName = "Secret-seed-blog.json";
-            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-        }
-
-        public ActionResult Admin()
-        {
-            return View();
-        }
-
-        [HttpPost("FileUpload")]
-        public async Task<IActionResult> FileUpload(IFormFile file)
-        {
-            if (file.Length == 0)
-                return NoContent();
-
-            using (var ms = new MemoryStream())
-            {
-                file.CopyTo(ms);
-                var fileBytes = ms.ToArray();
-                await System.IO.File.WriteAllBytesAsync(@"Secret-seed-blog.json", fileBytes);
-            }
-
-            return Ok();
-        }
     }
 
     public static class ExtensionMethod
