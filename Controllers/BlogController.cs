@@ -12,6 +12,8 @@ using PersonalBlog.ViewModels;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using JsonNet.PrivateSettersContractResolvers;
+using System.Net;
+using System.IO;
 
 namespace PersonalBlog
 {
@@ -19,6 +21,7 @@ namespace PersonalBlog
     {
         private readonly IBlogRepository _blogRepository;
         private readonly IOptionsSnapshot<BlogSettings> _settings;
+        private static readonly int CHUNK_SIZE = 1024;
 
         public BlogController(IBlogRepository blogRepository, IOptionsSnapshot<BlogSettings> settings)
         {
@@ -188,10 +191,21 @@ namespace PersonalBlog
                 var srcNode = img.Attributes["src"];
                 var fileNameNode = img.Attributes["data-filename"];
 
-                // The HTML editor creates base64 DataURIs which we'll have to convert to image files on disk
-                if (srcNode != null && fileNameNode != null)
+                if (srcNode == null)
+                    continue;
+
+                if (srcNode.Value.StartsWith("/posts/files"))
+                    continue;
+
+                byte[] bytes = new byte[0];
+                string fileName = null;
+                string extension = null;
+
+                if (fileNameNode != null)
                 {
-                    string extension = System.IO.Path.GetExtension(fileNameNode.Value);
+                    // Image in the editor is from local user
+                    fileName = fileNameNode.Value;
+                    extension = System.IO.Path.GetExtension(fileNameNode.Value);
 
                     // Only accept image files
                     if (!allowedExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase))
@@ -202,13 +216,42 @@ namespace PersonalBlog
                     var base64Match = base64Regex.Match(srcNode.Value);
                     if (base64Match.Success)
                     {
-                        byte[] bytes = Convert.FromBase64String(base64Match.Groups["base64"].Value);
-                        srcNode.Value = await _blogRepository.SaveFile(bytes, fileNameNode.Value).ConfigureAwait(false);
-
-                        img.Attributes.Remove(fileNameNode);
-                        post.Content = post.Content.Replace(match.Value, img.OuterXml);
+                        bytes = Convert.FromBase64String(base64Match.Groups["base64"].Value);
                     }
                 }
+                else
+                {
+                    // Image in the editor is from an external source (url)
+                    fileName = Path.GetFileName(srcNode.Value);
+                    extension = System.IO.Path.GetExtension(fileName);
+
+                    // Only accept image files
+                    if (!allowedExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    HttpWebRequest imageRequest = (HttpWebRequest)WebRequest.Create(srcNode.Value);
+                    WebResponse imageResponse = imageRequest.GetResponse();
+                    Stream responseStream = imageResponse.GetResponseStream();
+
+                    using (BinaryReader br = new BinaryReader(responseStream))
+                    {
+                        byte[] chunk;
+                        chunk = br.ReadBytes(CHUNK_SIZE);
+                        do
+                        {
+                            bytes = bytes.Concat(chunk).ToArray();
+                            chunk = br.ReadBytes(CHUNK_SIZE);
+                        } while (chunk.Length > 0);
+                    }
+                    responseStream.Close();
+                    imageResponse.Close();
+                }
+
+                srcNode.Value = await _blogRepository.SaveFile(bytes, fileName).ConfigureAwait(false);
+                img.Attributes.Remove(fileNameNode);
+                post.Content = post.Content.Replace(match.Value, img.OuterXml);
             }
         }
 

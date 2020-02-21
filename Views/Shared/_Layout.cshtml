@@ -8,6 +8,7 @@
     <title>@ViewData["Title"] | AdminLTE 3</title>
     <!-- Global -->
     <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/skin-midnight.css">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css">
     <!-- Select2 -->
@@ -28,8 +29,8 @@
 
 </head>
 
-  <body class="hold-transition layout-fixed sidebar-mini ">
-
+  <body class="hold-transition layout-fixed sidebar-mini">
+    
     <div class="wrapper">
 
       <partial name="_LayoutMainHeader" />
@@ -68,10 +69,17 @@
 
         <script type="text/javascript">
         
-          (function () {
-            if (Boolean(sessionStorage.getItem('sidebar-toggle-collapsed'))) {
+          (function () 
+          {
+            var sidebarToggleCollapsed = sessionStorage.getItem('sidebar-toggle-collapsed');
+            if (Boolean(sidebarToggleCollapsed)) {
               var body = document.getElementsByTagName('body')[0];
               body.className = body.className + ' sidebar-collapse';
+            }
+            var darkModeActivated = sessionStorage.getItem('darkMode');
+            if (Boolean(darkModeActivated))
+            {
+              $('body').addClass('skin-midnight');
             }
           })();
 
@@ -83,6 +91,30 @@
               sessionStorage.setItem('sidebar-toggle-collapsed', '1');
             }
           });
+
+          darkModeSwitch = function() 
+          {
+            var darkModeActivated = sessionStorage.getItem('darkMode');
+            var elm = document.createElement('div')
+
+            elm.setAttribute("class", "dark-mode-transition");
+            elm.setAttribute("style", "display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: black; z-index: 9999;");
+
+            document.body.appendChild(elm);
+            $('.dark-mode-transition').fadeTo(300, 1, function()
+            {
+              if (darkModeActivated)
+                sessionStorage.removeItem('darkMode');
+              else
+                sessionStorage.setItem('darkMode', true);
+
+              $('body').toggleClass('skin-midnight');
+              $('.dark-mode-transition').fadeTo(700,0, function() 
+              {
+                $('.dark-mode-transition').remove();
+              });
+            });
+          }
 
         </script>
 

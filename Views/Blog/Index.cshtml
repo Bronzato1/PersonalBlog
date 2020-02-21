@@ -8,13 +8,32 @@
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
 
+@section centeredTop {
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-controller="Blog" asp-action="Edit" asp-route-id=""><i class="fa fa-plus-circle"></i> <strong>New post</strong></a>
+    }
+    <div class="btn-group float-right">
+        <button type="button" class="btn btn-default btn-sm" onclick="expandAll()">Expand all</button>
+        <button type="button" class="btn btn-default btn-sm" onclick="collapseAll()">Collapse all</button>
+    </div>
+}
+
 @foreach (var post in Model)
 {
     <partial name="Post" model="post" />
 }
 
-@if (User.Identity.IsAuthenticated)
+@section scripts 
 {
-    <a asp-controller="Blog" asp-action="Edit" asp-route-id=""><i class="fa fa-plus-circle"></i> <strong>New post</strong></a>
+    <script>
+      expandAll = function() 
+      {
+        $('.card-blog-post').CardWidget('expand');
+      }
+      collapseAll = function()
+      {
+        $('.card-blog-post').CardWidget('collapse');
+      }
+    </script>
 }
-

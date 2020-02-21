@@ -27,11 +27,11 @@
                 <ul>
                 @foreach (Category cat in Model.Categories)
                 {
-                    <li><a asp-controller="Blog" asp-action="Category" asp-route-category="@cat.Name.ToLowerInvariant()" asp-route-page=""><span class="badge">@cat.Name</span></a></li>
+                    <li><a asp-controller="Blog" asp-action="Category" asp-route-category="@cat.Name.ToLowerInvariant()" asp-route-page=""><span class="badge bg-secondary">@cat.Name</span></a></li>
                 }
                 </ul>
             </span>
-            <span class="description">
+            <span class="description text-nowrap">
                 Posted on
                 <time datetime="@Model.PubDate.ToString("s")" itemprop="datePublished">@Model.PubDate.ToString("d MMMM yyyy", cultureUS)</time>
             </span>
@@ -87,7 +87,8 @@
         @section head {
             @if (isCodePreview)
             {
-                <link rel="stylesheet" href="~/lib/prism/themes/prism.css" />
+                @* <link rel="stylesheet" href="~/lib/prism/themes/prism.css" /> *@
+                <link rel="stylesheet" href="~/lib/prism/themes/prism-twilight.css">
                 <link rel="stylesheet" href="~/lib/prism/plugins/line-highlight/prism-line-highlight.css" />
                 <link rel="stylesheet" href="~/lib/prism/plugins/line-numbers/prism-line-numbers.css" />
             }

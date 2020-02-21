@@ -14,17 +14,12 @@
     display: inline-block;
 }
 
-.user-block .categories ul li span {
-    background-color: #adb5bd;
-    color: white;
-}
-
 .user-block .description {
     margin-top: 3px !important;
 }
 
 .main-header {
-    background-color: #f4f6f9 !important;
+    background-color: #f4f6f9;
     border-bottom: none !important;
 }
 
