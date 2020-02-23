@@ -11,6 +11,28 @@
     <link rel="stylesheet" href="~/css/admin.css" />
 }
 
+@section headerNavItems {
+    <li class="nav-item pr-2">
+        <a asp-controller="Blog" asp-action="Index" class="nav-link btn btn-default btn-sm">
+            <i class="fas fa-arrow-left"></i> Back to list
+        </a>
+    </li>
+    <li class="nav-item pr-2">
+        <a href="#" asp class="nav-link btn btn-default btn-sm" onclick="$('#Post_Edit').submit();">
+            <i class="fas fa-save"></i> Save
+        </a>
+    </li>
+    @if (!isNew)
+    {
+        <li class="nav-item pr-2">
+            <button class="nav-link btn btn-default btn-sm delete" asp-action="DeletePost" asp-route-id="@Model.Post.Id" form="Post_Edit">
+                <i class="fas fa-minus-circle"></i>
+                <strong> Delete</strong>
+            </button>
+        </li>
+    }
+}
+
 <div class="card card-widget card-blog-post">
     <div class="card-header">
         <div class="user-block">
@@ -66,19 +88,9 @@
                 <textarea asp-for="@Model.Post.Content" rows="20" aria-label="Content">@Model.Post.Content</textarea>
             </div>
 
-            <input type="submit" value="Save" title="Save the post" />
-
-            &nbsp;&nbsp;
             <input asp-for="@Model.Post.IsPublished" />
             <label asp-for="@Model.Post.IsPublished">Is published</label>
 
-            @if (!isNew)
-            {
-                <button type="submit" class="delete" asp-action="DeletePost" asp-route-id="@Model.Post.Id">
-                    <i class="fas fa-minus-circle"></i>
-                    <strong> Delete</strong>
-                </button>
-            }
         </form>
     </div>
 
@@ -109,6 +121,16 @@
                     $('.card-blog-post').first().addClass('full-screen-mode');
                 }
                 
+            }
+
+            // Delete post
+            var deleteButton = document.querySelector(".delete");
+            if (deleteButton) {
+                deleteButton.addEventListener("click", function (e) {
+                    if (!confirm("Are you sure you want to delete the post?")) {
+                        e.preventDefault();
+                    }
+                });
             }
 
         })

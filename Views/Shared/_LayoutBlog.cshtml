@@ -6,51 +6,29 @@
     @RenderSection("head", required: false)
 }
 
-<div class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-3">
+@section headerNavItems {
+    @RenderSection("headerNavItems", required: false)
+}
 
-      </div>
-      <div class="col-sm-6">
-          @RenderSection("centeredTop", required: false)
-      </div><!-- /.col -->
-      <div class="col-sm-3">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Blog</a></li>
-          <li class="breadcrumb-item active">Version 1.0</li>
-        </ol>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
-</div>
-<!-- /.content-header -->
-
-<!-- Main content -->
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <partial name="Sidebar" />
-            </div>
-            <!-- /.col -->
-            <div class="col-md-6">
+            </div><!--/.col-->
+            <div class="col-md-7">
 
                 @RenderBody()
 
-            </div>
-            <!-- /.col -->
+            </div><!--/.col-->
             <div class="col-md-3">
                 @await Component.InvokeAsync("Chat")
                 <com>
             </div>
             <!-- /.col -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+        </div><!--/.row-->
+    </div><!--/.container-fluid-->
+</section><!--/.content-->
 
 @section scripts 
 {

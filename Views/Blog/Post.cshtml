@@ -9,19 +9,44 @@
     bool isCodePreview = Model.Content.Contains("</code>");
     System.Globalization.CultureInfo cultureUS = new System.Globalization.CultureInfo("en-US");
     if (showFullPost) Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+
+    @functions
+    {
+        string collapsedCard(Boolean showFullPost) 
+        {
+            if (!showFullPost)
+                return "collapsed-card";
+            else
+                return "";
+        }
+    }
 }
 
-<div class="card card-widget card-blog-post">
+@section headerNavItems {
+    <li class="nav-item pr-2">
+        <a asp-controller="Blog" asp-action="Index" class="nav-link btn btn-default btn-sm">
+            <i class="fas fa-arrow-left"></i> Back to list
+        </a>
+    </li>
+    
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="nav-item pr-2">
+            <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" class="nav-link btn btn-default btn-sm" >
+                <i class="fa fa-pencil-alt"></i> Edit
+            </a>
+        </li>
+    }
+    
+}
+
+<div class="card card-widget card-blog-post @collapsedCard(@showFullPost)">
+    
     <div class="card-header">
         <div class="user-block">
             <img class="img-circle elevation-2" src="~/img/user-photo-grayscale.jpg" alt="User Image">
             <span class="username">
                 <a href="@Model.GetLink()">@Model.Title</a>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <text>&nbsp;&nbsp;&nbsp;</text>
-                    <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" title="Edit the post"><i class="fa fa-pencil-alt"></i> Edit</a>
-                }
             </span>
             <span class="categories">
                 <ul>
@@ -35,9 +60,13 @@
                 Posted on
                 <time datetime="@Model.PubDate.ToString("s")" itemprop="datePublished">@Model.PubDate.ToString("d MMMM yyyy", cultureUS)</time>
             </span>
-        </div>
-        <!-- /.user-block -->
+        </div><!--/.user-block-->
         <div class="card-tools">
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-tool" title="Edit the post"><i class="fa fa-pencil-alt"></i></a>
+            }
             @if(showFullPost)
             {
                 <a asp-controller="Blog" asp-action="Index" class="btn btn-tool" title="Back to list">
@@ -59,13 +88,11 @@
                     <i class="fas fa-times"></i>
                 </button>
             }
-            
-            
-        </div>
-        <!-- /.card-tools -->
-    </div>
-    <!-- /.card-header -->
+             
+        </div><!--/.card-tools-->
+    </div><!--./card-header-->
     <div class="card-body">
+
         @if (showFullPost || settings.Value.ListView == PostListView.FullPosts)
         {
             <p>@Html.Raw(Model.RenderContent())</p>
@@ -78,7 +105,7 @@
         <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Share</button>
         <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
         <span class="float-right text-muted">127 likes - 3 comments</span>
-    </div>
+    </div><!--/.card-body-->
 
     @if (showFullPost)
     {
@@ -123,5 +150,4 @@
         }
     }
 
-</div>
-<!-- /.card -->
+</div><!--/.card-->

@@ -8,15 +8,19 @@
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
 
-@section centeredTop {
+@section headerNavItems {
+    <li class="nav-item pr-2">
+      <a class="nav-link btn btn-default btn-sm" href="#"onclick="expandAll()"><i class="fas fa-plus"></i> Expand</a>
+    </li>
+    <li class="nav-item pr-2">
+      <a class="nav-link btn btn-default btn-sm" href="#"onclick="collapseAll()"><i class="fas fa-minus"></i> Collapse</a>
+    </li>
     @if (User.Identity.IsAuthenticated)
     {
-        <a asp-controller="Blog" asp-action="Edit" asp-route-id=""><i class="fa fa-plus-circle"></i> <strong>New post</strong></a>
+      <li clas="nav-item pr-2">
+        <a class="nav-link btn btn-default btn-sm" asp-controller="Blog" asp-action="Edit" asp-route-id=""><i class="fa fa-plus-circle"></i> New post</a>
+      </li>
     }
-    <div class="btn-group float-right">
-        <button type="button" class="btn btn-default btn-sm" onclick="expandAll()">Expand all</button>
-        <button type="button" class="btn btn-default btn-sm" onclick="collapseAll()">Collapse all</button>
-    </div>
 }
 
 @foreach (var post in Model)
