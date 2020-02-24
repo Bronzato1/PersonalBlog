@@ -21,7 +21,6 @@ namespace PersonalBlog.TagHelpers
 
         private IDictionary<string, string> _routeValues;
 
-
         [HtmlAttributeName("asp-page")]
         public string Page { get; set; }
 

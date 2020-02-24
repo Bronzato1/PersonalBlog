@@ -36,6 +36,11 @@
                 <i class="fa fa-pencil-alt"></i> Edit
             </a>
         </li>
+
+        <li class="nav-item pr-2">
+            <button type="button" class="nav-link btn btn-default btn-sm" onclick="deletePostB(this, @Model.Id, callbackToList)"><i class="fas fa-times"></i> Delete</button>            
+        </li>
+
     }
     
 }
@@ -63,10 +68,6 @@
         </div><!--/.user-block-->
         <div class="card-tools">
 
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-tool" title="Edit the post"><i class="fa fa-pencil-alt"></i></a>
-            }
             @if(showFullPost)
             {
                 <a asp-controller="Blog" asp-action="Index" class="btn btn-tool" title="Back to list">
@@ -75,6 +76,12 @@
                 <a href="#" class="btn btn-tool" onclick="fullScreenMode()" title="Full screen mode">
                     <i class="fas fa-expand-arrows-alt"></i>
                 </a>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-tool" title="Edit the post"><i class="fa fa-pencil-alt"></i></a>
+                    <button type="button" class="btn btn-tool" onclick="deletePostB(this, @Model.Id, callbackToList)"><i class="fas fa-times"></i></button>
+                }
             } 
             else 
             {
@@ -82,11 +89,18 @@
                     <i class="fas fa-arrow-right"></i>
                 </a>
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
+                    <i class="fas fa-plus"></i>
                 </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                </button>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="custom-control custom-checkbox d-inline">
+                        <input class="custom-control-input deletePosts" type="checkbox" id="customCheckbox_@Model.Id" value="@Model.Id">
+                        <label for="customCheckbox_@Model.Id" class="custom-control-label"></label>
+                    </div>
+                    <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-tool" title="Edit the post"><i class="fa fa-pencil-alt"></i></a>
+                    <button type="button" class="btn btn-tool" onclick="deletePostB(this, @Model.Id, callbackRemove)"><i class="fas fa-times"></i></button>
+                }
             }
              
         </div><!--/.card-tools-->

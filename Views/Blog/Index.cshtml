@@ -8,17 +8,32 @@
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
 
-@section headerNavItems {
+@section headerNavItems 
+{
     <li class="nav-item pr-2">
       <a class="nav-link btn btn-default btn-sm" href="#"onclick="expandAll()"><i class="fas fa-plus"></i> Expand</a>
     </li>
+
     <li class="nav-item pr-2">
       <a class="nav-link btn btn-default btn-sm" href="#"onclick="collapseAll()"><i class="fas fa-minus"></i> Collapse</a>
     </li>
+
     @if (User.Identity.IsAuthenticated)
     {
-      <li clas="nav-item pr-2">
+      <li class="nav-item pr-2">
         <a class="nav-link btn btn-default btn-sm" asp-controller="Blog" asp-action="Edit" asp-route-id=""><i class="fa fa-plus-circle"></i> New post</a>
+      </li>
+
+      <li class="nav-item pr-2">
+        <a class="nav-link btn btn-default btn-sm" href="#" onclick="deletePosts()"><i class="fa fa-minus-circle"></i> Delete selected</a>
+      </li>
+
+      <li class="nav-item pr-2">
+        <a class="nav-link btn btn-default btn-sm" href="#" onclick="selectAll()"><i class="fas fa-check-square"></i> Select all</a>
+      </li>
+
+      <li class="nav-item pr-2">
+        <a class="nav-link btn btn-default btn-sm" href="#" onclick="unselectAll()"><i class="far fa-check-square"></i> Unselect all</a>
       </li>
     }
 }
@@ -31,13 +46,79 @@
 @section scripts 
 {
     <script>
+
+      // ┌────────────┐
+      // │ Expand All │
+      // └────────────┘
+
       expandAll = function() 
       {
         $('.card-blog-post').CardWidget('expand');
       }
+
+      // ┌──────────────┐
+      // │ Collapse All │
+      // └──────────────┘
+
       collapseAll = function()
       {
         $('.card-blog-post').CardWidget('collapse');
       }
+
+      // ┌──────────────┐
+      // │ Delete Posts │
+      // └──────────────┘
+
+      deletePosts = function()
+      {
+        var checkGridSelection = "";
+        var selected = $(".deletePosts:checked").map(function () {
+          checkGridSelection = "Selected";
+          return this.value;
+        }).get();
+
+        if (checkGridSelection == "Selected") {
+            var r = confirm("The selected group(s) will be deleted. Do you want to continue ?");
+            if (r == true) {
+                var ids = selected.join(";");
+                var serviceURL = '/Blog/DeletePosts/' + ids;
+                $.ajax({
+                    type: 'Post',
+                    cache: false,
+                    url: serviceURL,
+                    dataType: "json",
+                    error: function (result) {
+                      alert("error");
+                    },
+                    success: function (data) {
+                      if (data.deleted && data.total)
+                        alert('Succeed: ' + data.deleted + '/' + data.total);
+                      document.location.reload();
+                    }
+                });
+            }
+        }
+      }
+
+      // ┌────────────┐
+      // │ Select All │
+      // └────────────┘
+      
+      selectAll = function()
+      {
+        $('input:checkbox').prop('checked', true);
+      }
+
+      // ┌──────────────┐
+      // │ Unselect All │
+      // └──────────────┘
+      
+      unselectAll = function()
+      {
+        $('input:checkbox').prop('checked', false);
+      }
+
+      
+
     </script>
 }

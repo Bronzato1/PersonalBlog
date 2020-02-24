@@ -25,7 +25,7 @@
     @if (!isNew)
     {
         <li class="nav-item pr-2">
-            <button class="nav-link btn btn-default btn-sm delete" asp-action="DeletePost" asp-route-id="@Model.Post.Id" form="Post_Edit">
+            <button class="nav-link btn btn-default btn-sm deletePostA" asp-action="DeletePostA" asp-route-id="@Model.Post.Id" form="Post_Edit">
                 <i class="fas fa-minus-circle"></i>
                 <strong> Delete</strong>
             </button>
@@ -94,16 +94,20 @@
         </form>
     </div>
 
-</div>
-<!-- /.card -->
+</div><!--/.card-->
 
 @section Scripts {
+
     <script src="//@host/lib/tinymce/tinymce.min.js"></script>  @* with enabled CDN tinymce is not able to find some files *@
-    <script src="~/js/admin.js" async></script>
+    
     <script>
+
         $(function () {
 
-            //Initialize Select2 Elements
+            // ┌────────────────────┐
+            // │ Initialize Select2 │
+            // └────────────────────┘
+
             $('.select2').select2({
                 tags: true
             });
@@ -123,8 +127,11 @@
                 
             }
 
-            // Delete post
-            var deleteButton = document.querySelector(".delete");
+            // ┌────────────────────────────┐
+            // │ Delete Post A Confirmation │
+            // └────────────────────────────┘
+
+            var deleteButton = document.querySelector(".deletePostA");
             if (deleteButton) {
                 deleteButton.addEventListener("click", function (e) {
                     if (!confirm("Are you sure you want to delete the post?")) {
@@ -134,5 +141,6 @@
             }
 
         })
+        
     </script>
 }

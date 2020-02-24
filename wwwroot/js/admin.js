@@ -1,7 +1,10 @@
 (function () {
 
-    // File upload
-    function handleFileSelect(event) {
+    // ┌─────────────┐
+    // │ File Upload │
+    // └─────────────┘
+
+    handleFileSelect = function (event) {
         if (window.File && window.FileList && window.FileReader) {
 
             var files = event.target.files;
@@ -37,20 +40,14 @@
         }
     }
 
-    // remove empty strings
-    function trimItem(item) {
-        var trimmedItem = item.trim();
-        if (trimmedItem.length > 0) {
-            return trimmedItem;
-        }
-    }
+    // ┌──────────────────────────┐
+    // │ Configure TinyMCE Editor │
+    // └──────────────────────────┘
 
-    // edit form
-    var edit = document.getElementById("Post_Edit");
-    // content editor
-    var content = document.getElementById("Post_Content");
+    var editForm = document.getElementById("Post_Edit");
+    var contentEditor = document.getElementById("Post_Content");
 
-    if (edit && content) {
+    if (editForm && contentEditor) {
 
         if (typeof window.orientation !== "undefined" || navigator.userAgent.indexOf('IEMobile') !== -1) {
             tinymce.init({
@@ -93,10 +90,9 @@
                     editor.addButton('linenumbers', {
                         icon: 'numlist',
                         tooltip: 'Add line numbers for code blocks',
-                        onclick: function() {                
+                        onclick: function () {
                             var currentNode = tinyMCE.activeEditor.selection.getNode();
-                            if(currentNode.tagName !== 'PRE')
-                            {
+                            if (currentNode.tagName !== 'PRE') {
                                 alert('PRE tag required');
                                 return;
                             }
@@ -108,7 +104,46 @@
         }
     }
 
-    // Delete comments
+    // ┌───────────────┐
+    // │ Delete Post B │
+    // └───────────────┘
+
+    deletePostB = function (elm, id, callback) {
+        debugger;
+
+        var r = confirm("The post will be deleted. Do you want to continue ?");
+        if (r == true) {
+            var serviceURL = '/Blog/DeletePostB/' + id;
+            $.ajax({
+                type: 'Post',
+                cache: false,
+                url: serviceURL,
+                dataType: "json",
+                error: function (result) {
+                    alert("error");
+                },
+                success: function (data) {
+                    if (data.deleted)
+                        callback(elm);
+                }
+            });
+        }
+    }
+
+    callbackToList = function()
+    {
+        window.location.href = '/blog';
+    }
+
+    callbackRemove = function(elm)
+    {
+        $(elm).CardWidget('remove');
+    }
+
+    // ┌─────────────────┐
+    // │ Delete Comments │
+    // └─────────────────┘
+
     var deleteLinks = document.querySelectorAll("#comments a.delete");
     if (deleteLinks) {
         for (var i = 0; i < deleteLinks.length; i++) {
@@ -121,44 +156,5 @@
             });
         }
     }
-
-    // Tag input enhancement - using autocomplete input
-    // var selecttag = document.getElementById("selecttag");
-    // var categories = document.getElementById("categories");
-
-    // if (selecttag && categories) {
-
-    //     selecttag.onchange = function () {
-            
-    //         var phv = selecttag.placeholder;
-    //         var val = selecttag.value.toLowerCase();
-
-    //         var phv_array = phv.split(",").map(function (item) {
-    //             return trimItem(item);
-    //         });
-
-    //         var val_array = val.split(",").map(function (item) {
-    //             return trimItem(item);
-    //         });
-
-    //         for (var j = val_array.length - 1; j >= 0; j--) {
-    //             var v = val_array[j];
-    //             var flag = false;
-    //             for (var i = phv_array.length - 1; i >= 0; i--) {
-    //                 if (phv_array[i] === v) {
-    //                     phv_array.splice(i, 1);
-    //                     flag = true;
-    //                 }
-    //             }
-    //             if (!flag) {
-    //                 phv_array.push(v);
-    //             }
-    //         }
-
-    //         selecttag.placeholder = phv_array.join(", ");
-    //         categories.value = selecttag.placeholder;
-    //         selecttag.value = "";
-    //     };
-    // }
 
 })();

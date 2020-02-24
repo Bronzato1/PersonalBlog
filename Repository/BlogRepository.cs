@@ -19,8 +19,8 @@ namespace PersonalBlog
 {
     public class BlogRepository : IBlogRepository
     {
-        private const string POSTS = "posts";
-        private const string FILES = "files";
+        private const string FOLDER_POSTS = "posts";
+        private const string FOLDER_IMAGES = "images";
 
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly MyDbContext _dbContext;
@@ -28,7 +28,7 @@ namespace PersonalBlog
 
         public BlogRepository(IWebHostEnvironment env, IHttpContextAccessor contextAccessor, MyDbContext dbContext)
         {
-            _folder = Path.Combine(env.WebRootPath, POSTS);
+            _folder = Path.Combine(env.WebRootPath, FOLDER_POSTS);
             _contextAccessor = contextAccessor;
             _dbContext = dbContext;
         }
@@ -139,7 +139,7 @@ namespace PersonalBlog
 
             string fileNameWithSuffix = $"{name}_{suffix}{ext}";
 
-            string absolute = Path.Combine(_folder, FILES, fileNameWithSuffix);
+            string absolute = Path.Combine(_folder, FOLDER_IMAGES, fileNameWithSuffix);
             string dir = Path.GetDirectoryName(absolute);
 
             Directory.CreateDirectory(dir);
@@ -148,7 +148,7 @@ namespace PersonalBlog
                 await writer.WriteAsync(bytes, 0, bytes.Length).ConfigureAwait(false);
             }
 
-            return $"/{POSTS}/{FILES}/{fileNameWithSuffix}";
+            return $"/{FOLDER_POSTS}/{FOLDER_IMAGES}/{fileNameWithSuffix}";
         }
 
         private string GetFilePath(Post post)

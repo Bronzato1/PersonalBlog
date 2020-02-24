@@ -255,9 +255,9 @@ namespace PersonalBlog
             }
         }
 
-        [Route("/blog/deletepost/{id}")]
+        [Route("/blog/deletePostA/{id}")]
         [HttpPost, Authorize, AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> DeletePost(int id)
+        public async Task<IActionResult> DeletePostA(int id)
         {
             var existing = await _blogRepository.GetPostById(id);
 
@@ -270,6 +270,42 @@ namespace PersonalBlog
             return NotFound();
         }
 
+        [Route("/blog/deletePostB/{id}")]
+        [HttpPost, Authorize]
+        public async Task<IActionResult> DeletePostB(int id)
+        {
+            var existing = await _blogRepository.GetPostById(id);
+
+            if (existing != null)
+            {
+                await _blogRepository.DeletePost(existing);
+                return Json(new { deleted = true });
+            }
+
+            return Json(new { deleted = false });
+        }
+
+        [Route("/blog/deletePosts/{ids}")]
+        [HttpPost, Authorize]
+        public async Task<JsonResult> DeletePosts(string ids)
+        {
+            var idList = ids.Split(';').Select(Int32.Parse).ToList();
+            var total = idList.Count;
+            var deleted = 0;
+
+            foreach(int id in idList) 
+            {
+                var existing = await _blogRepository.GetPostById(id);
+
+                if (existing != null)
+                {
+                    await _blogRepository.DeletePost(existing);
+                    deleted++;
+                }   
+            };
+
+            return Json(new { total = total, deleted = deleted });
+        }
     }
 
     public static class ExtensionMethod
