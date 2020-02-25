@@ -10,29 +10,29 @@
 
 @section headerNavItems 
 {
-    <li class="nav-item pr-2">
+    <li class="nav-item pr-2 d-none d-sm-block">
       <a class="nav-link btn btn-default btn-sm" href="#"onclick="expandAll()"><i class="fas fa-plus"></i> Expand</a>
     </li>
 
-    <li class="nav-item pr-2">
+    <li class="nav-item pr-2 d-none d-sm-block">
       <a class="nav-link btn btn-default btn-sm" href="#"onclick="collapseAll()"><i class="fas fa-minus"></i> Collapse</a>
     </li>
 
     @if (User.Identity.IsAuthenticated)
     {
-      <li class="nav-item pr-2">
+      <li class="nav-item pr-2 d-none d-sm-block">
         <a class="nav-link btn btn-default btn-sm" asp-controller="Blog" asp-action="Edit" asp-route-id=""><i class="fa fa-plus-circle"></i> New post</a>
       </li>
 
-      <li class="nav-item pr-2">
+      <li class="nav-item pr-2 d-none d-sm-block">
         <a class="nav-link btn btn-default btn-sm" href="#" onclick="deletePosts()"><i class="fa fa-minus-circle"></i> Delete selected</a>
       </li>
 
-      <li class="nav-item pr-2">
+      <li class="nav-item pr-2 d-none d-sm-block">
         <a class="nav-link btn btn-default btn-sm" href="#" onclick="selectAll()"><i class="fas fa-check-square"></i> Select all</a>
       </li>
 
-      <li class="nav-item pr-2">
+      <li class="nav-item pr-2 d-none d-sm-block">
         <a class="nav-link btn btn-default btn-sm" href="#" onclick="unselectAll()"><i class="far fa-check-square"></i> Unselect all</a>
       </li>
     }

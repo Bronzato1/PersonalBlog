@@ -9,6 +9,9 @@ using System.IO.Compression;
 using System;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Xml;
 
 namespace PersonalBlog
 {
@@ -32,76 +35,6 @@ namespace PersonalBlog
         public ActionResult Index()
         {
             return View();
-        }
-
-        public async Task<ContentResult> GetPostsAsJson()
-        {
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                ContractResolver = new PrivateSetterContractResolver()
-            };
-
-            var posts = await _blogRepository.GetPosts();
-            var json = JsonConvert.SerializeObject(posts, settings);
-
-            return Content(json);
-        }
-
-        public async Task<ContentResult> SavePostsAsJsonToDisk()
-        {
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                ContractResolver = new PrivateSetterContractResolver()
-            };
-
-            var posts = await _blogRepository.GetPosts();
-            var json = JsonConvert.SerializeObject(posts, settings);
-
-            System.IO.File.WriteAllText(@"Secret-seed-blog.json", json);
-            return Content("Save Posts As Json To Disk : succeed");
-        }
-
-        public FileResult DownloadBlogPosts()
-        {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"Secret-seed-blog.json");
-            string fileName = "Secret-seed-blog.json";
-            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-        }
-
-        [HttpPost("FileUpload")]
-        public async Task<IActionResult> FileUpload(IFormFile file)
-        {
-            if (file == null || file.Length == 0)
-                return NotFound("File Upload : file not found");
-
-            using (var ms = new MemoryStream())
-            {
-                file.CopyTo(ms);
-                var fileBytes = ms.ToArray();
-                await System.IO.File.WriteAllBytesAsync(@"Secret-seed-blog.json", fileBytes);
-            }
-
-            return Ok("File Upload: success");
-        }
-
-        public async Task<ContentResult> SaveJsonPostsInDatabase()
-        {
-            await _blogRepository.SaveJsonPostsInDatabase();
-            return Content("Save Json Posts In Database : succeed");
-        }
-
-        public FileResult DownloadAllImagesInZip()
-        {
-            string filesDirectory = Path.Combine(_folder, FOLDER_IMAGES);
-            string zipFile = "blog_posts_" + DateTime.Now.ToString("yyyy_MM_dd_hhmmss") + ".zip";
-            string zipPath = Path.Combine(_folder, FOLDER_ARCHIVES, zipFile);
-            string zipDirectory = Path.GetDirectoryName(zipPath);
-
-            Directory.CreateDirectory(zipDirectory);
-            ZipFile.CreateFromDirectory(filesDirectory, zipPath);
-
-            byte[] fileBytes = System.IO.File.ReadAllBytes(zipPath);
-            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, zipFile);
         }
 
         public async Task<FileResult> ExportBlogData()
@@ -135,7 +68,7 @@ namespace PersonalBlog
             // STEP 4 : save images in zip file
 
             string filesDirectory = Path.Combine(_folder, FOLDER_IMAGES);
-            string zipFile = "blog_posts_" + DateTime.Now.ToString("yyyy_MM_dd_hhmmss") + ".zip";
+            string zipFile = "blog_posts_" + DateTime.Now.ToString("yyyy_MM_dd_HHmmss") + ".zip";
             string zipPath = Path.Combine(_folder, FOLDER_ARCHIVES, zipFile);
             string zipDirectory = Path.GetDirectoryName(zipPath);
 
@@ -162,10 +95,10 @@ namespace PersonalBlog
             if (file == null || file.Length == 0)
                 return NotFound("File Upload : file not found");
 
-            string filesDirectory = Path.Combine(_folder, FOLDER_IMAGES);
+            string imagesDirectory = Path.Combine(_folder, FOLDER_IMAGES);
             string zipFile = file.FileName;
             string zipPath = Path.Combine(_folder, FOLDER_ARCHIVES, zipFile);
-            string jsonPath = Path.Combine(filesDirectory, FILE_JSON_POSTS);
+            string jsonPath = Path.Combine(imagesDirectory, FILE_JSON_POSTS);
             string zipDirectory = Path.GetDirectoryName(zipPath);
 
             if (System.IO.File.Exists(zipPath))
@@ -181,7 +114,7 @@ namespace PersonalBlog
             // STEP 2 : extraire les fichiers du zip
 
             var zipArchive = ZipFile.Open(zipPath, ZipArchiveMode.Read);
-            zipArchive.ExtractToDirectory(filesDirectory, true);
+            zipArchive.ExtractToDirectory(imagesDirectory, true);
             zipArchive.Dispose();
 
             if (System.IO.File.Exists(jsonPath))
@@ -190,6 +123,49 @@ namespace PersonalBlog
             await _blogRepository.SaveJsonPostsInDatabase();
 
             return Ok("File Import: success");
+        }
+
+        public async Task<ActionResult> DeleteUnusedImages()
+        {
+            var imgRegex = new Regex("<img[^>]+ />", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            //var base64Regex = new Regex("data:[^/]+/(?<ext>[a-z]+);base64,(?<base64>.+)", RegexOptions.IgnoreCase);
+            var imagesDirectory = Path.Combine(_folder, FOLDER_IMAGES);
+
+            var obsoleteImageList = new DirectoryInfo(imagesDirectory).GetFiles().ToList();
+            var missingImageList = new List<string>();
+            var posts = await _blogRepository.GetPosts();
+            var viewModel = new ViewModels.DeleteUnusedImagesResuleViewModel();
+
+            posts.ToList().ForEach(post =>
+            {
+                foreach (Match match in imgRegex.Matches(post.Content))
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml("<root>" + match.Value + "</root>");
+
+                    var img = doc.FirstChild.FirstChild;
+                    var srcNode = img.Attributes["src"];
+
+                    var filename = Path.GetFileName(srcNode.Value);
+                    var fileInfo = obsoleteImageList.FirstOrDefault(x => x.FullName.EndsWith(filename));
+
+                    if (fileInfo != null)
+                        obsoleteImageList.Remove(fileInfo);
+                    else
+                        missingImageList.Add(filename);
+                }
+            });
+
+            // Delete obsolete images
+            obsoleteImageList.ForEach(fileInfo =>
+            {
+                System.IO.File.Delete(fileInfo.FullName);
+            });
+
+            viewModel.obsoleteImageList = obsoleteImageList.Select(x => x.Name).ToList();
+            viewModel.missingImageList = missingImageList;
+
+            return PartialView("_DeleteUnusedImagesResult", viewModel);
         }
     }
 }

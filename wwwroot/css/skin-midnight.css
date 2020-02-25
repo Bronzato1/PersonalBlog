@@ -480,7 +480,23 @@
 .skin-midnight .login-logo a {
   color: #bec5cb;
 }
+.skin-midnight a.btn {
+  color: rgba(255,255,255,1);
+}
 .skin-midnight .login-card-body, 
 .skin-midnight .register-card-body {
   color: #bec5cb;
+}
+.skin-midnight .card-comments,
+.skin-midnight .comment-text,
+.skin-midnight .comment-text .username {
+  background: #272c30;
+}
+.skin-midnight .card-comments .card-comment {
+  border-bottom: 1px solid #3c444a;
+}
+.skin-midnight .form-control,
+.skin-midnight .form-control:focus {
+  color: #b7c3d0;
+  background-color: #363d42;
 }

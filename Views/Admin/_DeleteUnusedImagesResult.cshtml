@@ -1,0 +1,36 @@
+@model PersonalBlog.ViewModels.DeleteUnusedImagesResuleViewModel
+
+@if (Model.missingImageList.Count>0)
+{
+    <h2 class="text-warning"><i class="fas fa-exclamation"></i> Warning</h2>
+} 
+else
+{
+    <h2 class="text-success"><i class="fas fa-check"></i> Succeed</h2>
+}
+
+<br/>
+
+@if (@Model.obsoleteImageList.Count>0)
+{
+    <strong>Obsolete images</strong>
+
+    <ul>
+        @foreach (var item in Model.obsoleteImageList)
+        {
+            <li>@item</li>
+        }
+    </ul>
+}
+
+@if (@Model.missingImageList.Count>0)
+{
+    <strong>Missing images</strong>
+
+    <ul>
+        @foreach (var item in Model.missingImageList)
+        {
+            <li>@item</li>
+        }
+    </ul>
+}

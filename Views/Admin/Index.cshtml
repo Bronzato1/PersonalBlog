@@ -35,42 +35,6 @@
             <ul class="nav flex-column">
               <li class="nav-item">
                 <span class="nav-link text-dark">
-                  Get blog posts as json 
-                  <a class="btn btn-dark btn-xs float-right" data-ajax="true" data-ajax-method="get" data-ajax-begin="begin" data-ajax-update="#result" data-ajax-complete="completed" asp-controller="Admin" asp-action="GetPostsAsJson">GO</a>
-                </span>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link text-dark">
-                  Save blog posts to disk as json
-                  <a class="btn btn-dark btn-xs float-right" data-ajax="true" data-ajax-method="get" data-ajax-begin="begin" data-ajax-update="#result" data-ajax-complete="completed" asp-controller="Admin" asp-action="SavePostsAsJsonToDisk">GO</a>
-                </span>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link text-dark">
-                  Download blog posts 
-                  <a class="btn btn-dark btn-xs float-right" asp-controller="Admin" asp-action="DownloadBlogPosts">GO</a>
-                </span>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link text-dark">
-                  Upload blog posts 
-                  <a class="btn btn-dark btn-xs float-right" href="#" onclick="showUploadForm()">GO</a>
-                </span>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link text-dark">
-                  Save blog posts in database 
-                  <a class="btn btn-dark btn-xs float-right" data-ajax="true" data-ajax-method="get" data-ajax-begin="begin" data-ajax-update="#result" data-ajax-complete="completed" asp-controller="Admin" asp-action="SaveJsonPostsInDatabase">GO</a>
-                </span>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link text-dark">
-                  Download all images in zip
-                  <a class="btn btn-dark btn-xs float-right" asp-controller="Admin" asp-action="DownloadAllImagesInZip">GO</a>
-                </span>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link text-dark">
                   Export blog data
                   <a class="btn btn-dark btn-xs float-right" asp-controller="Admin" asp-action="ExportBlogData">GO</a>
                 </span>
@@ -79,6 +43,12 @@
                 <span class="nav-link text-dark">
                   Import blog data
                   <a class="btn btn-dark btn-xs float-right" href="#" onclick="showUploadForm()">GO</a>
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link text-dark">
+                  Delete unused images
+                  <a class="btn btn-dark btn-xs float-right" data-ajax="true" data-ajax-method="get" data-ajax-begin="begin" data-ajax-update="#result" data-ajax-complete="completed" asp-controller="Admin" asp-action="DeleteUnusedImages">GO</a>
                 </span>
               </li>
             </ul>            
@@ -191,7 +161,7 @@
 
         failed = function (xhr) 
         {
-          $('#result').text(xhr.responseText);
+          $('#result').html(xhr.responseText);
           console.log(xhr);
         };
 
