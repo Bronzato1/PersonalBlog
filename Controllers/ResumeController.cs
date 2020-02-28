@@ -32,7 +32,7 @@ namespace PersonalBlog
         }
 
         [AllowAnonymous]
-        public ActionResult About()
+        public ActionResult Print()
         {
             List<Mission> missions = _resumeRepository.GetAllMissions();
             return View(missions);
@@ -157,7 +157,12 @@ namespace PersonalBlog
             _resumeRepository.UpdateMissionLanguages(updateMissionViewModel.Mission.Id, updateMissionViewModel.SelectedLanguageIds);
             return RedirectToAction("Index", "Mission");
         }
+  
+        [AllowAnonymous]
+        public ActionResult Profile()
+        {
+            List<Mission> missions = _resumeRepository.GetAllMissions();
+            return View(missions);
+        }
     }
-
-
 }

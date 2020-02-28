@@ -1,5 +1,5 @@
-﻿@model IEnumerable<PersonalBlog.Models.Mission>
-@using static PersonalBlog.Secret
+@model IEnumerable<PersonalBlog.Models.Mission>
+@using static PersonalBlog.Secret;
 
 @section head {
     <STYLE type="text/css">
@@ -56,132 +56,151 @@
     </STYLE>
 }
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>About</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">About</li>
-                </ol>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
-
+<!--Main content-->
 <section class="content">
     <div class="container-fluid">
-        <div class="row">
-            <div class="w-auto pl-2">
-                <div class="callout callout-info no-print">
-                    <h5><i class="fas fa-info"></i><strong>nfo</strong></h5>
-                    This page has been enhanced for printing. Click the print button to get a hard copy or download the PDF version.
-                </div>
-            </div>
-            <div class="col">
-                <div class="dropdown float-right no-print">
-                    <div class="float-right p-2">
-                        <button data-display="static" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonPdf" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-download"></i> PDF
-                        </button>
-                        <ul class="dropdown-menu dropdown-blue" aria-labelledby="dropdownMenuButtonPdf">
-                            <li><a class="dropdown-item" href="#" onclick="return exportpdf(condensed)">Condensed version (3 pages)</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="return exportpdf(detailed)">Detailed version (6 pages)</a></li>   
-                        </ul>
+    <div class="row">
+        <div class="col-md-2">
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle"
+                            src="~/img/user-photo-grayscale.jpg"
+                            alt="User profile picture">
                     </div>
-                    <div class="float-right p-2">
-                        <button data-display="static" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButtonPrint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-print"></i> Print
-                        </button>
-                        <ul class="dropdown-menu dropdown-grey" aria-labelledby="dropdownMenuButtonPrint">
-                            <li><a class="dropdown-item" href="#" onclick="return printing(0)">Condensed version (3 pages)</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="return printing(1)">Detailed version (6 pages)</a></li>   
-                        </ul>
-                    </div>
+
+                    <h3 class="profile-username text-center">@Secret.FullName</h3>
+
+                    <p class="text-muted text-center">@Secret.Expertise</p>
+
+                    <hr>
+
+                    <strong><i class="fas fa-check-circle mr-1"></i> Status</strong>
+
+                    <p class="text-muted">
+                        @Html.Raw(Secret.Status)
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                    <p class="text-muted">
+                        @Html.Raw(Secret.Location)
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fab fa-font-awesome-flag mr-1"></i> Languages</strong>
+
+                    <p class="text-muted">
+                        @Html.Raw(Secret.Languages)
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fas fa-phone-volume mr-1"></i> Phone</strong>
+
+                    <p class="text-muted">
+                        @Html.Raw(Secret.Phone)
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fas fa-envelope mr-1"></i> Mail</strong>
+
+                    <p class="text-muted">
+                        @Secret.Mail
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fas fa-project-diagram mr-1"></i> Networking</strong>
+
+                    <p class="text-muted">
+                        @Html.Raw(Secret.Networking)
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fas fa-file-alt mr-1"></i> Note</strong>
+
+                    <p class="text-muted">
+                        @Secret.Note
+                    </p>
                 </div>
-            </div>
-            <div class="col-12">
-                <!-- Main content -->
-                <div class="invoice p-3 mb-3">
-                    <div class="row">
-                        <div class="col-10">
-                            <h4>
-                                <i class="fas fa-user-circle"></i> @Secret.FullName
-                            </h4>
+                <!-- /.card-body -->
+            </div><!--/.card-->
+        </div><!--/.col-->
+        <div class="col-md-10">
+            <div class="row">
+                <div class="w-auto pl-2">
+                    <div class="info-box no-print" style="min-height: auto;">
+                        <div class="info-box-content">
+                            <strong>info</strong> &nbsp;&nbsp; 
+                            This is the profile page of @Secret.FullName (currently offline). Last update on 23/02/2020.
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-10">
-                            <div class="table-responsive pt-3">
-                                <table class="table">
-                                    <tr>
-                                        <td>Phone</td>
-                                        <td><i>@Secret.Phone</i></td>
-                                        <td>Status</td>
-                                        <td><i>@Secret.Status</i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mail</td>
-                                        <td><i>@Secret.Mail</i></td>
-                                        <td>Expertise</td>
-                                        <td><i>@Secret.Expertise</i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Location</td>
-                                        <td><i>@Secret.Location</i></td>
-                                        <td>Languages</td>
-                                        <td><i>@Secret.Languages</i></td>
-                                    </tr>
-                                </table>
+                </div>
+                <div class="col">
+                    <div class="dropdown float-right no-print">
+                        <div class="float-right p-2">
+                            <button data-display="static" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonPdf" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-download"></i> PDF
+                            </button>
+                            <ul class="dropdown-menu dropdown-blue" aria-labelledby="dropdownMenuButtonPdf">
+                                <li><a class="dropdown-item" href="#" onclick="return exportpdf(condensed)">Condensed version (3 pages)</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="return exportpdf(detailed)">Detailed version (6 pages)</a></li>   
+                            </ul>
+                        </div>
+                        <div class="float-right p-2">
+                            <button data-display="static" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButtonPrint" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-print"></i> Print
+                            </button>
+                            <ul class="dropdown-menu dropdown-grey" aria-labelledby="dropdownMenuButtonPrint">
+                                <li><a class="dropdown-item" href="#" onclick="return printing(0)">Condensed version (3 pages)</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="return printing(1)">Detailed version (6 pages)</a></li>   
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.row-->
+            <div class="card">
+                <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a class="nav-link active" href="#skills" data-toggle="tab">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#missions" data-toggle="tab">Missions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#education" data-toggle="tab">Education</a></li>
+                    </ul>
+                </div><!--/.card-header tabs-->
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="active tab-pane" id="skills">
+                            <div class="row">
+                                <div class="col-sm-3 invoice-col">
+                                    <strong>Javascript</strong><br>
+                                    TypeScript, Ajax, Json, REST, APIs, 
+                                    Aurelia, Knockout, Durandal
+                                </div><!--/.col-->
+                                <div class="col-sm-3 invoice-col">
+                                    <strong>Html/Css</strong><br>
+                                    Html5, Css3, Responsive design, 
+                                    Graceful degradation
+                                </div><!--/.col-->
+                                <div class="col-sm-3 invoice-col">
+                                    <strong>Design</strong><br>
+                                    Sketch, Photoshop, Prototyping,
+                                    Usability
+                                </div><!--/.col-->
+                                <div class="col-sm-3 invoice-col">
+                                    <strong>.Net</strong><br>
+                                    Vb.Net, C-Sharp (C#), VB6, Entity Framework,
+                                    Internet Information Server (IIS)
+                                </div><!--/.col-->
                             </div>
-                            <!-- /.col -->
-                        </div>
-                        <div class="col-2 text-right p-0">
-                            <img src="~/img/user-photo-duo-tone.jpg" class="">
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- info row -->
-                    <div class="row invoice-info">
-                        <div class="col-sm-12 invoice-col pt-3">
-                            Skills
-                            <hr />
-                        </div>
-                        <div class="col-sm-3 invoice-col">
-                            <strong>Javascript</strong><br>
-                            TypeScript, Ajax, Json, REST, APIs, 
-                            Aurelia, Knockout, Durandal
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-3 invoice-col">
-                            <strong>Html/Css</strong><br>
-                            Html5, Css3, Responsive design, 
-                            Graceful degradation
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-3 invoice-col">
-                            <strong>Design</strong><br>
-                            Sketch, Photoshop, Prototyping,
-                            Usability
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-3 invoice-col">
-                            <strong>.Net</strong><br>
-                            Vb.Net, C-Sharp (C#), VB6, Entity Framework,
-                            Internet Information Server (IIS)
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                    <!-- Table row -->
-                    <div class="row">
-                        <div class="col-12 table-responsive pt-5">
-                            Missions
-                            <hr/>
+                        </div><!--/.tab-pane skills-->
+                        <div class="tab-pane" id="missions">
                             <table class="table table-striped table-borderless table-underlined">
                                 <thead>
                                     <tr>
@@ -238,19 +257,11 @@
                                         </tr>
                                     }
                                 </tbody>
-                            </table>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-
-                    <div class="row pt-3">
-                        <div class="col-12">
-                            Education 
-                            <br/>
-                            <br/>
+                            </table>                            
+                        </div><!--/.tab-pane missions-->
+                        <div class="tab-pane" id="education">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table table-borderless">
                                     <tr>
                                         <td>2019</td>
                                         <td>Pluralsight Online Course<br /><b>Aurelia Fundamentals</b></td>
@@ -277,26 +288,14 @@
                                     </tr>
                                 </table>
                             </div>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                    <!-- this row will not appear when printing -->
-                    <div class="row no-print">
-                        <div class="col-12">
-                            <p class="float-right">
-                                Last update: 12/02/2020
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.invoice -->
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
-
+                        </div><!--/.tab-pane education-->
+                    </div><!--/.tab-content skills-->
+                </div><!--/.card-body-->
+            </div><!--/.nav-tabs-custom-->
+        </div><!--/.col-->
+    </div><!--/.row-->
+    </div><!--/.container-fluid-->
+</section><!--/.content-->
 
 @section scripts {         
   <script>
@@ -332,14 +331,11 @@
             {
                 if (param == condensed)
                 {
-                    $('.collapse').removeClass('show');
-                    window.print();
+                    window.location.href='/Resume/Print?type=condensed';
                 } 
                 else 
                 {
-                    $('.collapse').addClass('show');
-                    window.print();
-                    $('.collapse').removeClass('show');
+                    window.location.href='/Resume/Print?type=detailed';
                 }
                 return false;
             }
