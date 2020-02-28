@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalBlog.Models;
 
@@ -15,33 +14,30 @@ namespace PersonalBlog.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                        .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -50,18 +46,17 @@ namespace PersonalBlog.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -74,18 +69,17 @@ namespace PersonalBlog.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -97,19 +91,19 @@ namespace PersonalBlog.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(128);
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(128);
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -121,10 +115,10 @@ namespace PersonalBlog.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -136,18 +130,18 @@ namespace PersonalBlog.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(128);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(128);
 
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
@@ -158,14 +152,13 @@ namespace PersonalBlog.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("PostId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -174,78 +167,31 @@ namespace PersonalBlog.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("PersonalBlog.Models.Admin", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Created")
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnName("Email")
-                        .HasColumnType("varchar(255)")
-                        .HasMaxLength(255)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnName("Name")
-                        .HasColumnType("varchar(255)")
-                        .HasMaxLength(255)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnName("Password")
-                        .HasColumnType("varchar(255)")
-                        .HasMaxLength(255)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnName("Phone")
-                        .HasColumnType("varchar(15)")
-                        .HasMaxLength(15)
-                        .IsUnicode(false);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Admins","dbo");
-                });
-
             modelBuilder.Entity("PersonalBlog.Models.Comment", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Author")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("PostId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("PubDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -259,31 +205,30 @@ namespace PersonalBlog.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CreatedTime")
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("date('now')");
 
                     b.Property<string>("CreatedUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CreatedUser")
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("TEXT")
                         .HasDefaultValue("admin");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -373,59 +318,59 @@ namespace PersonalBlog.Migrations
             modelBuilder.Entity("PersonalBlog.Models.CustomUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
@@ -435,8 +380,7 @@ namespace PersonalBlog.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -446,35 +390,34 @@ namespace PersonalBlog.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Color")
                         .HasColumnName("Color")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CreatedTime")
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("date('now')");
 
                     b.Property<string>("CreatedUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CreatedUser")
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("TEXT")
                         .HasDefaultValue("admin");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -523,51 +466,50 @@ namespace PersonalBlog.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Created")
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("date('now')");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnName("Email")
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<int>("Gender")
                         .HasColumnName("Gender")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Name")
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnName("Password")
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnName("Phone")
-                        .HasColumnType("varchar(15)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(15)
                         .IsUnicode(false);
 
                     b.Property<string>("Specialist")
                         .IsRequired()
                         .HasColumnName("Specialist")
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
@@ -579,7 +521,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 454, DateTimeKind.Local).AddTicks(9828),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 791, DateTimeKind.Local).AddTicks(6908),
                             Email = "william@gmail.com",
                             Gender = 0,
                             Name = "William",
@@ -590,7 +532,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6189),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7882),
                             Email = "shakespeare@gmail.com",
                             Gender = 0,
                             Name = "Shakespeare",
@@ -601,7 +543,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6253),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7918),
                             Email = "vanespen@gmail.com",
                             Gender = 0,
                             Name = "Vanespen",
@@ -612,7 +554,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 4,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6263),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7924),
                             Email = "dehondt@gmail.com",
                             Gender = 0,
                             Name = "Dehondt",
@@ -623,7 +565,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 5,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6270),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7927),
                             Email = "henri@gmail.com",
                             Gender = 0,
                             Name = "Henri",
@@ -634,7 +576,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 6,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6276),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7930),
                             Email = "craemer@gmail.com",
                             Gender = 0,
                             Name = "Craemer",
@@ -645,7 +587,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 7,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6281),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7933),
                             Email = "paul@gmail.com",
                             Gender = 0,
                             Name = "Paul",
@@ -656,7 +598,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 8,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6287),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7937),
                             Email = "dupuit@gmail.com",
                             Gender = 0,
                             Name = "Dupuit",
@@ -667,7 +609,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 9,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6293),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7940),
                             Email = "gérard@gmail.com",
                             Gender = 0,
                             Name = "Gérard",
@@ -678,7 +620,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 10,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6364),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7943),
                             Email = "vaneste@gmail.com",
                             Gender = 0,
                             Name = "Vaneste",
@@ -689,7 +631,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 11,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6371),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7946),
                             Email = "william@gmail.com",
                             Gender = 0,
                             Name = "William",
@@ -700,7 +642,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 12,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6376),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7950),
                             Email = "shakespeare@gmail.com",
                             Gender = 0,
                             Name = "Shakespeare",
@@ -711,7 +653,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 13,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6382),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8016),
                             Email = "vanespen@gmail.com",
                             Gender = 0,
                             Name = "Vanespen",
@@ -722,7 +664,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 14,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6388),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8021),
                             Email = "dehondt@gmail.com",
                             Gender = 0,
                             Name = "Dehondt",
@@ -733,7 +675,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 15,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6394),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8024),
                             Email = "henri@gmail.com",
                             Gender = 0,
                             Name = "Henri",
@@ -744,7 +686,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 16,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6401),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8027),
                             Email = "craemer@gmail.com",
                             Gender = 0,
                             Name = "Craemer",
@@ -755,7 +697,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 17,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6406),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8030),
                             Email = "paul@gmail.com",
                             Gender = 0,
                             Name = "Paul",
@@ -766,7 +708,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 18,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6412),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8033),
                             Email = "dupuit@gmail.com",
                             Gender = 0,
                             Name = "Dupuit",
@@ -777,7 +719,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 19,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6417),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8037),
                             Email = "gérard@gmail.com",
                             Gender = 0,
                             Name = "Gérard",
@@ -788,7 +730,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 20,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6423),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8040),
                             Email = "vaneste@gmail.com",
                             Gender = 0,
                             Name = "Vaneste",
@@ -799,7 +741,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 21,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6429),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8043),
                             Email = "william@gmail.com",
                             Gender = 0,
                             Name = "William",
@@ -810,7 +752,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 22,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6435),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8046),
                             Email = "shakespeare@gmail.com",
                             Gender = 0,
                             Name = "Shakespeare",
@@ -821,7 +763,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 23,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6440),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8049),
                             Email = "vanespen@gmail.com",
                             Gender = 0,
                             Name = "Vanespen",
@@ -832,7 +774,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 24,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6446),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8052),
                             Email = "dehondt@gmail.com",
                             Gender = 0,
                             Name = "Dehondt",
@@ -843,7 +785,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 25,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6451),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8055),
                             Email = "henri@gmail.com",
                             Gender = 0,
                             Name = "Henri",
@@ -854,7 +796,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 26,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6457),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8058),
                             Email = "craemer@gmail.com",
                             Gender = 0,
                             Name = "Craemer",
@@ -865,7 +807,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 27,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6462),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8062),
                             Email = "paul@gmail.com",
                             Gender = 0,
                             Name = "Paul",
@@ -876,7 +818,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 28,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6468),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8065),
                             Email = "dupuit@gmail.com",
                             Gender = 0,
                             Name = "Dupuit",
@@ -887,7 +829,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 29,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6474),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8068),
                             Email = "gérard@gmail.com",
                             Gender = 0,
                             Name = "Gérard",
@@ -898,7 +840,7 @@ namespace PersonalBlog.Migrations
                         new
                         {
                             Id = 30,
-                            Created = new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6479),
+                            Created = new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8071),
                             Email = "vaneste@gmail.com",
                             Gender = 0,
                             Name = "Vaneste",
@@ -913,35 +855,34 @@ namespace PersonalBlog.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Color")
                         .HasColumnName("Color")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CreatedTime")
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("date('now')");
 
                     b.Property<string>("CreatedUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CreatedUser")
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("TEXT")
                         .HasDefaultValue("admin");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -1025,57 +966,56 @@ namespace PersonalBlog.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("CompanyId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CreatedTime")
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("date('now')");
 
                     b.Property<string>("CreatedUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CreatedUser")
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("TEXT")
                         .HasDefaultValue("admin");
 
                     b.Property<int?>("DatabaseId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
                         .HasColumnName("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnName("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Duration")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Sector")
                         .HasColumnName("Sector")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Staff")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnName("Title")
-                        .HasColumnType("nvarchar(200)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(200);
 
                     b.Property<DateTime?>("UpdatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -1089,22 +1029,22 @@ namespace PersonalBlog.Migrations
             modelBuilder.Entity("PersonalBlog.Models.MissionLanguage", b =>
                 {
                     b.Property<int>("MissionId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("LanguageId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedUser")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("MissionId", "LanguageId");
 
@@ -1118,40 +1058,39 @@ namespace PersonalBlog.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Created")
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("date('now')");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnName("Email")
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Name")
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnName("Password")
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnName("Phone")
-                        .HasColumnType("varchar(15)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(15)
                         .IsUnicode(false);
 
@@ -1165,45 +1104,44 @@ namespace PersonalBlog.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Created")
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("date('now')");
 
                     b.Property<int>("DoctorId")
                         .HasColumnName("Doctor_id")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Gender")
                         .HasColumnName("Gender")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("HealthCondition")
                         .IsRequired()
                         .HasColumnName("Health_condition")
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("Name")
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<int>("NurseId")
                         .HasColumnName("Nurse_id")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnName("Phone")
-                        .HasColumnType("varchar(15)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(15)
                         .IsUnicode(false);
 
@@ -1222,32 +1160,31 @@ namespace PersonalBlog.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Excerpt")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("IsPublished")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("PubDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Slug")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

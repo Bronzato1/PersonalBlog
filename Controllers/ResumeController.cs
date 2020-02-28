@@ -31,13 +31,6 @@ namespace PersonalBlog
             return View(missions);
         }
 
-        [AllowAnonymous]
-        public ActionResult Print()
-        {
-            List<Mission> missions = _resumeRepository.GetAllMissions();
-            return View(missions);
-        }
-
         // For testing purpope only
         public async Task<IActionResult> LoggedUser()
         {

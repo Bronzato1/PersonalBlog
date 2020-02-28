@@ -56,7 +56,7 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(nullable: false),
                     Slug = table.Column<string>(nullable: true),
                     Excerpt = table.Column<string>(nullable: false),
@@ -71,31 +71,13 @@ namespace PersonalBlog.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Admins",
-                schema: "dbo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
-                    Email = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
-                    Password = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
-                    Phone = table.Column<string>(unicode: false, maxLength: 15, nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admins", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Companies",
                 schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedTime = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedTime = table.Column<DateTime>(nullable: false, defaultValueSql: "date('now')"),
                     UpdatedTime = table.Column<DateTime>(nullable: true),
                     CreatedUser = table.Column<string>(nullable: true, defaultValue: "admin"),
                     UpdatedUser = table.Column<string>(nullable: true),
@@ -112,8 +94,8 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedTime = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedTime = table.Column<DateTime>(nullable: false, defaultValueSql: "date('now')"),
                     UpdatedTime = table.Column<DateTime>(nullable: true),
                     CreatedUser = table.Column<string>(nullable: true, defaultValue: "admin"),
                     UpdatedUser = table.Column<string>(nullable: true),
@@ -131,14 +113,14 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     Email = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     Password = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     Phone = table.Column<string>(unicode: false, maxLength: 15, nullable: false),
                     Gender = table.Column<int>(nullable: false),
                     Specialist = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()")
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "date('now')")
                 },
                 constraints: table =>
                 {
@@ -151,8 +133,8 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedTime = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedTime = table.Column<DateTime>(nullable: false, defaultValueSql: "date('now')"),
                     UpdatedTime = table.Column<DateTime>(nullable: true),
                     CreatedUser = table.Column<string>(nullable: true, defaultValue: "admin"),
                     UpdatedUser = table.Column<string>(nullable: true),
@@ -170,12 +152,12 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     Email = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     Password = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     Phone = table.Column<string>(unicode: false, maxLength: 15, nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()")
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "date('now')")
                 },
                 constraints: table =>
                 {
@@ -187,7 +169,7 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -208,7 +190,7 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -293,7 +275,7 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
                     PostId = table.Column<int>(nullable: true)
                 },
@@ -337,8 +319,8 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedTime = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedTime = table.Column<DateTime>(nullable: false, defaultValueSql: "date('now')"),
                     UpdatedTime = table.Column<DateTime>(nullable: true),
                     CreatedUser = table.Column<string>(nullable: true, defaultValue: "admin"),
                     UpdatedUser = table.Column<string>(nullable: true),
@@ -376,14 +358,14 @@ namespace PersonalBlog.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     Phone = table.Column<string>(unicode: false, maxLength: 15, nullable: false),
                     Gender = table.Column<int>(nullable: false),
                     Health_condition = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     Doctor_id = table.Column<int>(nullable: false),
                     Nurse_id = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()")
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "date('now')")
                 },
                 constraints: table =>
                 {
@@ -438,91 +420,349 @@ namespace PersonalBlog.Migrations
                 schema: "dbo",
                 table: "Companies",
                 columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
-                values: new object[,]
-                {
-                    { 1, "Trans***", null, null },
-                    { 2, "Glaxo Smith Kline (GSK)", null, null },
-                    { 3, "Fortis Insurance Belgium", null, null },
-                    { 4, "T-Plan", null, null },
-                    { 5, "Tott Systems", null, null },
-                    { 6, "Sopres", null, null },
-                    { 7, "Kraft Jacobs Suchard (KJS)  ", null, null },
-                    { 8, "JPass International", null, null },
-                    { 9, "Coca-Cola", null, null },
-                    { 10, "Cotrase", null, null },
-                    { 11, "Comité Olympique Belge (COIB)", null, null },
-                    { 12, "Baxter", null, null },
-                    { 13, "Akzonobel", null, null }
-                });
+                values: new object[] { 1, "Trans***", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 2, "Glaxo Smith Kline (GSK)", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 3, "Fortis Insurance Belgium", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 4, "T-Plan", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 5, "Tott Systems", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 6, "Sopres", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 7, "Kraft Jacobs Suchard (KJS)  ", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 8, "JPass International", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 9, "Coca-Cola", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 10, "Cotrase", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 11, "Comité Olympique Belge (COIB)", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 12, "Baxter", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Companies",
+                columns: new[] { "Id", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 13, "Akzonobel", null, null });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
                 table: "Databases",
                 columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
-                values: new object[,]
-                {
-                    { 5, 10, "Oracle", null, null },
-                    { 3, 2, "Mainframe (DB2)", null, null },
-                    { 4, 4, "Omnis", null, null },
-                    { 1, 0, "Sql Server", null, null },
-                    { 2, 24, "Ms Access", null, null }
-                });
+                values: new object[] { 5, 10, "Oracle", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Databases",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 3, 2, "Mainframe (DB2)", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Databases",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 4, 4, "Omnis", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Databases",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 1, 0, "Sql Server", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Databases",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 2, 24, "Ms Access", null, null });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
                 table: "Doctors",
                 columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
-                values: new object[,]
-                {
-                    { 17, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6406), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
-                    { 18, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6412), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
-                    { 19, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6417), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
-                    { 20, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6423), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
-                    { 21, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6429), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
-                    { 22, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6435), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
-                    { 23, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6440), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
-                    { 24, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6446), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
-                    { 26, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6457), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
-                    { 27, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6462), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" },
-                    { 28, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6468), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
-                    { 29, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6474), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
-                    { 30, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6479), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
-                    { 25, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6451), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
-                    { 16, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6401), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
-                    { 11, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6371), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
-                    { 14, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6388), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
-                    { 1, new DateTime(2020, 2, 13, 17, 48, 17, 454, DateTimeKind.Local).AddTicks(9828), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" },
-                    { 2, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6189), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
-                    { 15, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6394), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
-                    { 4, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6263), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" },
-                    { 5, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6270), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" },
-                    { 6, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6276), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" },
-                    { 3, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6253), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
-                    { 8, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6287), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" },
-                    { 9, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6293), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" },
-                    { 10, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6364), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" },
-                    { 12, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6376), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" },
-                    { 13, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6382), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" },
-                    { 7, new DateTime(2020, 2, 13, 17, 48, 17, 458, DateTimeKind.Local).AddTicks(6281), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" }
-                });
+                values: new object[] { 17, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8030), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 18, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8033), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 19, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8037), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 20, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8040), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 21, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8043), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 22, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8046), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 23, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8049), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 24, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8052), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 26, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8058), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 27, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8062), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 28, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8065), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 29, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8068), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 30, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8071), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 25, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8055), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 16, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8027), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 11, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7946), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 14, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8021), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 1, new DateTime(2020, 2, 28, 10, 10, 56, 791, DateTimeKind.Local).AddTicks(6908), "william@gmail.com", 0, "William", "william", "+034 76 87 42", "Pédiatre" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 2, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7882), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 15, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8024), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 4, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7924), "dehondt@gmail.com", 0, "Dehondt", "dehondt", "+034 76 87 42", "Chirurgien" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 5, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7927), "henri@gmail.com", 0, "Henri", "henri", "+034 76 87 42", "Cardiologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 6, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7930), "craemer@gmail.com", 0, "Craemer", "craemer", "+034 76 87 42", "Anesthésiste" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 3, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7918), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 8, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7937), "dupuit@gmail.com", 0, "Dupuit", "dupuit", "+034 76 87 42", "Gynécologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 9, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7940), "gérard@gmail.com", 0, "Gérard", "gérard", "+034 76 87 42", "Hématologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 10, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7943), "vaneste@gmail.com", 0, "Vaneste", "vaneste", "+034 76 87 42", "Néphrologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 12, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7950), "shakespeare@gmail.com", 0, "Shakespeare", "shakespeare", "+034 76 87 42", "Orthophoniste" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 13, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(8016), "vanespen@gmail.com", 0, "Vanespen", "vanespen", "+034 76 87 42", "Podologue" });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Doctors",
+                columns: new[] { "Id", "Created", "Email", "Gender", "Name", "Password", "Phone", "Specialist" },
+                values: new object[] { 7, new DateTime(2020, 2, 28, 10, 10, 56, 793, DateTimeKind.Local).AddTicks(7933), "paul@gmail.com", 0, "Paul", "paul", "+034 76 87 42", "Gastroentérologue" });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
                 table: "Languages",
                 columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
-                values: new object[,]
-                {
-                    { 9, 20, "Microsoft Excel", null, null },
-                    { 1, 16, "Visual-Basic (VB6)", null, null },
-                    { 2, 21, "Visual-Basic for Appl. (VBA)", null, null },
-                    { 3, 2, "C-Sharp (C#)", null, null },
-                    { 4, 6, "Crystal Reports", null, null },
-                    { 5, 11, "Aurelia", null, null },
-                    { 6, 19, "VBScript", null, null },
-                    { 7, 25, "C++", null, null },
-                    { 8, 17, "VB.Net", null, null },
-                    { 10, 23, "Powerbuilder", null, null }
-                });
+                values: new object[] { 9, 20, "Microsoft Excel", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Languages",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 1, 16, "Visual-Basic (VB6)", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Languages",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 2, 21, "Visual-Basic for Appl. (VBA)", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Languages",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 3, 2, "C-Sharp (C#)", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Languages",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 4, 6, "Crystal Reports", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Languages",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 5, 11, "Aurelia", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Languages",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 6, 19, "VBScript", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Languages",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 7, 25, "C++", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Languages",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 8, 17, "VB.Net", null, null });
+
+            migrationBuilder.InsertData(
+                schema: "dbo",
+                table: "Languages",
+                columns: new[] { "Id", "Color", "Name", "UpdatedTime", "UpdatedUser" },
+                values: new object[] { 10, 23, "Powerbuilder", null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -533,8 +773,7 @@ namespace PersonalBlog.Migrations
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName",
-                unique: true,
-                filter: "[NormalizedName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
@@ -560,8 +799,7 @@ namespace PersonalBlog.Migrations
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
-                unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_PostId",
@@ -628,10 +866,6 @@ namespace PersonalBlog.Migrations
 
             migrationBuilder.DropTable(
                 name: "MissionLanguages");
-
-            migrationBuilder.DropTable(
-                name: "Admins",
-                schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "Patients",

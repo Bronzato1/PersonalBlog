@@ -29,7 +29,6 @@ namespace PersonalBlog.Models
             : base(options)
         { }
 
-        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<Nurse> Nurses { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
@@ -54,46 +53,6 @@ namespace PersonalBlog.Models
             //     System.Diagnostics.Debugger.Launch();
 
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
-
-            modelBuilder.Entity<Admin>(entity =>
-                   {
-                       entity
-                            .ToTable("Admins", "dbo");
-
-                       entity
-                            .Property(e => e.Id)
-                            .HasColumnName("Id");
-
-                       entity
-                            .Property(e => e.Created)
-                            .HasColumnName("Created")
-                            .HasDefaultValueSql("date('now')");
-                            //.HasDefaultValueSql("getdate()");
-
-                       entity.Property(e => e.Email)
-                           .IsRequired()
-                           .HasColumnName("Email")
-                           .HasMaxLength(255)
-                           .IsUnicode(false);
-
-                       entity.Property(e => e.Name)
-                           .IsRequired()
-                           .HasColumnName("Name")
-                           .HasMaxLength(255)
-                           .IsUnicode(false);
-
-                       entity.Property(e => e.Password)
-                           .IsRequired()
-                           .HasColumnName("Password")
-                           .HasMaxLength(255)
-                           .IsUnicode(false);
-
-                       entity.Property(e => e.Phone)
-                           .IsRequired()
-                           .HasColumnName("Phone")
-                           .HasMaxLength(15)
-                           .IsUnicode(false);
-                   });
 
             modelBuilder.Entity<Doctor>(entity =>
             {
