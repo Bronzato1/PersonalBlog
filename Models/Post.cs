@@ -12,6 +12,8 @@ namespace PersonalBlog.Models
         [Required]
         public int Id { get; set; }
 
+        public string CustomUserId { get; set; }
+
         [Required]
         public string Title { get; set; }
 
@@ -32,6 +34,8 @@ namespace PersonalBlog.Models
         public IList<Category> Categories { get; set; } = new List<Category>();
 
         public IList<Comment> Comments { get; } = new List<Comment>();
+
+        public virtual CustomUser CustomUser { get; set; }
 
         public string GetLink()
         {

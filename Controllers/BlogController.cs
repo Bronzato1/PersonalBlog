@@ -14,6 +14,8 @@ using Newtonsoft.Json;
 using JsonNet.PrivateSettersContractResolvers;
 using System.Net;
 using System.IO;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace PersonalBlog
 {
@@ -21,12 +23,14 @@ namespace PersonalBlog
     {
         private readonly IBlogRepository _blogRepository;
         private readonly IOptionsSnapshot<BlogSettings> _settings;
+        private readonly UserManager<CustomUser> _userManager;
         private static readonly int CHUNK_SIZE = 1024;
 
-        public BlogController(IBlogRepository blogRepository, IOptionsSnapshot<BlogSettings> settings)
+        public BlogController(IBlogRepository blogRepository, IOptionsSnapshot<BlogSettings> settings, UserManager<CustomUser> userManager)
         {
             _blogRepository = blogRepository;
             _settings = settings;
+            _userManager = userManager;
         }
 
         [Route("/blog/{page:int?}")]
@@ -107,6 +111,14 @@ namespace PersonalBlog
             if (id == null)
             {
                 viewModel.Post = new Post();
+
+                var  userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+                var userName =  User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
+
+                CustomUser applicationUser = await _userManager.GetUserAsync(User);
+                string userEmail = applicationUser?.Email; // will give the user's Email
+
+                viewModel.Post.CustomUserId = userId;
                 return View(viewModel);
             }
 
@@ -194,7 +206,7 @@ namespace PersonalBlog
                 if (srcNode == null)
                     continue;
 
-                if (srcNode.Value.StartsWith("/posts/files"))
+                if (srcNode.Value.StartsWith("/posts/images"))
                     continue;
 
                 byte[] bytes = new byte[0];

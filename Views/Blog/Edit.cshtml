@@ -36,7 +36,7 @@
 <div class="card card-widget card-blog-post">
     <div class="card-header">
         <div class="user-block">
-            <img class="img-circle elevation-2" src="~/img/user-photo-grayscale.jpg" alt="User Image">
+            <img class="img-circle elevation-2" gravatar-for="@Model.Post.CustomUser" alt="User Image" />
             <span class="username">
                 @ViewData["Title"]
             </span>
@@ -59,8 +59,10 @@
     <!-- /.card-header -->
     <div class="card-body">
         <form method="post" id="Post_Edit" class="container" asp-controller="Blog" asp-action="UpdatePost">
+            
             <div asp-validation-summary="All"></div>
             <input type="hidden" asp-for="@Model.Post.Id" />
+            <input type="hidden" asp-for="@Model.Post.CustomUserId" />
 
             <div class="form-group">
                 <label asp-for="@Model.Post.Title" class="label">Title</label>

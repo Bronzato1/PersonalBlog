@@ -268,6 +268,10 @@ namespace PersonalBlog.Models
                     .HasDefaultValue("admin");
 
                 entity
+                    .HasOne(e => e.CustomUser)
+                    .WithMany();
+
+                entity
                     .HasOne(e => e.Company)
                     .WithMany();
 
@@ -401,6 +405,18 @@ namespace PersonalBlog.Models
         public string FirstName { get; set; }
         [PersonalData]
         public string LastName { get; set; }
+        [PersonalData]
+        public string Location { get; set; }
+        [PersonalData]
+        public string Status { get; set; }
+        [PersonalData]
+        public string Expertise { get; set; }
+        [PersonalData]
+        public string Languages { get; set; }
+        [PersonalData]
+        public string Networking { get; set; }
+        [PersonalData]
+        public string Note { get; set; }
     }
 
     public static class DbInitializer
@@ -910,33 +926,33 @@ namespace PersonalBlog.Models
         {
             context.Database.EnsureCreated();
 
-            if (!context.Missions.Any())
-            {
-                var jsonData = System.IO.File.ReadAllText(@"Secret-seed-resume.json");
+            // if (!context.Missions.Any())
+            // {
+            //     var jsonData = System.IO.File.ReadAllText(@"Secret-seed-resume.json");
 
-                JsonSerializerSettings settings = new JsonSerializerSettings
-                {
-                    ContractResolver = new PrivateSetterContractResolver()
-                };
+            //     JsonSerializerSettings settings = new JsonSerializerSettings
+            //     {
+            //         ContractResolver = new PrivateSetterContractResolver()
+            //     };
 
-                List<Mission> missions = JsonConvert.DeserializeObject<List<Mission>>(jsonData, settings);
+            //     List<Mission> missions = JsonConvert.DeserializeObject<List<Mission>>(jsonData, settings);
 
-                context.AddRange(missions);
-            }
+            //     context.AddRange(missions);
+            // }
 
-            if (!context.Posts.Any())
-            {
-                var jsonData = System.IO.File.ReadAllText(@"Secret-seed-blog.json");
+            // if (!context.Posts.Any())
+            // {
+            //     var jsonData = System.IO.File.ReadAllText(@"Secret-seed-blog.json");
 
-                JsonSerializerSettings settings = new JsonSerializerSettings
-                {
-                    ContractResolver = new PrivateSetterContractResolver()
-                };
+            //     JsonSerializerSettings settings = new JsonSerializerSettings
+            //     {
+            //         ContractResolver = new PrivateSetterContractResolver()
+            //     };
 
-                List<Post> posts = JsonConvert.DeserializeObject<List<Post>>(jsonData, settings);
+            //     List<Post> posts = JsonConvert.DeserializeObject<List<Post>>(jsonData, settings);
 
-                context.AddRange(posts);
-            }
+            //     context.AddRange(posts);
+            // }
 
 
             if (context.ChangeTracker.HasChanges())

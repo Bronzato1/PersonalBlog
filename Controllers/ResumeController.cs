@@ -37,10 +37,10 @@ namespace PersonalBlog
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
             var userName = User.FindFirstValue(ClaimTypes.Name); // will give the user's userName
 
-            CustomUser applicationUser = await _userManager.GetUserAsync(User);
-            string userEmail = applicationUser?.Email; // will give the user's Email
-            string userFirstName = applicationUser?.FirstName; // will give the user's FirstName
-            string userLastName = applicationUser?.LastName; // will give the user's LastName
+            CustomUser CustomUser = await _userManager.GetUserAsync(User);
+            string userEmail = CustomUser?.Email; // will give the user's Email
+            string userFirstName = CustomUser?.FirstName; // will give the user's FirstName
+            string userLastName = CustomUser?.LastName; // will give the user's LastName
 
             var infos = string.Format(" UserId: {0} \n UserName: {1} \n Mail: {2} \n FirstName: {3} \n LastName: {4}", userId, userName, userEmail, userFirstName, userLastName);
             return Content(infos);
@@ -152,10 +152,12 @@ namespace PersonalBlog
         }
   
         [AllowAnonymous]
-        public ActionResult Profile()
+        public async Task<ActionResult> Profile()
         {
-            List<Mission> missions = _resumeRepository.GetAllMissions();
-            return View(missions);
+            ProfileViewModel viewModel = new ProfileViewModel();
+            viewModel.CustomUser = await _userManager.GetUserAsync(User);
+            viewModel.Missions = _resumeRepository.GetAllMissions();
+            return View(viewModel);
         }
     }
 }

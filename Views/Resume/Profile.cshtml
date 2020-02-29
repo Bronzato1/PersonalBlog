@@ -1,5 +1,4 @@
-@model IEnumerable<PersonalBlog.Models.Mission>
-@using static PersonalBlog.Secret;
+@model ProfileViewModel;
 @using System.Text.RegularExpressions;
 
 @functions
@@ -74,21 +73,19 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle"
-                            src="~/img/user-photo-grayscale.jpg"
-                            alt="User profile picture">
+                        <img class="profile-user-img img-fluid img-circle" gravatar-for="@Model.CustomUser" alt="User profile picture" />
                     </div>
 
-                    <h3 class="profile-username text-center">@Secret.FullName</h3>
+                    <h3 class="profile-username text-center">@Model.CustomUser.FirstName @Model.CustomUser.LastName</h3>
 
-                    <p class="text-muted text-center">@Secret.Expertise</p>
+                    <p class="text-muted text-center">@Model.CustomUser.Expertise</p>
 
                     <hr>
 
                     <strong><i class="fas fa-check-circle mr-1"></i> Status</strong>
 
                     <p class="text-muted">
-                        @Html.Raw(Secret.Status)
+                        @Html.Raw(Model.CustomUser.Status)
                     </p>
 
                     <hr>
@@ -96,7 +93,7 @@
                     <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
                     <p class="text-muted">
-                        @Html.Raw(Secret.Location)
+                        @Html.Raw(Model.CustomUser.Location)
                     </p>
 
                     <hr>
@@ -104,7 +101,7 @@
                     <strong><i class="fab fa-font-awesome-flag mr-1"></i> Languages</strong>
 
                     <p class="text-muted">
-                        @Html.Raw(Secret.Languages)
+                        @Html.Raw(Model.CustomUser.Languages)
                     </p>
 
                     <hr>
@@ -112,7 +109,7 @@
                     <strong><i class="fas fa-phone-volume mr-1"></i> Phone</strong>
 
                     <p class="text-muted">
-                        @Html.Raw(Secret.Phone)
+                        @Html.Raw(Model.CustomUser.PhoneNumber)
                     </p>
 
                     <hr>
@@ -120,7 +117,7 @@
                     <strong><i class="fas fa-envelope mr-1"></i> Mail</strong>
 
                     <p class="text-muted">
-                        @Secret.Mail
+                        @Model.CustomUser.Email
                     </p>
 
                     <hr>
@@ -128,7 +125,7 @@
                     <strong><i class="fas fa-project-diagram mr-1"></i> Networking</strong>
 
                     <p class="text-muted">
-                        @Html.Raw(Secret.Networking)
+                        @Html.Raw(Model.CustomUser.Networking)
                     </p>
 
                     <hr>
@@ -136,7 +133,7 @@
                     <strong><i class="fas fa-file-alt mr-1"></i> Note</strong>
 
                     <p class="text-muted">
-                        @Secret.Note
+                        @Model.CustomUser.Note
                     </p>
                 </div>
                 <!-- /.card-body -->
@@ -180,7 +177,7 @@
                     <div class="row d-none d-print-flex">
                         <div class="col-10">
                             <h4>
-                                <i class="fas fa-user-circle"></i> @Secret.FullName
+                                <i class="fas fa-user-circle"></i> @Model.CustomUser.FirstName @Model.CustomUser.LastName
                             </h4>
                         </div>                        
                     </div>
@@ -190,28 +187,28 @@
                                 <table class="table">
                                     <tr>
                                         <td>Phone</td>
-                                        <td><b>@Html.Raw(Secret.Phone)</b></td>
+                                        <td><b>@Html.Raw(Model.CustomUser.PhoneNumber)</b></td>
                                         <td>Status</td>
-                                        <td><b>@Html.Raw(Secret.Status)</b></td>
+                                        <td><b>@Html.Raw(Model.CustomUser.Status)</b></td>
                                     </tr>
                                     <tr>
                                         <td>Mail</td>
-                                        <td><b>@Html.Raw(Secret.Mail)</b></td>
+                                        <td><b>@Html.Raw(Model.CustomUser.Email)</b></td>
                                         <td>Expertise</td>
-                                        <td><b>@Html.Raw(Secret.Expertise)</b></td>
+                                        <td><b>@Html.Raw(Model.CustomUser.Expertise)</b></td>
                                     </tr>
                                     <tr>
                                         <td>Location</td>
-                                        <td><b>@Html.Raw(Secret.Location)</b></td>
+                                        <td><b>@Html.Raw(Model.CustomUser.Location)</b></td>
                                         <td>Languages</td>
-                                        <td><b>@Html.Raw(Secret.Languages)</b></td>
+                                        <td><b>@Html.Raw(Model.CustomUser.Languages)</b></td>
                                     </tr>
                                 </table>
                             </div>
                             <!-- /.col -->
                         </div>
                         <div class="col-2 text-right p-0">
-                            <img src="~/img/user-photo-duo-tone.jpg" class="">
+                            <img class="" gravatar-for="@Model.CustomUser" />
                         </div>
                         <!-- /.col -->                        
                     </div>
@@ -256,7 +253,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @foreach (var item in Model.Missions)
                                     {
                                         <tr data-toggle="collapse" href="#elm-@item.Id">
 

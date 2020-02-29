@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using static PersonalBlog.Secret;
 
 namespace PersonalBlog.Areas.Identity.Pages.Account
 {
@@ -104,7 +105,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account
                     var adminRoleExists = await _roleManager.RoleExistsAsync("Admin");
                     var visitorRoleExists = await _roleManager.RoleExistsAsync("Visitor");
 
-                    if (adminRoleExists && user.UserName == "john.doe@gmail.com")
+                    if (adminRoleExists && user.UserName == Secret.AdministratorUserName)
                     {
                         await _userManager.AddToRoleAsync(user, "Admin");
                         _logger.LogInformation("User assigned Admin role.");

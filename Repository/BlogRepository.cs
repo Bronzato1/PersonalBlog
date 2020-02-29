@@ -40,6 +40,7 @@ namespace PersonalBlog
             var posts = _dbContext.Posts
                 .Where(p => p.PubDate <= DateTime.UtcNow && (p.IsPublished || isAdmin))
                 .Include(p => p.Categories)
+                .Include(p => p.CustomUser)
                 .AsEnumerable();
 
             return Task.FromResult(posts);
@@ -61,6 +62,7 @@ namespace PersonalBlog
         {
             var post = _dbContext.Posts
                     .Include(x => x.Categories)
+                    .Include(x => x.CustomUser)
                     .FirstOrDefault(p => p.Id.Equals(id));
 
             bool isAdmin = IsAdmin();
@@ -95,6 +97,7 @@ namespace PersonalBlog
         {
             var post = _dbContext.Posts
                             .Include(p => p.Categories)
+                            .Include(p => p.CustomUser)
                             .FirstOrDefault(p => p.Slug.Equals(slug));
 
             bool isAdmin = IsAdmin();

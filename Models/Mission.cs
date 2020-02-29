@@ -7,6 +7,7 @@ namespace PersonalBlog.Models
     public partial class Mission : Auditable
     {
         public int Id { get; set; }
+        public string CustomUserId { get; set; }
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         public string Title { get; set; }
@@ -17,6 +18,7 @@ namespace PersonalBlog.Models
         public int CompanyId { get; set; }
         public int? DatabaseId { get; set; }
         
+        public virtual CustomUser CustomUser { get; set; }
         public virtual Company Company { get; set; }
         public virtual Database Database { get; set; }
         public virtual List<MissionLanguage> MissionLanguages { get; set; }

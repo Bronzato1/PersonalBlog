@@ -46,6 +46,30 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Location")]
+            public string Location { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Status")]
+            public string Status { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Expertise")]
+            public string Expertise { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Languages")]
+            public string Languages { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Networking")]
+            public string Networking { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Note")]
+            public string Note { get; set; }
         }
 
         private async Task LoadAsync(CustomUser user)
@@ -59,6 +83,12 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                Location = user.Location,
+                Status = user.Status,
+                Expertise = user.Expertise,
+                Languages = user.Languages,
+                Networking = user.Networking,
+                Note = user.Note,
                 PhoneNumber = phoneNumber
             };
         }
@@ -108,6 +138,36 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage
             if (Input.LastName != user.LastName)
             {
                 user.LastName = Input.LastName;
+            }
+
+            if (Input.Location != user.Location)
+            {
+                user.Location = Input.Location;
+            }
+
+            if (Input.Status != user.Status)
+            {
+                user.Status = Input.Status;
+            }
+
+            if (Input.Expertise != user.Expertise)
+            {
+                user.Expertise = Input.Expertise;
+            }
+
+            if (Input.Languages != user.Languages)
+            {
+                user.Languages = Input.Languages;
+            }
+
+            if (Input.Networking != user.Networking)
+            {
+                user.Networking = Input.Networking;
+            }
+
+            if (Input.Note != user.Note)
+            {
+                user.Note = Input.Note;
             }
 
             await _userManager.UpdateAsync(user);
