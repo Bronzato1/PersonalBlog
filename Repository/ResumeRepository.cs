@@ -91,4 +91,28 @@ public class ResumeRepository : IResumeRepository
         _dbContext.Remove(mission);
         _dbContext.SaveChanges();
     }
+
+    public int AddCompany(string name)
+    {
+        Company company = new Company { Name = name };
+        _dbContext.Companies.Add(company);
+        _dbContext.SaveChanges();
+        return company.Id;
+    }
+
+    public int AddDatabase(string name)
+    {
+        Database database = new Database { Name = name };
+        _dbContext.Databases.Add(database);
+        _dbContext.SaveChanges();
+        return database.Id;
+    }
+
+    public int AddLanguage(string name)
+    {
+        Language language = new Language { Name = name };
+        _dbContext.Languages.Add(language);
+        _dbContext.SaveChanges();
+        return language.Id;
+    }
 }

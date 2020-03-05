@@ -1,0 +1,62 @@
+@page
+@namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
+@model IndexModel
+@{
+    ViewData["Title"] = Model.Input.Count() + " Missions";
+    ViewData["ActivePage"] = ManageNavPages.Missions;
+}
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-borderless table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Company
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th class="text-right">
+                        <a class="btn btn-danger btn-sm" asp-page="./Edit">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Input)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date, "MonthYear")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td class="text-right">
+                        <a class="btn btn-info btn-sm" asp-page="Edit" asp-route-id="@item.Id">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a> &nbsp;
+                        <a class="btn btn-danger btn-sm" asp-page="Delete" asp-route-id="@item.Id">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        
+        <span class="ml-2">
+            Total of @Model.Input.Count() Missions
+        </span>
+    </div>
+</div>
+

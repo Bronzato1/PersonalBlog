@@ -22,4 +22,10 @@ public interface IResumeRepository
     public void UpdateMissionLanguages(int missionId, int[] languageIds);
 
     public void DeleteMission(Mission mission);
+
+    public int AddCompany(string name);
+
+    public int AddDatabase(string name);
+
+    public int AddLanguage(string name);
 }

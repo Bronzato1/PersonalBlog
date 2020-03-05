@@ -1,0 +1,140 @@
+@page "{id?}"
+@namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
+@using PersonalBlog.Models
+@model EditModel
+@{
+    ViewData["Title"] = (@Model.Id.HasValue) ? "Edit mission" : "Create mission";
+    ViewData["ActivePage"] = ManageNavPages.Missions;
+}
+
+<h4>@ViewData["Title"]</h4>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="create-mission-form" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Date"></label>
+                <input asp-for="Input.Date" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Title"></label>
+                <input asp-for="Input.Title" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Description"></label>
+                <input asp-for="Input.Description" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Sector">Sector</label>
+                <select name="Input.Sector" class="form-control custom-select" asp-for="Input.Sector" asp-items="Html.GetEnumSelectList<EnumSector>()">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.CompanyId">Company</label>
+                <select name="Input.CompanyId" class="form-control custom-select" asp-for="Input.CompanyId" asp-items="Model.Companies">
+                    <option>Please select one</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.DatabaseId">Database</label>
+                <select name="Input.DatabaseId" class="form-control custom-select" asp-for="Input.DatabaseId" asp-items="Model.Databases">
+                    <option>Please select one</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.SelectedLanguageIds">Languages</label>
+                <select multiple="multiple" name="Input.SelectedLanguageIds" class="form-control custom-select" asp-for="Input.SelectedLanguageIds" asp-items="Model.Languages">
+                </select>
+            </div>
+            <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
+            <a class="" asp-page="Index">Back to list</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+
+        // ┌─────────────────────┐
+        // │ Select2 --> Company │
+        // └─────────────────────┘
+
+        $("#Input_CompanyId").select2({
+            tags: true,
+            tokenSeparators: [",", " "],
+            createTag: function (tag) { return { id: 99, text: tag.term }; }
+        }).on('select2:select', function (evt) {
+            if (evt.params.data.id == 99)
+            {
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: 'Mission?handler=CompanyTag',
+                    beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
+                    data: JSON.stringify({ id: evt.params.data.id, text: evt.params.data.text }),
+                    contentType: "application/json",
+                    dataType: "json",
+                    error: function (result) { alert("Error"); },
+                    success: function (data) { var opt = $('#Input_CompanyId > option[value=99]')[0]; opt.value = data.id; }
+                });
+            }
+        });
+
+        // ┌──────────────────────┐
+        // │ Select2 --> Database │
+        // └──────────────────────┘
+
+        $("#Input_DatabaseId").select2({
+            tags: true,
+            tokenSeparators: [",", " "],
+            createTag: function (tag) { return { id: 99, text: tag.term }; }
+        }).on('select2:select', function (evt) {
+            if (evt.params.data.id == 99)
+            {
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: 'Mission?handler=DatabaseTag',
+                    beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
+                    data: JSON.stringify({ id: evt.params.data.id, text: evt.params.data.text }),
+                    contentType: "application/json",
+                    dataType: "json",
+                    error: function (result) { alert("Error"); },
+                    success: function (data) { var opt = $('#Input_DatabaseId > option[value=99]')[0]; opt.value = data.id; }
+                });
+            }
+        });
+
+        // ┌───────────────────────┐
+        // │ Select2 --> Languages │
+        // └───────────────────────┘
+
+        $("#Input_SelectedLanguageIds").select2({
+            tags: true,
+            tokenSeparators: [",", " "],
+            createTag: function (tag) { return { id: 99, text: tag.term }; }
+        }).on('select2:select', function (evt) {
+            if (evt.params.data.id == 99)
+            {
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: 'Mission?handler=LanguageTag',
+                    beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
+                    data: JSON.stringify({ id: evt.params.data.id, text: evt.params.data.text }),
+                    contentType: "application/json",
+                    dataType: "json",
+                    error: function (result) { alert("Error"); },
+                    success: function (data) { var opt = $('#Input_SelectedLanguageIds > option[value=99]')[0]; opt.value = data.id; }
+                });
+            }
+        });
+
+    </script>
+}
+
