@@ -44,7 +44,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
         public List<SelectListItem> Databases { set; get; }
 
         [BindProperty]
-        public List<SelectListItem> Tags { set; get; }
+        public List<SelectListItem> Keywords { set; get; }
         
 
         public class InputModel
@@ -74,13 +74,13 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             public int? DatabaseId { get; set; }
             public Database Database { get; set; }
 
-            [Display(Name = "SelectedTagIds")]
-            public int[] SelectedTagIds { set; get; }
+            [Display(Name = "SelectedKeywordIds")]
+            public int[] SelectedKeywordIds { set; get; }
         }
 
         private void Load(Experience experience)
         {
-            var tagIds = experience.ExperienceTags.Select(x => x.TagId).ToArray();
+            var keywordIds = experience.ExperienceKeywords.Select(x => x.KeywordId).ToArray();
 
             Input = new InputModel
             {
@@ -90,7 +90,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                 Sector = experience.Sector,
                 CompanyId = experience.CompanyId,
                 DatabaseId = experience.DatabaseId,
-                SelectedTagIds = tagIds
+                SelectedKeywordIds = keywordIds
             };
         }
 
@@ -112,7 +112,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                                 Text = a.Name
                             }).ToList();
 
-            Tags = _resumeRepository.GetAllTags()
+            Keywords = _resumeRepository.GetAllKeywords()
                             .OrderBy(x => x.Name)
                             .Select(a => new SelectListItem()
                             {
@@ -188,7 +188,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             if (Id.HasValue)
             {
                 _resumeRepository.UpdateExperience(experience);
-                _resumeRepository.UpdateExperienceTags(Id.Value, Input.SelectedTagIds);
+                _resumeRepository.UpdateExperienceKeywords(Id.Value, Input.SelectedKeywordIds);
             }
             else
             {
@@ -222,13 +222,13 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             }
         }
    
-        public async Task<JsonResult> OnPostTagTag()
+        public async Task<JsonResult> OnPostKeywordTag()
         {
             using (var reader = new StreamReader(Request.Body, Encoding.UTF8))
             {
                 var body = await reader.ReadToEndAsync();
                 var values = JsonConvert.DeserializeObject<PostTagData>(body);
-                var id = _resumeRepository.AddTag(values.text);
+                var id = _resumeRepository.AddKeyword(values.text);
                 return new JsonResult( new { id = id });
             }
         }

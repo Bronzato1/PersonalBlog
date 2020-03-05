@@ -36,8 +36,8 @@ namespace PersonalBlog.Models
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Experience> Experiences { get; set; }
         public virtual DbSet<Database> Databases { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<ExperienceTag> ExperienceTags { get; set; }
+        public virtual DbSet<Keyword> Keywords { get; set; }
+        public virtual DbSet<ExperienceKeyword> ExperienceKeywords { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
@@ -280,20 +280,20 @@ namespace PersonalBlog.Models
                     .WithMany();
             });
 
-            modelBuilder.Entity<ExperienceTag>(entity =>
+            modelBuilder.Entity<ExperienceKeyword>(entity =>
             {
-                modelBuilder.Entity<ExperienceTag>()
-                        .HasKey(bc => new { bc.ExperienceId, bc.TagId });
+                modelBuilder.Entity<ExperienceKeyword>()
+                        .HasKey(bc => new { bc.ExperienceId, bc.KeywordId });
 
-                modelBuilder.Entity<ExperienceTag>()
+                modelBuilder.Entity<ExperienceKeyword>()
                     .HasOne(bc => bc.Experience)
-                    .WithMany(b => b.ExperienceTags)
+                    .WithMany(b => b.ExperienceKeywords)
                     .HasForeignKey(bc => bc.ExperienceId);
 
-                modelBuilder.Entity<ExperienceTag>()
-                    .HasOne(bc => bc.Tag)
-                    .WithMany(c => c.ExperienceTag)
-                    .HasForeignKey(bc => bc.TagId);
+                modelBuilder.Entity<ExperienceKeyword>()
+                    .HasOne(bc => bc.Keyword)
+                    .WithMany(c => c.ExperienceKeywords)
+                    .HasForeignKey(bc => bc.KeywordId);
             });
 
             modelBuilder.Entity<Company>(entity =>
@@ -359,10 +359,10 @@ namespace PersonalBlog.Models
 
             });
 
-            modelBuilder.Entity<Tag>(entity =>
+            modelBuilder.Entity<Keyword>(entity =>
             {
                 entity
-                    .ToTable("Tags", "dbo")
+                    .ToTable("Keywords", "dbo")
                     .HasKey(x => x.Id);
 
                 entity
@@ -858,62 +858,62 @@ namespace PersonalBlog.Models
                 }
             );
 
-            modelBuilder.Entity<Tag>().HasData(
-                new Tag
+            modelBuilder.Entity<Keyword>().HasData(
+                new Keyword
                 {
                     Id = 1,
                     Name = "Visual-Basic (VB6)",
                     Color = EnumColor.Orange
                 },
-                new Tag
+                new Keyword
                 {
                     Id = 2,
                     Name = "Visual-Basic for Appl. (VBA)",
                     Color = EnumColor.Pink
                 },
-                new Tag
+                new Keyword
                 {
                     Id = 3,
                     Name = "C-Sharp (C#)",
                     Color = EnumColor.CadetBlue
                 },
-                new Tag
+                new Keyword
                 {
                     Id = 4,
                     Name = "Crystal Reports",
                     Color = EnumColor.Khaki
                 },
-                new Tag
+                new Keyword
                 {
                     Id = 5,
                     Name = "Aurelia",
                     Color = EnumColor.MediumOrchid
                 },
-                new Tag
+                new Keyword
                 {
                     Id = 6,
                     Name = "VBScript",
                     Color = EnumColor.PaleTurquoise
                 },
-                new Tag
+                new Keyword
                 {
                     Id = 7,
                     Name = "C++",
                     Color = EnumColor.SeaGreen
                 },
-                new Tag
+                new Keyword
                 {
                     Id = 8,
                     Name = "VB.Net",
                     Color = EnumColor.OrangeRed
                 },
-                new Tag
+                new Keyword
                 {
                     Id = 9,
                     Name = "Microsoft Excel",
                     Color = EnumColor.Peru
                 },
-                new Tag
+                new Keyword
                 {
                     Id = 10,
                     Name = "Powerbuilder",

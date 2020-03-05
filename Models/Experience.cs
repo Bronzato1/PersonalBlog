@@ -21,6 +21,6 @@ namespace PersonalBlog.Models
         public virtual CustomUser CustomUser { get; set; }
         public virtual Company Company { get; set; }
         public virtual Database Database { get; set; }
-        public virtual List<ExperienceTag> ExperienceTags { get; set; }
+        public virtual List<ExperienceKeyword> ExperienceKeywords { get; set; }
     }
 }

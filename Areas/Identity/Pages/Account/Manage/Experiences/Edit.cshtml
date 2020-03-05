@@ -44,8 +44,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="Input.SelectedTagIds">Tags</label>
-                <select multiple="multiple" name="Input.SelectedTagIds" class="form-control custom-select" asp-for="Input.SelectedTagIds" asp-items="Model.Tags">
+                <label asp-for="Input.SelectedKeywordIds">Keywords</label>
+                <select multiple="multiple" name="Input.SelectedKeywordIds" class="form-control custom-select" asp-for="Input.SelectedKeywordIds" asp-items="Model.Keywords">
                 </select>
             </div>
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
@@ -110,11 +110,11 @@
             }
         });
 
-        // ┌──────────────────┐
-        // │ Select2 --> Tags │
-        // └──────────────────┘
+        // ┌──────────────────────┐
+        // │ Select2 --> Keywords │
+        // └──────────────────────┘
 
-        $("#Input_SelectedTagIds").select2({
+        $("#Input_SelectedKeywordIds").select2({
             tags: true,
             tokenSeparators: [",", " "],
             createTag: function (tag) { return { id: 99, text: tag.term }; }
@@ -124,13 +124,13 @@
                 $.ajax({
                     type: 'POST',
                     cache: false,
-                    url: 'Mission?handler=TagTag',
+                    url: 'Mission?handler=KeywordTag',
                     beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                     data: JSON.stringify({ id: evt.params.data.id, text: evt.params.data.text }),
                     contentType: "application/json",
                     dataType: "json",
                     error: function (result) { alert("Error"); },
-                    success: function (data) { var opt = $('#Input_SelectedTagIds > option[value=99]')[0]; opt.value = data.id; }
+                    success: function (data) { var opt = $('#Input_SelectedKeywordIds > option[value=99]')[0]; opt.value = data.id; }
                 });
             }
         });

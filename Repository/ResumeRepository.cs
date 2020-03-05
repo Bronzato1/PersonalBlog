@@ -17,7 +17,7 @@ public class ResumeRepository : IResumeRepository
         List<Experience> experiences = _dbContext.Experiences
                                         .Include(x => x.Company)
                                         .Include(x => x.Database)
-                                        .Include("ExperienceTags.Tag")
+                                        .Include("ExperienceKeywords.Keyword")
                                         .OrderByDescending(x => x.Date)
                                         .ToList();
         return experiences;
@@ -29,10 +29,10 @@ public class ResumeRepository : IResumeRepository
         return companies;
     }
 
-    public List<Tag> GetAllTags()
+    public List<Keyword> GetAllKeywords()
     {
-        List<Tag> tags = _dbContext.Tags.ToList();
-        return tags;
+        List<Keyword> keywords = _dbContext.Keywords.ToList();
+        return keywords;
     }
 
     public List<PersonalBlog.Models.Database> GetAllDatabases()
@@ -47,7 +47,7 @@ public class ResumeRepository : IResumeRepository
                     .Where(x => x.Id == id)
                     .Include(x => x.Company)
                     .Include(x => x.Database)
-                    .Include("ExperienceTags.Tag")
+                    .Include("ExperienceKeywords.Keyword")
                     .FirstOrDefault();
     }
 
@@ -68,19 +68,19 @@ public class ResumeRepository : IResumeRepository
         _dbContext.SaveChanges();
     }
 
-    public void UpdateExperienceTags(int experienceId, int[] tagIds)
+    public void UpdateExperienceKeywords(int experienceId, int[] keywordIds)
     {
-        List<ExperienceTag> experienceTags = _dbContext.ExperienceTags.Where(x => x.ExperienceId == experienceId).ToList();
+        List<ExperienceKeyword> experienceKeywords = _dbContext.ExperienceKeywords.Where(x => x.ExperienceId == experienceId).ToList();
 
-        _dbContext.RemoveRange(experienceTags);
+        _dbContext.RemoveRange(experienceKeywords);
 
-        foreach(int tagId in tagIds)
+        foreach(int keywordId in keywordIds)
         {
-            ExperienceTag experienceTag = new ExperienceTag {
+            ExperienceKeyword experienceKeyword = new ExperienceKeyword {
                 ExperienceId = experienceId,
-                TagId = tagId
+                KeywordId = keywordId
             };            
-            _dbContext.ExperienceTags.Add(experienceTag);
+            _dbContext.ExperienceKeywords.Add(experienceKeyword);
         }
 
         _dbContext.SaveChanges();
@@ -108,11 +108,11 @@ public class ResumeRepository : IResumeRepository
         return database.Id;
     }
 
-    public int AddTag(string name)
+    public int AddKeyword(string name)
     {
-        Tag tag = new Tag { Name = name };
-        _dbContext.Tags.Add(tag);
+        Keyword keyword = new Keyword { Name = name };
+        _dbContext.Keywords.Add(keyword);
         _dbContext.SaveChanges();
-        return tag.Id;
+        return keyword.Id;
     }
 }

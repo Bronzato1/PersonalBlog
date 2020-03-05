@@ -11,7 +11,7 @@ public interface IResumeRepository
 
     public List<Database> GetAllDatabases();
 
-    public List<Tag> GetAllTags();
+    public List<Keyword> GetAllKeywords();
 
     public Experience GetExperienceById(int id);
 
@@ -19,7 +19,7 @@ public interface IResumeRepository
 
     public void UpdateExperience(Experience experience);
 
-    public void UpdateExperienceTags(int experienceId, int[] tagIds);
+    public void UpdateExperienceKeywords(int experienceId, int[] tagIds);
 
     public void DeleteExperience(Experience experience);
 
@@ -27,5 +27,5 @@ public interface IResumeRepository
 
     public int AddDatabase(string name);
 
-    public int AddTag(string name);
+    public int AddKeyword(string name);
 }

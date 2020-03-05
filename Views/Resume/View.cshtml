@@ -67,9 +67,9 @@
                     <div class="form-group">
                         <label asp-for="CompanyId">Languages</label>
                         <p>
-                        @foreach (var experienceTag in Model.ExperienceTags)
+                        @foreach (var experienceKeyword in Model.ExperienceKeywords)
                         {
-                            @experienceTag.Tag.Name <br/>
+                            @experienceKeyword.Keyword.Name <br/>
                         }
                         </p>
                     </div>
