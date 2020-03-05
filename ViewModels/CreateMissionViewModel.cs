@@ -4,9 +4,9 @@ using PersonalBlog.Models;
 
 namespace  PersonalBlog.ViewModels
 {
-    public class CreateMissionViewModel
+    public class CreateExperienceViewModel
     {
-        public Mission Mission { get; set; }
+        public Experience Experience { get; set; }
         public List<SelectListItem> Companies { set; get; }
         public List<SelectListItem> Databases { set; get; }
     }    

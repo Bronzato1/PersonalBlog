@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PersonalBlog.Models;
 
-namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
+namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
 {
     public partial class IndexModel : PageModel
     {
@@ -27,11 +27,11 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
         public string StatusMessage { get; set; }
 
         [BindProperty]
-        public List<Mission> Input { get; set; }
+        public List<Experience> Input { get; set; }
 
         public IActionResult OnGet()
         {
-            Input = _resumeRepository.GetAllMissions();
+            Input = _resumeRepository.GetAllExperiences();
             return Page();
         }
 

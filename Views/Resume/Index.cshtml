@@ -1,4 +1,4 @@
-@model IEnumerable<PersonalBlog.Models.Mission>
+@model IEnumerable<PersonalBlog.Models.Experience>
 
 @section head {
   <STYLE type="text/css">
@@ -33,7 +33,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Missions</h1>
+            <h1>Experiences</h1>
           </div>
           <div class="col-sm-6">
             <a class="btn btn-success btn-sm float-right" asp-controller="Resume" asp-action="Create">
@@ -94,9 +94,9 @@
                                 <span class="badge" style="color: white; background-color: @item.Database.Color; border-color: @item.Database.Color;">@item.Database.Name</span>
                             }
 
-                            foreach (var elm in item.MissionLanguages)
+                            foreach (var elm in item.ExperienceTags)
                             {
-                                <span class="badge" style="color: white; background-color: @elm.Language.Color; border-color: @elm.Language.Color;">@elm.Language.Name</span>
+                                <span class="badge" style="color: white; background-color: @elm.Tag.Color; border-color: @elm.Tag.Color;">@elm.Tag.Name</span>
                             }
                         }
                     </td>

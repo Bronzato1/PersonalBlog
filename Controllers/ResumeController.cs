@@ -30,7 +30,7 @@ namespace PersonalBlog
         {
             ProfileViewModel viewModel = new ProfileViewModel();
             viewModel.CustomUser = await _userManager.GetUserAsync(User);
-            viewModel.Missions = _resumeRepository.GetAllMissions();
+            viewModel.Experiences = _resumeRepository.GetAllExperiences();
             return View(viewModel);
         }
     }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PersonalBlog.Models
 {
-    public partial class Mission : Auditable
+    public partial class Experience : Auditable
     {
         public int Id { get; set; }
         public string CustomUserId { get; set; }
@@ -21,6 +21,6 @@ namespace PersonalBlog.Models
         public virtual CustomUser CustomUser { get; set; }
         public virtual Company Company { get; set; }
         public virtual Database Database { get; set; }
-        public virtual List<MissionLanguage> MissionLanguages { get; set; }
+        public virtual List<ExperienceTag> ExperienceTags { get; set; }
     }
 }

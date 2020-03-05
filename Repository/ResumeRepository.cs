@@ -12,15 +12,15 @@ public class ResumeRepository : IResumeRepository
         _dbContext = dbContext;
     }
 
-    public List<Mission> GetAllMissions()
+    public List<Experience> GetAllExperiences()
     {
-        List<Mission> missions = _dbContext.Missions
+        List<Experience> experiences = _dbContext.Experiences
                                         .Include(x => x.Company)
                                         .Include(x => x.Database)
-                                        .Include("MissionLanguages.Language")
+                                        .Include("ExperienceTags.Tag")
                                         .OrderByDescending(x => x.Date)
                                         .ToList();
-        return missions;
+        return experiences;
     }
 
     public List<Company> GetAllCompanies()
@@ -29,10 +29,10 @@ public class ResumeRepository : IResumeRepository
         return companies;
     }
 
-    public List<Language> GetAllLanguages()
+    public List<Tag> GetAllTags()
     {
-        List<Language> languages = _dbContext.Languages.ToList();
-        return languages;
+        List<Tag> tags = _dbContext.Tags.ToList();
+        return tags;
     }
 
     public List<PersonalBlog.Models.Database> GetAllDatabases()
@@ -41,19 +41,19 @@ public class ResumeRepository : IResumeRepository
         return databases;
     }
 
-    public Mission GetMissionById(int id)
+    public Experience GetExperienceById(int id)
     {
-        return _dbContext.Missions
+        return _dbContext.Experiences
                     .Where(x => x.Id == id)
                     .Include(x => x.Company)
                     .Include(x => x.Database)
-                    .Include("MissionLanguages.Language")
+                    .Include("ExperienceTags.Tag")
                     .FirstOrDefault();
     }
 
-    public void UpdateMission(Mission mission)
+    public void UpdateExperience(Experience experience)
     {
-        Mission m = _dbContext.Missions.Where(x => x.Id == mission.Id).FirstOrDefault();
+        Experience m = _dbContext.Experiences.Where(x => x.Id == experience.Id).FirstOrDefault();
 
         if (m != null)
         {
@@ -62,33 +62,33 @@ public class ResumeRepository : IResumeRepository
         }
     }
 
-    public void AddMission(Mission mission)
+    public void AddExperience(Experience experience)
     {
-        _dbContext.Missions.Add(mission);
+        _dbContext.Experiences.Add(experience);
         _dbContext.SaveChanges();
     }
 
-    public void UpdateMissionLanguages(int missionId, int[] languageIds)
+    public void UpdateExperienceTags(int experienceId, int[] tagIds)
     {
-        List<MissionLanguage> missionLanguages = _dbContext.MissionLanguages.Where(x => x.MissionId == missionId).ToList();
+        List<ExperienceTag> experienceTags = _dbContext.ExperienceTags.Where(x => x.ExperienceId == experienceId).ToList();
 
-        _dbContext.RemoveRange(missionLanguages);
+        _dbContext.RemoveRange(experienceTags);
 
-        foreach(int languageId in languageIds)
+        foreach(int tagId in tagIds)
         {
-            MissionLanguage missionLanguage = new MissionLanguage {
-                MissionId = missionId,
-                LanguageId = languageId
+            ExperienceTag experienceTag = new ExperienceTag {
+                ExperienceId = experienceId,
+                TagId = tagId
             };            
-            _dbContext.MissionLanguages.Add(missionLanguage);
+            _dbContext.ExperienceTags.Add(experienceTag);
         }
 
         _dbContext.SaveChanges();
     }
 
-    public void DeleteMission(Mission mission)
+    public void DeleteExperience(Experience experience)
     {
-        _dbContext.Remove(mission);
+        _dbContext.Remove(experience);
         _dbContext.SaveChanges();
     }
 
@@ -108,11 +108,11 @@ public class ResumeRepository : IResumeRepository
         return database.Id;
     }
 
-    public int AddLanguage(string name)
+    public int AddTag(string name)
     {
-        Language language = new Language { Name = name };
-        _dbContext.Languages.Add(language);
+        Tag tag = new Tag { Name = name };
+        _dbContext.Tags.Add(tag);
         _dbContext.SaveChanges();
-        return language.Id;
+        return tag.Id;
     }
 }

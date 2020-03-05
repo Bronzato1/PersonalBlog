@@ -20,7 +20,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage
 
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
 
-        public static string Missions => "Missions";
+        public static string Experiences => "Experiences";
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
@@ -34,7 +34,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage
 
         public static string TwoFactorAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, TwoFactorAuthentication);
 
-        public static string MissionsNavClass(ViewContext viewContext) => PageNavClass(viewContext, Missions);
+        public static string ExperiencesNavClass(ViewContext viewContext) => PageNavClass(viewContext, Experiences);
 
         private static string PageNavClass(ViewContext viewContext, string page)
         {

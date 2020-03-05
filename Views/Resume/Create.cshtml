@@ -1,4 +1,4 @@
-@model PersonalBlog.ViewModels.CreateMissionViewModel
+@model PersonalBlog.ViewModels.CreateExperienceViewModel
 
 @section head {
     <STYLE type="text/css">
@@ -11,13 +11,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Mission add</h1>
+                <h1>Experience add</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a asp-controller="Mission" asp-action="Index">Mission</a></li>
-                    <li class="breadcrumb-item active">Mission add</li>
+                    <li class="breadcrumb-item"><a asp-controller="Experience" asp-action="Index">Experience</a></li>
+                    <li class="breadcrumb-item active">Experience add</li>
                 </ol>
             </div>
         </div>
@@ -33,27 +33,27 @@
                     <h3 class="card-title">General</h3>
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal" asp-controller="Mission" asp-action="CreateMission" method="post">
+                    <form class="form-horizontal" asp-controller="Experience" asp-action="CreateExperience" method="post">
 
                         <div class="form-group">
-                            <label asp-for="Mission.Date">Date</label>
-                            <input type="text" name="Mission.Date" class="form-control" asp-for="Mission.Date" data-mask>
+                            <label asp-for="Experience.Date">Date</label>
+                            <input type="text" name="Experience.Date" class="form-control" asp-for="Experience.Date" data-mask>
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Mission.Title">Title</label>
-                            <input type="text" name="Mission.Title" class="form-control" asp-for="@Model.Mission.Title">
+                            <label asp-for="Experience.Title">Title</label>
+                            <input type="text" name="Experience.Title" class="form-control" asp-for="@Model.Experience.Title">
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Mission.Description">Description</label>
-                            <textarea name="Mission.Description" class="form-control" asp-for="@Model.Mission.Description" rows="4">
+                            <label asp-for="Experience.Description">Description</label>
+                            <textarea name="Experience.Description" class="form-control" asp-for="@Model.Experience.Description" rows="4">
                             </textarea>
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Mission.Sector">Sector</label>
-                            <select name="Mission.Sector" class="form-control custom-select" asp-for="@Model.Mission.Sector">
+                            <label asp-for="Experience.Sector">Sector</label>
+                            <select name="Experience.Sector" class="form-control custom-select" asp-for="@Model.Experience.Sector">
                                 <option selected disabled>Select one</option>
                                 <option value="0">Banking</option>
                                 <option value="1">Industry</option>
@@ -65,22 +65,22 @@
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Mission.CompanyId">Company</label>
-                            <select name="Mission.CompanyId" class="form-control custom-select" asp-for="Mission.CompanyId" asp-items="@Model.Companies">
+                            <label asp-for="Experience.CompanyId">Company</label>
+                            <select name="Experience.CompanyId" class="form-control custom-select" asp-for="Experience.CompanyId" asp-items="@Model.Companies">
                                 <option>Please select one</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Mission.DatabaseId">Database</label>
-                            <select name="Mission.DatabaseId" class="form-control custom-select" asp-for="Mission.DatabaseId" asp-items="@Model.Databases">
+                            <label asp-for="Experience.DatabaseId">Database</label>
+                            <select name="Experience.DatabaseId" class="form-control custom-select" asp-for="Experience.DatabaseId" asp-items="@Model.Databases">
                                 <option>Please select one</option>
                             </select>
                         </div>
 
                         <div>
                             <a class="btn btn-secondary" asp-controller="Resume" asp-action="Index">Cancel</a>
-                            <input type="submit" value="Create new mission" class="btn btn-success float-right">
+                            <input type="submit" value="Create new experience" class="btn btn-success float-right">
                         </div>
 
                     </form>

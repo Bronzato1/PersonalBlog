@@ -34,10 +34,10 @@ namespace PersonalBlog.Models
         public virtual DbSet<Patient> Patients { get; set; }
 
         public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<Mission> Missions { get; set; }
+        public virtual DbSet<Experience> Experiences { get; set; }
         public virtual DbSet<Database> Databases { get; set; }
-        public virtual DbSet<Language> Languages { get; set; }
-        public virtual DbSet<MissionLanguage> MissionLanguages { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<ExperienceTag> ExperienceTags { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
@@ -224,10 +224,10 @@ namespace PersonalBlog.Models
                     .HasConstraintName("patients_ibfk_2");
             });
 
-            modelBuilder.Entity<Mission>(entity =>
+            modelBuilder.Entity<Experience>(entity =>
             {
                 entity
-                     .ToTable("Missions", "dbo")
+                     .ToTable("Experiences", "dbo")
                      .HasKey(x => x.Id);
 
                 entity
@@ -280,20 +280,20 @@ namespace PersonalBlog.Models
                     .WithMany();
             });
 
-            modelBuilder.Entity<MissionLanguage>(entity =>
+            modelBuilder.Entity<ExperienceTag>(entity =>
             {
-                modelBuilder.Entity<MissionLanguage>()
-                        .HasKey(bc => new { bc.MissionId, bc.LanguageId });
+                modelBuilder.Entity<ExperienceTag>()
+                        .HasKey(bc => new { bc.ExperienceId, bc.TagId });
 
-                modelBuilder.Entity<MissionLanguage>()
-                    .HasOne(bc => bc.Mission)
-                    .WithMany(b => b.MissionLanguages)
-                    .HasForeignKey(bc => bc.MissionId);
+                modelBuilder.Entity<ExperienceTag>()
+                    .HasOne(bc => bc.Experience)
+                    .WithMany(b => b.ExperienceTags)
+                    .HasForeignKey(bc => bc.ExperienceId);
 
-                modelBuilder.Entity<MissionLanguage>()
-                    .HasOne(bc => bc.Language)
-                    .WithMany(c => c.MissionLanguages)
-                    .HasForeignKey(bc => bc.LanguageId);
+                modelBuilder.Entity<ExperienceTag>()
+                    .HasOne(bc => bc.Tag)
+                    .WithMany(c => c.ExperienceTag)
+                    .HasForeignKey(bc => bc.TagId);
             });
 
             modelBuilder.Entity<Company>(entity =>
@@ -359,10 +359,10 @@ namespace PersonalBlog.Models
 
             });
 
-            modelBuilder.Entity<Language>(entity =>
+            modelBuilder.Entity<Tag>(entity =>
             {
                 entity
-                    .ToTable("Languages", "dbo")
+                    .ToTable("Tags", "dbo")
                     .HasKey(x => x.Id);
 
                 entity
@@ -858,62 +858,62 @@ namespace PersonalBlog.Models
                 }
             );
 
-            modelBuilder.Entity<Language>().HasData(
-                new Language
+            modelBuilder.Entity<Tag>().HasData(
+                new Tag
                 {
                     Id = 1,
                     Name = "Visual-Basic (VB6)",
                     Color = EnumColor.Orange
                 },
-                new Language
+                new Tag
                 {
                     Id = 2,
                     Name = "Visual-Basic for Appl. (VBA)",
                     Color = EnumColor.Pink
                 },
-                new Language
+                new Tag
                 {
                     Id = 3,
                     Name = "C-Sharp (C#)",
                     Color = EnumColor.CadetBlue
                 },
-                new Language
+                new Tag
                 {
                     Id = 4,
                     Name = "Crystal Reports",
                     Color = EnumColor.Khaki
                 },
-                new Language
+                new Tag
                 {
                     Id = 5,
                     Name = "Aurelia",
                     Color = EnumColor.MediumOrchid
                 },
-                new Language
+                new Tag
                 {
                     Id = 6,
                     Name = "VBScript",
                     Color = EnumColor.PaleTurquoise
                 },
-                new Language
+                new Tag
                 {
                     Id = 7,
                     Name = "C++",
                     Color = EnumColor.SeaGreen
                 },
-                new Language
+                new Tag
                 {
                     Id = 8,
                     Name = "VB.Net",
                     Color = EnumColor.OrangeRed
                 },
-                new Language
+                new Tag
                 {
                     Id = 9,
                     Name = "Microsoft Excel",
                     Color = EnumColor.Peru
                 },
-                new Language
+                new Tag
                 {
                     Id = 10,
                     Name = "Powerbuilder",
@@ -926,7 +926,7 @@ namespace PersonalBlog.Models
         {
             context.Database.EnsureCreated();
 
-            // if (!context.Missions.Any())
+            // if (!context.Experiences.Any())
             // {
             //     var jsonData = System.IO.File.ReadAllText(@"Secret-seed-resume.json");
 
@@ -935,9 +935,9 @@ namespace PersonalBlog.Models
             //         ContractResolver = new PrivateSetterContractResolver()
             //     };
 
-            //     List<Mission> missions = JsonConvert.DeserializeObject<List<Mission>>(jsonData, settings);
+            //     List<Experience> experiences = JsonConvert.DeserializeObject<List<Experience>>(jsonData, settings);
 
-            //     context.AddRange(missions);
+            //     context.AddRange(experiences);
             // }
 
             // if (!context.Posts.Any())

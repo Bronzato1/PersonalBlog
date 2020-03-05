@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PersonalBlog.Models;
 
-namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
+namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
 {
     public partial class DeleteModel : PageModel
     {
@@ -64,16 +64,16 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
             public int? DatabaseId { get; set; }
         }
 
-        private void Load(Mission mission)
+        private void Load(Experience experience)
         {
             Input = new InputModel
             {
-                Date = mission.Date,
-                Title = mission.Title,
-                Description = mission.Description,
-                Sector = mission.Sector,
-                CompanyId = mission.CompanyId,
-                DatabaseId = mission.DatabaseId
+                Date = experience.Date,
+                Title = experience.Title,
+                Description = experience.Description,
+                Sector = experience.Sector,
+                CompanyId = experience.CompanyId,
+                DatabaseId = experience.DatabaseId
             };
         }
 
@@ -84,7 +84,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
                 return NotFound();
             }
 
-            var mission = _resumeRepository.GetMissionById(id.Value);
+            var mission = _resumeRepository.GetExperienceById(id.Value);
 
             if (mission == null)
             {
@@ -102,22 +102,23 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
                 return NotFound();
             }
             
-            var mission = _resumeRepository.GetMissionById(id.Value);
+            var experience = _resumeRepository.GetExperienceById(id.Value);
 
-            if (mission == null)
+            if (experience == null)
             {
-                return NotFound($"Unable to load mission with ID '{id}'.");
+                return NotFound($"Unable to load experience with ID '{id}'.");
             }
 
             try
             {
-                _resumeRepository.DeleteMission(mission);
-                StatusMessage = "Mission deleted";
+                _resumeRepository.DeleteExperience(experience);
+                StatusMessage = "Experience deleted";
                 return RedirectToPage("Index");
             }
             catch (Exception ex)
             {
                 //Log the error
+                var exception = ex;
                 return RedirectToAction("./Delete", new { id, saveChangesError = true });
             }
         }

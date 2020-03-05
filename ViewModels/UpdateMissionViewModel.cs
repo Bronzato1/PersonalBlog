@@ -6,14 +6,14 @@ using PersonalBlog.Models;
 
 namespace  PersonalBlog.ViewModels
 {
-    public class UpdateMissionViewModel
+    public class UpdateExperienceViewModel
     {
-        public Mission Mission { get; set; }
+        public Experience Experience { get; set; }
         public List<SelectListItem> SelCompanies { get; set; }
         public List<SelectListItem> SelDatabases { get; set; }
-        public List<SelectListItem> SelLanguages { get; set; }
+        public List<SelectListItem> SelTags { get; set; }
         public List<Colors> ColorLanguages { get; set; }
-        public int[] SelectedLanguageIds { get; set; }
+        public int[] SelectedTagIds { get; set; }
     }
 
     public class Colors

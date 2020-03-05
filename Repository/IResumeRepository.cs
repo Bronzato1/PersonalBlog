@@ -5,27 +5,27 @@ public interface IResumeRepository
 {
     // CRUD operations
 
-    public List<Mission> GetAllMissions();
+    public List<Experience> GetAllExperiences();
 
     public List<Company> GetAllCompanies();
 
     public List<Database> GetAllDatabases();
 
-    public List<Language> GetAllLanguages();
+    public List<Tag> GetAllTags();
 
-    public Mission GetMissionById(int id);
+    public Experience GetExperienceById(int id);
 
-    public void AddMission(Mission mission);
+    public void AddExperience(Experience experience);
 
-    public void UpdateMission(Mission mission);
+    public void UpdateExperience(Experience experience);
 
-    public void UpdateMissionLanguages(int missionId, int[] languageIds);
+    public void UpdateExperienceTags(int experienceId, int[] tagIds);
 
-    public void DeleteMission(Mission mission);
+    public void DeleteExperience(Experience experience);
 
     public int AddCompany(string name);
 
     public int AddDatabase(string name);
 
-    public int AddLanguage(string name);
+    public int AddTag(string name);
 }

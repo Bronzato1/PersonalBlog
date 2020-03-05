@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PersonalBlog.Models;
 
-namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
+namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
 {
     public partial class EditModel : PageModel
     {
@@ -44,7 +44,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
         public List<SelectListItem> Databases { set; get; }
 
         [BindProperty]
-        public List<SelectListItem> Languages { set; get; }
+        public List<SelectListItem> Tags { set; get; }
         
 
         public class InputModel
@@ -74,23 +74,23 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
             public int? DatabaseId { get; set; }
             public Database Database { get; set; }
 
-            [Display(Name = "SelectedLanguageIds")]
-            public int[] SelectedLanguageIds { set; get; }
+            [Display(Name = "SelectedTagIds")]
+            public int[] SelectedTagIds { set; get; }
         }
 
-        private void Load(Mission mission)
+        private void Load(Experience experience)
         {
-            var languageIds = mission.MissionLanguages.Select(x => x.LanguageId).ToArray();
+            var tagIds = experience.ExperienceTags.Select(x => x.TagId).ToArray();
 
             Input = new InputModel
             {
-                Date = mission.Date,
-                Title = mission.Title,
-                Description = mission.Description,
-                Sector = mission.Sector,
-                CompanyId = mission.CompanyId,
-                DatabaseId = mission.DatabaseId,
-                SelectedLanguageIds = languageIds
+                Date = experience.Date,
+                Title = experience.Title,
+                Description = experience.Description,
+                Sector = experience.Sector,
+                CompanyId = experience.CompanyId,
+                DatabaseId = experience.DatabaseId,
+                SelectedTagIds = tagIds
             };
         }
 
@@ -112,7 +112,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
                                 Text = a.Name
                             }).ToList();
 
-            Languages = _resumeRepository.GetAllLanguages()
+            Tags = _resumeRepository.GetAllTags()
                             .OrderBy(x => x.Name)
                             .Select(a => new SelectListItem()
                             {
@@ -126,14 +126,14 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
                 return Page();
             }
 
-            var mission = _resumeRepository.GetMissionById(id.Value);
+            var experience = _resumeRepository.GetExperienceById(id.Value);
 
-            if (mission == null)
+            if (experience == null)
             {
-                return NotFound($"Unable to load mission with ID '{id}'.");
+                return NotFound($"Unable to load experience with ID '{id}'.");
             }
 
-            Load(mission);
+            Load(experience);
             return Page();
         }
 
@@ -144,55 +144,55 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
                 return Page();
             }
 
-            Mission mission;
+            Experience experience;
 
             if (Id.HasValue)
             {
-                mission = _resumeRepository.GetMissionById(Id.Value);
+                experience = _resumeRepository.GetExperienceById(Id.Value);
             }
             else
             {
-                mission = new Mission();
+                experience = new Experience();
             }
 
-            if (Input.Date != mission.Date)
+            if (Input.Date != experience.Date)
             {
-                mission.Date = Input.Date;
+                experience.Date = Input.Date;
             }
 
-            if (Input.Title != mission.Title)
+            if (Input.Title != experience.Title)
             {
-                mission.Title = Input.Title;
+                experience.Title = Input.Title;
             }
 
-            if (Input.Description != mission.Description)
+            if (Input.Description != experience.Description)
             {
-                mission.Description = Input.Description;
+                experience.Description = Input.Description;
             }
 
-            if (Input.Sector != mission.Sector)
+            if (Input.Sector != experience.Sector)
             {
-                mission.Sector = Input.Sector;
+                experience.Sector = Input.Sector;
             }
 
-            if (Input.CompanyId != mission.CompanyId)
+            if (Input.CompanyId != experience.CompanyId)
             {
-                mission.CompanyId = Input.CompanyId;
+                experience.CompanyId = Input.CompanyId;
             }
 
-            if (Input.DatabaseId != mission.DatabaseId)
+            if (Input.DatabaseId != experience.DatabaseId)
             {
-                mission.DatabaseId = Input.DatabaseId;
+                experience.DatabaseId = Input.DatabaseId;
             }
 
             if (Id.HasValue)
             {
-                _resumeRepository.UpdateMission(mission);
-                _resumeRepository.UpdateMissionLanguages(Id.Value, Input.SelectedLanguageIds);
+                _resumeRepository.UpdateExperience(experience);
+                _resumeRepository.UpdateExperienceTags(Id.Value, Input.SelectedTagIds);
             }
             else
             {
-                _resumeRepository.AddMission(mission);
+                _resumeRepository.AddExperience(experience);
             }
 
             StatusMessage = "Mission created/updated";
@@ -222,13 +222,13 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Missions
             }
         }
    
-        public async Task<JsonResult> OnPostLanguageTag()
+        public async Task<JsonResult> OnPostTagTag()
         {
             using (var reader = new StreamReader(Request.Body, Encoding.UTF8))
             {
                 var body = await reader.ReadToEndAsync();
                 var values = JsonConvert.DeserializeObject<PostTagData>(body);
-                var id = _resumeRepository.AddLanguage(values.text);
+                var id = _resumeRepository.AddTag(values.text);
                 return new JsonResult( new { id = id });
             }
         }

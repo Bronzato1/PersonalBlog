@@ -239,7 +239,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3>Missions</h3>
+                            <h3>Experiences</h3>
                             <table class="table table-striped table-borderless table-underlined">
                                 <thead>
                                     <tr>
@@ -253,7 +253,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.Missions)
+                                    @foreach (var item in Model.Experiences)
                                     {
                                         <tr data-toggle="collapse" href="#elm-@item.Id">
 
@@ -275,7 +275,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td><span>@Html.DisplayFor(modelItem => item.MissionLanguages.First().Language.Name)</span></td>
+                                            <td><span>@Html.DisplayFor(modelItem => item.ExperienceTags.First().Tag.Name)</span></td>
                                         </tr>
                                         <tr class="collapse" id="elm-@item.Id">
                                             <td></td>
@@ -287,9 +287,9 @@
                                                         <span class="lead"><span class="badge" style="color: white; background-color: @item.Database.Color; border-color: @item.Database.Color;">@item.Database.Name</span></span>
                                                     }
 
-                                                    foreach (var elm in item.MissionLanguages)
+                                                    foreach (var elm in item.ExperienceTags)
                                                     {
-                                                        <span class="lead"><span class="badge" style="color: white; background-color: @elm.Language.Color; border-color: @elm.Language.Color;">@elm.Language.Name</span></span>
+                                                        <span class="lead"><span class="badge" style="color: white; background-color: @elm.Tag.Color; border-color: @elm.Tag.Color;">@elm.Tag.Name</span></span>
                                                     }   
                                                 }
                                             </td>
