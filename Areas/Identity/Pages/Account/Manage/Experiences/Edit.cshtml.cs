@@ -41,9 +41,6 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
         public List<SelectListItem> Companies { set; get; }
 
         [BindProperty]
-        public List<SelectListItem> Databases { set; get; }
-
-        [BindProperty]
         public List<SelectListItem> Keywords { set; get; }
         
 
@@ -63,19 +60,24 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             [Display(Name = "Description")]
             public string Description { get; set; }
 
+            [Required]
             [Display(Name = "Sector")]
             public EnumSector Sector { get; set; }
 
+            [Required]
             [Display(Name = "CompanyId")]
             public int CompanyId { get; set; }
             public Company Company { get; set; }
 
-            [Display(Name = "DatabaseId")]
-            public int? DatabaseId { get; set; }
-            public Database Database { get; set; }
-
+            [Required]
             [Display(Name = "SelectedKeywordIds")]
             public int[] SelectedKeywordIds { set; get; }
+
+            [Required]
+            public int Staff { get; set; }
+
+            [Required]
+            public int Duration { get; set; }
         }
 
         private void Load(Experience experience)
@@ -89,8 +91,9 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                 Description = experience.Description,
                 Sector = experience.Sector,
                 CompanyId = experience.CompanyId,
-                DatabaseId = experience.DatabaseId,
-                SelectedKeywordIds = keywordIds
+                SelectedKeywordIds = keywordIds,
+                Staff = experience.Staff,
+                Duration = experience.Duration
             };
         }
 
@@ -103,15 +106,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                                 Value = a.Id.ToString(),
                                 Text = a.Name
                             }).ToList();
-
-            Databases = _resumeRepository.GetAllDatabases()
-                            .OrderBy(x => x.Name)
-                            .Select(a => new SelectListItem()
-                            {
-                                Value = a.Id.ToString(),
-                                Text = a.Name
-                            }).ToList();
-
+                            
             Keywords = _resumeRepository.GetAllKeywords()
                             .OrderBy(x => x.Name)
                             .Select(a => new SelectListItem()
@@ -137,7 +132,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -180,9 +175,14 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                 experience.CompanyId = Input.CompanyId;
             }
 
-            if (Input.DatabaseId != experience.DatabaseId)
+            if (Input.Staff != experience.Staff)
             {
-                experience.DatabaseId = Input.DatabaseId;
+                experience.Staff = Input.Staff;
+            }
+
+            if (Input.Duration!= experience.Duration)
+            {
+                experience.Duration = Input.Duration;
             }
 
             if (Id.HasValue)
@@ -192,10 +192,11 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             }
             else
             {
-                _resumeRepository.AddExperience(experience);
+                var exp = await _resumeRepository.AddExperience(experience);
+                _resumeRepository.UpdateExperienceKeywords(exp.Id, Input.SelectedKeywordIds);
             }
 
-            StatusMessage = "Mission created/updated";
+            StatusMessage = "Experience created/updated";
 
             return RedirectToPage("Index");
         }
@@ -211,17 +212,6 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             }
         }
 
-        public async Task<JsonResult> OnPostDatabaseTag()
-        {
-            using (var reader = new StreamReader(Request.Body, Encoding.UTF8))
-            {
-                var body = await reader.ReadToEndAsync();
-                var values = JsonConvert.DeserializeObject<PostTagData>(body);
-                var id = _resumeRepository.AddDatabase(values.text);
-                return new JsonResult( new { id = id });
-            }
-        }
-   
         public async Task<JsonResult> OnPostKeywordTag()
         {
             using (var reader = new StreamReader(Request.Body, Encoding.UTF8))

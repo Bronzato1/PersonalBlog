@@ -71,13 +71,6 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label asp-for="Experience.DatabaseId">Database</label>
-                            <select name="Experience.DatabaseId" class="form-control custom-select" asp-for="Experience.DatabaseId" asp-items="@Model.Databases">
-                                <option>Please select one</option>
-                            </select>
-                        </div>
-
                         <div>
                             <a class="btn btn-secondary" asp-controller="Resume" asp-action="Index">Cancel</a>
                             <input type="submit" value="Create new experience" class="btn btn-success float-right">

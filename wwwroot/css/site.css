@@ -89,3 +89,12 @@ a[href^="/Admin"].active {
     overflow-y: scroll;
     padding: 5%;
 }
+
+.select2-container--focus {
+    color: #495057;
+    background-color: #ffffff;
+    border-color: #80bdff;
+    border-width: 1px;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}

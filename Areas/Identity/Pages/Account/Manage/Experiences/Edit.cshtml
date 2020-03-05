@@ -38,15 +38,17 @@
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="Input.DatabaseId">Database</label>
-                <select name="Input.DatabaseId" class="form-control custom-select" asp-for="Input.DatabaseId" asp-items="Model.Databases">
-                    <option>Please select one</option>
-                </select>
-            </div>
-            <div class="form-group">
                 <label asp-for="Input.SelectedKeywordIds">Keywords</label>
                 <select multiple="multiple" name="Input.SelectedKeywordIds" class="form-control custom-select" asp-for="Input.SelectedKeywordIds" asp-items="Model.Keywords">
                 </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Staff"></label>
+                <input asp-for="Input.Staff" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Duration"></label>
+                <input asp-for="Input.Duration" class="form-control" />
             </div>
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
             <a class="" asp-page="Index">Back to list</a>
@@ -74,38 +76,13 @@
                 $.ajax({
                     type: 'POST',
                     cache: false,
-                    url: 'Mission?handler=CompanyTag',
+                    url: 'Experience?handler=CompanyTag',
                     beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                     data: JSON.stringify({ id: evt.params.data.id, text: evt.params.data.text }),
                     contentType: "application/json",
                     dataType: "json",
                     error: function (result) { alert("Error"); },
                     success: function (data) { var opt = $('#Input_CompanyId > option[value=99]')[0]; opt.value = data.id; }
-                });
-            }
-        });
-
-        // ┌──────────────────────┐
-        // │ Select2 --> Database │
-        // └──────────────────────┘
-
-        $("#Input_DatabaseId").select2({
-            tags: true,
-            tokenSeparators: [",", " "],
-            createTag: function (tag) { return { id: 99, text: tag.term }; }
-        }).on('select2:select', function (evt) {
-            if (evt.params.data.id == 99)
-            {
-                $.ajax({
-                    type: 'POST',
-                    cache: false,
-                    url: 'Mission?handler=DatabaseTag',
-                    beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
-                    data: JSON.stringify({ id: evt.params.data.id, text: evt.params.data.text }),
-                    contentType: "application/json",
-                    dataType: "json",
-                    error: function (result) { alert("Error"); },
-                    success: function (data) { var opt = $('#Input_DatabaseId > option[value=99]')[0]; opt.value = data.id; }
                 });
             }
         });
@@ -124,12 +101,12 @@
                 $.ajax({
                     type: 'POST',
                     cache: false,
-                    url: 'Mission?handler=KeywordTag',
+                    url: 'Experience?handler=KeywordTag',
                     beforeSend: function (xhr) { xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val()); },
                     data: JSON.stringify({ id: evt.params.data.id, text: evt.params.data.text }),
                     contentType: "application/json",
                     dataType: "json",
-                    error: function (result) { alert("Error"); },
+                    error: function (result) { console.log(result); alert("Error"); },
                     success: function (data) { var opt = $('#Input_SelectedKeywordIds > option[value=99]')[0]; opt.value = data.id; }
                 });
             }

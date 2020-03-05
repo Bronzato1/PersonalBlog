@@ -58,10 +58,6 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             [Display(Name = "CompanyId")]
             public int CompanyId { get; set; }
             public Company Company { get; set; }
-
-            [DataType(DataType.Text)]
-            [Display(Name = "DatabaseId")]
-            public int? DatabaseId { get; set; }
         }
 
         private void Load(Experience experience)
@@ -72,8 +68,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                 Title = experience.Title,
                 Description = experience.Description,
                 Sector = experience.Sector,
-                CompanyId = experience.CompanyId,
-                DatabaseId = experience.DatabaseId
+                CompanyId = experience.CompanyId
             };
         }
 

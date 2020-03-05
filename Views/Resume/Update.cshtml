@@ -74,13 +74,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Experience.DatabaseId">Database</label>
-                            <select name="Experience.DatabaseId" class="form-control custom-select" asp-for="Experience.DatabaseId" asp-items="@Model.SelDatabases">
-                                <option>Please select one</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
                             <label asp-for="Experience.ExperienceKeywords">Languages</label>
                             <select multiple="multiple" name="SelectedTagIds" class="form-control custom-select select2" asp-for="@Model.SelectedTagIds" asp-items="@Model.SelTags">
                             </select>

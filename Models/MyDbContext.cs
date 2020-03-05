@@ -35,7 +35,6 @@ namespace PersonalBlog.Models
 
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Experience> Experiences { get; set; }
-        public virtual DbSet<Database> Databases { get; set; }
         public virtual DbSet<Keyword> Keywords { get; set; }
         public virtual DbSet<ExperienceKeyword> ExperienceKeywords { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
@@ -274,10 +273,6 @@ namespace PersonalBlog.Models
                 entity
                     .HasOne(e => e.Company)
                     .WithMany();
-
-                entity
-                    .HasOne(e => e.Database)
-                    .WithMany();
             });
 
             modelBuilder.Entity<ExperienceKeyword>(entity =>
@@ -310,40 +305,6 @@ namespace PersonalBlog.Models
                 entity
                     .Property(e => e.Name)
                     .HasColumnName("Name")
-                    .IsRequired();
-
-                entity
-                    .Property(e => e.CreatedTime)
-                    .HasColumnName("CreatedTime")
-                    .HasDefaultValueSql("date('now')");
-                    //.HasDefaultValueSql("getdate()");
-
-                entity
-                    .Property(e => e.CreatedUser)
-                    .HasColumnName("CreatedUser")
-                    .HasDefaultValue("admin");
-
-            });
-
-            modelBuilder.Entity<Database>(entity =>
-            {
-                entity
-                    .ToTable("Databases", "dbo")
-                    .HasKey(x => x.Id);
-
-                entity
-                    .Property(e => e.Id)
-                    .HasColumnName("Id")
-                    .IsRequired();
-
-                entity
-                    .Property(e => e.Name)
-                    .HasColumnName("Name")
-                    .IsRequired();
-
-                entity
-                    .Property(e => e.Color)
-                    .HasColumnName("Color")
                     .IsRequired();
 
                 entity
@@ -825,39 +786,6 @@ namespace PersonalBlog.Models
 
             );
 
-            modelBuilder.Entity<Database>().HasData(
-                new Database
-                {
-                    Id = 1,
-                    Name = "Sql Server",
-                    Color = EnumColor.Aquamarine
-                },
-                new Database
-                {
-                    Id = 2,
-                    Name = "Ms Access",
-                    Color = EnumColor.SandyBrown
-                },
-                new Database
-                {
-                    Id = 3,
-                    Name = "Mainframe (DB2)",
-                    Color = EnumColor.CadetBlue
-                },
-                new Database
-                {
-                    Id = 4,
-                    Name = "Omnis",
-                    Color = EnumColor.Gold
-                },
-                new Database
-                {
-                    Id = 5,
-                    Name = "Oracle",
-                    Color = EnumColor.Linen
-                }
-            );
-
             modelBuilder.Entity<Keyword>().HasData(
                 new Keyword
                 {
@@ -918,6 +846,36 @@ namespace PersonalBlog.Models
                     Id = 10,
                     Name = "Powerbuilder",
                     Color = EnumColor.RoyalBlue
+                },
+                 new Keyword
+                {
+                    Id = 11,
+                    Name = "Sql Server",
+                    Color = EnumColor.Aquamarine
+                },
+                new Keyword
+                {
+                    Id = 12,
+                    Name = "Ms Access",
+                    Color = EnumColor.SandyBrown
+                },
+                new Keyword
+                {
+                    Id = 13,
+                    Name = "Mainframe (DB2)",
+                    Color = EnumColor.CadetBlue
+                },
+                new Keyword
+                {
+                    Id = 14,
+                    Name = "Omnis",
+                    Color = EnumColor.Gold
+                },
+                new Keyword
+                {
+                    Id = 15,
+                    Name = "Oracle",
+                    Color = EnumColor.Linen
                 }
             );
         }
@@ -926,19 +884,19 @@ namespace PersonalBlog.Models
         {
             context.Database.EnsureCreated();
 
-            // if (!context.Experiences.Any())
-            // {
-            //     var jsonData = System.IO.File.ReadAllText(@"Secret-seed-resume.json");
+            if (!context.Experiences.Any())
+            {
+                var jsonData = System.IO.File.ReadAllText(@"Secret-seed-resume.json");
 
-            //     JsonSerializerSettings settings = new JsonSerializerSettings
-            //     {
-            //         ContractResolver = new PrivateSetterContractResolver()
-            //     };
+                JsonSerializerSettings settings = new JsonSerializerSettings
+                {
+                    ContractResolver = new PrivateSetterContractResolver()
+                };
 
-            //     List<Experience> experiences = JsonConvert.DeserializeObject<List<Experience>>(jsonData, settings);
+                List<Experience> experiences = JsonConvert.DeserializeObject<List<Experience>>(jsonData, settings);
 
-            //     context.AddRange(experiences);
-            // }
+                context.AddRange(experiences);
+            }
 
             // if (!context.Posts.Any())
             // {

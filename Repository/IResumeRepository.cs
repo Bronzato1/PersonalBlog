@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using PersonalBlog.Models;
+using System.Threading.Tasks;
 
 public interface IResumeRepository 
 {
@@ -9,13 +10,11 @@ public interface IResumeRepository
 
     public List<Company> GetAllCompanies();
 
-    public List<Database> GetAllDatabases();
-
     public List<Keyword> GetAllKeywords();
 
     public Experience GetExperienceById(int id);
 
-    public void AddExperience(Experience experience);
+    public Task<Experience> AddExperience(Experience experience);
 
     public void UpdateExperience(Experience experience);
 
@@ -24,8 +23,6 @@ public interface IResumeRepository
     public void DeleteExperience(Experience experience);
 
     public int AddCompany(string name);
-
-    public int AddDatabase(string name);
 
     public int AddKeyword(string name);
 }

@@ -89,11 +89,6 @@
                         @Html.DisplayFor(modelItem => item.Description)
                         <br />
                         @{
-                            if (item.Database != null)
-                            {
-                                <span class="badge" style="color: white; background-color: @item.Database.Color; border-color: @item.Database.Color;">@item.Database.Name</span>
-                            }
-
                             foreach (var elm in item.ExperienceKeywords)
                             {
                                 <span class="badge" style="color: white; background-color: @elm.Keyword.Color; border-color: @elm.Keyword.Color;">@elm.Keyword.Name</span>

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PersonalBlog.Models;
+using System.Threading.Tasks;
 
 public class ResumeRepository : IResumeRepository
 {
@@ -16,7 +17,6 @@ public class ResumeRepository : IResumeRepository
     {
         List<Experience> experiences = _dbContext.Experiences
                                         .Include(x => x.Company)
-                                        .Include(x => x.Database)
                                         .Include("ExperienceKeywords.Keyword")
                                         .OrderByDescending(x => x.Date)
                                         .ToList();
@@ -35,18 +35,11 @@ public class ResumeRepository : IResumeRepository
         return keywords;
     }
 
-    public List<PersonalBlog.Models.Database> GetAllDatabases()
-    {
-        List<Database> databases = _dbContext.Databases.ToList();
-        return databases;
-    }
-
     public Experience GetExperienceById(int id)
     {
         return _dbContext.Experiences
                     .Where(x => x.Id == id)
                     .Include(x => x.Company)
-                    .Include(x => x.Database)
                     .Include("ExperienceKeywords.Keyword")
                     .FirstOrDefault();
     }
@@ -62,10 +55,11 @@ public class ResumeRepository : IResumeRepository
         }
     }
 
-    public void AddExperience(Experience experience)
+    public async Task<Experience> AddExperience(Experience experience)
     {
         _dbContext.Experiences.Add(experience);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
+        return experience;
     }
 
     public void UpdateExperienceKeywords(int experienceId, int[] keywordIds)
@@ -98,14 +92,6 @@ public class ResumeRepository : IResumeRepository
         _dbContext.Companies.Add(company);
         _dbContext.SaveChanges();
         return company.Id;
-    }
-
-    public int AddDatabase(string name)
-    {
-        Database database = new Database { Name = name };
-        _dbContext.Databases.Add(database);
-        _dbContext.SaveChanges();
-        return database.Id;
     }
 
     public int AddKeyword(string name)

@@ -16,11 +16,9 @@ namespace PersonalBlog.Models
         public int Staff { get; set; }
         public int Duration { get; set; }
         public int CompanyId { get; set; }
-        public int? DatabaseId { get; set; }
         
         public virtual CustomUser CustomUser { get; set; }
         public virtual Company Company { get; set; }
-        public virtual Database Database { get; set; }
         public virtual List<ExperienceKeyword> ExperienceKeywords { get; set; }
     }
 }
