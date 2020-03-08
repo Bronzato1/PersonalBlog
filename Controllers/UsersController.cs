@@ -28,6 +28,13 @@ namespace PersonalBlog
         }
   
         [AllowAnonymous]
+        public ActionResult Index()
+        {
+            var users = _userRepository.GetAllUsers();
+            return View(users);
+        }
+
+        [AllowAnonymous]
         [Route("/users/{fullName}")]
         public ActionResult Profile([FromRoute] string fullName)
         {

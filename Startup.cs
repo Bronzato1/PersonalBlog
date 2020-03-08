@@ -99,11 +99,14 @@ namespace PersonalBlog
             var UserManager = serviceProvider.GetRequiredService<UserManager<CustomUser>>();
 
             var adminRoleExists = await RoleManager.RoleExistsAsync("Admin");
+            var authorRoleExists = await RoleManager.RoleExistsAsync("Author");
+            var visitorRoleExists = await RoleManager.RoleExistsAsync("Visitor");
 
             if (!adminRoleExists)
                 await RoleManager.CreateAsync(new IdentityRole("Admin"));
 
-            var visitorRoleExists = await RoleManager.RoleExistsAsync("Visitor");
+            if (!authorRoleExists)
+                await RoleManager.CreateAsync(new IdentityRole("Author"));
 
             if (!visitorRoleExists)
                 await RoleManager.CreateAsync(new IdentityRole("Visitor"));

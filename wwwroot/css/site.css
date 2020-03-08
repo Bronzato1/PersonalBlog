@@ -68,7 +68,11 @@ a[href^="/Radios"].active {
 
 a[href^="/Games"].active {
     border-color: #28a745 !important;
-} 
+}
+
+a[href^="/Users"].active {
+    border-color: #6c757d !important;
+}
 
 a[href^="/Admin"].active {
     border-color: #ffffff !important;
@@ -97,4 +101,19 @@ a[href^="/Admin"].active {
     border-width: 1px;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.card .role-admin-color
+{
+    background-color: rgba(214,13,13,0.1);
+}
+
+.card .role-author-color
+{
+    background-color: rgba(255,238,145,0.1);
+}
+
+.card .role-visitor-color
+{
+    background-color: rgb(130,129,126,0.1);
 }

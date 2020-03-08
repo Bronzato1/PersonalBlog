@@ -78,7 +78,15 @@
                         </p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a asp-controller="Users" asp-action="Index" class="nav-link" is-active-route>
+                        <i class="fas fa-user text-secondary nav-icon"></i>
+                        <p class="text-secondary">
+                            Users
+                            <span class="badge badge-secondary right">14</span>
+                        </p>
+                    </a>
+                </li>
                 @if (userIsAdmin)
                 {
                     <li class="nav-item">

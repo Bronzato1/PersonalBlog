@@ -27,7 +27,7 @@ namespace PersonalBlog.TagHelpers
             foreach (var b in hashBytes)
                 hash.Append(b.ToString("x2"));
 
-            var imageUrl = string.Format(@"http://www.gravatar.com/avatar/{0}", hash.ToString());
+            var imageUrl = string.Format(@"http://www.gravatar.com/avatar/{0}?s=128", hash.ToString());
             var srcAttr = output.Attributes.FirstOrDefault(a => a.Name == "src");
 
             if (srcAttr == null)
