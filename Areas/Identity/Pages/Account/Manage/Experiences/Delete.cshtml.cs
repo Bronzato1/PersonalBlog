@@ -19,13 +19,13 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
     {
         private readonly UserManager<CustomUser> _userManager;
         private readonly SignInManager<CustomUser> _signInManager;
-        private readonly IResumeRepository _resumeRepository;
+        private readonly IExperienceRepository _experienceRepository;
 
-        public DeleteModel(UserManager<CustomUser> userManager, SignInManager<CustomUser> signInManager, IResumeRepository resumeRepository)
+        public DeleteModel(UserManager<CustomUser> userManager, SignInManager<CustomUser> signInManager, IExperienceRepository experienceRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _resumeRepository = resumeRepository;
+            _experienceRepository = experienceRepository;
         }
 
         [TempData]
@@ -79,7 +79,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                 return NotFound();
             }
 
-            var mission = _resumeRepository.GetExperienceById(id.Value);
+            var mission = _experienceRepository.GetExperienceById(id.Value);
 
             if (mission == null)
             {
@@ -97,7 +97,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                 return NotFound();
             }
             
-            var experience = _resumeRepository.GetExperienceById(id.Value);
+            var experience = _experienceRepository.GetExperienceById(id.Value);
 
             if (experience == null)
             {
@@ -106,7 +106,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
 
             try
             {
-                _resumeRepository.DeleteExperience(experience);
+                _experienceRepository.DeleteExperience(experience);
                 StatusMessage = "Experience deleted";
                 return RedirectToPage("Index");
             }

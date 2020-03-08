@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using PersonalBlog.Models;
 using System.Threading.Tasks;
 
-public interface IResumeRepository 
+public interface IExperienceRepository 
 {
     // CRUD operations
 

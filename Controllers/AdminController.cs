@@ -49,13 +49,13 @@ namespace PersonalBlog
             var posts = await _blogRepository.GetPosts();
             var json = JsonConvert.SerializeObject(posts, settings);
 
-            // STEP 2 : remove ids from json
+            // STEP 2 : remove ids, CustomUser from json
 
             var parsedJson = JArray.Parse(json);
 
             parsedJson.Descendants()
                 .OfType<JProperty>()
-                .Where(attr => attr.Name.StartsWith("Id"))
+                .Where(attr => attr.Name == "Id" || attr.Name == "CustomUser")
                 .ToList()
                 .ForEach(attr => attr.Remove());
 

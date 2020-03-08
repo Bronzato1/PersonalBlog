@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using PersonalBlog.Models;
 using System.Threading.Tasks;
 
-public class ResumeRepository : IResumeRepository
+public class ExperienceRepository : IExperienceRepository
 {
     private readonly MyDbContext _dbContext;
 
-    public ResumeRepository(MyDbContext dbContext)
+    public ExperienceRepository(MyDbContext dbContext)
     {
         _dbContext = dbContext;
     }

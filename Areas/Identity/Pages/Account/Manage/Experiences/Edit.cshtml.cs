@@ -19,13 +19,13 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
     {
         private readonly UserManager<CustomUser> _userManager;
         private readonly SignInManager<CustomUser> _signInManager;
-        private readonly IResumeRepository _resumeRepository;
+        private readonly IExperienceRepository _experienceRepository;
 
-        public EditModel(UserManager<CustomUser> userManager, SignInManager<CustomUser> signInManager, IResumeRepository resumeRepository)
+        public EditModel(UserManager<CustomUser> userManager, SignInManager<CustomUser> signInManager, IExperienceRepository experienceRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _resumeRepository = resumeRepository;
+            _experienceRepository = experienceRepository;
         }
 
         [TempData]
@@ -74,9 +74,11 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             public int[] SelectedKeywordIds { set; get; }
 
             [Required]
+            [Range(1,50)]
             public int Staff { get; set; }
 
             [Required]
+            [Range(1,9999)]
             public int Duration { get; set; }
         }
 
@@ -99,7 +101,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
 
         public IActionResult OnGet(int? id)
         {
-            Companies = _resumeRepository.GetAllCompanies()
+            Companies = _experienceRepository.GetAllCompanies()
                             .OrderBy(x => x.Name)
                             .Select(a => new SelectListItem()
                             {
@@ -107,7 +109,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                                 Text = a.Name
                             }).ToList();
                             
-            Keywords = _resumeRepository.GetAllKeywords()
+            Keywords = _experienceRepository.GetAllKeywords()
                             .OrderBy(x => x.Name)
                             .Select(a => new SelectListItem()
                             {
@@ -121,7 +123,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
                 return Page();
             }
 
-            var experience = _resumeRepository.GetExperienceById(id.Value);
+            var experience = _experienceRepository.GetExperienceById(id.Value);
 
             if (experience == null)
             {
@@ -143,7 +145,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
 
             if (Id.HasValue)
             {
-                experience = _resumeRepository.GetExperienceById(Id.Value);
+                experience = _experienceRepository.GetExperienceById(Id.Value);
             }
             else
             {
@@ -187,13 +189,13 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
 
             if (Id.HasValue)
             {
-                _resumeRepository.UpdateExperience(experience);
-                _resumeRepository.UpdateExperienceKeywords(Id.Value, Input.SelectedKeywordIds);
+                _experienceRepository.UpdateExperience(experience);
+                _experienceRepository.UpdateExperienceKeywords(Id.Value, Input.SelectedKeywordIds);
             }
             else
             {
-                var exp = await _resumeRepository.AddExperience(experience);
-                _resumeRepository.UpdateExperienceKeywords(exp.Id, Input.SelectedKeywordIds);
+                var exp = await _experienceRepository.AddExperience(experience);
+                _experienceRepository.UpdateExperienceKeywords(exp.Id, Input.SelectedKeywordIds);
             }
 
             StatusMessage = "Experience created/updated";
@@ -207,7 +209,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             {
                 var body = await reader.ReadToEndAsync();
                 var values = JsonConvert.DeserializeObject<PostTagData>(body);
-                var id = _resumeRepository.AddCompany(values.text);
+                var id = _experienceRepository.AddCompany(values.text);
                 return new JsonResult( new { id = id });
             }
         }
@@ -218,7 +220,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
             {
                 var body = await reader.ReadToEndAsync();
                 var values = JsonConvert.DeserializeObject<PostTagData>(body);
-                var id = _resumeRepository.AddKeyword(values.text);
+                var id = _experienceRepository.AddKeyword(values.text);
                 return new JsonResult( new { id = id });
             }
         }

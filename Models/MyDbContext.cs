@@ -32,7 +32,6 @@ namespace PersonalBlog.Models
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<Nurse> Nurses { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
-
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Experience> Experiences { get; set; }
         public virtual DbSet<Keyword> Keywords { get; set; }

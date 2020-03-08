@@ -54,8 +54,9 @@ namespace PersonalBlog
             // https://www.talkingdotnet.com/handle-ajax-requests-in-asp-net-core-razor-pages/
             services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
 
-            services.AddScoped<IResumeRepository, ResumeRepository>();
+            services.AddScoped<IExperienceRepository, ExperienceRepository>();
             services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 

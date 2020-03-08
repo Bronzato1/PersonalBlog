@@ -14,13 +14,13 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
     {
         private readonly UserManager<CustomUser> _userManager;
         private readonly SignInManager<CustomUser> _signInManager;
-        private readonly IResumeRepository _resumeRepository;
+        private readonly IExperienceRepository _experienceRepository;
 
-        public IndexModel(UserManager<CustomUser> userManager, SignInManager<CustomUser> signInManager, IResumeRepository resumeRepository)
+        public IndexModel(UserManager<CustomUser> userManager, SignInManager<CustomUser> signInManager, IExperienceRepository experienceRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _resumeRepository = resumeRepository;
+            _experienceRepository = experienceRepository;
         }
 
         [TempData]
@@ -31,7 +31,7 @@ namespace PersonalBlog.Areas.Identity.Pages.Account.Manage.Experiences
 
         public IActionResult OnGet()
         {
-            Input = _resumeRepository.GetAllExperiences();
+            Input = _experienceRepository.GetAllExperiences();
             return Page();
         }
 

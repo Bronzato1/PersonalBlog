@@ -60,6 +60,14 @@
             ccccolor: white;
             background-color: #f3f4f5;
         }
+        .pre-line
+        {
+            white-space: pre-line;
+        }
+        .pre-line:first-line 
+        {
+            line-height: 0px;
+        }
 
     </STYLE>
 }
@@ -118,31 +126,31 @@
 
                     <strong><i class="fas fa-check-circle mr-1"></i> Status</strong>
 
-                    <p class="text-muted">
+                    <p class="text-muted pre-line">
                         @Html.Raw(Model.CustomUser.Status)
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fas fa-magic mr-1"></i> Expertise</strong>
+
+                    <p class="text-muted pre-line">
+                        @Html.Raw(Model.CustomUser.Expertise)
                     </p>
 
                     <hr>
 
                     <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-                    <p class="text-muted">
+                    <p class="text-muted pre-line">
                         @Html.Raw(Model.CustomUser.Location)
-                    </p>
-
-                    <hr>
-
-                    <strong><i class="fab fa-font-awesome-flag mr-1"></i> Languages</strong>
-
-                    <p class="text-muted">
-                        @Html.Raw(Model.CustomUser.Languages)
                     </p>
 
                     <hr>
 
                     <strong><i class="fas fa-phone-volume mr-1"></i> Phone</strong>
 
-                    <p class="text-muted">
+                    <p class="text-muted pre-line">
                         @Html.Raw(Model.CustomUser.PhoneNumber)
                     </p>
 
@@ -158,15 +166,23 @@
 
                     <strong><i class="fas fa-project-diagram mr-1"></i> Networking</strong>
 
-                    <p class="text-muted">
+                    <p class="text-muted pre-line">
                         @Html.Raw(Model.CustomUser.Networking)
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fab fa-font-awesome-flag mr-1"></i> Languages</strong>
+
+                    <p class="text-muted pre-line">
+                        @Html.Raw(Model.CustomUser.Languages)
                     </p>
 
                     <hr>
 
                     <strong><i class="fas fa-file-alt mr-1"></i> Note</strong>
 
-                    <p class="text-muted">
+                    <p class="text-muted pre-line">
                         @Model.CustomUser.Note
                     </p>
                 </div>
