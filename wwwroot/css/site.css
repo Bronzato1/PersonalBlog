@@ -226,6 +226,7 @@ body.control-sidebar-mini.control-sidebar-open.control-sidebar-push-slide .main-
 .control-sidebar ul li
 {
     padding: 20px 0;
+    border-top: 1px solid transparent;
     border-bottom: 1px solid #444c54;
 }
 
@@ -264,15 +265,20 @@ body.control-sidebar-mini.control-sidebar-open.control-sidebar-push-slide .main-
 
 .sidebar-mini .tooltip-inner {
     margin-right: -25px;
-    height: 55px;
-    line-height: 50px;
+    height: 59px;
+    line-height: 56px;
     padding: 0px 0px 0px 20px;
-    background-color: #2e3336;
+    background-color: #2b3034;
     border-radius: 0rem;
+    border-left: 1px solid #444c54;
+    border-top: 1px solid #444c54;
+    border-bottom: 1px solid #444c54;
+    box-shadow: -5px 0 5px -7px #000, 0 -5px 5px -7px #000, 0 5px 5px -7px #000;
 }
 .sidebar-mini .tooltip.show {
     opacity: 1;
     z-index: 9999;
+    margin-top: -1px;
 }
 
 .tooltip .arrow  {
@@ -281,14 +287,14 @@ body.control-sidebar-mini.control-sidebar-open.control-sidebar-push-slide .main-
 
 .sidebar-mini .control-sidebar .nav-item:hover > .nav-link, 
 .sidebar-mini .control-sidebar .nav-item > .nav-link:focus {
-    background-color: #2e3336;
+    background-color: #2b3034;
     color: #ffffff;
 }
 
 .main-sidebar[class*='sidebar-dark-'] .nav-sidebar > .nav-item.menu-open > .nav-link, 
 .main-sidebar[class*='sidebar-dark-'] .nav-sidebar > .nav-item:hover > .nav-link, 
 .main-sidebar[class*='sidebar-dark-'] .nav-sidebar > .nav-item > .nav-link:focus {
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: #2b3034;
     color: #ffffff;
 }
 
