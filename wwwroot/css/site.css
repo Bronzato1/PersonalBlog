@@ -219,7 +219,7 @@ body.control-sidebar-mini.control-sidebar-open.control-sidebar-push-slide .main-
 .control-sidebar ul
 {
     list-style: none;
-    padding-inline-start: 0px;
+    padding-left: 0px;
     margin-bottom: 0px;
 }
 
