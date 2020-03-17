@@ -24,12 +24,14 @@ namespace PersonalBlog
         private const string FILE_JSON_RESUME = "Secret-seed-resume.json";
 
         private readonly IBlogRepository _blogRepository;
+        private readonly IUserRepository _userRepository;
         private readonly string _folder;
 
-        public AdminController(IWebHostEnvironment env, IBlogRepository blogRepository)
+        public AdminController(IWebHostEnvironment env, IBlogRepository blogRepository, IUserRepository userRepository)
         {
             _folder = Path.Combine(env.WebRootPath, FOLDER_POSTS);
             _blogRepository = blogRepository;
+            _userRepository = userRepository;
         }
 
         public ActionResult Index()
@@ -166,6 +168,12 @@ namespace PersonalBlog
             viewModel.missingImageList = missingImageList;
 
             return PartialView("_DeleteUnusedImagesResult", viewModel);
+        }
+  
+        public ActionResult ManageUsersAndRoles()
+        {
+            var users = _userRepository.GetAllUsers();
+            return View(users);
         }
     }
 }

@@ -9,13 +9,13 @@ using PersonalBlog.Models;
 
 namespace PersonalBlog.TagHelpers
 {
-    [HtmlTargetElement("div", Attributes = ForAttributeName)]
-    public class CardColorForRoleTagHelper : TagHelper
+    [HtmlTargetElement("*", Attributes = ForAttributeName)]
+    public class ForegroundColorForRoleTagHelper : TagHelper
     {
-        private const string ForAttributeName = "card-color-for-role";
+        private const string ForAttributeName = "foreground-color-for-role";
         private readonly UserManager<CustomUser> _userManager;
 
-        public CardColorForRoleTagHelper(UserManager<CustomUser> userManager)
+        public ForegroundColorForRoleTagHelper(UserManager<CustomUser> userManager)
         {
             _userManager = userManager;
         }
@@ -42,13 +42,13 @@ namespace PersonalBlog.TagHelpers
             var color = String.Empty;
 
             if (isAdmin)
-                color = "role-admin-color";
+                color = "text-light";
                 
             if (isAuthor)
-                color = "role-author-color";
+                color = "text-dark";
                 
             if (isVisitor)
-                color = "role-visitor-color";
+                color = "text-dark";
              
             var classAttr = output.Attributes.FirstOrDefault(a => a.Name == "class");
 

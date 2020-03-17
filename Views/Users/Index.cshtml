@@ -25,55 +25,70 @@
             @foreach (var user in Model)
             {
                 <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                    <div class="card w-100" card-color-for-role="@user">
-                    <div class="card-header text-muted border-bottom-0">
-                        <span denomination-for-role="@user"></span>
-                    </div>
-                    <div class="card-body pt-0">
-                        <div class="row">
-                            <div class="col-7">
-                                <h2 class="lead"><b>@user.FirstName @user.LastName</b></h2>
-                                <p class="text-muted text-sm">@user.Expertise</p>
-                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li class="small">
-                                        <span class="fa-li">
-                                            <i class="fas fa-lg fa-check-circle"></i>
-                                        </span> 
-                                        <p class="pre-line">
-                                            @user.Status
-                                        </p>
-                                    </li>
-                                    <li class="small">
-                                        <span class="fa-li">
-                                            <i class="fas fa-lg fa-map-marker-alt"></i>
-                                        </span> 
-                                        <p class="pre-line">
-                                            @user.Location
-                                        </p>
-                                    </li>
-                                    <li class="small">
-                                        <span class="fa-li">
-                                            <i class="fas fa-lg fa-phone"></i>
-                                        </span>
-                                        Phone #: @user.PhoneNumber
-                                    </li>
-                                    </ul>
-                            </div>
-                            <div class="col-5 text-center">
-                                <img gravatar-for="@user" alt="" class="img-circle img-fluid elevation-2" />
+                    <div class="user-profile card w-100" background-color-for-role="@user">
+                        <div class="card-header" border-bottom-0">
+                            <span denomination-for-role="@user" foreground-color-for-role="@user"></span>
+                        </div>
+                        <div class="card-body py-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="lead"><strong foreground-color-for-role="@user">@user.FirstName @user.LastName</strong></h2>
+                                    <p class="text-sm" foreground-color-for-role="@user">@user.Expertise</p>
+                                    <ul class="ml-4 mb-0 fa-ul" foreground-color-for-role="@user">
+                                        @if (user.Status != null)
+                                        {
+                                            <li class="small">
+                                                <span class="fa-li">
+                                                    <i class="fas fa-lg fa-check-circle"></i>
+                                                </span> 
+                                                <p class="pre-line">
+                                                    @user.Status
+                                                </p>
+                                            </li>
+                                        }
+                                        @if (user.Location != null)
+                                        {
+                                            <li class="small">
+                                                <span class="fa-li">
+                                                    <i class="fas fa-lg fa-map-marker-alt"></i>
+                                                </span> 
+                                                <p class="pre-line">
+                                                    @user.Location
+                                                </p>
+                                            </li>
+                                        }
+                                        @if (user.Note != null)
+                                        {
+                                            <li class="small">
+                                                <span class="fa-li">
+                                                    <i class="fas fa-lg fa-file-alt"></i>
+                                                </span>
+                                                <p class="pre-line">
+                                                    @user.Note
+                                                </p>
+                                            </li>
+                                        }
+                                        
+                                        </ul>
+                                </div>
+                                <div class="col-5 text-center">
+                                    <img gravatar-for="@user" alt="" class="img-circle img-fluid elevation-2" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="text-right">
-                        <a href="#" class="btn btn-sm bg-teal">
-                            <i class="fas fa-comments"></i>
-                        </a>
-                        <a asp-controller="users" asp-action="profile" asp-route-fullName="@user.FirstName@user.LastName" class="btn btn-sm btn-primary">
-                            <i class="fas fa-user"></i> View Profile
-                        </a>
+                        <div class="card-footer">
+                            <div class="text-right">
+                                <a href="#" class="btn btn-sm" button-color-for-role="@user">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm" button-color-for-role="@user">
+                                    <i class="fas fa-comments"></i>
+                                </a>
+                                <a asp-controller="users" asp-action="profile" asp-route-fullName="@user.FirstName@user.LastName" class="btn btn-sm" button-color-for-role="@user">
+                                    <i class="fas fa-user"></i> View Profile
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>                
             }

@@ -22,11 +22,12 @@
     }
 }
 
-@section headerNavItems {
-    <li class="nav-item pr-2">
-        <a asp-controller="Blog" asp-action="Index" class="nav-link btn btn-default btn-sm">
-            <i class="fas fa-arrow-left"></i> Back to list
-        </a>
+@section headerLeftNavItems 
+{
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="blog" asp-action="index">
+        <span class="text-uppercase">Blog about coding & design</span>
+      </a>
     </li>
     
     @if (User.Identity.IsAuthenticated)
@@ -41,8 +42,7 @@
             <button type="button" class="nav-link btn btn-default btn-sm" onclick="deletePostB(this, @Model.Id, callbackToList)"><i class="fas fa-times"></i> Delete</button>            
         </li>
 
-    }
-    
+    }    
 }
 
 <div class="card card-widget card-blog-post @collapsedCard(@showFullPost)">
@@ -50,7 +50,7 @@
     <div class="card-header">
         <div class="user-block">
             <img class="img-circle elevation-2" gravatar-for="@Model.CustomUser" alt="User Image" />
-            <span class="username">
+            <span class="title">
                 <a href="@Model.GetLink()">@Model.Title</a>
             </span>
             <span class="categories">
@@ -102,7 +102,7 @@
                     <button type="button" class="btn btn-tool" onclick="deletePostB(this, @Model.Id, callbackRemove)"><i class="fas fa-times"></i></button>
                 }
             }
-             
+            
         </div><!--/.card-tools-->
     </div><!--./card-header-->
     <div class="card-body">

@@ -6,25 +6,131 @@
     @RenderSection("head", required: false)
 }
 
-@section headerNavItems {
-    @RenderSection("headerNavItems", required: false)
+@section headerLeftNavItems {
+    @RenderSection("headerLeftNavItems", required: false)
+}
+
+@section headerRightNavItems {
+    @RenderSection("headerRightNavItems", required: false)
+}
+
+@section headerDropdownRightNavItems {
+    @RenderSection("headerDropdownRightNavItems", required: false)
+}
+
+@section controlSidebar
+{
+  <div class="maxi">
+    <div class="border-xl border-top border-primary"></div>
+    <div class="text-center p-4">
+        <h1 class="text-primary display-3"><i class="fas fa-blog nav-icon"></i></h1>
+        <p class="text-light text-uppercase">About coding & design</p>
+    </div>
+
+    <div class="border-top border-bottom border-light-grey bg-grey p-4">
+        <span class="text-primary text-uppercase"><strong>Social</strong></span>
+        <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
+    </div>
+
+    <div class="bg-grey">
+        <ul>
+            <li class=" px-4">
+                <i class="fas fa-share pr-2"></i>
+                Shares
+                <span class="float-right text-primary">12</span>
+            </li>
+            <li class=" px-4">
+                <i class="fas fa-thumbs-up pr-2"></i>
+                Likes
+                <span class="float-right text-primary">26</span>
+            </li>
+            <li class=" px-4">
+                <i class="fas fa-comments pr-2"></i>
+                Comments
+                <span class="float-right text-primary">33</span>
+            </li>
+        </ul>        
+    </div>
+    <div class="border-bottom border-light-grey bg-grey pt-0 p-4">
+        <span class="text-primary text-uppercase"><strong>Categories</strong></span>
+        <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
+    </div>
+
+    <div class="bg-grey">
+        <ul>
+            <li class=" px-4">
+                Classes and instances
+                <i class="bullet float-right bg-primary"></i>
+            </li>
+            <li class=" px-4">
+                Computed properties
+                <i class="bullet float-right bg-primary"></i>
+            </li>
+            <li class=" px-4">
+                Review
+                <i class="bullet float-right bg-primary"></i>
+            </li>
+        </ul>        
+    </div>
+  </div>
+  <div class="mini">
+      <div class="border-bottom border-light-grey h-70 text-center">
+            <div class="border-xl border-top border-primary"></div>
+            <h3 class="text-primary py-3"><i class="fas fa-blog nav-icon"></i></h3>
+        </div>
+      
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-primary text-uppercase"><strong>Social</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="text-center">
+                  <i class="fas fa-share"></i>
+              </li>
+              <li class="text-center">
+                  <i class="fas fa-thumbs-up"></i>
+              </li>
+              <li class="text-center">
+                  <i class="fas fa-comments"></i>
+              </li>
+          </ul>        
+      </div>
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-primary text-uppercase"><strong>Categ</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="text-center">
+                  C#
+              </li>
+              <li class="text-center">
+                  .Net
+              </li>
+              <li class="text-center">
+                  JS
+              </li>
+          </ul>        
+      </div>
+  </div>
 }
 
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2">
+            <!--<div class="col-md-2">
                 <partial name="Sidebar" />
-            </div><!--/.col-->
-            <div class="col-md-7">
+            </div>--><!--/.col-->
+            <div class="col-md-12">
 
                 @RenderBody()
 
             </div><!--/.col-->
-            <div class="col-md-3">
-                @await Component.InvokeAsync("Chat")
+            <!--<div class="col-md-3">
+                at_sigle await Component.InvokeAsync("Chat")
                 <com>
-            </div>
+            </div>-->
             <!-- /.col -->
         </div><!--/.row-->
     </div><!--/.container-fluid-->

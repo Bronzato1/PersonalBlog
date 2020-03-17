@@ -4,83 +4,271 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="text-danger font-weight-bold"><i class="fas fa-music nav-icon"></i> Radios</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Radios</a></li>
-              <li class="breadcrumb-item active">Version 1.0</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+@section controlSidebar
+{
+  <div class="maxi">
+    <div class="border-xl border-top border-danger"></div>
+    <div class="text-center p-4">
+        <h1 class="text-danger display-3"><i class="fas fa-music nav-icon"></i></h1>
+        <p class="text-white text-uppercase">Radios around the world</p>
     </div>
-    <!-- /.content-header -->
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+    <div class="border-top border-bottom border-light-grey bg-grey p-4">
+        <span class="text-danger text-uppercase"><strong>MENU 1</strong></span>
+        <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
+    </div>
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
+    <div class="bg-grey">
+        <ul>
+            <li class=" px-4">
+                <i class="fas fa-cube pr-2"></i>
+                The cube
+                <span class="float-right text-white">12</span>
+            </li>
+            <li class=" px-4">
+                <i class="fas fa-atlas pr-2"></i>
+                Worldwide
+                <span class="float-right text-white">26</span>
+            </li>
+            <li class=" px-4">
+                <i class="fas fa-atom pr-2"></i>
+                Atomic nature
+                <span class="float-right text-white">33</span>
+            </li>
+        </ul>        
+    </div>
+    <div class="border-bottom border-light-grey bg-grey pt-0 p-4">
+        <span class="text-danger text-uppercase"><strong>MENU 2</strong></span>
+        <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
+    </div>
 
-                <a href="#" class="card-link text-danger">Card link</a>
-                <a href="#" class="card-link text-danger">Another link</a>
-              </div>
-            </div>
-
-            <div class="card card-danger card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link text-danger">Card link</a>
-                <a href="#" class="card-link text-danger">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-danger">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-danger card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-danger">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
+    <div class="bg-grey">
+        <ul>
+            <li class=" px-4">
+                Users around the world
+                <i class="bullet float-right bg-white"></i>
+            </li>
+            <li class=" px-4">
+                Most viewed posts
+                <i class="bullet float-right bg-white"></i>
+            </li>
+            <li class=" px-4">
+                Recent connections
+                <i class="bullet float-right bg-white"></i>
+            </li>
+        </ul>        
+    </div>
+  </div>
+  <div class="mini">
+      <div class="border-bottom border-light-grey h-70 text-center">
+            <div class="border-xl border-top border-danger"></div>
+            <h3 class="text-danger py-3"><i class="fas fa-music nav-icon"></i></h3>
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-danger text-uppercase"><strong>MENU 1</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is my magic cube">
+                <a href="#" class="nav-link p-3">
+                  <i class="fas fa-cube"></i>
+                </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="The world of warcraft">
+                <a href="#" class="nav-link p-3">
+                  <i class="fas fa-atlas"></i>
+                </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Atomic war">
+                <a href="#" class="nav-link p-3">
+                  <i class="fas fa-atom"></i>
+                </a>
+              </li>
+          </ul>        
+      </div>
+      
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-danger text-uppercase"><strong>MENU 2</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is the first item">
+                  <a href="#" class="nav-link p-3">
+                    X1
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Here is the second">
+                  <a href="#" class="nav-link p-3">
+                    X2
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Finally the third">
+                  <a href="#" class="nav-link p-3">
+                    X3
+                  </a>
+              </li>
+          </ul>        
+      </div>
+      
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-danger text-uppercase"><strong>MENU 3</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is the first item">
+                  <a href="#" class="nav-link p-3">
+                    X1
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Here is the second">
+                  <a href="#" class="nav-link p-3">
+                    X2
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Finally the third">
+                  <a href="#" class="nav-link p-3">
+                    X3
+                  </a>
+              </li>
+          </ul>        
+      </div>      
+
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-danger text-uppercase"><strong>MENU 4</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is the first item">
+                  <a href="#" class="nav-link p-3">
+                    X1
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Here is the second">
+                  <a href="#" class="nav-link p-3">
+                    X2
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Finally the third">
+                  <a href="#" class="nav-link p-3">
+                    X3
+                  </a>
+              </li>
+          </ul>        
+      </div>      
+
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-danger text-uppercase"><strong>MENU 5</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is the first item">
+                  <a href="#" class="nav-link p-3">
+                    X1
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Here is the second">
+                  <a href="#" class="nav-link p-3">
+                    X2
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Finally the third">
+                  <a href="#" class="nav-link p-3">
+                    X3
+                  </a>
+              </li>
+          </ul>        
+      </div>      
+  </div>
+}
+
+@section headerLeftNavItems 
+{
+    <li class="nav-item">
+      <a class="nav-link" asp-controller="radios" asp-action="index">
+        <span class="text-uppercase">Radios</span>
+      </a>
+    </li>
+}
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+
+            <a href="#" class="card-link text-danger">Card link</a>
+            <a href="#" class="card-link text-danger">Another link</a>
+          </div>
+        </div>
+
+        <div class="card card-danger card-outline">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+            <a href="#" class="card-link text-danger">Card link</a>
+            <a href="#" class="card-link text-danger">Another link</a>
+          </div>
+        </div><!-- /.card -->
+      </div>
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Special title treatment</h6>
+
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-danger">Go somewhere</a>
+          </div>
+        </div>
+
+        <div class="card card-danger card-outline">
+          <div class="card-header">
+            <h5 class="m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Special title treatment</h6>
+
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-danger">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-6 -->
     </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+
+@section scripts
+{
+  <script>
+
+    $('[data-toggle="tooltip"]').tooltip
+    ({
+      html: true
+    });
+
+
+  </script>
+}

@@ -8,14 +8,12 @@
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
 
-@section headerNavItems 
+@section headerLeftNavItems 
 {
-    <li class="nav-item pr-2 d-none d-sm-block">
-      <a class="nav-link btn btn-default btn-sm" href="#"onclick="expandAll()"><i class="fas fa-plus"></i> Expand</a>
-    </li>
-
-    <li class="nav-item pr-2 d-none d-sm-block">
-      <a class="nav-link btn btn-default btn-sm" href="#"onclick="collapseAll()"><i class="fas fa-minus"></i> Collapse</a>
+    <li class="nav-item">
+      <a class="nav-link" asp-controller="blog" asp-action="index">
+        <span class="text-uppercase">Blog about coding & design</span>
+      </a>
     </li>
 
     @if (User.Identity.IsAuthenticated)
@@ -38,87 +36,96 @@
     }
 }
 
+@section headerRightNavItems
+{
+}
+
+@section headerDropdownRightNavItems
+{
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="#"onclick="expandAll()"><i class="fas fa-plus pr-2"></i> Expand all blog posts</a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="#"onclick="collapseAll()"><i class="fas fa-minus pr-2"></i> Collapse all blog posts</a>
+}
+
+
 @foreach (var post in Model)
 {
-    <partial name="Post" model="post" />
+  <partial name="Post" model="post" />
 }
 
 @section scripts 
 {
-    <script>
+  <script>
+    // ┌────────────┐
+    // │ Expand All │
+    // └────────────┘
 
-      // ┌────────────┐
-      // │ Expand All │
-      // └────────────┘
+    expandAll = function() 
+    {
+      $('.card-blog-post').CardWidget('expand');
+    }
 
-      expandAll = function() 
-      {
-        $('.card-blog-post').CardWidget('expand');
+    // ┌──────────────┐
+    // │ Collapse All │
+    // └──────────────┘
+
+    collapseAll = function()
+    {
+      $('.card-blog-post').CardWidget('collapse');
+    }
+
+    // ┌──────────────┐
+    // │ Delete Posts │
+    // └──────────────┘
+
+    deletePosts = function()
+    {
+      var checkGridSelection = "";
+      var selected = $(".deletePosts:checked").map(function () {
+        checkGridSelection = "Selected";
+        return this.value;
+      }).get();
+
+      if (checkGridSelection == "Selected") {
+          var r = confirm("The selected group(s) will be deleted. Do you want to continue ?");
+          if (r == true) {
+              var ids = selected.join(";");
+              var serviceURL = '/Blog/DeletePosts/' + ids;
+              $.ajax({
+                  type: 'Post',
+                  cache: false,
+                  url: serviceURL,
+                  dataType: "json",
+                  error: function (result) {
+                    alert("error");
+                  },
+                  success: function (data) {
+                    if (data.deleted && data.total)
+                      alert('Succeed: ' + data.deleted + '/' + data.total);
+                    document.location.reload();
+                  }
+              });
+          }
       }
+    }
 
-      // ┌──────────────┐
-      // │ Collapse All │
-      // └──────────────┘
+    // ┌────────────┐
+    // │ Select All │
+    // └────────────┘
+    
+    selectAll = function()
+    {
+      $('input:checkbox').prop('checked', true);
+    }
 
-      collapseAll = function()
-      {
-        $('.card-blog-post').CardWidget('collapse');
-      }
-
-      // ┌──────────────┐
-      // │ Delete Posts │
-      // └──────────────┘
-
-      deletePosts = function()
-      {
-        var checkGridSelection = "";
-        var selected = $(".deletePosts:checked").map(function () {
-          checkGridSelection = "Selected";
-          return this.value;
-        }).get();
-
-        if (checkGridSelection == "Selected") {
-            var r = confirm("The selected group(s) will be deleted. Do you want to continue ?");
-            if (r == true) {
-                var ids = selected.join(";");
-                var serviceURL = '/Blog/DeletePosts/' + ids;
-                $.ajax({
-                    type: 'Post',
-                    cache: false,
-                    url: serviceURL,
-                    dataType: "json",
-                    error: function (result) {
-                      alert("error");
-                    },
-                    success: function (data) {
-                      if (data.deleted && data.total)
-                        alert('Succeed: ' + data.deleted + '/' + data.total);
-                      document.location.reload();
-                    }
-                });
-            }
-        }
-      }
-
-      // ┌────────────┐
-      // │ Select All │
-      // └────────────┘
-      
-      selectAll = function()
-      {
-        $('input:checkbox').prop('checked', true);
-      }
-
-      // ┌──────────────┐
-      // │ Unselect All │
-      // └──────────────┘
-      
-      unselectAll = function()
-      {
-        $('input:checkbox').prop('checked', false);
-      }
-
-      
-
-    </script>
+    // ┌──────────────┐
+    // │ Unselect All │
+    // └──────────────┘
+    
+    unselectAll = function()
+    {
+      $('input:checkbox').prop('checked', false);
+    }
+  </script>
 }

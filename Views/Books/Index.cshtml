@@ -4,83 +4,173 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="text-warning font-weight-bold"><i class="fas fa-book nav-icon"></i> Books</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Books</a></li>
-              <li class="breadcrumb-item active">Version 1.0</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+@section controlSidebar
+{
+  <div class="maxi">
+    <div class="border-xl border-top border-warning"></div>
+    <div class="text-center p-4">
+        <h1 class="text-warning display-3"><i class="fas fa-book nav-icon"></i></h1>
+        <p class="text-white text-uppercase">Best books to read</p>
     </div>
-    <!-- /.content-header -->
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+    <div class="border-top border-bottom border-light-grey bg-grey p-4">
+        <span class="text-warning text-uppercase"><strong>MENU 1</strong></span>
+        <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
+    </div>
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
+    <div class="bg-grey">
+        <ul>
+            <li class=" px-4">
+                <i class="fas fa-cube pr-2"></i>
+                The cube
+                <span class="float-right text-white">12</span>
+            </li>
+            <li class=" px-4">
+                <i class="fas fa-atlas pr-2"></i>
+                Worldwide
+                <span class="float-right text-white">26</span>
+            </li>
+            <li class=" px-4">
+                <i class="fas fa-atom pr-2"></i>
+                Atomic nature
+                <span class="float-right text-white">33</span>
+            </li>
+        </ul>        
+    </div>
+    <div class="border-bottom border-light-grey bg-grey pt-0 p-4">
+        <span class="text-warning text-uppercase"><strong>MENU 2</strong></span>
+        <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
+    </div>
 
-                <a href="#" class="card-link text-warning">Card link</a>
-                <a href="#" class="card-link text-warning">Another link</a>
-              </div>
-            </div>
-
-            <div class="card card-warning card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link text-warning">Card link</a>
-                <a href="#" class="card-link text-warning">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-warning">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-warning card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-warning">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
+    <div class="bg-grey">
+        <ul>
+            <li class=" px-4">
+                Users around the world
+                <i class="bullet float-right bg-white"></i>
+            </li>
+            <li class=" px-4">
+                Most viewed posts
+                <i class="bullet float-right bg-white"></i>
+            </li>
+            <li class=" px-4">
+                Recent connections
+                <i class="bullet float-right bg-white"></i>
+            </li>
+        </ul>        
+    </div>
+  </div>
+  <div class="mini">
+      <div class="border-bottom border-light-grey h-70 text-center">
+            <div class="border-xl border-top border-warning"></div>
+            <h3 class="text-warning py-3"><i class="fas fa-book nav-icon"></i></h3>
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-warning text-uppercase"><strong>MENU 1</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="text-center">
+                  <i class="fas fa-cube"></i>
+              </li>
+              <li class="text-center">
+                  <i class="fas fa-atlas"></i>
+              </li>
+              <li class="text-center">
+                  <i class="fas fa-atom"></i>
+              </li>
+          </ul>        
+      </div>
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-warning text-uppercase"><strong>MENU 2</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="text-center">
+                  x1
+              </li>
+              <li class="text-center">
+                  z2
+              </li>
+              <li class="text-center">
+                  y3
+              </li>
+          </ul>        
+      </div>
+  </div>
+}
+
+@section headerLeftNavItems 
+{
+    <li class="nav-item">
+      <a class="nav-link" asp-controller="books" asp-action="index">
+        <span class="text-uppercase">Books</span>
+      </a>
+    </li>
+}
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+
+            <a href="#" class="card-link text-warning">Card link</a>
+            <a href="#" class="card-link text-warning">Another link</a>
+          </div>
+        </div>
+
+        <div class="card card-warning card-outline">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+            <a href="#" class="card-link text-warning">Card link</a>
+            <a href="#" class="card-link text-warning">Another link</a>
+          </div>
+        </div><!-- /.card -->
+      </div>
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Special title treatment</h6>
+
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-warning">Go somewhere</a>
+          </div>
+        </div>
+
+        <div class="card card-warning card-outline">
+          <div class="card-header">
+            <h5 class="m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Special title treatment</h6>
+
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-warning">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-6 -->
     </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
