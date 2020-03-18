@@ -10,12 +10,12 @@ using PersonalBlog.Models;
 namespace PersonalBlog.TagHelpers
 {
     [HtmlTargetElement("*", Attributes = ForAttributeName)]
-    public class BackgroundColorForRoleTagHelper : TagHelper
+    public class CircleColorForRoleTagHelper : TagHelper
     {
-        private const string ForAttributeName = "background-color-for-role";
+        private const string ForAttributeName = "circle-color-for-role";
         private readonly UserManager<CustomUser> _userManager;
 
-        public BackgroundColorForRoleTagHelper(UserManager<CustomUser> userManager)
+        public CircleColorForRoleTagHelper(UserManager<CustomUser> userManager)
         {
             _userManager = userManager;
         }
@@ -42,13 +42,13 @@ namespace PersonalBlog.TagHelpers
             var color = String.Empty;
 
             if (isAdmin)
-                color = "bg-admin";
+                color = "admin-user-img";
                 
             if (isAuthor)
-                color = "bg-author";
+                color = "author-user-img";
                 
             if (isVisitor)
-                color = "bg-visitor";
+                color = "visitor-user-img";
              
             var classAttr = output.Attributes.FirstOrDefault(a => a.Name == "class");
 

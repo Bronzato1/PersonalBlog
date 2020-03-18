@@ -15,26 +15,38 @@
 
     </STYLE>
 }
+
+
+@section headerLeftNavItems 
+{
+    <li class="nav-item">
+      <a class="nav-link" asp-controller="users" asp-action="index">
+        <span class="text-uppercase">Users</span>
+      </a>
+    </li>
+}
+
 <!-- Main content -->
 <section class="content">
 
     <!-- Default box -->
-    <div class="card card-solid">
+    <div class="card card-solid bg-transparent shadow-none">
     <div class="card-body pb-0">
         <div class="row d-flex align-items-stretch">
             @foreach (var user in Model)
             {
                 <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                    <div class="user-profile card w-100" background-color-for-role="@user">
-                        <div class="card-header" border-bottom-0">
-                            <span denomination-for-role="@user" foreground-color-for-role="@user"></span>
+                    <div class="user-profile bg-light card w-100">
+                        <div class="card-header border-bottom-0">
+                            <i class="bullet elevation-1" background-color-for-role="@user"></i>
+                            <span denomination-for-role="@user"></span>
                         </div>
                         <div class="card-body py-0">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="lead"><strong foreground-color-for-role="@user">@user.FirstName @user.LastName</strong></h2>
-                                    <p class="text-sm" foreground-color-for-role="@user">@user.Expertise</p>
-                                    <ul class="ml-4 mb-0 fa-ul" foreground-color-for-role="@user">
+                                    <h2 class="lead"><strong>@user.FirstName @user.LastName</strong></h2>
+                                    <p class="text-sm">@user.Expertise</p>
+                                    <ul class="ml-4 mb-0 fa-ul">
                                         @if (user.Status != null)
                                         {
                                             <li class="small">
@@ -46,45 +58,27 @@
                                                 </p>
                                             </li>
                                         }
-                                        @if (user.Location != null)
-                                        {
-                                            <li class="small">
-                                                <span class="fa-li">
-                                                    <i class="fas fa-lg fa-map-marker-alt"></i>
-                                                </span> 
-                                                <p class="pre-line">
-                                                    @user.Location
-                                                </p>
-                                            </li>
-                                        }
-                                        @if (user.Note != null)
-                                        {
-                                            <li class="small">
-                                                <span class="fa-li">
-                                                    <i class="fas fa-lg fa-file-alt"></i>
-                                                </span>
-                                                <p class="pre-line">
-                                                    @user.Note
-                                                </p>
-                                            </li>
-                                        }
-                                        
-                                        </ul>
+                                    </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img gravatar-for="@user" alt="" class="img-circle img-fluid elevation-2" />
+                                    <img gravatar-for="@user" circle-color-for-role="@user" alt="" class="img-circle img-fluid elevation-1" />
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <div class="text-right">
-                                <a href="#" class="btn btn-sm" button-color-for-role="@user">
+                        <div class="card-footer bg-transparent">
+                            <div class="float-left pt-1">
+                                <div class="progress border border-dark">
+                                    <div class="progress-bar text-dark" background-color-for-role="@user" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">&nbsp;&nbsp; Quiz level 3 &nbsp;&nbsp;</div>
+                                </div>
+                            </div>
+                            <div class="float-right pt-1">
+                                <a href="#" class="btn btn-sm btn-outline-dark">
                                     <i class="fas fa-envelope"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm" button-color-for-role="@user">
+                                <a href="#" class="btn btn-sm btn-outline-dark">
                                     <i class="fas fa-comments"></i>
                                 </a>
-                                <a asp-controller="users" asp-action="profile" asp-route-fullName="@user.FirstName@user.LastName" class="btn btn-sm" button-color-for-role="@user">
+                                <a class="btn btn-sm btn-outline-dark" asp-controller="users" asp-action="profile" asp-route-fullName="@user.FirstName@user.LastName">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                             </div>
@@ -95,7 +89,7 @@
         </div>
     </div>
     <!-- /.card-body -->
-    <div class="card-footer">
+    <div class="card-footer bg-transparent">
         <nav aria-label="Contacts Page Navigation">
         <ul class="pagination justify-content-center m-0">
             <li class="page-item active"><a class="page-link" href="#">1</a></li>

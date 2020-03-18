@@ -4,6 +4,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section head 
+{
+  <style>   
+    .outer {
+      display: table;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+    
+    .middle {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    
+    .inner {
+      margin-left: auto;
+      margin-right: auto;
+      width: 400px;
+    }
+  </style>
+}
+
 @section controlSidebar
 {
   <div class="maxi">
@@ -14,58 +39,75 @@
     </div>
 
     <div class="border-top border-bottom border-light-grey bg-grey p-4">
-        <span class="text-danger text-uppercase"><strong>MENU 1</strong></span>
+        <span class="text-danger text-uppercase"><strong>EUROPE</strong></span>
         <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
     </div>
 
     <div class="bg-grey">
         <ul>
             <li class="nav-item p-0">
-              <a href="#" class="nav-link p-4">
-                <i class="fas fa-cube pr-2"></i>
-                The cube
+              <a href="#" class="nav-link px-4 py-2">
+                <img src="https://cdn2.iconfinder.com/data/icons/flags_gosquared/64/France_flat.png" class="flag" />
+                France
                 <span class="float-right text-white">12</span>
               </a>
             </li>
             <li class="nav-item p-0">
-              <a href="#" class="nav-link p-4">
-                <i class="fas fa-atlas pr-2"></i>
-                Worldwide
+              <a href="#" class="nav-link px-4 py-2">
+                <img src="https://cdn2.iconfinder.com/data/icons/flags_gosquared/64/Belgium_flat.png" class="flag" />
+                Belgium
                 <span class="float-right text-white">26</span>
               </a>
             </li>
             <li class="nav-item p-0">
-              <a href="#" class="nav-link p-4">
-                <i class="fas fa-atom pr-2"></i>
-                Atomic nature
+              <a href="#" class="nav-link px-4 py-2">
+                <img src="https://cdn2.iconfinder.com/data/icons/flags_gosquared/64/Portugal_flat.png" class="flag" />
+                Portugal
                 <span class="float-right text-white">33</span>
+              </a>
+            </li>
+            <li class="nav-item p-0">
+              <a href="#" class="nav-link px-4 py-2">
+                <img src="" class="flag" />
+                All radios from Europe
+                <span class="float-right text-white">576</span>
               </a>
             </li>
         </ul>        
     </div>
     <div class="border-bottom border-light-grey bg-grey pt-0 p-4">
-        <span class="text-danger text-uppercase"><strong>MENU 2</strong></span>
+        <span class="text-danger text-uppercase"><strong>ASIA</strong></span>
         <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
     </div>
 
     <div class="bg-grey">
         <ul>
             <li class="nav-item p-0">
-              <a href="#" class="nav-link p-4">
-                Users around the world
-                <i class="bullet float-right bg-white"></i>
+              <a href="#" class="nav-link px-4 py-2">
+                <img src="https://cdn2.iconfinder.com/data/icons/flags_gosquared/64/Cambodia_flat.png" class="flag" />
+                Cambodia
+                <span class="float-right text-white">42</span>
               </a>
             </li>
             <li class="nav-item p-0">
-              <a href="#" class="nav-link p-4">
-                Most viewed posts
-                <i class="bullet float-right bg-white"></i>
+              <a href="#" class="nav-link px-4 py-2">
+                <img src="https://cdn2.iconfinder.com/data/icons/flags_gosquared/64/China_flat.png" class="flag" />
+                China
+                <span class="float-right text-white">17</span>
               </a>
             </li>
             <li class="nav-item p-0">
-              <a href="#" class="nav-link p-4">
-                Recent connections
-                <i class="bullet float-right bg-white"></i>
+              <a href="#" class="nav-link px-4 py-2">
+                <img src="https://cdn2.iconfinder.com/data/icons/flags_gosquared/64/India_flat.png" class="flag" />
+                India
+                <span class="float-right text-white">53</span>
+              </a>
+            </li>
+            <li class="nav-item p-0">
+              <a href="#" class="nav-link px-4 py-2">
+                <img src="" class="flag" />
+                All radios from Asia
+                <span class="float-right text-white">952</span>
               </a>
             </li>
         </ul>        
@@ -78,120 +120,116 @@
         </div>
       
       <div class="border-bottom border-light-grey bg-grey text-center py-2">
-          <span class="text-danger text-uppercase"><strong>MENU 1</strong></span>
+          <span class="text-danger text-uppercase"><strong>EUROPE</strong></span>
       </div>
 
       <div class="bg-grey">
           <ul>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is my magic cube">
-                <a href="#" class="nav-link p-3">
-                  <i class="fas fa-cube"></i>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="France">
+                <a href="#" class="nav-link p-2">
+                  FRA
                 </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="The world of warcraft">
-                <a href="#" class="nav-link p-3">
-                  <i class="fas fa-atlas"></i>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Belgium">
+                <a href="#" class="nav-link p-2">
+                  BEL
                 </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Atomic war">
-                <a href="#" class="nav-link p-3">
-                  <i class="fas fa-atom"></i>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Portugal">
+                <a href="#" class="nav-link p-2">
+                  PRT
                 </a>
               </li>
-          </ul>        
-      </div>
-      
-      <div class="border-bottom border-light-grey bg-grey text-center py-2">
-          <span class="text-danger text-uppercase"><strong>MENU 2</strong></span>
-      </div>
-
-      <div class="bg-grey">
-          <ul>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is the first item">
-                  <a href="#" class="nav-link p-3">
-                    X1
-                  </a>
-              </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Here is the second">
-                  <a href="#" class="nav-link p-3">
-                    X2
-                  </a>
-              </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Finally the third">
-                  <a href="#" class="nav-link p-3">
-                    X3
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="All radios from Europe">
+                  <a href="#" class="nav-link p-2">
+                    ...
                   </a>
               </li>
           </ul>        
       </div>
       
       <div class="border-bottom border-light-grey bg-grey text-center py-2">
-          <span class="text-danger text-uppercase"><strong>MENU 3</strong></span>
+          <span class="text-danger text-uppercase"><strong>ASIA</strong></span>
       </div>
 
       <div class="bg-grey">
           <ul>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is the first item">
-                  <a href="#" class="nav-link p-3">
-                    X1
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Cambodia">
+                  <a href="#" class="nav-link p-2">
+                    KHM
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Here is the second">
-                  <a href="#" class="nav-link p-3">
-                    X2
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="China">
+                  <a href="#" class="nav-link p-2">
+                    CHN
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Finally the third">
-                  <a href="#" class="nav-link p-3">
-                    X3
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="India">
+                  <a href="#" class="nav-link p-2">
+                    IND
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="All radios from Asia">
+                  <a href="#" class="nav-link p-2">
+                    ...
+                  </a>
+              </li>
+          </ul>        
+      </div>
+      
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-danger text-uppercase"><strong>AFRICA</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Cameroon">
+                  <a href="#" class="nav-link p-2">
+                    CMR
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Madagascar">
+                  <a href="#" class="nav-link p-2">
+                    MDG
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="South Africa">
+                  <a href="#" class="nav-link p-2">
+                    ZAF
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="All radios from Africa">
+                  <a href="#" class="nav-link p-2">
+                    ...
                   </a>
               </li>
           </ul>        
       </div>      
 
       <div class="border-bottom border-light-grey bg-grey text-center py-2">
-          <span class="text-danger text-uppercase"><strong>MENU 4</strong></span>
+          <span class="text-danger text-uppercase"><strong>AMERICA</strong></span>
       </div>
 
       <div class="bg-grey">
           <ul>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is the first item">
-                  <a href="#" class="nav-link p-3">
-                    X1
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Costa Rica">
+                  <a href="#" class="nav-link p-2">
+                    CRI
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Here is the second">
-                  <a href="#" class="nav-link p-3">
-                    X2
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Canada">
+                  <a href="#" class="nav-link p-2">
+                    CAN
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Finally the third">
-                  <a href="#" class="nav-link p-3">
-                    X3
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="United States">
+                  <a href="#" class="nav-link p-2">
+                    USA
                   </a>
               </li>
-          </ul>        
-      </div>      
-
-      <div class="border-bottom border-light-grey bg-grey text-center py-2">
-          <span class="text-danger text-uppercase"><strong>MENU 5</strong></span>
-      </div>
-
-      <div class="bg-grey">
-          <ul>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="This is the first item">
-                  <a href="#" class="nav-link p-3">
-                    X1
-                  </a>
-              </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Here is the second">
-                  <a href="#" class="nav-link p-3">
-                    X2
-                  </a>
-              </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Finally the third">
-                  <a href="#" class="nav-link p-3">
-                    X3
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="All radios from America">
+                  <a href="#" class="nav-link p-2">
+                    ...
                   </a>
               </li>
           </ul>        
@@ -208,68 +246,13 @@
     </li>
 }
 
-<!-- Main content -->
-<div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the bulk of the card's
-              content.
-            </p>
-
-            <a href="#" class="card-link text-danger">Card link</a>
-            <a href="#" class="card-link text-danger">Another link</a>
-          </div>
-        </div>
-
-        <div class="card card-danger card-outline">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the bulk of the card's
-              content.
-            </p>
-            <a href="#" class="card-link text-danger">Card link</a>
-            <a href="#" class="card-link text-danger">Another link</a>
-          </div>
-        </div><!-- /.card -->
-      </div>
-      <!-- /.col-md-6 -->
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="m-0">Featured</h5>
-          </div>
-          <div class="card-body">
-            <h6 class="card-title">Special title treatment</h6>
-
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-danger">Go somewhere</a>
-          </div>
-        </div>
-
-        <div class="card card-danger card-outline">
-          <div class="card-header">
-            <h5 class="m-0">Featured</h5>
-          </div>
-          <div class="card-body">
-            <h6 class="card-title">Special title treatment</h6>
-
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-danger">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <!-- /.col-md-6 -->
+<div class="outer">
+  <div class="middle">
+    <div class="inner">
+      <h1 class="text-danger">Coming soon...</h1>
+      <p>Still under construction, come back later :)</p>
     </div>
-    <!-- /.row -->
-  </div><!-- /.container-fluid -->
+  </div>
 </div>
 
 @section scripts

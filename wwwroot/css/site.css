@@ -239,6 +239,15 @@ body.control-sidebar-mini.control-sidebar-open.control-sidebar-push-slide .main-
     margin-top: 10px;
 }
 
+.user-profile .bullet
+{
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+    display: inline-flex;
+}
+
 .h-70
 {
     height: 70px;
@@ -265,8 +274,8 @@ body.control-sidebar-mini.control-sidebar-open.control-sidebar-push-slide .main-
 
 .sidebar-mini .tooltip-inner {
     margin-right: -25px;
-    height: 59px;
-    line-height: 56px;
+    height: 43px;
+    line-height: 40px;
     padding: 0px 0px 0px 20px;
     background-color: #2b3034;
     border-radius: 0rem;
@@ -300,4 +309,49 @@ body.control-sidebar-mini.control-sidebar-open.control-sidebar-push-slide .main-
 
 .main-sidebar[class*='sidebar-dark-'] {
     background-color: #272c30;
+}
+
+.flag {
+    width: 25px;
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+
+.admin-user-img {
+    border: 3px solid gold;
+    margin: 0 auto;
+    padding: 3px;
+    width: 100px;
+}
+
+.author-user-img {
+    border: 3px solid aqua;
+    margin: 0 auto;
+    padding: 3px;
+    width: 100px;
+}
+
+.visitor-user-img {
+    border: 3px solid chocolate;
+    margin: 0 auto;
+    padding: 3px;
+    width: 100px;
+}
+
+.bg-admin {
+    background-color: gold !important;
+}
+
+.bg-author {
+    background-color: aqua !important;
+}
+
+.bg-visitor {
+    background-color: chocolate !important;
+}
+
+.user-profile .progress {
+    box-shadow: none;
+    height: 31px;
+    border-radius: 4px;
 }
