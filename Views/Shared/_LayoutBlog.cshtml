@@ -34,21 +34,24 @@
 
     <div class="bg-grey">
         <ul>
-            <li class=" px-4">
-                <i class="fas fa-share pr-2"></i>
-                Shares
-                <span class="float-right text-primary">12</span>
-            </li>
-            <li class=" px-4">
-                <i class="fas fa-thumbs-up pr-2"></i>
-                Likes
-                <span class="float-right text-primary">26</span>
-            </li>
-            <li class=" px-4">
-                <i class="fas fa-comments pr-2"></i>
-                Comments
-                <span class="float-right text-primary">33</span>
-            </li>
+            <li class="nav-item p-0">
+                  <a href="#" class="nav-link px-4 py-2">
+                    Share with your friends
+                    <span class="float-right"><i class="fas fa-share"></i></span>
+                  </a>
+              </li>
+              <li class="nav-item p-0">
+                  <a href="#" class="nav-link px-4 py-2">
+                    Like on facebook
+                    <span class="float-right"><i class="fas fa-thumbs-up"></i></span>
+                  </a>
+              </li>
+              <li class="nav-item p-0">
+                  <a href="#" class="nav-link px-4 py-2">
+                    Write a comment
+                    <span class="float-right"><i class="fas fa-comments"></i></span>
+                  </a>
+              </li>
         </ul>        
     </div>
     <div class="border-bottom border-light-grey bg-grey pt-0 p-4">
@@ -58,17 +61,35 @@
 
     <div class="bg-grey">
         <ul>
-            <li class=" px-4">
-                Classes and instances
-                <i class="bullet float-right bg-primary"></i>
+            <li class="nav-item p-0">
+                <a href="#" class="nav-link px-4 py-2">
+                C-Sharp
+                <span class="float-right text-white">C#</span>
+                </a>
             </li>
-            <li class=" px-4">
-                Computed properties
-                <i class="bullet float-right bg-primary"></i>
+            <li class="nav-item p-0">
+                <a href="#" class="nav-link px-4 py-2">
+                Microsoft.Net
+                <span class="float-right text-white">.Net</span>
+                </a>
             </li>
-            <li class=" px-4">
-                Review
-                <i class="bullet float-right bg-primary"></i>
+            <li class="nav-item p-0">
+                <a href="#" class="nav-link px-4 py-2">
+                Framework Aurelia
+                <span class="float-right text-white">Au</span>
+                </a>
+            </li>
+            <li class="nav-item p-0">
+                <a href="#" class="nav-link px-4 py-2">
+                JavaScript
+                <span class="float-right text-white">Js</span>
+                </a>
+            </li>
+            <li class="nav-item p-0">
+                <a href="#" class="nav-link px-4 py-2">
+                TypeScript
+                <span class="float-right text-white">Ts</span>
+                </a>
             </li>
         </ul>        
     </div>
@@ -85,14 +106,20 @@
 
       <div class="bg-grey">
           <ul>
-              <li class="text-center">
-                  <i class="fas fa-share"></i>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Share with your friends">
+                  <a href="#" class="nav-link p-2">
+                    <i class="fas fa-share"></i>
+                  </a>
               </li>
-              <li class="text-center">
-                  <i class="fas fa-thumbs-up"></i>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Like on Facebook">
+                  <a href="#" class="nav-link p-2">
+                    <i class="fas fa-thumbs-up"></i>
+                  </a>
               </li>
-              <li class="text-center">
-                  <i class="fas fa-comments"></i>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Write a comment">
+                  <a href="#" class="nav-link p-2">
+                    <i class="fas fa-comments"></i>
+                  </a>
               </li>
           </ul>        
       </div>
@@ -102,14 +129,30 @@
 
       <div class="bg-grey">
           <ul>
-              <li class="text-center">
-                  C#
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="C-Sharp">
+                  <a href="#" class="nav-link p-2">
+                    C#
+                  </a>
               </li>
-              <li class="text-center">
-                  .Net
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Microsoft">
+                  <a href="#" class="nav-link p-2">
+                    .Net
+                  </a>
               </li>
-              <li class="text-center">
-                  JS
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Aurelia">
+                  <a href="#" class="nav-link p-2">
+                    Au
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="JavaScript">
+                  <a href="#" class="nav-link p-2">
+                    Js
+                  </a>
+              </li>
+              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="TypeScript">
+                  <a href="#" class="nav-link p-2">
+                    Ts
+                  </a>
               </li>
           </ul>        
       </div>
@@ -138,5 +181,9 @@
 
 @section scripts 
 {
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+    </script>
+    
     @RenderSection("scripts", required: false)
 }

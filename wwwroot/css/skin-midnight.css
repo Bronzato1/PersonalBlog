@@ -317,6 +317,10 @@
 .skin-midnight .card .login-card-body {
   background-color: rgba(0, 0, 0, 0.03);
 }
+.skin-midnight .card-blog-post.card
+{
+  background-color: #333a40;
+}
 .skin-midnight .card-header {
   border-bottom: 1px solid rgba(55, 55, 55, 0.125);
 }
@@ -409,7 +413,8 @@
   background-color: rgba(0,123,255,0.3);
   border-color: rgba(0,123,255,0.3);
 }
-.skin-midnight .bg-light {
+.skin-midnight .bg-light,
+.skin-midnight .bg-white {
   background-color: #272c30 !important;
 }
 .skin-midnight .btn-default {
@@ -525,4 +530,8 @@
 
 .skin-midnight a.btn-outline-dark:hover {
   color: white;
+}
+
+.skin-midnight .progress {
+  background-color: #2b3135;
 }

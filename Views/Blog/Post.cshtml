@@ -57,7 +57,7 @@
                 <ul>
                 @foreach (Category cat in Model.Categories)
                 {
-                    <li><a asp-controller="Blog" asp-action="Category" asp-route-category="@cat.Name.ToLowerInvariant()" asp-route-page=""><span class="badge bg-secondary">@cat.Name</span></a></li>
+                    <li><a asp-controller="Blog" asp-action="Category" asp-route-category="@cat.Name.ToLowerInvariant()" asp-route-page=""><span class="badge badge-outline">@cat.Name</span></a></li>
                 }
                 </ul>
             </span>
