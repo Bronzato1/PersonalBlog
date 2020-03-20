@@ -345,7 +345,7 @@ body.control-sidebar-maxi .mini {
 @media (min-width: 768px)
 {
     .content-wrapper {
-        padding: 20px;
+        ppppadding: 20px;
     }
 
     body.control-sidebar-maxi.control-sidebar-open.control-sidebar-push .content-wrapper, 

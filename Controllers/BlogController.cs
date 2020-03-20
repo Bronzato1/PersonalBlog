@@ -118,6 +118,7 @@ namespace PersonalBlog
                 CustomUser applicationUser = await _userManager.GetUserAsync(User);
                 string userEmail = applicationUser?.Email; // will give the user's Email
 
+                viewModel.Post.CustomUser = applicationUser;
                 viewModel.Post.CustomUserId = userId;
                 return View(viewModel);
             }

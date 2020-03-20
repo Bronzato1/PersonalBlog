@@ -8,6 +8,7 @@
     <title>@ViewData["Title"] | AdminLTE 3</title>
     <!-- Global -->
     <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/user-card.css">
     <link rel="stylesheet" href="~/css/skin-midnight.css">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css">
@@ -31,12 +32,12 @@
 
     @functions
     {
-        string isAuthenticated() 
+        bool isAuthenticated() 
         {
             if (User.Identity.IsAuthenticated)
-                return "d-none";
+                return true;
             else
-                return "";
+                return false;
         }
     }
   
@@ -64,10 +65,19 @@
                   <a class="dropdown-item" id="dark-mode-switch" onclick="darkModeSwitch(event)" href="#" title="Dark mode switch">
                       <i class="fas fa-moon pr-2"></i> Activation du mode nuit
                   </a>
-                  <div class="dropdown-divider @isAuthenticated()"></div>
-                  <a class="dropdown-item @isAuthenticated()" id="login" asp-area="Identity" asp-page="/Account/Login" title="Login">
-                    <i class="fas fa-key pr-2"></i> User login
-                  </a>
+                  
+                  @if (!isAuthenticated())
+                  {
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" id="login" asp-area="Identity" asp-page="/Account/Login" title="Login">
+                      <i class="fas fa-key pr-2"></i> User login
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" id="login" asp-area="Identity" asp-page="/Account/Register" title="Register">
+                      <i class="fas fa-key pr-2"></i> Register
+                    </a>
+                  }
+                  
                   @RenderSection("headerDropdownRightNavItems", required: false)
               </div>
           </li>

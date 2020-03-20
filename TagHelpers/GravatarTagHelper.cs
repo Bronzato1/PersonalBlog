@@ -18,8 +18,8 @@ namespace PersonalBlog.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             CustomUser user = (CustomUser)For.Model;
-            var email = user.UserName.ToLower();
 
+            var email = user.UserName.ToLower();
             var emailBytes = Encoding.ASCII.GetBytes(email);
             var hashBytes = new MD5CryptoServiceProvider().ComputeHash(emailBytes);
             var hash = new StringBuilder();

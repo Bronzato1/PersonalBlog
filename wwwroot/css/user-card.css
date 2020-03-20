@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
+html, body {
+  background: #FCEEB5;
+  font-family: Abel, Arial, Verdana, sans-serif;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.ucard {
+  width: 500px;
+  height: 250px;
+  background-color: #fff;
+  background: linear-gradient(#f8f8f8, #fff);
+  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+  /* border-radius: 6px; */
+  overflow: hidden;
+  position: relative;
+  /* margin: 20px auto; */
+  margin-top: 0;
+  border-bottom: 0.5px solid gainsboro;
+}
+
+.ucard h1 {
+  text-align: center;
+}
+
+.ucard .additional {
+  position: absolute;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(#EE786E, #EE786E);
+  transition: width 0.4s;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.ucard.green .additional {
+  background: linear-gradient(#A2CCB6, #A2CCB6);
+}
+
+.ucard.orange .additional {
+    background: linear-gradient(#f7ae5c, #f7ae5c);
+  }
+
+.ucard:hover .additional {
+  width: 100%;
+  /* border-radius: 0 5px 5px 0; */
+}
+
+.ucard .additional .user-card {
+  width: 150px;
+  height: 100%;
+  position: relative;
+  float: left;
+}
+
+.ucard .additional .user-card::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 10%;
+  right: -2px;
+  height: 80%;
+  border-left: 2px solid rgba(0,0,0,0.025);
+}
+
+.ucard .additional .user-card .level,
+.ucard .additional .user-card .points {
+  top: 15%;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: bold;
+  background: rgba(0,0,0,0.15);
+  padding: 0.125rem 0.75rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.ucard .additional .user-card .points {
+  top: 85%;
+}
+
+.ucard .additional .user-card svg {
+  top: 50%;
+}
+
+.ucard .additional .more-info {
+  width: 350px;
+  float: left;
+  position: absolute;
+  left: 150px;
+  height: 100%;
+}
+
+.ucard .additional .more-info h1 {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.ucard.green .additional .more-info h1 {
+  color: #224C36;
+}
+
+.ucard.orange .additional .more-info h1 {
+    color: #b36104;
+}
+
+.ucard .additional .coords {
+  margin: 0 1rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.ucard.green .additional .coords {
+  color: #325C46;
+}
+
+.ucard.orange .additional .coords {
+    color: #be6600;
+  }
+
+.ucard .additional .coords span + span {
+  float: right;
+}
+
+.ucard .additional .stats {
+  font-size: 2rem;
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  top: auto;
+  color: #fff;
+}
+
+.ucard.green .additional .stats {
+  color: #325C46;
+}
+
+.ucard.orange .additional .stats {
+    color: #9e5400;
+  }
+
+.ucard .additional .stats > div {
+  flex: 1;
+  text-align: center;
+}
+
+.ucard .additional .stats i {
+  display: block;
+}
+
+.ucard .additional .stats div.title {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.ucard .additional .stats div.value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+
+.ucard .additional .stats div.value.infinity {
+  font-size: 2.5rem;
+}
+
+.ucard .general {
+  width: 350px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 1rem;
+  padding-top: 0;
+  white-space: normal;
+}
+
+.ucard .general .more {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.9em;
+}
+
+.user-card img {
+    top: 30%;
+    left: 17%;
+    position: absolute;
+    width: 65%;
+    border: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+/* The heart of the matter */
+.testimonial-group > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+  }
+  .testimonial-group > .row > .col-xs-4 {
+    display: inline-block;
+    float: none;
+    /* padding: 0 10px; */
+  }
+  
+  @media (max-width: 767.98px)
+{
+  .ucard {
+    zoom: 0.82;
+  }
+}

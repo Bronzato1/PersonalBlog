@@ -27,85 +27,73 @@
 }
 
 <!-- Main content -->
-<section class="content">
+<section class="content testimonial-group">
+    <div class="row">
+        <div class="col-xs-4">
 
-    <!-- Default box -->
-    <div class="card card-solid bg-transparent shadow-none">
-    <div class="card-body pb-0">
-        <div class="row d-flex align-items-stretch">
-            @foreach (var user in Model)
-            {
-                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                    <div class="user-profile bg-white card w-100">
-                        <div class="card-header border-bottom-0">
-                            <i class="bullet elevation-1" background-color-for-role="@user"></i>
-                            <span denomination-for-role="@user"></span>
-                        </div>
-                        <div class="card-body py-0">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h2 class="lead"><strong>@user.FirstName @user.LastName</strong></h2>
-                                    <p class="text-sm">@user.Expertise</p>
-                                    <ul class="ml-4 mb-0 fa-ul">
-                                        @if (user.Status != null)
-                                        {
-                                            <li class="small">
-                                                <span class="fa-li">
-                                                    <i class="fas fa-lg fa-check-circle"></i>
-                                                </span> 
-                                                <p class="pre-line">
-                                                    @user.Status
-                                                </p>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                                <div class="col-5 text-center">
-                                    <img gravatar-for="@user" circle-color-for-role="@user" alt="" class="img-circle img-fluid elevation-1" />
-                                </div>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            if ( i == 0 )
+                continue;
+
+                <div class="ucard" color-for-level="@Model[i].Level">
+                    <div class="additional">
+                        <div class="user-card">
+                            <div class="level center">
+                            Level @Model[i].Level
                             </div>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <div class="float-left pt-1">
-                                <div class="progress border border-dark">
-                                    <div class="progress-bar text-dark" background-color-for-role="@user" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">&nbsp;&nbsp; Quiz level 3 &nbsp;&nbsp;</div>
-                                </div>
+                            <div class="points center">
+                            @Model[i].Points Points
                             </div>
-                            <div class="float-right pt-1">
-                                <a href="#" class="btn btn-sm btn-outline-dark">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                                <a href="#" class="btn btn-sm btn-outline-dark">
-                                    <i class="fas fa-comments"></i>
-                                </a>
-                                <a class="btn btn-sm btn-outline-dark" asp-controller="users" asp-action="profile" asp-route-fullName="@user.FirstName@user.LastName">
-                                    <i class="fas fa-user"></i> View Profile
-                                </a>
+                            <img gravatar-for="@Model[i]" alt="" class="img-circle img-fluid" />
+                        </div>
+                        <div class="more-info">
+                            <h1>@Model[i].FirstName @Model[i].LastName</h1>
+                            <div class="coords">
+                            <span denomination-for-role="@Model[i]"></span>
+                            <span>Joined @Html.DisplayFor(model => @Model[i].Joinded, "MonthYear")</span>
+                            </div>
+                            <div class="coords">
+                            <span>Position/Role</span>
+                            <span>@Model[i].Location</span>
+                            </div>
+                            <div class="stats">
+                            <div>
+                                <div class="title">Awards</div>
+                                <i class="fa fa-trophy"></i>
+                                <div class="value">@Model[i].Awards</div>
+                            </div>
+                            <div>
+                                <div class="title">Matches</div>
+                                <i class="fa fa-gamepad"></i>
+                                <div class="value">@Model[i].Matches</div>
+                            </div>
+                            <div>
+                                <div class="title">Badges</div>
+                                <i class="fas fa-gavel"></i>
+                                <div class="value">@Model[i].Badges</div>
+                            </div>
+                            <div>
+                                <div class="title">Coffees</div>
+                                <i class="fa fa-coffee"></i>
+                                <div class="value">@Model[i].Coffees</div>
+                            </div>
                             </div>
                         </div>
                     </div>
-                </div>                
+                    <div class="general">
+                        <h1>@Model[i].FirstName @Model[i].LastName</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a volutpat mauris, at molestie lacus. Nam vestibulum sodales odio ut pulvinar.</p>
+                        <span class="more">Mouse over the card for more info</span>
+                    </div>
+                </div>
+
+            if ( i % 4 == 0 )
+            {
+               @:</div><div class="col-xs-4">
             }
+        }
+
         </div>
     </div>
-    <!-- /.card-body -->
-    <div class="card-footer bg-transparent">
-        <nav aria-label="Contacts Page Navigation">
-        <ul class="pagination justify-content-center m-0">
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">6</a></li>
-            <li class="page-item"><a class="page-link" href="#">7</a></li>
-            <li class="page-item"><a class="page-link" href="#">8</a></li>
-        </ul>
-        </nav>
-    </div>
-    <!-- /.card-footer -->
-    </div>
-    <!-- /.card -->
-
 </section>
-<!-- /.content -->

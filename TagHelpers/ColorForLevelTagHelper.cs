@@ -10,12 +10,12 @@ using PersonalBlog.Models;
 namespace PersonalBlog.TagHelpers
 {
     [HtmlTargetElement("*", Attributes = ForAttributeName)]
-    public class CircleColorForRoleTagHelper : TagHelper
+    public class ColorForLevelTagHelper : TagHelper
     {
-        private const string ForAttributeName = "circle-color-for-role";
+        private const string ForAttributeName = "color-for-level";
         private readonly UserManager<CustomUser> _userManager;
 
-        public CircleColorForRoleTagHelper(UserManager<CustomUser> userManager)
+        public ColorForLevelTagHelper(UserManager<CustomUser> userManager)
         {
             _userManager = userManager;
         }
@@ -25,6 +25,8 @@ namespace PersonalBlog.TagHelpers
 
         public override async void Process(TagHelperContext context, TagHelperOutput output)
         {
+            var level = (int) For.Model;
+
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
@@ -35,21 +37,20 @@ namespace PersonalBlog.TagHelpers
                 throw new ArgumentNullException(nameof(output));
             }
 
-            var isAdmin = await _userManager.IsInRoleAsync((CustomUser)For.Model, "Admin");
-            var isAuthor = await _userManager.IsInRoleAsync((CustomUser)For.Model, "Author");
-            var isVisitor = await _userManager.IsInRoleAsync((CustomUser)For.Model, "Visitor");
-
             var color = String.Empty;
 
-            if (isAdmin)
-                color = "admin-user-img";
+            if (level==1)
+                color = "green";
                 
-            if (isAuthor)
-                color = "author-user-img";
+            if (level==2)
+                color = "orange";
                 
-            if (isVisitor)
-                color = "visitor-user-img";
-             
+            if (level==3)
+                color = "yellow";
+
+            if (level==4)
+                color = "blue";
+ 
             var classAttr = output.Attributes.FirstOrDefault(a => a.Name == "class");
 
             if (classAttr == null)

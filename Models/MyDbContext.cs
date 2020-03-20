@@ -377,6 +377,21 @@ namespace PersonalBlog.Models
         public string Networking { get; set; }
         [PersonalData]
         public string Note { get; set; }
+        [PersonalData]
+        public int Level { get; set; }
+        [PersonalData]
+        public int Points { get; set; }
+        [PersonalData]
+        public int Awards { get; set; }
+        [PersonalData]
+        public int Matches { get; set; }
+        [PersonalData]
+        public int Badges { get; set; }
+        [PersonalData]
+        public int Coffees { get; set; }
+        [PersonalData]
+        public DateTime Joinded { get; set; }
+        
     }
 
     public static class DbInitializer
