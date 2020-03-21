@@ -1,5 +1,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["customForeColor"] = "text-primary";
+    TempData["customBackColor"] = "bg-primary";
 }
 
 @section head {
@@ -21,7 +23,6 @@
 @section controlSidebar
 {
   <div class="maxi">
-    <div class="border-xl border-top border-primary"></div>
     <div class="text-center p-4">
         <h1 class="text-primary display-3"><i class="fas fa-blog nav-icon"></i></h1>
         <p class="text-light text-uppercase">About coding & design</p>
@@ -96,7 +97,6 @@
   </div>
   <div class="mini">
       <div class="border-bottom border-light-grey h-70 text-center">
-            <div class="border-xl border-top border-primary"></div>
             <h3 class="text-primary py-3"><i class="fas fa-blog nav-icon"></i></h3>
         </div>
       
@@ -106,17 +106,17 @@
 
       <div class="bg-grey">
           <ul>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Share with your friends">
+              <li class="nav-item text-center text-white p-0" data-toggle="tooltip" data-placement="left" title="Share with your friends">
                   <a href="#" class="nav-link p-2">
                     <i class="fas fa-share"></i>
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Like on Facebook">
+              <li class="nav-item text-center text-white p-0" data-toggle="tooltip" data-placement="left" title="Like on Facebook">
                   <a href="#" class="nav-link p-2">
                     <i class="fas fa-thumbs-up"></i>
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Write a comment">
+              <li class="nav-item text-center text-white p-0" data-toggle="tooltip" data-placement="left" title="Write a comment">
                   <a href="#" class="nav-link p-2">
                     <i class="fas fa-comments"></i>
                   </a>
@@ -129,27 +129,27 @@
 
       <div class="bg-grey">
           <ul>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="C-Sharp">
+              <li class="nav-item text-center text-white p-0" data-toggle="tooltip" data-placement="left" title="C-Sharp">
                   <a href="#" class="nav-link p-2">
                     C#
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Microsoft">
+              <li class="nav-item text-center text-white p-0" data-toggle="tooltip" data-placement="left" title="Microsoft">
                   <a href="#" class="nav-link p-2">
                     .Net
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="Aurelia">
+              <li class="nav-item text-center text-white p-0" data-toggle="tooltip" data-placement="left" title="Aurelia">
                   <a href="#" class="nav-link p-2">
                     Au
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="JavaScript">
+              <li class="nav-item text-center text-white p-0" data-toggle="tooltip" data-placement="left" title="JavaScript">
                   <a href="#" class="nav-link p-2">
                     Js
                   </a>
               </li>
-              <li class="nav-item text-center p-0" data-toggle="tooltip" data-placement="left" title="TypeScript">
+              <li class="nav-item text-center text-white p-0" data-toggle="tooltip" data-placement="left" title="TypeScript">
                   <a href="#" class="nav-link p-2">
                     Ts
                   </a>
@@ -159,13 +159,22 @@
   </div>
 }
 
+@section scripts 
+{
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+    </script>
+    
+    @RenderSection("scripts", required: false)
+}
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <!--<div class="col-md-2">
                 <partial name="Sidebar" />
             </div>--><!--/.col-->
-            <div class="col-md-12">
+            <div class="col-md-12 pt-3">
 
                 @RenderBody()
 
@@ -178,12 +187,3 @@
         </div><!--/.row-->
     </div><!--/.container-fluid-->
 </section><!--/.content-->
-
-@section scripts 
-{
-    <script>
-        $('[data-toggle="tooltip"]').tooltip();
-    </script>
-    
-    @RenderSection("scripts", required: false)
-}

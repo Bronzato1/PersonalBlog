@@ -40,17 +40,26 @@ namespace PersonalBlog.TagHelpers
             var color = String.Empty;
 
             if (level==1)
-                color = "green";
+                color = "level1";
                 
             if (level==2)
-                color = "orange";
+                color = "level2";
                 
             if (level==3)
-                color = "yellow";
+                color = "level3";
 
             if (level==4)
-                color = "blue";
+                color = "level4";
  
+            if (level==5)
+                color = "level5";
+
+            if (level==6)
+                color = "level6";
+
+            if (level==7)
+                color = "level7";
+
             var classAttr = output.Attributes.FirstOrDefault(a => a.Name == "class");
 
             if (classAttr == null)

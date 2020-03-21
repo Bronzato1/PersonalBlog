@@ -17,7 +17,7 @@ html, body {
   height: 250px;
   background-color: #fff;
   background: linear-gradient(#f8f8f8, #fff);
-  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+  /* box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4); */
   /* border-radius: 6px; */
   overflow: hidden;
   position: relative;
@@ -40,13 +40,68 @@ html, body {
   z-index: 2;
 }
 
-.ucard.green .additional {
-  background: linear-gradient(#A2CCB6, #A2CCB6);
+.level1-color {
+  background-color: #ffbaba;
+  color: black;
 }
 
-.ucard.orange .additional {
-    background: linear-gradient(#f7ae5c, #f7ae5c);
-  }
+.level2-color {
+    background-color: #fda4a4;
+    color: black;
+}
+
+.level3-color {
+  background-color: #fb8f8f;
+  color: black;
+}
+
+.level4-color {
+  background-color: #fa7d7d;
+  color: black;
+}
+
+.level5-color {
+  background-color: #fa6c6c;
+  color: black;
+}
+
+.level6-color {
+  background-color: #f95f5f;
+  color: black;
+}
+
+.level7-color {
+  background-color: #fa5151;
+  color: black;
+}
+
+.ucard.level1 .additional {
+  background: linear-gradient(#ffbaba, #ffbaba);
+}
+
+.ucard.level2 .additional {
+    background: linear-gradient(#fda4a4, #fda4a4);
+}
+
+.ucard.level3 .additional {
+  background: linear-gradient(#fb8f8f, #fb8f8f);
+}
+
+.ucard.level4 .additional {
+  background: linear-gradient(#fa7d7d, #fa7d7d);
+}
+
+.ucard.level5 .additional {
+  background: linear-gradient(#fa6c6c, #fa6c6c);
+}
+
+.ucard.level6 .additional {
+  background: linear-gradient(#f95f5f, #f95f5f);
+}
+
+.ucard.level7 .additional {
+  background: linear-gradient(#fa5151, #fa5151);
+}
 
 .ucard:hover .additional {
   width: 100%;
@@ -102,14 +157,35 @@ html, body {
 .ucard .additional .more-info h1 {
   color: #fff;
   margin-bottom: 0;
+  margin-top: 20px;
 }
 
-.ucard.green .additional .more-info h1 {
-  color: #224C36;
+.ucard.level1 .additional .more-info h1 {
+  color: #b57070;
 }
 
-.ucard.orange .additional .more-info h1 {
-    color: #b36104;
+.ucard.level2 .additional .more-info h1 {
+    color: #ca6e6e;
+}
+
+.ucard.level3 .additional .more-info h1 {
+  color: #b35656;
+}
+
+.ucard.level4 .additional .more-info h1 {
+  color: #b54747;
+}
+
+.ucard.level5 .additional .more-info h1 {
+  color: #af4040;
+}
+
+.ucard.level6 .additional .more-info h1 {
+  color: #a23737;
+}
+
+.ucard.level7 .additional .more-info h1 {
+  color: #a72323;
 }
 
 .ucard .additional .coords {
@@ -118,13 +194,40 @@ html, body {
   font-size: 1rem;
 }
 
-.ucard.green .additional .coords {
-  color: #325C46;
+@media (max-width:999px) {
+  .ucard .general,
+  .ucard .additional .coords {
+    font-size: 1.2rem;
+  } 
 }
 
-.ucard.orange .additional .coords {
-    color: #be6600;
-  }
+.ucard.level1 .additional .coords {
+  color: #b57070;
+}
+
+.ucard.level2 .additional .coords {
+    color: #ca6e6e;
+}
+
+.ucard.level3 .additional .coords {
+  color: #b35656;
+}
+
+.ucard.level4 .additional .coords {
+  color: #b54747;
+}
+
+.ucard.level5 .additional .coords {
+  color: #af4040;
+}
+
+.ucard.level6 .additional .coords {
+  color: #a23737;
+}
+
+.ucard.level7 .additional .coords {
+  color: #a72323;
+}
 
 .ucard .additional .coords span + span {
   float: right;
@@ -141,13 +244,33 @@ html, body {
   color: #fff;
 }
 
-.ucard.green .additional .stats {
-  color: #325C46;
+.ucard.level1 .additional .stats {
+  color: #b57070;
 }
 
-.ucard.orange .additional .stats {
-    color: #9e5400;
-  }
+.ucard.level2 .additional .stats {
+    color: #ca6e6e;
+}
+
+.ucard.level3 .additional .stats {
+    color: #b35656;
+}
+
+.ucard.level4 .additional .stats {
+  color: #b54747;
+}
+
+.ucard.level5 .additional .stats {
+  color: #af4040;
+}
+
+.ucard.level6 .additional .stats {
+  color: #a23737;
+}
+
+.ucard.level7 .additional .stats {
+  color: #a72323;
+}
 
 .ucard .additional .stats > div {
   flex: 1;
@@ -183,7 +306,7 @@ html, body {
   z-index: 1;
   box-sizing: border-box;
   padding: 1rem;
-  padding-top: 0;
+  padding-top: 20px;
   white-space: normal;
 }
 
@@ -202,21 +325,3 @@ html, body {
     border: 3px solid rgba(0, 0, 0, 0.15);
 }
 
-/* The heart of the matter */
-.testimonial-group > .row {
-    overflow-x: auto;
-    white-space: nowrap;
-    flex-wrap: nowrap;
-  }
-  .testimonial-group > .row > .col-xs-4 {
-    display: inline-block;
-    float: none;
-    /* padding: 0 10px; */
-  }
-  
-  @media (max-width: 767.98px)
-{
-  .ucard {
-    zoom: 0.82;
-  }
-}

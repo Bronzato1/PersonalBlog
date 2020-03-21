@@ -25,7 +25,7 @@
 @section headerLeftNavItems 
 {
     <li class="nav-item">
-        <a class="nav-link" asp-controller="blog" asp-action="index">
+        <a class="nav-link text-primary" asp-controller="blog" asp-action="index">
         <span class="text-uppercase">Blog about coding & design</span>
       </a>
     </li>
@@ -33,13 +33,13 @@
     @if (User.Identity.IsAuthenticated)
     {
         <li class="nav-item pr-2">
-            <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" class="nav-link btn btn-default btn-sm" >
+            <a asp-controller="Blog" asp-action="edit" asp-route-id="@Model.Id" class="nav-link btn btn-outline-primary text-primary btn-sm" >
                 <i class="fa fa-pencil-alt"></i> Edit
             </a>
         </li>
 
         <li class="nav-item pr-2">
-            <button type="button" class="nav-link btn btn-default btn-sm" onclick="deletePostB(this, @Model.Id, callbackToList)"><i class="fas fa-times"></i> Delete</button>            
+            <a href="#" class="nav-link btn btn-outline-primary text-primary btn-sm" onclick="deletePostB(this, @Model.Id, callbackToList)"><i class="fas fa-times"></i> Delete</a>            
         </li>
 
     }    

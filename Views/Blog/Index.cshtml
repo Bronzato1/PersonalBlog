@@ -4,14 +4,13 @@
 @{
     int currentPage = int.Parse(ViewContext.RouteData.Values["page"] as string ?? "0");
     int pageCount = int.Parse(ViewData["TotalPostCount"].ToString()) / 2; 
-
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
 
 @section headerLeftNavItems 
 {
     <li class="nav-item">
-      <a class="nav-link" asp-controller="blog" asp-action="index">
+      <a class="nav-link text-primary" asp-controller="blog" asp-action="index">
         <span class="text-uppercase">Blog about coding & design</span>
       </a>
     </li>
@@ -19,19 +18,19 @@
     @if (User.Identity.IsAuthenticated)
     {
       <li class="nav-item pr-2 d-none d-sm-block">
-        <a class="nav-link btn btn-default btn-sm" asp-controller="Blog" asp-action="Edit" asp-route-id=""><i class="fa fa-plus-circle"></i> New post</a>
+        <a class="nav-link btn btn-sm btn-outline-primary text-primary" asp-controller="Blog" asp-action="Edit" asp-route-id=""><i class="fa fa-plus-circle"></i> New post</a>
       </li>
 
       <li class="nav-item pr-2 d-none d-sm-block">
-        <a class="nav-link btn btn-default btn-sm" href="#" onclick="deletePosts()"><i class="fa fa-minus-circle"></i> Delete selected</a>
+        <a class="nav-link btn btn-sm btn-outline-primary text-primary" href="#" onclick="deletePosts()"><i class="fa fa-minus-circle"></i> Delete selected</a>
       </li>
 
       <li class="nav-item pr-2 d-none d-sm-block">
-        <a class="nav-link btn btn-default btn-sm" href="#" onclick="selectAll()"><i class="fas fa-check-square"></i> Select all</a>
+        <a class="nav-link btn btn-sm btn-outline-primary text-primary" href="#" onclick="selectAll()"><i class="fas fa-check-square"></i> Select all</a>
       </li>
 
       <li class="nav-item pr-2 d-none d-sm-block">
-        <a class="nav-link btn btn-default btn-sm" href="#" onclick="unselectAll()"><i class="far fa-check-square"></i> Unselect all</a>
+        <a class="nav-link btn btn-sm btn-outline-primary text-primary" href="#" onclick="unselectAll()"><i class="far fa-check-square"></i> Unselect all</a>
       </li>
     }
 }
@@ -46,12 +45,6 @@
   <a class="dropdown-item" href="#"onclick="expandAll()"><i class="fas fa-plus pr-2"></i> Expand all blog posts</a>
   <div class="dropdown-divider"></div>
   <a class="dropdown-item" href="#"onclick="collapseAll()"><i class="fas fa-minus pr-2"></i> Collapse all blog posts</a>
-}
-
-
-@foreach (var post in Model)
-{
-  <partial name="Post" model="post" />
 }
 
 @section scripts 
@@ -128,4 +121,9 @@
       $('input:checkbox').prop('checked', false);
     }
   </script>
+}
+
+@foreach (var post in Model)
+{
+  <partial name="Post" model="post" />
 }

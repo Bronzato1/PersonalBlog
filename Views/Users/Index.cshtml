@@ -1,5 +1,10 @@
 @model List<PersonalBlog.Models.CustomUser>
-
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["customForeColor"] = "text-secondary";
+    TempData["customBackColor"] = "bg-secondary";
+}
 @section head
 {
     <STYLE type="text/css">
@@ -16,84 +21,232 @@
     </STYLE>
 }
 
-
 @section headerLeftNavItems 
 {
     <li class="nav-item">
-      <a class="nav-link" asp-controller="users" asp-action="index">
+      <a class="nav-link text-secondary" asp-controller="users" asp-action="index">
         <span class="text-uppercase">Users</span>
       </a>
     </li>
 }
 
+@section headerRightNavItems 
+{
+
+}
+
+@section controlSidebar
+{
+  <div class="maxi">
+    <div class="border-xl border-top border-light-grey"></div>
+    <div class="text-center p-4">
+        <h1 class="text-secondary display-3"><i class="fas fa-user nav-icon"></i></h1>
+        <p class="text-white text-uppercase">USER LIST</p>
+    </div>
+
+    <div class="border-top border-bottom border-light-grey bg-grey p-4">
+        <span class="text-secondary text-uppercase"><strong>LEVELS</strong></span>
+        <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
+    </div>
+
+    <div class="bg-grey">
+        <ul>
+            <li class="nav-item p-0 level1-color">
+              <a href="#" class="nav-link px-4 py-2 text-dark">
+                Up to 1000 points - Level 1
+              </a>
+            </li>
+            <li class="nav-item p-0 level2-color">
+              <a href="#" class="nav-link px-4 py-2 text-dark">
+                Up to 2000 points - Level 2
+              </a>
+            </li>
+            <li class="nav-item p-0 level3-color">
+              <a href="#" class="nav-link px-4 py-2 text-dark">
+                Up to 3000 points - Level 3
+              </a>
+            </li>
+            <li class="nav-item p-0 level4-color">
+              <a href="#" class="nav-link px-4 py-2 text-dark">
+                Up to 4000 points - Level 4
+              </a>
+            </li>
+            <li class="nav-item p-0 level5-color">
+              <a href="#" class="nav-link px-4 py-2 text-dark">
+                Up to 5000 points - Level 5
+              </a>
+            </li>
+            <li class="nav-item p-0 level6-color">
+              <a href="#" class="nav-link px-4 py-2 text-dark">
+                Up to 6000 points - Level 6
+              </a>
+            </li>
+            <li class="nav-item p-0 level7-color">
+              <a href="#" class="nav-link px-4 py-2 text-dark">
+                Up to 7000 points - Level 7
+              </a>
+            </li>
+        </ul>        
+    </div>
+  </div>
+  <div class="mini">
+      <div class="border-bottom border-light-grey h-70 text-center">
+        <div class="border-xl border-top border-light-grey"></div>
+            <h3 class="text-secondary py-3"><i class="fas fa-user nav-icon"></i></h3>
+        </div>
+      
+      <div class="border-bottom border-light-grey bg-grey text-center py-2">
+          <span class="text-secondary text-uppercase"><strong>LEVELS</strong></span>
+      </div>
+
+      <div class="bg-grey">
+          <ul>
+              <li class="nav-item text-center p-0 level1-color" data-toggle="tooltip" data-placement="left" title="Up to 1000 points -">
+                <a href="#" class="nav-link p-2" style="color:black;" onclick="alert('ok')">
+                  Level 1
+                </a>
+              </li>
+              <li class="nav-item text-center p-0 level2-color" data-toggle="tooltip" data-placement="left" title="Up to 2000 points -">
+                <a href="#" class="nav-link p-2" style="color:black;">
+                  Level 2
+                </a>
+              </li>
+              <li class="nav-item text-center p-0 level3-color" data-toggle="tooltip" data-placement="left" title="Up to 3000 points -">
+                <a href="#" class="nav-link p-2" style="color:black;">
+                  Level 3
+                </a>
+              </li>
+              <li class="nav-item text-center p-0 level4-color" data-toggle="tooltip" data-placement="left" title="Up to 4000 points -">
+                <a href="#" class="nav-link p-2" style="color:black;">
+                Level 4
+                </a>
+              </li>
+              <li class="nav-item text-center p-0 level5-color" data-toggle="tooltip" data-placement="left" title="Up to 5000 points -">
+                <a href="#" class="nav-link p-2" style="color:black;">
+                Level 5
+                </a>
+              </li>
+              <li class="nav-item text-center p-0 level6-color" data-toggle="tooltip" data-placement="left" title="Up to 6000 points -">
+                <a href="#" class="nav-link p-2" style="color:black;">
+                Level 6
+                </a>
+              </li>
+              <li class="nav-item text-center p-0 level7-color" data-toggle="tooltip" data-placement="left" title="Up to 7000 points -">
+                <a href="#" class="nav-link p-2" style="color:black;">
+                Level 7
+                </a>
+              </li>
+          </ul>        
+      </div>
+  </div>
+}
+
 <!-- Main content -->
-<section class="content testimonial-group">
+<section class="content">
+
     <div class="row">
-        <div class="col-xs-4">
 
         @for (int i = 0; i < Model.Count; i++)
         {
-            if ( i == 0 )
-                continue;
-
-                <div class="ucard" color-for-level="@Model[i].Level">
-                    <div class="additional">
-                        <div class="user-card">
-                            <div class="level center">
-                            Level @Model[i].Level
-                            </div>
-                            <div class="points center">
-                            @Model[i].Points Points
-                            </div>
-                            <img gravatar-for="@Model[i]" alt="" class="img-circle img-fluid" />
+            <div class="ucard" color-for-level="@Model[i].Level">
+                <div class="additional">
+                    <div class="user-card">
+                        <div class="level center">
+                        Level @Model[i].Level
                         </div>
-                        <div class="more-info">
-                            <h1>@Model[i].FirstName @Model[i].LastName</h1>
-                            <div class="coords">
-                            <span denomination-for-role="@Model[i]"></span>
-                            <span>Joined @Html.DisplayFor(model => @Model[i].Joinded, "MonthYear")</span>
-                            </div>
-                            <div class="coords">
-                            <span>Position/Role</span>
-                            <span>@Model[i].Location</span>
-                            </div>
-                            <div class="stats">
-                            <div>
-                                <div class="title">Awards</div>
-                                <i class="fa fa-trophy"></i>
-                                <div class="value">@Model[i].Awards</div>
-                            </div>
-                            <div>
-                                <div class="title">Matches</div>
-                                <i class="fa fa-gamepad"></i>
-                                <div class="value">@Model[i].Matches</div>
-                            </div>
-                            <div>
-                                <div class="title">Badges</div>
-                                <i class="fas fa-gavel"></i>
-                                <div class="value">@Model[i].Badges</div>
-                            </div>
-                            <div>
-                                <div class="title">Coffees</div>
-                                <i class="fa fa-coffee"></i>
-                                <div class="value">@Model[i].Coffees</div>
-                            </div>
-                            </div>
+                        <div class="points center">
+                        @Model[i].Points Points
                         </div>
+                        <img gravatar-for="@Model[i]" alt="" class="img-circle img-fluid" />
                     </div>
-                    <div class="general">
+                    <div class="more-info">
                         <h1>@Model[i].FirstName @Model[i].LastName</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a volutpat mauris, at molestie lacus. Nam vestibulum sodales odio ut pulvinar.</p>
-                        <span class="more">Mouse over the card for more info</span>
+                        <div class="coords">
+                        <span denomination-for-role="@Model[i]"></span>
+                        <span>Joined @Html.DisplayFor(model => @Model[i].Joinded, "MonthYear")</span>
+                        </div>
+                        <div class="coords">
+                        <span>Position/Role</span>
+                        <span>@Model[i].Location</span>
+                        </div>
+                        <div class="stats">
+                        <div>
+                            <div class="title">Awards</div>
+                            <i class="fa fa-trophy"></i>
+                            <div class="value">@Model[i].Awards</div>
+                        </div>
+                        <div>
+                            <div class="title">Matches</div>
+                            <i class="fa fa-gamepad"></i>
+                            <div class="value">@Model[i].Matches</div>
+                        </div>
+                        <div>
+                            <div class="title">Badges</div>
+                            <i class="fas fa-gavel"></i>
+                            <div class="value">@Model[i].Badges</div>
+                        </div>
+                        <div>
+                            <div class="title">Coffees</div>
+                            <i class="fa fa-coffee"></i>
+                            <div class="value">@Model[i].Coffees</div>
+                        </div>
+                        </div>
                     </div>
                 </div>
-
-            if ( i % 4 == 0 )
-            {
-               @:</div><div class="col-xs-4">
-            }
+                <div class="general">
+                    <h1>@Model[i].FirstName @Model[i].LastName</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a volutpat mauris, at molestie lacus. Nam vestibulum sodales odio ut pulvinar.</p>
+                    <span class="more">Mouse over the card for more info</span>
+                </div>
+            </div>
         }
 
-        </div>
     </div>
+
+    @* <div class="row">
+        <div class="col-md-1 level1-color">Level 1</div>
+        <div class="col-md-1 level2-color">Level 2</div>
+        <div class="col-md-1 level3-color">Level 3</div>
+        <div class="col-md-1 level4-color">Level 4</div>
+        <div class="col-md-1 level5-color">Level 5</div>
+        <div class="col-md-1 level6-color">Level 6</div>
+        <div class="col-md-1 level7-color">Level 7</div>
+    </div> *@
+
 </section>
+
+@section scripts
+{
+    <script>
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(document).ready(resizeContent);
+        $(window).resize(resizeContent);
+        $(document).on('shown.lte.pushmenu', resizeContent);
+        $(document).on('collapsed.lte.pushmenu', resizeContent);
+
+        function resizeContent() 
+        {
+            var windowWidth = $(window).width();
+            var contentWrapperWidth = $('.content-wrapper').width();
+
+            if (windowWidth < 767)
+            {    
+                var res = (contentWrapperWidth) / 1505;
+                $(".ucard").css({'zoom': res * 3.0 });
+            }
+            else if (windowWidth < 1200)
+            {    
+                var res = (contentWrapperWidth) / 1505;
+                $(".ucard").css({'zoom': res * 1.5 });
+            } 
+            else 
+            {
+                var res = (contentWrapperWidth) / 1505;
+               $(".ucard").css({'zoom': res * 0.993 });
+            }                      
+        }
+
+    </script>
+}

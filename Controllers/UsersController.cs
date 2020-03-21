@@ -30,7 +30,7 @@ namespace PersonalBlog
         [AllowAnonymous]
         public ActionResult Index()
         {
-            var users = _userRepository.GetAllUsers();
+            var users = _userRepository.GetAllUsers().OrderBy(x => x.Level).ThenBy(x => x.Points).ToList();
             return View(users);
         }
 

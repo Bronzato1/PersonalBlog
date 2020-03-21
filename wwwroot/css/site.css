@@ -21,10 +21,18 @@ body {
     margin-top: 3px !important;
 }
 
-/* .main-header {
-    background-color: #f4f6f9;
+.main-header {
+    background-color: #272c30 !important;
     border-bottom: none !important;
-} */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
+}
+
+.main-header.navbar-light .navbar-nav .nav-link,
+.main-header.navbar-light .navbar-nav .nav-link:hover,
+.main-header.navbar-light .navbar-nav .nav-link:active,
+.main-header.navbar-light .navbar-nav .nav-link:focus {
+    color: white;
+}
 
 nav.navbar-light .search-form input[type=search] {
     background-color: white;
@@ -259,16 +267,23 @@ body.control-sidebar-maxi .mini {
 }
 
 .sidebar-mini .tooltip-inner {
-    margin-right: -25px;
+    margin-right: -10px;
     height: 43px;
-    line-height: 40px;
-    padding: 0px 0px 0px 20px;
+    line-height: 42px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    padding-right: 0px;
     background-color: #2b3034;
     border-radius: 0rem;
     border-left: 1px solid #444c54;
     border-top: 1px solid #444c54;
     border-bottom: 1px solid #444c54;
     box-shadow: -5px 0 5px -7px #000, 0 -5px 5px -7px #000, 0 5px 5px -7px #000;
+    pointer-events: none;
+    max-width: 500px;
+    font-size: 16px;
+    text-align: right;
 }
 .sidebar-mini .tooltip.show {
     opacity: 1;
@@ -282,8 +297,8 @@ body.control-sidebar-maxi .mini {
 
 .sidebar-mini .control-sidebar .nav-item:hover > .nav-link, 
 .sidebar-mini .control-sidebar .nav-item > .nav-link:focus {
-    background-color: #2b3034;
-    color: #ffffff;
+    /* background-color: #2b3034; */
+    /* color: #ffffff; */
 }
 
 .main-sidebar[class*='sidebar-dark-'] .nav-sidebar > .nav-item.menu-open > .nav-link, 
@@ -376,6 +391,10 @@ body.control-sidebar-maxi .mini {
     }
 }
 
+body{
+    overflow-y: scroll;
+}
+
 .badge-outline {
     color: black;
     border: 1px solid #999;
@@ -387,27 +406,16 @@ body.control-sidebar-maxi .mini {
 }
  
 ::-webkit-scrollbar-track {
-    background-color: #424950;
+    background-color: #272c30;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #343a40; 
 }
 
-::-webkit-scrollbar-button:single-button {
-    background-color: #007bff;
-    display: block;
-    border-style: solid;
-    height: 8px;
-    width: 8px;
+#Post_Edit #Post_Title,
+#Post_Edit #Post_Slug,
+#Post_Edit #Post_Excerpt
+{
+    width: 100%;
 }
-
-::-webkit-scrollbar-button:single-button:vertical:decrement {
-    border-width: 8px 8px 8px 8px;
-    border-color: #007bff;
-}
-
-::-webkit-scrollbar-button:single-button:vertical:increment {
-    border-width: 20px 20px 10px 10px;
-    border-color: #424950;
-  }

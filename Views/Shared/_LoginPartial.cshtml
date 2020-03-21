@@ -3,6 +3,27 @@
 @inject SignInManager<CustomUser> SignInManager
 @inject UserManager<CustomUser> UserManager
 
+@functions
+{
+    string customForeColor() 
+    {
+        var data = TempData["customForeColor"];
+        if (data != null)
+        return TempData["customForeColor"].ToString();
+        else 
+        return "";
+    }
+
+    string customBackColor() 
+    {
+        var data = TempData["customBackColor"];
+        if (data != null)
+        return TempData["customBackColor"].ToString();
+        else 
+        return "";
+    }
+}
+
 @if (SignInManager.IsSignedIn(User))
 {
     var user = await UserManager.GetUserAsync(User);
@@ -11,13 +32,13 @@
     var roles = string.Join(",", listRoles);
 
     <li class="nav-item dropdown user-menu">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+        <a href="#" class="nav-link dropdown-toggle @customForeColor()" data-toggle="dropdown">
             <img class="user-image img-circle elevation-2" gravatar-for="@user" alt="User Image" />
             <span class="d-none d-md-inline">@fullName</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <!-- User image -->
-            <li class="user-header bg-primary">
+            <li class="user-header @customBackColor()">
                 <img class="img-circle elevation-2" gravatar-for="@user" alt="User Image" />
 
                 <p>

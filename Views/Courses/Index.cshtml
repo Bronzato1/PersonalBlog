@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["customForeColor"] = "text-info";
+    TempData["customBackColor"] = "bg-info";
 }
 
 @section head 
@@ -129,7 +131,7 @@
 @section headerLeftNavItems 
 {
     <li class="nav-item">
-      <a class="nav-link" asp-controller="courses" asp-action="index">
+      <a class="nav-link text-info" asp-controller="courses" asp-action="index">
         <span class="text-uppercase">Courses</span>
       </a>
     </li>

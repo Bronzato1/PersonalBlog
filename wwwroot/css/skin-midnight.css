@@ -535,3 +535,7 @@
 .skin-midnight .progress {
   background-color: #2b3135;
 }
+
+.skin-midnight .ucard {
+  background: linear-gradient(#272c30, #272c30);
+} 

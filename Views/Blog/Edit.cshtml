@@ -7,96 +7,37 @@
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
 
-@section head{
-    
+@section head
+{  
 }
 
-@section headerLeftNavItems {
+@section headerLeftNavItems 
+{
+    <li class="nav-item">
+        <a class="nav-link text-primary" asp-controller="blog" asp-action="index">
+        <span class="text-uppercase">Blog about coding & design</span>
+      </a>
+    </li>
     <li class="nav-item pr-2">
-        <a asp-controller="Blog" asp-action="Index" class="nav-link btn btn-default btn-sm">
+        <a asp-controller="Blog" asp-action="Index" class="nav-link btn btn-outline-primary btn-sm text-primary">
             <i class="fas fa-arrow-left"></i> Back to list
         </a>
     </li>
     <li class="nav-item pr-2">
-        <a href="#" asp class="nav-link btn btn-default btn-sm" onclick="$('#Post_Edit').submit();">
+        <a href="#" asp class="nav-link btn btn-outline-primary btn-sm text-primary" onclick="$('#Post_Edit').submit();">
             <i class="fas fa-save"></i> Save
         </a>
     </li>
     @if (!isNew)
     {
         <li class="nav-item pr-2">
-            <button class="nav-link btn btn-default btn-sm deletePostA" asp-action="DeletePostA" asp-route-id="@Model.Post.Id" form="Post_Edit">
+            <a class="nav-link btn btn-outline-primary btn-sm text-primary deletePostA" asp-action="DeletePostA" asp-route-id="@Model.Post.Id" form="Post_Edit">
                 <i class="fas fa-minus-circle"></i>
                 <strong> Delete</strong>
-            </button>
+            </a>
         </li>
     }
 }
-
-<div class="card card-widget card-blog-post">
-    <div class="card-header">
-        <div class="user-block">
-            <img class="img-circle elevation-2" gravatar-for="@Model.Post.CustomUser" alt="User Image" />
-            <span class="username">
-                @ViewData["Title"]
-            </span>
-            <span class="description">
-                Posted by Thierry on monday 20
-            </span>
-            
-        </div>
-        <!-- /.user-block -->
-        <div class="card-tools">
-            <a href="#" class="btn btn-tool" onclick="fullScreenMode()" title="Full screen mode">
-                <i class="fas fa-expand-arrows-alt"></i>
-            </a>
-            <a asp-controller="Blog" asp-action="Index" class="btn btn-tool" title="Back to list">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-        </div>
-        <!-- /.card-tools -->
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-        <form method="post" id="Post_Edit" class="container" asp-controller="Blog" asp-action="UpdatePost">
-            
-            <div asp-validation-summary="All"></div>
-            <input type="hidden" asp-for="@Model.Post.Id" />
-            <input type="hidden" asp-for="@Model.Post.CustomUserId" />
-
-            <div class="form-group">
-                <label asp-for="@Model.Post.Title" class="label">Title</label>
-                <input asp-for="@Model.Post.Title" required placeholder="Title of blog post" aria-describedby="desc_title" />
-            </div>
-        
-            <div class="form-group">
-                <label asp-for="@Model.Post.Slug" class="label">Slug</label>
-                <input asp-for="@Model.Post.Slug" placeholder="The URL name" aria-describedby="desc_slug" />
-            </div>
-
-            <div class="form-group">
-                <label for="SelectedCategories" class="label">Tags</label>
-                <select multiple="multiple" class="form-control custom-select select2" asp-for="@Model.SelectedCategories" asp-items="@Model.SelCategories">
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="@Model.Post.Excerpt" class="label">Excerpt</label>
-                <textarea asp-for="@Model.Post.Excerpt" rows="3" placeholder="Short description of blog post" aria-describedby="desc_excerpt">@Model.Post.Excerpt</textarea>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="@Model.Post.Excerpt" class="label">Content</label>
-                <textarea asp-for="@Model.Post.Content" rows="20" aria-label="Content">@Model.Post.Content</textarea>
-            </div>
-
-            <input asp-for="@Model.Post.IsPublished" />
-            <label asp-for="@Model.Post.IsPublished">Is published</label>
-
-        </form>
-    </div>
-
-</div><!--/.card-->
 
 @section Scripts {
 
@@ -209,3 +150,68 @@
         
     </script>
 }
+
+<div class="card card-widget card-blog-post">
+    <div class="card-header">
+        <div class="user-block">
+            <img class="img-circle elevation-2" gravatar-for="@Model.Post.CustomUser" alt="User Image" />
+            <span class="username">
+                @ViewData["Title"]
+            </span>
+            <span class="description">
+                Posted by Thierry on monday 20
+            </span>
+            
+        </div>
+        <!-- /.user-block -->
+        <div class="card-tools">
+            <a href="#" class="btn btn-tool" onclick="fullScreenMode()" title="Full screen mode">
+                <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+            <a asp-controller="Blog" asp-action="Index" class="btn btn-tool" title="Back to list">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+        <!-- /.card-tools -->
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <form method="post" id="Post_Edit" class="container" asp-controller="Blog" asp-action="UpdatePost">
+            
+            <div asp-validation-summary="All"></div>
+            <input type="hidden" asp-for="@Model.Post.Id" />
+            <input type="hidden" asp-for="@Model.Post.CustomUserId" />
+
+            <div class="form-group">
+                <label asp-for="@Model.Post.Title" class="label">Title</label>
+                <input asp-for="@Model.Post.Title" required placeholder="Title of blog post" aria-describedby="desc_title" />
+            </div>
+        
+            <div class="form-group">
+                <label asp-for="@Model.Post.Slug" class="label">Slug</label>
+                <input asp-for="@Model.Post.Slug" placeholder="The URL name" aria-describedby="desc_slug" />
+            </div>
+
+            <div class="form-group">
+                <label for="SelectedCategories" class="label">Tags</label>
+                <select multiple="multiple" class="form-control custom-select select2" asp-for="@Model.SelectedCategories" asp-items="@Model.SelCategories">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Post.Excerpt" class="label">Excerpt</label>
+                <textarea asp-for="@Model.Post.Excerpt" rows="3" placeholder="Short description of blog post" aria-describedby="desc_excerpt">@Model.Post.Excerpt</textarea>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Post.Excerpt" class="label">Content</label>
+                <textarea asp-for="@Model.Post.Content" rows="20" aria-label="Content">@Model.Post.Content</textarea>
+            </div>
+
+            <input asp-for="@Model.Post.IsPublished" />
+            <label asp-for="@Model.Post.IsPublished">Is published</label>
+
+        </form>
+    </div>
+
+</div><!--/.card-->
