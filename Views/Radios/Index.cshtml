@@ -1,11 +1,9 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     TempData["customForeColor"] = "text-danger";
     TempData["customBackColor"] = "bg-danger";
 }
-
 @section head 
 {
   <style>   
@@ -30,14 +28,13 @@
     }
   </style>
 }
-
 @section controlSidebar
 {
   <div class="maxi">
     <div class="border-xl border-top border-danger"></div>
     <div class="text-center p-4">
         <h1 class="text-danger display-3"><i class="fas fa-music nav-icon"></i></h1>
-        <p class="text-white text-uppercase">Radios around the world</p>
+        <p class="text-danger text-uppercase">Radios around the world</p>
     </div>
 
     <div class="border-top border-bottom border-light-grey bg-grey p-4">
@@ -238,7 +235,6 @@
       </div>      
   </div>
 }
-
 @section headerLeftNavItems 
 {
     <li class="nav-item">
@@ -246,6 +242,12 @@
         <span class="text-uppercase">Radios</span>
       </a>
     </li>
+}
+@section scripts
+{
+  <script>
+
+  </script>
 }
 
 <div class="outer">
@@ -256,10 +258,3 @@
     </div>
   </div>
 </div>
-
-@section scripts
-{
-  <script>
-
-  </script>
-}

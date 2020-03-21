@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Xml;
+using PersonalBlog.ViewModels;
 
 namespace PersonalBlog
 {
@@ -25,11 +26,13 @@ namespace PersonalBlog
 
         private readonly IBlogRepository _blogRepository;
         private readonly IUserRepository _userRepository;
-        private readonly string _folder;
+        private readonly string _webRootFolder;
+        private readonly string _contentRootFolder;
 
         public AdminController(IWebHostEnvironment env, IBlogRepository blogRepository, IUserRepository userRepository)
         {
-            _folder = Path.Combine(env.WebRootPath, FOLDER_POSTS);
+            _contentRootFolder = env.ContentRootPath;
+            _webRootFolder = env.WebRootPath;
             _blogRepository = blogRepository;
             _userRepository = userRepository;
         }
@@ -37,6 +40,17 @@ namespace PersonalBlog
         public ActionResult Index()
         {
             return View();
+        }
+
+        public FileResult ExportDatabase()
+        {
+            // Use this if you want App_Data off your project root folder
+            string appDataFolder = Path.Combine(_contentRootFolder, "App_Data");
+            string dbFile = "blogging.db";
+            string dbPath = Path.Combine(appDataFolder, dbFile);
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(dbPath);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, dbFile);
         }
 
         public async Task<FileResult> ExportBlogData()
@@ -69,9 +83,9 @@ namespace PersonalBlog
 
             // STEP 4 : save images in zip file
 
-            string filesDirectory = Path.Combine(_folder, FOLDER_IMAGES);
+            string filesDirectory = Path.Combine(_webRootFolder, FOLDER_POSTS, FOLDER_IMAGES);
             string zipFile = "blog_posts_" + DateTime.Now.ToString("yyyy_MM_dd_HHmmss") + ".zip";
-            string zipPath = Path.Combine(_folder, FOLDER_ARCHIVES, zipFile);
+            string zipPath = Path.Combine(_webRootFolder, FOLDER_POSTS, FOLDER_ARCHIVES, zipFile);
             string zipDirectory = Path.GetDirectoryName(zipPath);
 
             Directory.CreateDirectory(zipDirectory);
@@ -97,9 +111,9 @@ namespace PersonalBlog
             if (file == null || file.Length == 0)
                 return NotFound("File Upload : file not found");
 
-            string imagesDirectory = Path.Combine(_folder, FOLDER_IMAGES);
+            string imagesDirectory = Path.Combine(_webRootFolder, FOLDER_POSTS, FOLDER_IMAGES);
             string zipFile = file.FileName;
-            string zipPath = Path.Combine(_folder, FOLDER_ARCHIVES, zipFile);
+            string zipPath = Path.Combine(_webRootFolder, FOLDER_POSTS, FOLDER_ARCHIVES, zipFile);
             string jsonPath = Path.Combine(imagesDirectory, FILE_JSON_POSTS);
             string zipDirectory = Path.GetDirectoryName(zipPath);
 
@@ -127,11 +141,35 @@ namespace PersonalBlog
             return Ok("File Import: success");
         }
 
+        [HttpPost("ImportDatabase")]
+        public async Task<IActionResult> ImportDatabase(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return NotFound("File Upload : file not found");
+
+            string appDataFolder = Path.Combine(_contentRootFolder, "App_Data");
+            string dbFile = "blogging.db";
+            string dbPath = Path.Combine(appDataFolder, dbFile);
+            string dbDirectory = Path.GetDirectoryName(dbPath);
+
+            if (System.IO.File.Exists(dbPath))
+                System.IO.File.Delete(dbPath);
+
+            using (var ms = new MemoryStream())
+            {
+                file.CopyTo(ms);
+                var fileBytes = ms.ToArray();
+                await System.IO.File.WriteAllBytesAsync(dbPath, fileBytes);
+            }
+
+            return Ok("File Import: success");
+        }
+
         public async Task<ActionResult> DeleteUnusedImages()
         {
             var imgRegex = new Regex("<img[^>]+ />", RegexOptions.IgnoreCase | RegexOptions.Compiled);
             //var base64Regex = new Regex("data:[^/]+/(?<ext>[a-z]+);base64,(?<base64>.+)", RegexOptions.IgnoreCase);
-            var imagesDirectory = Path.Combine(_folder, FOLDER_IMAGES);
+            var imagesDirectory = Path.Combine(_webRootFolder, FOLDER_POSTS, FOLDER_IMAGES);
 
             var obsoleteImageList = new DirectoryInfo(imagesDirectory).GetFiles().ToList();
             var missingImageList = new List<string>();
@@ -169,11 +207,11 @@ namespace PersonalBlog
 
             return PartialView("_DeleteUnusedImagesResult", viewModel);
         }
-  
+
         public ActionResult ManageUsersAndRoles()
         {
-            var users = _userRepository.GetAllUsers();
-            return View(users);
+            var usersAndRolesViewModel = _userRepository.GetAllUsersWithRoles();
+            return View(usersAndRolesViewModel);
         }
     }
 }

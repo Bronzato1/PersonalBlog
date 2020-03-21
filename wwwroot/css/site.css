@@ -82,7 +82,7 @@ a[href^="/Quiz"].active {
 }
 
 a[href^="/Users"].active {
-    border-color: #6c757d !important;
+    border-color: #ffbaba !important;
 }
 
 a[href^="/Admin"].active {
@@ -150,6 +150,21 @@ a[href^="/Admin"].active {
     background-color: #8b70bd !important;
 }
 
+.text-salmon
+{
+    color: #ffbaba !important;
+}
+
+.badge-salmon {
+    color: #000;
+    background-color: #ffbaba;
+}
+
+.bg-salmon
+{
+    background-color: #ffbaba !important;
+}
+
 .bg-grey
 {
     background-color: #272c30 !important;
@@ -168,6 +183,10 @@ a[href^="/Admin"].active {
     body.control-sidebar-mini .main-header {
         margin-right: 4.6rem;
     }
+}
+
+.control-sidebar .border-salmon {
+    border-color: #ffbaba !important;
 }
 
 .control-sidebar .border-mauve {

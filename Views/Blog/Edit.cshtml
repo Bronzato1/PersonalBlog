@@ -1,16 +1,13 @@
 @model PersonalBlog.ViewModels.UpdatePostViewModel
-
 @{
     bool isNew = string.IsNullOrEmpty(Model.Post.Title);
     ViewData["Title"] = Model.Post.Title ?? "New post";
     var host = Context.Request.Host.ToString();
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
-
 @section head
 {  
 }
-
 @section headerLeftNavItems 
 {
     <li class="nav-item">
@@ -38,7 +35,6 @@
         </li>
     }
 }
-
 @section Scripts {
 
     <script src="//@host/lib/tinymce/tinymce.min.js"></script>  @* with enabled CDN tinymce is not able to find some files *@

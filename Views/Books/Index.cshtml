@@ -1,12 +1,9 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     TempData["customForeColor"] = "text-warning";
     TempData["customBackColor"] = "bg-warning";
 }
-
-
 @section head 
 {
   <style>   
@@ -31,14 +28,13 @@
     }
   </style>
 }
-
 @section controlSidebar
 {
   <div class="maxi">
     <div class="border-xl border-top border-warning"></div>
     <div class="text-center p-4">
         <h1 class="text-warning display-3"><i class="fas fa-book nav-icon"></i></h1>
-        <p class="text-white text-uppercase">Best books to read</p>
+        <p class="text-warning text-uppercase">Best books to read</p>
     </div>
 
     <div class="border-top border-bottom border-light-grey bg-grey p-4">
@@ -129,7 +125,6 @@
       </div>
   </div>
 }
-
 @section headerLeftNavItems 
 {
     <li class="nav-item">
@@ -147,4 +142,3 @@
     </div>
   </div>
 </div>
-

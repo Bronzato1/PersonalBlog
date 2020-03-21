@@ -2,8 +2,8 @@
 @{
     ViewData["Title"] = "Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    TempData["customForeColor"] = "text-secondary";
-    TempData["customBackColor"] = "bg-secondary";
+    TempData["customForeColor"] = "text-salmon";
+    TempData["customBackColor"] = "bg-salmon";
 }
 @section head
 {
@@ -20,32 +20,28 @@
 
     </STYLE>
 }
-
 @section headerLeftNavItems 
 {
     <li class="nav-item">
-      <a class="nav-link text-secondary" asp-controller="users" asp-action="index">
+      <a class="nav-link text-salmon" asp-controller="users" asp-action="index">
         <span class="text-uppercase">Users</span>
       </a>
     </li>
 }
-
 @section headerRightNavItems 
 {
-
 }
-
 @section controlSidebar
 {
   <div class="maxi">
-    <div class="border-xl border-top border-light-grey"></div>
+    <div class="border-xl border-top border-salmon"></div>
     <div class="text-center p-4">
-        <h1 class="text-secondary display-3"><i class="fas fa-user nav-icon"></i></h1>
-        <p class="text-white text-uppercase">USER LIST</p>
+        <h1 class="text-salmon display-3"><i class="fas fa-user nav-icon"></i></h1>
+        <p class="text-salmon text-uppercase">USER LIST</p>
     </div>
 
     <div class="border-top border-bottom border-light-grey bg-grey p-4">
-        <span class="text-secondary text-uppercase"><strong>LEVELS</strong></span>
+        <span class="text-salmon text-uppercase"><strong>LEVELS</strong></span>
         <p class="pt-3">sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
     </div>
 
@@ -91,12 +87,12 @@
   </div>
   <div class="mini">
       <div class="border-bottom border-light-grey h-70 text-center">
-        <div class="border-xl border-top border-light-grey"></div>
-            <h3 class="text-secondary py-3"><i class="fas fa-user nav-icon"></i></h3>
+        <div class="border-xl border-top border-salmon"></div>
+            <h3 class="text-salmon py-3"><i class="fas fa-user nav-icon"></i></h3>
         </div>
       
       <div class="border-bottom border-light-grey bg-grey text-center py-2">
-          <span class="text-secondary text-uppercase"><strong>LEVELS</strong></span>
+          <span class="text-salmon text-uppercase"><strong>LEVELS</strong></span>
       </div>
 
       <div class="bg-grey">
@@ -140,8 +136,42 @@
       </div>
   </div>
 }
+@section scripts
+{
+    <script>
 
-<!-- Main content -->
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(document).ready(resizeContent);
+        $(window).resize(resizeContent);
+        $(document).on('shown.lte.pushmenu', resizeContent);
+        $(document).on('collapsed.lte.pushmenu', resizeContent);
+
+        function resizeContent() 
+        {
+            var windowWidth = $(window).width();
+            var contentWrapperWidth = $('.content-wrapper').width();
+
+            if (windowWidth < 767)
+            {    
+                var res = (contentWrapperWidth) / 1505;
+                $(".ucard").css({'zoom': res * 3.0 });
+            }
+            else if (windowWidth < 1200)
+            {    
+                var res = (contentWrapperWidth) / 1505;
+                $(".ucard").css({'zoom': res * 1.5 });
+            } 
+            else 
+            {
+                var res = (contentWrapperWidth) / 1505;
+               $(".ucard").css({'zoom': res * 0.993 });
+            }                      
+        }
+
+    </script>
+}
+
 <section class="content">
 
     <div class="row">
@@ -214,39 +244,3 @@
     </div> *@
 
 </section>
-
-@section scripts
-{
-    <script>
-
-        $('[data-toggle="tooltip"]').tooltip();
-
-        $(document).ready(resizeContent);
-        $(window).resize(resizeContent);
-        $(document).on('shown.lte.pushmenu', resizeContent);
-        $(document).on('collapsed.lte.pushmenu', resizeContent);
-
-        function resizeContent() 
-        {
-            var windowWidth = $(window).width();
-            var contentWrapperWidth = $('.content-wrapper').width();
-
-            if (windowWidth < 767)
-            {    
-                var res = (contentWrapperWidth) / 1505;
-                $(".ucard").css({'zoom': res * 3.0 });
-            }
-            else if (windowWidth < 1200)
-            {    
-                var res = (contentWrapperWidth) / 1505;
-                $(".ucard").css({'zoom': res * 1.5 });
-            } 
-            else 
-            {
-                var res = (contentWrapperWidth) / 1505;
-               $(".ucard").css({'zoom': res * 0.993 });
-            }                      
-        }
-
-    </script>
-}

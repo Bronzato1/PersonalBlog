@@ -356,6 +356,8 @@ namespace PersonalBlog.Models
             modelBuilder.Seed();
 
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<CustomUser>().HasMany(p => p.Roles).WithOne().HasForeignKey(p => p.UserId).IsRequired();
         }
     }
 
@@ -391,7 +393,8 @@ namespace PersonalBlog.Models
         public int Coffees { get; set; }
         [PersonalData]
         public DateTime Joinded { get; set; }
-        
+        // https://github.com/aspnet/Identity/issues/1361
+        public virtual ICollection<IdentityUserRole<string>> Roles { get; } = new List<IdentityUserRole<string>>();
     }
 
     public static class DbInitializer

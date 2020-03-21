@@ -1,13 +1,25 @@
-@model List<PersonalBlog.Models.CustomUser>
-
-Manage users and roles
+@model IEnumerable<PersonalBlog.ViewModels.UsersAndRolesViewModel>
+@{  
+    ViewBag.Title = "Users With Roles";  
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["customForeColor"] = "text-white";
+    TempData["customBackColor"] = "bg-dark";
+}  
+@section headerLeftNavItems 
+{
+    <li class="nav-item">
+      <a class="nav-link text-white" asp-controller="admin" asp-action="index">
+        <span class="text-uppercase">Manage users and roles</span>
+      </a>
+    </li>
+}
 
 <table class="table table-borderless table-striped table-underlined">
     <thead>
         <th>Username</th>
         <th>Firstname</th>
         <th>Lastname</th>
-        <th>Roles</th>
+        <th>Role</th>
     </thead>
     <tbody>
         @foreach (var user in Model)
@@ -16,7 +28,7 @@ Manage users and roles
                 <td>@user.UserName</td>
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
-                <td></td>
+                <td>@user.Role</td>
             </tr>
         }
     </tbody>

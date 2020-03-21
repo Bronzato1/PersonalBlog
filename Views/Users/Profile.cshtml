@@ -1,6 +1,5 @@
 @model ProfileViewModel;
 @using System.Text.RegularExpressions;
-
 @functions
 {
     string StripHtml(string htmlString)
@@ -8,7 +7,6 @@
         return Regex.Replace(htmlString, @"<(.|\n)*?>", " ");
     }
 }
-
 @section head {
     <STYLE type="text/css">
 
@@ -71,7 +69,6 @@
 
     </STYLE>
 }
-
 @section headerLeftNavItems
 {
     <li class="nav-item">
@@ -105,8 +102,55 @@
         </div>
     </li>
 }
+@section scripts {         
+  <script>
 
-<!--Main content-->
+        const condensed = 0;
+        const detailed = 1;
+
+        $(function () {
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            window.exportpdf = function(param)
+            {
+                if (param == condensed)
+                {
+                    $('.collapse').removeClass('show');
+                    alert('Export PDF condensed');
+                } 
+                else
+                {
+                    $('.collapse').addClass('show');
+
+                    window.setTimeout(function() 
+                    { 
+                        alert('Export PDF detailed');
+                        $('.collapse').removeClass('show');
+                    }, 500);
+                }
+                return false;
+            }
+
+            window.printing = function(param)
+            {
+                if (param == condensed)
+                {
+                    $('.collapse').removeClass('show');
+                    window.print();
+                } 
+                if (param == detailed)
+                {
+                    $('.collapse').addClass('show');
+                    window.print();
+                    $('.collapse').removeClass('show');
+                }
+                return false;
+            }
+        });
+    </script>
+}
+
 <section class="content">
     <div class="container-fluid">
     <div class="row">
@@ -372,53 +416,4 @@
         </div>
     </div><!--/.row-->
     </div><!--/.container-fluid-->
-</section><!--/.content-->
-
-@section scripts {         
-  <script>
-
-        const condensed = 0;
-        const detailed = 1;
-
-        $(function () {
-
-            $('[data-toggle="tooltip"]').tooltip();
-
-            window.exportpdf = function(param)
-            {
-                if (param == condensed)
-                {
-                    $('.collapse').removeClass('show');
-                    alert('Export PDF condensed');
-                } 
-                else
-                {
-                    $('.collapse').addClass('show');
-
-                    window.setTimeout(function() 
-                    { 
-                        alert('Export PDF detailed');
-                        $('.collapse').removeClass('show');
-                    }, 500);
-                }
-                return false;
-            }
-
-            window.printing = function(param)
-            {
-                if (param == condensed)
-                {
-                    $('.collapse').removeClass('show');
-                    window.print();
-                } 
-                if (param == detailed)
-                {
-                    $('.collapse').addClass('show');
-                    window.print();
-                    $('.collapse').removeClass('show');
-                }
-                return false;
-            }
-        });
-    </script>
-}
+</section>

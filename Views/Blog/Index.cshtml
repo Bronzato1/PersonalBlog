@@ -1,12 +1,10 @@
 @model IEnumerable<PersonalBlog.Models.Post>
 @inject IOptionsSnapshot<BlogSettings> settings
-
 @{
     int currentPage = int.Parse(ViewContext.RouteData.Values["page"] as string ?? "0");
     int pageCount = int.Parse(ViewData["TotalPostCount"].ToString()) / 2; 
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 }
-
 @section headerLeftNavItems 
 {
     <li class="nav-item">
@@ -34,11 +32,9 @@
       </li>
     }
 }
-
 @section headerRightNavItems
 {
 }
-
 @section headerDropdownRightNavItems
 {
   <div class="dropdown-divider"></div>
@@ -46,7 +42,6 @@
   <div class="dropdown-divider"></div>
   <a class="dropdown-item" href="#"onclick="collapseAll()"><i class="fas fa-minus pr-2"></i> Collapse all blog posts</a>
 }
-
 @section scripts 
 {
   <script>
@@ -122,7 +117,6 @@
     }
   </script>
 }
-
 @foreach (var post in Model)
 {
   <partial name="Post" model="post" />

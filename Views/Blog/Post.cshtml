@@ -1,6 +1,5 @@
 @model PersonalBlog.Models.Post
 @inject IOptionsSnapshot<BlogSettings> settings
-
 @{
     ViewData["Title"] = Model.Title;
     ViewData["Description"] = Model.Excerpt;
@@ -21,7 +20,6 @@
         }
     }
 }
-
 @section headerLeftNavItems 
 {
     <li class="nav-item">

@@ -2,7 +2,6 @@
 @using PersonalBlog.Models;
 @inject SignInManager<CustomUser> SignInManager
 @inject UserManager<CustomUser> UserManager
-
 @functions
 {
     string customForeColor() 
@@ -23,7 +22,6 @@
         return "";
     }
 }
-
 @if (SignInManager.IsSignedIn(User))
 {
     var user = await UserManager.GetUserAsync(User);

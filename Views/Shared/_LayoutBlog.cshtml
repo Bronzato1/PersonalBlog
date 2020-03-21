@@ -23,9 +23,10 @@
 @section controlSidebar
 {
   <div class="maxi">
+    <div class="border-xl border-top border-primary"></div>
     <div class="text-center p-4">
         <h1 class="text-primary display-3"><i class="fas fa-blog nav-icon"></i></h1>
-        <p class="text-light text-uppercase">About coding & design</p>
+        <p class="text-primary text-uppercase">About coding & design</p>
     </div>
 
     <div class="border-top border-bottom border-light-grey bg-grey p-4">
@@ -97,6 +98,7 @@
   </div>
   <div class="mini">
       <div class="border-bottom border-light-grey h-70 text-center">
+          <div class="border-xl border-top border-primary"></div>
             <h3 class="text-primary py-3"><i class="fas fa-blog nav-icon"></i></h3>
         </div>
       
@@ -169,12 +171,12 @@
 }
 
 <section class="content">
-    <div class="container-fluid">
+    <div class="container-fluid pt-3">
         <div class="row">
             <!--<div class="col-md-2">
                 <partial name="Sidebar" />
             </div>--><!--/.col-->
-            <div class="col-md-12 pt-3">
+            <div class="col-md-12">
 
                 @RenderBody()
 
@@ -186,4 +188,4 @@
             <!-- /.col -->
         </div><!--/.row-->
     </div><!--/.container-fluid-->
-</section><!--/.content-->
+</section>
