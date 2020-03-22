@@ -441,6 +441,9 @@
 .skin-midnight .sidebar-light-primary .nav-sidebar.nav-legacy > .nav-item > .nav-link.active {
   border-color: rgba(0,123,255,0.5);
 }
+.skin-midnight .badge-outline {
+  color: #909090;
+}
 .skin-midnight .badge-primary {
   color: rgba(214, 212, 212, 1);
   background-color: rgba(0,123,255,0.5);
@@ -514,7 +517,7 @@
   color: #a8b2bb;
 }
 
-.skin-midnight p,
+/* .skin-midnight p,
 .skin-midnight span,
 .skin-midnight h1,
 .skin-midnight h2,
@@ -522,7 +525,7 @@
 .skin-midnight h4,
 .skin-midnight h5 {
   color: #b9b8b8;
-}
+} */
 
 .skin-midnight a.btn-outline-dark {
   color: #b9b8b8;
