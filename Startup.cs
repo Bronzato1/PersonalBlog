@@ -33,11 +33,11 @@ namespace PersonalBlog
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            string connectionStringForSqlite = Configuration.GetConnectionString("ConnectionForSqlite");            
             string appRoot = Environment.CurrentDirectory;
-            string database = System.IO.Path.Combine(appRoot + @"\", @"App_Data\blogging.db");
-            
+
             services.AddDbContext<MyDbContext> (options => 
-                options.UseSqlite("Data Source=" + database)
+                options.UseSqlite(connectionStringForSqlite.Replace("{appRoot}", appRoot))
                 //options.UseSqlServer(Configuration.GetConnectionString("ConnectionForSqlServerLocaldb"))
                 //options.UseSqlServer(Configuration.GetConnectionString("ConnectionForSqlServerExpress"))
             );

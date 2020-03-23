@@ -21,7 +21,7 @@ namespace PersonalBlog.Models
     {
         IApplicationBuilder _applicationBuilder;
 
-        public MyDbContext(): base()
+        public MyDbContext() : base()
         {
         }
 
@@ -32,7 +32,8 @@ namespace PersonalBlog.Models
 
         public MyDbContext(DbContextOptions<MyDbContext> options)
             : base(options)
-        { }
+        {
+        }
 
         // Doctor
         public virtual DbSet<Doctor> Doctors { get; set; }
@@ -58,6 +59,19 @@ namespace PersonalBlog.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.EnableSensitiveDataLogging(true);
+
+            if (!optionsBuilder.IsConfigured)
+            {
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+
+                string connectionStringForSqlite = configuration.GetConnectionString("ConnectionForSqlite");
+                string appRoot = Environment.CurrentDirectory;
+
+                optionsBuilder.UseSqlite(connectionStringForSqlite.Replace("{appRoot}", appRoot));
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -80,7 +94,7 @@ namespace PersonalBlog.Models
                     .Property(e => e.Created)
                     .HasColumnName("Created")
                     .HasDefaultValueSql("date('now')");
-                    //.HasDefaultValueSql("getdate()");
+                //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.Email)
@@ -135,7 +149,7 @@ namespace PersonalBlog.Models
                     .Property(e => e.Created)
                     .HasColumnName("Created")
                     .HasDefaultValueSql("date('now')");
-                    //.HasDefaultValueSql("getdate()");
+                //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.Email)
@@ -187,7 +201,7 @@ namespace PersonalBlog.Models
                     .Property(e => e.Created)
                     .HasColumnName("Created")
                     .HasDefaultValueSql("date('now')");
-                    //.HasDefaultValueSql("getdate()");
+                //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.DoctorId)
@@ -273,7 +287,7 @@ namespace PersonalBlog.Models
                     .Property(e => e.CreatedTime)
                     .HasColumnName("CreatedTime")
                     .HasDefaultValueSql("date('now')");
-                    //.HasDefaultValueSql("getdate()");
+                //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.CreatedUser)
@@ -325,7 +339,7 @@ namespace PersonalBlog.Models
                     .Property(e => e.CreatedTime)
                     .HasColumnName("CreatedTime")
                     .HasDefaultValueSql("date('now')");
-                    //.HasDefaultValueSql("getdate()");
+                //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.CreatedUser)
@@ -359,7 +373,7 @@ namespace PersonalBlog.Models
                     .Property(e => e.CreatedTime)
                     .HasColumnName("CreatedTime")
                     .HasDefaultValueSql("date('now')");
-                    //.HasDefaultValueSql("getdate()");
+                //.HasDefaultValueSql("getdate()");
 
                 entity
                     .Property(e => e.CreatedUser)
@@ -374,7 +388,7 @@ namespace PersonalBlog.Models
 
             modelBuilder.Entity<CustomUser>().HasMany(p => p.Roles).WithOne().HasForeignKey(p => p.UserId).IsRequired();
         }
-   
+
         public static MyDbContext Create()
         {
             return new MyDbContext();
@@ -885,11 +899,11 @@ namespace PersonalBlog.Models
                     Color = EnumColor.RoyalBlue
                 },
                  new Keyword
-                {
-                    Id = 11,
-                    Name = "Sql Server",
-                    Color = EnumColor.Aquamarine
-                },
+                 {
+                     Id = 11,
+                     Name = "Sql Server",
+                     Color = EnumColor.Aquamarine
+                 },
                 new Keyword
                 {
                     Id = 12,
