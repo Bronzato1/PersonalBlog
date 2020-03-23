@@ -14,6 +14,7 @@ using PersonalBlog.ViewModels;
 namespace PersonalBlog
 {
     [Authorize(Roles = "Admin")]
+    [Area("Users")]
     public class UsersController : Controller
     {
         private readonly IUserRepository _userRepository;
@@ -28,6 +29,7 @@ namespace PersonalBlog
         }
   
         [AllowAnonymous]
+        [Route("/users/")]
         public ActionResult Index()
         {
             var users = _userRepository.GetAllUsers().OrderBy(x => x.Level).ThenBy(x => x.Points).ToList();

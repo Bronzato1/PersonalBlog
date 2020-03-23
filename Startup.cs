@@ -76,14 +76,16 @@ namespace PersonalBlog
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapAreaControllerRoute(
-                    name: "Blog",
-                    areaName: "Blog",
-                    pattern: "Blog/{controller=Blog}/{action=Index}/{id?}");
+
+                // endpoints.MapAreaControllerRoute(
+                //     name: "areas", 
+                //     areaName: "xxxx", 
+                //     pattern: "{area:exists}/{controller=Xxxxx}/{action=Index}/{id?}");  
 
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
                 endpoints.MapRazorPages();
             });

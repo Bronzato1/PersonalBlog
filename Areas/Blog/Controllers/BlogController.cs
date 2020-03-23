@@ -20,7 +20,6 @@ using System.Security.Claims;
 namespace PersonalBlog
 {
     [Area("Blog")]
-    [Route("Blog")]
     public class BlogController : Controller
     {
         private readonly IBlogRepository _blogRepository;

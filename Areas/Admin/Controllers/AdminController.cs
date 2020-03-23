@@ -16,6 +16,7 @@ using PersonalBlog.ViewModels;
 
 namespace PersonalBlog
 {
+    [Area("Admin")]
     public class AdminController : Controller
     {
         private const string FOLDER_POSTS = "posts";
@@ -37,11 +38,13 @@ namespace PersonalBlog
             _userRepository = userRepository;
         }
 
+        [Route("/admin/")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Route("/admin/exportDatabase")]
         public FileResult ExportDatabase()
         {
             // Use this if you want App_Data off your project root folder
@@ -53,6 +56,7 @@ namespace PersonalBlog
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, dbFile);
         }
 
+        [Route("/admin/exportBlogData")]
         public async Task<FileResult> ExportBlogData()
         {
             // STEP 1 : get posts as json
@@ -103,7 +107,7 @@ namespace PersonalBlog
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, zipFile);
         }
 
-        [HttpPost("ImportBlogData")]
+        [HttpPost("/admin/ImportBlogData")]
         public async Task<IActionResult> ImportBlogData(IFormFile file)
         {
             // STEP 1 : uploader le zip
@@ -141,7 +145,7 @@ namespace PersonalBlog
             return Ok("File Import: success");
         }
 
-        [HttpPost("ImportDatabase")]
+        [HttpPost("/admin/ImportDatabase")]
         public async Task<IActionResult> ImportDatabase(IFormFile file)
         {
             if (file == null || file.Length == 0)
@@ -165,6 +169,7 @@ namespace PersonalBlog
             return Ok("File Import: success");
         }
 
+        [Route("/admin/deleteUnusedImages")]
         public async Task<ActionResult> DeleteUnusedImages()
         {
             var imgRegex = new Regex("<img[^>]+ />", RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -208,6 +213,7 @@ namespace PersonalBlog
             return PartialView("_DeleteUnusedImagesResult", viewModel);
         }
 
+        [Route("/Admin/manageUsersAndRoles/")]
         public ActionResult ManageUsersAndRoles()
         {
             var usersAndRolesViewModel = _userRepository.GetAllUsersWithRoles();

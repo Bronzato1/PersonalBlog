@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PersonalBlog
 {
+    [Area("Quiz")]
     public class QuizController : Controller
     {
         public QuizController()
@@ -9,6 +10,7 @@ namespace PersonalBlog
 
         }
 
+        [Route("/quiz/")]
         public ActionResult Index()
         {
             return View();

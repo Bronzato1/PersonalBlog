@@ -10,8 +10,10 @@ using PersonalBlog.Quizbee.ViewModels;
 namespace PersonalBlog.Quizbee.Controllers
 {
     [AllowAnonymous]
+    [Area("Quiz")]
     public class HomeController : BaseController
     {
+        [Route("/quizzzzz/")]
         public ActionResult Index(string search, int? page, int? items)
         {
             HomeViewModel model = new HomeViewModel();

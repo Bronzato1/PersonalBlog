@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PersonalBlog
 {
+    [Area("Radios")]
     public class RadiosController : Controller
     {
+        [Route("/radios/")]
         public ActionResult Index()
         {
             ViewData["sidebar-collapse"] = true;

@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PersonalBlog
 {
+    [Area("Books")]
     public class BooksController : Controller
     {
+        [Route("/books/")]
         public ActionResult Index()
         {
             ViewData["sidebar-collapse"] = true;
