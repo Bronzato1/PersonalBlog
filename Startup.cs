@@ -74,19 +74,17 @@ namespace PersonalBlog
 
             app.UseAuthorization();
 
-            // app.UseMvc(routes =>
-            // {
-            //     routes.MapRoute(
-            //         name: "default",
-            //         template: "{controller=Dashboard}/{action=Index}/{id?}");
-            //     routes.MapRoute(
-            //         name: "identity",
-            //         template: "{area=Identity}/{controller=Account}/{action=Login}/{id?}");
-            // });
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller=Dashboard}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                    name: "Blog",
+                    areaName: "Blog",
+                    pattern: "Blog/{controller=Blog}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+
                 endpoints.MapRazorPages();
             });
 

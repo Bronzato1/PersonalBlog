@@ -13,12 +13,17 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using PersonalBlog.Quizbee.Models;
 
 namespace PersonalBlog.Models
 {
-    public partial class MyDbContext : IdentityDbContext<CustomUser>
+    public partial class MyDbContext : IdentityDbContext<CustomUser>, IDisposable
     {
         IApplicationBuilder _applicationBuilder;
+
+        public MyDbContext(): base()
+        {
+        }
 
         public MyDbContext(IApplicationBuilder applicationBuilder)
         {
@@ -29,16 +34,26 @@ namespace PersonalBlog.Models
             : base(options)
         { }
 
+        // Doctor
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<Nurse> Nurses { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
+        // Experience
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Experience> Experiences { get; set; }
         public virtual DbSet<Keyword> Keywords { get; set; }
         public virtual DbSet<ExperienceKeyword> ExperienceKeywords { get; set; }
+        // Blog
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
+        // Quiz
+        public DbSet<Quiz> Quizzes { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Option> Options { get; set; }
+        public DbSet<StudentQuiz> StudentQuizzes { get; set; }
+        public DbSet<AttemptedQuestion> AttemptedQuestions { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -355,9 +370,14 @@ namespace PersonalBlog.Models
 
             modelBuilder.Seed();
 
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
 
             modelBuilder.Entity<CustomUser>().HasMany(p => p.Roles).WithOne().HasForeignKey(p => p.UserId).IsRequired();
+        }
+   
+        public static MyDbContext Create()
+        {
+            return new MyDbContext();
         }
     }
 
@@ -411,7 +431,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Pédiatre",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -422,7 +442,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Orthophoniste",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -433,7 +453,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Podologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -444,7 +464,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Chirurgien",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -455,7 +475,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Cardiologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -466,7 +486,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Anesthésiste",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -477,7 +497,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Gastroentérologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -488,7 +508,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Gynécologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -499,7 +519,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Hématologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -510,7 +530,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Néphrologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -521,7 +541,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Pédiatre",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -532,7 +552,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Orthophoniste",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -543,7 +563,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Podologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -554,7 +574,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Chirurgien",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -565,7 +585,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Cardiologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -576,7 +596,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Anesthésiste",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -587,7 +607,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Gastroentérologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -598,7 +618,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Gynécologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -609,7 +629,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Hématologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -620,7 +640,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Néphrologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -631,7 +651,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Pédiatre",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -642,7 +662,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Orthophoniste",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -653,7 +673,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Podologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -664,7 +684,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Chirurgien",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -675,7 +695,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Cardiologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -686,7 +706,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Anesthésiste",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -697,7 +717,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Gastroentérologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -708,7 +728,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Gynécologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -719,7 +739,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Hématologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 },
                 new Doctor
                 {
@@ -730,7 +750,7 @@ namespace PersonalBlog.Models
                     Phone = "+034 76 87 42",
                     Gender = 0,
                     Specialist = "Néphrologue",
-                    Created = DateTime.Now
+                    //Created = DateTime.Now
                 }
             );
 

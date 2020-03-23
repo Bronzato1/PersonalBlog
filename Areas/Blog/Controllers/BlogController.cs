@@ -19,6 +19,8 @@ using System.Security.Claims;
 
 namespace PersonalBlog
 {
+    [Area("Blog")]
+    [Route("Blog")]
     public class BlogController : Controller
     {
         private readonly IBlogRepository _blogRepository;
@@ -50,7 +52,7 @@ namespace PersonalBlog
             ViewData["prev"] = $"/{page + 1}/";
             ViewData["next"] = $"/{(page <= 1 ? null : page - 1 + "/")}";
             ViewData["sidebar-collapse"] = true;
-            return View("~/Views/Blog/Index.cshtml", filteredPosts);
+            return View("~/Areas/Blog/Views/Blog/Index.cshtml", filteredPosts);
         }
 
         [Route("/blog/category/{category}/{page:int?}")]
@@ -178,10 +180,10 @@ namespace PersonalBlog
             return Redirect(existing.GetEncodedLink());
         }
 
-        public ActionResult _Chat(int myNumber)
-        {
-            return PartialView();
-        }
+        // public ActionResult _Chat(int myNumber)
+        // {
+        //     return PartialView();
+        // }
 
         private async Task SaveFilesToDisk(Post post)
         {

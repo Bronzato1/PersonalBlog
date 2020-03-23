@@ -21,7 +21,7 @@ namespace PersonalBlog.TagHelpers
         [HtmlAttributeName(ForAttributeName)]
         public ModelExpression For { get; set; }
 
-        public override async void Process(TagHelperContext context, TagHelperOutput output)
+        public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             var level = (int) For.Model;
 
