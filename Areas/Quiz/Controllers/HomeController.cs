@@ -13,7 +13,7 @@ namespace PersonalBlog.Quizbee.Controllers
     [Area("Quiz")]
     public class HomeController : BaseController
     {
-        [Route("/quiz/")]
+        [Route("/quizzes/")]
         public ActionResult Index(string search, int? page, int? items)
         {
             HomeViewModel model = new HomeViewModel();

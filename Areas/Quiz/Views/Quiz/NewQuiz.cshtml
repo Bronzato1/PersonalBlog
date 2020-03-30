@@ -1,0 +1,307 @@
+@model PersonalBlog.Quizbee.ViewModels.NewQuizViewModel
+@using PersonalBlog.Quizbee.Helpers
+@{
+    ViewBag.Title = Model.PageInfo.PageTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["customForeColor"] = "text-mauve";
+    TempData["customBackColor"] = "bg-mauve";
+    var shareableLink = string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString);
+}
+@section head 
+{
+  <style>   
+    .outer {
+      display: table;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+    
+    .middle {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    
+    .inner {
+      margin-left: auto;
+      margin-right: auto;
+      width: 400px;
+    }
+  </style>
+}
+@section headerLeftNavItems 
+{
+   <li class="nav-item">
+      <a class="nav-link text-mauve" asp-controller="quiz" asp-action="index">
+        <span class="text-uppercase">Quiz</span>
+      </a>
+    </li>
+}
+@section headerRightNavItems 
+{
+}
+@section headerDropdownRightNavItems 
+{
+    <div class="dropdown-divider"></div>
+    <a href="#" class="dropdown-item">
+    gggg
+    </a>
+    <div class="dropdown-divider"></div>
+    <a href="#" class="dropdown-item">
+    hhh
+    </a>
+    <div class="dropdown-divider"></div>
+    <a href="#" class="dropdown-item">
+    iii
+    </a>
+}
+@section controlSidebar
+{
+    <div class="maxi">
+        <div class="border-xl border-top border-mauve"></div>
+        <div class="text-center p-4">
+            <h1 class="text-mauve display-3"><i class="fas fa-tasks nav-icon"></i></h1>
+            <p class="text-mauve text-uppercase">Quiz about programming</p>
+        </div>
+
+        <div class="border-top border-bottom border-light-grey bg-grey p-4">
+            <span class="text-mauve text-uppercase"><strong>Stage 0</strong></span>
+            <p><i class="text-mauve fas fa-biohazard fa-3x"></i> The object model</p>
+            <p>sdkfhs kfhjs kfjhs kfhs kfjhs fkjs kskfs dfkjs fks kfs fkh eiruyi uye uirtyz uytr df nxcbvw vsjdfgh js</p>
+        </div>
+
+        <div class="bg-grey">
+            <ul>
+                <li class="px-4">
+                    <i class="far fa-calendar-times pr-2"></i>
+                    Classes and instances
+                    <i class="bullet float-right bg-mauve"></i>
+                </li>
+                <li class="px-4">
+                    <i class="far fa-bookmark pr-2"></i>
+                    Computed properties
+                    <i class="bullet float-right bg-mauve"></i>
+                </li>
+                <li class="px-4">
+                    <i class="fas fa-calculator pr-2"></i>
+                    Review
+                    <i class="bullet float-right bg-mauve"></i>
+                </li>
+            </ul>        
+        </div>
+    </div>
+
+    <div class="mini">
+        <div class="border-bottom border-light-grey h-70 text-center">
+            <div class="border-xl border-top border-mauve"></div>
+            <h3 class="text-mauve py-3"><i class="fas fa-tasks nav-icon"></i></h3>
+        </div>
+
+        <div class="border-bottom border-light-grey bg-grey text-center py-3">
+            <span class="text-mauve text-uppercase"><strong>Stage 0</strong></span>
+        </div>
+
+        <div class="bg-grey text-center">
+            <ul>
+                <li>
+                    <i class="far fa-calendar-times"></i>
+                </li>
+                <li>
+                    <i class="far fa-bookmark"></i>
+                </li>
+                <li>
+                    <i class="fas fa-calculator"></i>
+                </li>
+            </ul>        
+        </div>
+    </div>
+    
+}
+@section Scripts {
+
+	$(document).ready(function () {
+		CheckForTimerSection();
+
+		$("#QuizTimerCheckbox").change(function () {
+			CheckForTimerSection();
+		});
+	});
+
+	function CheckForTimerSection() {
+		if ($('#QuizTimerCheckbox').is(":checked")) {
+			$('#EnableQuizTimer').val("true");
+			$("#timerSection").show();
+		}
+		else {
+			$('#EnableQuizTimer').val("false");
+			$("#timerSection").hide();
+		}
+	}
+
+}
+
+<div class="container-fluid">
+	<div class="row mb-4">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<ul class="nav nav nav-tabs card-header-tabs">
+						<li class="nav-item">
+							<a class="nav-link" href="@Url.QuizzesList()"><i class="fas fa-clipboard-list"></i>&nbsp;Quizzes</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="#">
+								<i class="fas fa-plus"></i>
+								&nbsp;@Model.PageInfo.PageTitle
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="card-body">
+					<form role="form" id="operationForm" method="post" action="@Url.NewQuiz()">
+						<div class="form-group">
+							<label for="Title">Quiz Name</label>
+							<input class="form-control" type="text" id="Name" name="Name" value="@Model.Name" placeholder="Enter quiz name">
+							@if (!ViewData.ModelState.IsValid && ViewData.ModelState["Name"] != null && ViewData.ModelState["Name"].Errors.Count > 0)
+							{
+								<div class="m-t-10 alert alert-icon alert-warning alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+									<i class="mdi mdi-alert"></i>
+									@Html.ValidationMessageFor(m => m.Name, "", new { @class = "tx-danger" })
+								</div>
+							}
+						</div>
+						<div class="form-group">
+							<label for="Description">Description</label>
+							<textarea class="form-control" name="Description" placeholder="Enter some Description about this quiz" rows="4">@Model.Description</textarea>
+							@if (!ViewData.ModelState.IsValid && ViewData.ModelState["Description"] != null && ViewData.ModelState["Description"].Errors.Count > 0)
+							{
+								<div class="m-t-10 alert alert-icon alert-warning alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+									<i class="mdi mdi-alert"></i>
+									@Html.ValidationMessageFor(m => m.Description, "", new { @class = "tx-danger" })
+								</div>
+							}
+						</div>                        
+                        <div class="form-group">
+                            <label for="Title">Question Type</label>
+
+                            <select class="form-control" type="text" id="SelectedQuizType" name="SelectedQuizType">
+                                @foreach (var quizType in Model.QuizTypes)
+                                {
+                                    var ID = (int)quizType;
+                                    <option value="@ID" is-selected="@Model.SelectedQuizType">@quizType.ToString()</option>
+                                }
+                            </select>
+
+                            @if (!ViewData.ModelState.IsValid && ViewData.ModelState["SelectedQuizType"] != null && ViewData.ModelState["SelectedQuizType"].Errors.Count > 0)
+                            {
+                                <div class="m-t-10 alert alert-icon alert-warning alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    <i class="mdi mdi-alert"></i>
+                                    @Html.ValidationMessageFor(m => m.SelectedQuizType, "", new { @class = "tx-danger" })
+                                </div>
+                            }
+                        </div>
+						<div class="form-group">
+							<label for="Description">Should this Quiz be taken in a timely manner?</label>
+							<div class="form-control checkbox form-check-inline">
+								@{
+									var quizTimerChecked = Model.EnableQuizTimer ? "checked" : string.Empty;
+								}
+								<input type="checkbox" id="QuizTimerCheckbox" @quizTimerChecked> Yes, Enable Quiz Timer
+								<input type="hidden" name="EnableQuizTimer" id="EnableQuizTimer" />
+							</div>
+							@if (!ViewData.ModelState.IsValid && ViewData.ModelState["EnableQuizTimer"] != null && ViewData.ModelState["EnableQuizTimer"].Errors.Count > 0)
+							{
+								<div class="m-t-10 alert alert-icon alert-warning alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+									<i class="mdi mdi-alert"></i>
+									@Html.ValidationMessageFor(m => m.EnableQuizTimer, "", new { @class = "tx-danger" })
+								</div>
+							}
+						</div>
+						<div id="timerSection">
+							<div class="form-group">
+								<label for="Hours">Hours</label>
+								<input class="form-control" type="text" id="Hours" name="Hours" value="@Model.Hours" placeholder="Enter Hours Duration">
+								@if (!ViewData.ModelState.IsValid && ViewData.ModelState["Hours"] != null && ViewData.ModelState["Hours"].Errors.Count > 0)
+								{
+									<div class="m-t-10 alert alert-icon alert-warning alert-dismissible" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+										<i class="mdi mdi-alert"></i>
+										@Html.ValidationMessageFor(m => m.Hours, "", new { @class = "tx-danger" })
+									</div>
+								}
+							</div>
+							<div class="form-group">
+								<label for="Minutes">Minutes</label>
+								<input class="form-control" type="text" id="Minutes" name="Minutes" value="@Model.Minutes" placeholder="Enter Minutes Duration">
+								@if (!ViewData.ModelState.IsValid && ViewData.ModelState["Minutes"] != null && ViewData.ModelState["Minutes"].Errors.Count > 0)
+								{
+									<div class="m-t-10 alert alert-icon alert-warning alert-dismissible" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+										<i class="mdi mdi-alert"></i>
+										@Html.ValidationMessageFor(m => m.Minutes, "", new { @class = "tx-danger" })
+									</div>
+								}
+							</div>
+                            <div class="form-group">
+								@if (!ViewData.ModelState.IsValid && ViewData.ModelState["TimeDuration"] != null && ViewData.ModelState["TimeDuration"].Errors.Count > 0)
+								{
+									<div class="m-t-10 alert alert-icon alert-warning alert-dismissible" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+										<i class="mdi mdi-alert"></i>
+										@Html.ValidationMessageFor(m => m.TimeDuration, "", new { @class = "tx-danger" })
+									</div>
+								}
+							</div>
+							<div class="form-group">
+								<label for="Description">Do you want to enable each Question Timer?</label>
+								<div class="form-control checkbox form-check-inline">
+									@{
+										var questionTimerChecked = Model.EnableQuestionTimer ? "checked" : string.Empty;
+									}
+									<input type="checkbox" id="EnableQuestionTimer" name="EnableQuestionTimer" value="true" @questionTimerChecked> Yes, Enable Question Timer
+								</div>
+								@if (!ViewData.ModelState.IsValid && ViewData.ModelState["EnableQuestionTimer"] != null && ViewData.ModelState["EnableQuestionTimer"].Errors.Count > 0)
+								{
+									<div class="m-t-10 alert alert-icon alert-warning alert-dismissible" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+										<i class="mdi mdi-alert"></i>
+										@Html.ValidationMessageFor(m => m.EnableQuestionTimer, "", new { @class = "tx-danger" })
+									</div>
+								}
+							</div>
+						</div>
+						<hr />						
+						<button type="submit" id="addButton" class="btn btn-success waves-effect waves-light w-md"><i class="fas fa-save mg-r-10"></i>&nbsp;Save Quiz and Start Adding Questions</button>
+						<a href="@Url.QuizzesList()" role="button" class="btn btn-primary waves-effect waves-light w-md"><i class="fas fa-times mg-r-10"></i>&nbsp;Cancel and Go Back</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+</script>

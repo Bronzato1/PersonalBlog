@@ -86,6 +86,23 @@ namespace PersonalBlog
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+                endpoints.MapControllerRoute(
+                    name: "Home",
+                    pattern: "quizzes/",
+                    defaults: new { controller = "Home", action = "Index" }
+                );
+                            
+                endpoints.MapControllerRoute(
+                    name: "QuizzesList",
+                    pattern: "quizzes/",
+                    defaults: new { controller = "Quiz", action = "Index" }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "NewQuiz",
+                    pattern: "quizzes/new/",
+                    defaults: new { controller = "Quiz", action = "NewQuiz" }
+                );
 
                 endpoints.MapRazorPages();
             });
