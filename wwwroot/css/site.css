@@ -61,31 +61,31 @@ a[href="/"].active {
     border-color: #ffffff !important;
 }
 
-a[href^="/Blog"].active {
+a[href^="/blog"].active {
     border-color: #007bff !important;
 }
 
-a[href^="/Courses"].active {
+a[href^="/courses"].active {
     border-color: #17a2b8 !important;
 }
 
-a[href^="/Books"].active {
+a[href^="/books"].active {
     border-color: #ffc107 !important;
 } 
 
-a[href^="/Radios"].active {
+a[href^="/radios"].active {
     border-color: #dc3545 !important;
 } 
 
-a[href^="/Quiz"].active {
+a[href^="/quiz"].active {
     border-color: #8b70bd !important;
 }
 
-a[href^="/Users"].active {
+a[href^="/users"].active {
     border-color: #ffbaba !important;
 }
 
-a[href^="/Admin"].active {
+a[href^="/admin"].active {
     border-color: #ffffff !important;
 } 
 
@@ -286,7 +286,7 @@ body.control-sidebar-maxi .mini {
 }
 
 .sidebar-mini .tooltip-inner {
-    margin-right: -10px;
+    margin-right: -18px;
     height: 43px;
     line-height: 42px;
     padding-top: 0px;
@@ -411,7 +411,7 @@ body.control-sidebar-maxi .mini {
 }
 
 body{
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .badge-outline {

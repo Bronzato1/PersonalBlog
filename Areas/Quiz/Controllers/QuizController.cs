@@ -60,6 +60,7 @@ namespace PersonalBlog.Quizbee
         }
 
         [HttpPost]
+        [Route("quizzes/new/")]
         public async Task<ActionResult> NewQuiz(NewQuizViewModel model)
         {
             //check if Model is valid

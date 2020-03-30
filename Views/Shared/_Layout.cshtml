@@ -288,10 +288,19 @@
           $('[data-toggle="tooltip"]').tooltip({ html: true }); //, trigger: 'manual'}).tooltip('show');;
           $('[data-toggle="tooltip"]').on('inserted.bs.tooltip', function () {
             var $elm = $(this);
-            //var hasVScrollBar = $('body')[0].scrollHeight > $('body').innerHeight();
+            var hasVScrollBar = $('body')[0].scrollHeight > $('body').innerHeight();
             var backgroundColor = getBackgroundColor($elm);
             var foregroundColor = getForegroundColor($elm);
-            $('.tooltip-inner').attr('style', 'background-color:' + backgroundColor + ';color:' + foregroundColor);
+
+            if (hasVScrollBar)
+            {
+              $('.tooltip-inner').attr('style', 'background-color:' + backgroundColor + ';color:' + foregroundColor + ';margin-right: -10px;');
+            } 
+            else 
+            {
+              $('.tooltip-inner').attr('style', 'background-color:' + backgroundColor + ';color:' + foregroundColor + ';margin-right: -18px;');
+            }
+            
           })
 
         </script>

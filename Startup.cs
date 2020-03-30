@@ -104,6 +104,12 @@ namespace PersonalBlog
                     defaults: new { controller = "Quiz", action = "NewQuiz" }
                 );
 
+                endpoints.MapControllerRoute(
+                    name: "NewQuestion",
+                    pattern: "quizzes/questions/{QuizID}/new/",
+                    defaults: new { controller = "Question", action = "NewQuestion" }
+                );
+
                 endpoints.MapRazorPages();
             });
 
