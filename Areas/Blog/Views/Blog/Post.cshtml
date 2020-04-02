@@ -7,7 +7,7 @@
     string host = Context.Request.Scheme + "://" + Context.Request.Host;
     bool isCodePreview = Model.Content.Contains("</code>");
     System.Globalization.CultureInfo cultureUS = new System.Globalization.CultureInfo("en-US");
-    if (showFullPost) Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+    //if (showFullPost) Layout = "~/Views/Shared/_LayoutBlog.cshtml";
 
     @functions
     {
@@ -43,28 +43,31 @@
     }    
 }
 
-<div class="card card-widget card-blog-post @collapsedCard(@showFullPost)">
+<div class="card card-widget card-blog-post @collapsedCard(@showFullPost) py-1 border-top border-bottom">
     
-    <div class="card-header">
+    <div class="card-header p-0">
         <div class="user-block">
-            <img class="img-circle elevation-2" gravatar-for="@Model.CustomUser" alt="User Image" />
+            <img class="img-circleee elevation-2" gravatar-for="@Model.CustomUser" alt="User Image" />
             <span class="title">
-                <a href="@Model.GetLink()">@Model.Title</a>
+                <a href="@Model.GetLink()" class="detailsLink">@Model.Title</a>
             </span>
-            <span class="categories">
-                <ul>
-                @foreach (Category cat in Model.Categories)
-                {
-                    <li><a asp-controller="Blog" asp-action="Category" asp-route-category="@cat.Name.ToLowerInvariant()" asp-route-page=""><span class="badge badge-outline">@cat.Name</span></a></li>
-                }
-                </ul>
-            </span>
-            <span class="description text-nowrap">
-                Posted on
-                <time datetime="@Model.PubDate.ToString("s")" itemprop="datePublished">@Model.PubDate.ToString("d MMMM yyyy", cultureUS)</time>
-            </span>
+            <div>
+                <span class="categories">
+                    <ul>
+                    @foreach (Category cat in Model.Categories)
+                    {
+                        <li><a asp-controller="Blog" asp-action="Category" asp-route-category="@cat.Name.ToLowerInvariant()" asp-route-page=""><span class="badge badge-outline">@cat.Name</span></a></li>
+                    }
+                    </ul>
+                </span>
+                <span class="description text-nowrap ml-0">
+                    Posted on
+                    <time datetime="@Model.PubDate.ToString("s")" itemprop="datePublished">@Model.PubDate.ToString("d MMMM yyyy", cultureUS)</time>
+                </span>
+            </div>
+            
         </div><!--/.user-block-->
-        <div class="card-tools">
+        <div class="ccard-tools" style="display:none;">
 
             @if(showFullPost)
             {

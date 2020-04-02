@@ -52,7 +52,7 @@
   
   <body class="hold-transition layout-fixed sidebar-mini control-sidebar-open control-sidebar-push">
     
-    <div class="wrapper">
+    <div class="wrapper h-100 d-flex flex-column">
       <nav class="main-header navbar navbar-expand navbar-light pb-2 h-70">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
@@ -96,7 +96,7 @@
       
       <partial name="_LayoutMainSidebar" />
 
-      <div class="content-wrapper">
+      <div class="content-wrapper h-100">
         <!-- Content Header (Page header) -->
         @RenderBody()
         <!-- /.content -->
@@ -288,18 +288,20 @@
           $('[data-toggle="tooltip"]').tooltip({ html: true }); //, trigger: 'manual'}).tooltip('show');;
           $('[data-toggle="tooltip"]').on('inserted.bs.tooltip', function () {
             var $elm = $(this);
-            var hasVScrollBar = $('body')[0].scrollHeight > $('body').innerHeight();
+            //var hasVScrollBar = $('body')[0].scrollHeight > $('body').innerHeight();
             var backgroundColor = getBackgroundColor($elm);
             var foregroundColor = getForegroundColor($elm);
 
-            if (hasVScrollBar)
-            {
-              $('.tooltip-inner').attr('style', 'background-color:' + backgroundColor + ';color:' + foregroundColor + ';margin-right: -10px;');
-            } 
-            else 
-            {
-              $('.tooltip-inner').attr('style', 'background-color:' + backgroundColor + ';color:' + foregroundColor + ';margin-right: -18px;');
-            }
+            $('.tooltip-inner').attr('style', 'background-color:' + backgroundColor + ';color:' + foregroundColor);
+
+            //if (hasVScrollBar)
+            //{
+            //  $('.tooltip-inner').attr('style', 'background-color:' + backgroundColor + ';color:' + foregroundColor + ';margin-right: -10px;');
+            //} 
+            //else 
+            //{
+            //  $('.tooltip-inner').attr('style', 'background-color:' + backgroundColor + ';color:' + foregroundColor + ';margin-right: -18px;');
+            //}
             
           })
 

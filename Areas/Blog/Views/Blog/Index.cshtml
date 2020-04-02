@@ -115,9 +115,24 @@
     {
       $('input:checkbox').prop('checked', false);
     }
+
+    $('.detailsLink').click(function () 
+    {
+      $('#details').load(this.href);
+      return false;
+    });
+
   </script>
 }
-@foreach (var post in Model)
-{
-  <partial name="Post" model="post" />
-}
+
+<div class="row flex-fill" style="min-height:0">
+  <div class="col-md-5 p-0 mh-100" style="overflow-y: scroll;">
+    @foreach (var post in Model)
+    {
+      <partial name="Post" model="post" />
+    }
+  </div>
+  <div class="col-md-7 p-2 mh-100" style="overflow-y: scroll; background-color: #80808012;">
+    <div id="details"></div>
+  </div>
+</div>

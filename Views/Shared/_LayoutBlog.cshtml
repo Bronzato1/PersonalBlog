@@ -170,13 +170,13 @@
     @RenderSection("scripts", required: false)
 }
 
-<section class="content">
-    <div class="container-fluid pt-3">
-        <div class="row">
+<section class="content h-100 pr-0">
+    <div class="container-fluid h-100 d-flex flex-column">
+        <div class="row flex-fill" style="min-height:0">
             <!--<div class="col-md-2">
                 <partial name="Sidebar" />
             </div>--><!--/.col-->
-            <div class="col-md-12">
+            <div class="col-md-12 mh-100 h-100 d-flex flex-column">
 
                 @RenderBody()
 

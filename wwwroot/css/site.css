@@ -1,3 +1,7 @@
+html,body {
+    height: 100% !important;
+}
+
 body {
     display: none;
 }
@@ -286,7 +290,7 @@ body.control-sidebar-maxi .mini {
 }
 
 .sidebar-mini .tooltip-inner {
-    margin-right: -18px;
+    margin-right: -25px;
     height: 43px;
     line-height: 42px;
     padding-top: 0px;
@@ -410,9 +414,9 @@ body.control-sidebar-maxi .mini {
     }
 }
 
-body{
+/* body{
     overflow-y: auto;
-}
+} */
 
 .badge-outline {
     color: black;
@@ -420,17 +424,17 @@ body{
     background-color: transparent;
 }
 
-::-webkit-scrollbar {
-    width: 10px;
+/* ::-webkit-scrollbar {
+    width: 5px;
 }
  
 ::-webkit-scrollbar-track {
-    background-color: #272c30;
+    background-color: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #343a40; 
-}
+    background: #c1c1c1; 
+} */
 
 #Post_Edit #Post_Title,
 #Post_Edit #Post_Slug,

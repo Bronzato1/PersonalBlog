@@ -139,6 +139,7 @@ namespace PersonalBlog
         }
 
         [HttpPost, Authorize, AutoValidateAntiforgeryToken]
+        [Route("/blog/updatePost")]
         public async Task<IActionResult> UpdatePost(UpdatePostViewModel viewModel)
         {
             if (!ModelState.IsValid)
